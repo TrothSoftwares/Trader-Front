@@ -1,0 +1,178 @@
+
+<div class="ui small form segment">
+  <div class=" two fields">
+    <div class="field">
+      <label>Item Code</label>
+      {{input placeholder="Item Code"  type="text" value=itemcode}}
+    </div>
+
+    <div class="field">
+      <label>Product Name</label>
+      {{input placeholder="Product Name"  type="text" value=productname}}
+    </div>
+
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>New Supplier </label>
+      <div class="ui blue small submit button"  {{action "openSupplierModal"}}>New Supplier</div>
+      {{ember-selectize
+        content=suppliers
+        optionValuePath="content.id"
+        optionLabelPath="content.companyname"
+        selection=supplier
+        placeholder="Select an item" }}
+      </div>
+
+      <div class="field">
+        <label>New Product type</label>
+        <div class="ui blue small submit button"  {{action "openProductTypeModal"}}>New Product Type</div>
+
+        {{ember-selectize
+          content=producttypes
+          optionValuePath="content.id"
+          optionLabelPath="content.typename"
+          selection=typename
+          placeholder="Select an item" }}
+        </div>
+      </div>
+
+      <div class="two fields">
+        <div class="field">
+          <label>Product Brand</label>
+          <div class="ui blue small submit button"  {{action "openProductBrandModal"}}>New Product Brand</div>
+          {{ember-selectize
+            content=productbrands
+            optionValuePath="content.id"
+            optionLabelPath="content.brandname"
+            selection=brandname
+            placeholder="Select an item" }}
+          </div>
+          <div class="field">
+            <label>Initial Stock</label>
+            {{input placeholder="Initial Stock" type="text" value=initialstocklevel}}
+          </div>
+        </div>
+        <div class="two fields">
+          <div class="field">
+            <label>Initial Cost Price</label>
+            {{input placeholder="Initial Cost Price" type="text" value=initialcostprice}}
+          </div>
+          <div class="field">
+            <label>Buy Price</label>
+            {{input placeholder="Buy Price" type="text" value=buyprice }}
+          </div>
+        </div>
+
+        <div class="two fields">
+          <div class="field">
+            <label>Retail Price</label>
+            {{input placeholder="Retails Price" type="text" value=retailprice}}
+          </div>
+
+        </div>
+        <div class="ui blue small submit button"  {{action "createProduct"}}>Submit</div>
+      </div>
+
+      <div class="ui small newsupplier modal">
+        <i class="close icon"></i>
+        <div class="header">Add New Supplier</div>
+        <div class="content">
+          <p>
+            <div class="ui small form segment">
+              <div class="two fields">
+                <div class="field">
+                  <label>Company Name</label>
+                  {{input placeholder="Company Name" type="text" value=companyname}}
+                </div>
+                <div class="field">
+                  <label>Email</label>
+                  {{input placeholder="Email" type="email" value=email}}
+                </div>
+              </div>
+
+              <div class="two fields">
+                <div class="field">
+                  <label>Address 1</label>
+                  {{input placeholder="Address 1" type="text" value=address1}}
+                </div>
+                <div class="field">
+                  <label>Address 2</label>
+                  {{input placeholder="Address 2" type="text" value=address2}}
+                </div>
+              </div>
+
+              <div class="two fields">
+                <div class="field">
+                  <label>Suburb</label>
+                  {{input placeholder="Suburb" type="text" value=suburb}}
+                </div>
+                <div class="field">
+                  <label>City</label>
+                  {{input placeholder="City" type="text" value=city}}
+                </div>
+              </div>
+
+              <div class="two fields">
+                <div class="field">
+                  <label>State</label>
+                  {{input placeholder="State" type="text" value=state}}
+                </div>
+                <div class="field">
+                  <label>Country</label>
+                  {{input placeholder="Country" type="text" value=country}}
+                </div>
+              </div>
+
+
+
+              <div class="two fields">
+                <div class="field">
+                  <label>Zip Code</label>
+                  {{input placeholder="Zipcode" type="text" value=zipcode}}
+                </div>
+                <div class="field">
+                  <label>Phone</label>
+                  {{input placeholder="Phone" type="text" value=phone}}
+                </div>
+              </div>
+              <div class="ui blue small submit button" {{action "createSupplier"}}>Submit</div>
+            </div>
+          </p>
+
+        </div>
+      </div>
+
+
+      <div class="ui newproductbrand small modal">
+        <div class="header">New Product Brand</div>
+        <div class="content">
+          <div class="ui small form segment">
+
+            <div class=" fields">
+              <div class="field">
+                <label>New Product Brand</label>
+                {{input placeholder="Product Brand" type="text" value=newproductbrand}}
+              </div>
+            </div>
+          </div>
+          <div class="ui blue small submit button" {{action "createProductBrand"}}>Submit</div>
+        </div>
+      </div>
+
+
+      <div class="ui newproducttype small modal">
+        <div class="header">New Product Type</div>
+        <div class="content">
+          <div class="ui small form segment">
+
+            <div class=" fields">
+              <div class="field">
+                <label>New Product Type</label>
+                {{input placeholder="Product Type" type="text" value=newproducttype}}
+              </div>
+            </div>
+          </div>
+          <div class="ui blue small submit button" {{action "createProductType"}}>Submit</div>
+        </div>
+      </div>
