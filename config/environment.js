@@ -1,7 +1,9 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
+  var deployTarget = process.env.DEPLOY_TARGET || environment;
   var ENV = {
+
     modulePrefix: 'zahid-staging',
     environment: environment,
     baseURL: '/',
@@ -72,6 +74,13 @@ ENV['ember-simple-auth'] = {
     ENV.APP.host =  'http://zahid-rails.herokuapp.com';
 
   }
+  if (deployTarget === 'staging') {
+  ENV.build.environment = 'production';
+}
+
+if (deployTarget === 'production') {
+  ENV.build.environment = 'production';
+}
 
   return ENV;
 };
