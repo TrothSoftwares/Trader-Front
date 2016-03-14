@@ -1,0 +1,81 @@
+
+<div class="ui small form segment">
+  <div class="two fields">
+    <div class="field">
+      <label>Item Code</label>
+      {{input placeholder="Item Code" type="text" value=product.itemcode}}
+    </div>
+    <div class="field">
+      <label>Product Name</label>
+      {{input placeholder="Product Name" type="text" value=product.productname}}
+    </div>
+  </div>
+
+
+
+
+
+  <div class="two fields">
+    <div class="field">
+      <label>Supplier</label>
+      <!-- {{input placeholder="Supplier" type="text" value=product.supplier.companyname}} -->
+      {{ember-selectize
+        content=suppliers
+        optionValuePath="content.id"
+        optionLabelPath="content.companyname"
+        selection=product.supplier
+        placeholder="Select an item" }}
+    </div>
+    <div class="field">
+      <label>Product Type</label>
+      <!-- {{input placeholder="Product Type" type="text" value=product.producttype.typename}} -->
+      {{ember-selectize
+        content=producttypes
+        optionValuePath="content.id"
+        optionLabelPath="content.typename"
+        selection=product.producttype
+        placeholder="Select an item" }}
+
+    </div>
+  </div>
+
+  <div class="two fields">
+    <div class="field">
+      <label>Product Brand</label>
+      <!-- {{input placeholder="First Name" type="text" value=product.productbrand.brandname}} -->
+      {{ember-selectize
+        content=productbrands
+        optionValuePath="content.id"
+        optionLabelPath="content.brandname"
+        selection=product.productbrand
+        placeholder="Select an item" }}
+    </div>
+    <div class="field">
+      <label>Initial Stock Level</label>
+      {{input placeholder="Last Name" type="text" value=product.initialstocklevel}}
+    </div>
+  </div>
+
+
+  <div class="two fields">
+    <div class="field">
+      <label>Initial Cost Price</label>
+      {{input placeholder="Initial Cost Price" type="text" value=product.initialcostprice}}
+    </div>
+    <div class="field">
+      <label>Buy Price</label>
+      {{input placeholder="Buy Price" type="text" value=product.buyprice}}
+    </div>
+  </div>
+
+  <div class="two fields">
+    <div class="field">
+      <label>Retail Price</label>
+      {{input placeholder="Retail Price" type="text" value=product.retailprice}}
+    </div>
+
+  </div>
+
+  <div class="ui blue small submit button" {{action "deleteProduct" product}}>Delete</div>
+  <div class="ui blue small submit button" {{action "saveProduct" product}}>Save</div>
+</div>
