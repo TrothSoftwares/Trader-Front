@@ -3,6 +3,18 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
 
+
+  retailprice: function() {
+    var initialcostprice = this.get('product.initialcostprice');
+    var buyprice = this.get('product.buyprice');
+    var retailprice = (parseInt(initialcostprice) + parseInt(buyprice)) / 2 ;
+    // this.set('product.retailprice', 'retailprice');
+    return retailprice;
+  }.property('product.initialcostprice', 'product.buyprice'),
+
+
+
+
   actions:{
 
     deleteProduct:function(product){
@@ -32,7 +44,9 @@ export default Ember.Controller.extend({
     },
     saveProduct:function(){
       var controller = this;
+      this.set('product.retailprice' , this.get('retailprice'));
       var currentProduct = this.get('product');
+
 
       currentProduct.save().then(function(){
         controller.notifications.addNotification({

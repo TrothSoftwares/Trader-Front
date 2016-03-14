@@ -2,6 +2,17 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+  retailprice: Ember.computed('initialcostprice', 'buyprice', function() {
+  var initialcostprice = this.get('initialcostprice');
+  var buyprice = this.get('buyprice');
+
+  var retailprice = (parseInt(initialcostprice) + parseInt(buyprice)) / 2 ;
+  return retailprice;
+
+  }),
+
+
+
   actions:{
 
 
