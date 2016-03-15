@@ -7,14 +7,18 @@ export default Ember.Controller.extend({
         "propertyName": "id", "title": "ID"
       },
       {
-        "propertyName": "itemcode","title": "Item Code"
+        "propertyName": "companycode","title": "Company Code"
       },
       {
-        "propertyName": "productname","title": "Product Name"
+        "propertyName": "email","title": "Email"
       },
       {
-        "propertyName": "producttype.typename","title": "Product Type"
+        "propertyName": "phone","title": "Phone"
       },
+
+
+
+
       {
         "title":"View" , "template":"custom/viewbutton"
       },

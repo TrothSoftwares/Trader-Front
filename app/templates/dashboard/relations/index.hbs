@@ -1,0 +1,28 @@
+<h2 class="ui dividing header">Products</h2>
+
+
+
+
+
+<div class="ui bottom attached tab segment active ">
+  {{models-table
+    data=suppliers
+    columns=columns
+    customMessages=customMessages
+    useFilteringByColumns=true
+    showColumnsDropdown=false
+    useNumericPagination=true
+    filteringIgnoreCase=true
+   }}
+</div>
+
+
+
+{{outlet}}
+
+<script>
+$('.menu .item')
+  .tab()
+;
+</script>
+{{outlet}}

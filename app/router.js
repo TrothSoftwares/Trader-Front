@@ -11,6 +11,7 @@ Router.map(function() {
       this.route('new');
       this.route('product', {path: ':id'});
     });
+    this.route('relations', function() {});
   });
   this.route('login');
 });
