@@ -7,7 +7,19 @@
 <div class="ui bottom attached tab segment active ">
   {{models-table
     data=suppliers
-    columns=columns
+    columns=supplierColumns
+    customMessages=customMessages
+    useFilteringByColumns=true
+    showColumnsDropdown=false
+    useNumericPagination=true
+    filteringIgnoreCase=true
+   }}
+</div>
+
+<div class="ui bottom attached tab segment active ">
+  {{models-table
+    data=customers
+    columns=customerColumns
     customMessages=customMessages
     useFilteringByColumns=true
     showColumnsDropdown=false

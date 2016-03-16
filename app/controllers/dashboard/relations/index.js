@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-    columns: [
+    supplierColumns: [
       {
         "propertyName": "id", "title": "ID"
       },
@@ -15,17 +15,28 @@ export default Ember.Controller.extend({
       {
         "propertyName": "phone","title": "Phone"
       },
-
-
-
-
       {
-        "title":"View" , "template":"custom/viewbutton"
+        "title":"View" , "template":"custom/viewcustomer"
       },
-
-
     ],
 
+    customerColumns: [
+      {
+        "propertyName": "id", "title": "ID"
+      },
+      {
+        "propertyName": "companycode","title": "Company Code"
+      },
+      {
+        "propertyName": "email","title": "Email"
+      },
+      {
+        "propertyName": "phone","title": "Phone"
+      },
+      {
+        "title":"View" , "template":"custom/viewsupplier"
+      },
+    ],
 
     customMessages: {
       "searchLabel": "Search",
