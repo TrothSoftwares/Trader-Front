@@ -7,7 +7,7 @@ module.exports = function(environment) {
     modulePrefix: 'zahid-staging',
     environment: environment,
     baseURL: '/',
-    //locationType: 'auto',
+    locationType: 'auto',
 
     contentSecurityPolicy: {
       'default-src': "'self' *",

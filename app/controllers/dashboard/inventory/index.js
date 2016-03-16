@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
         "propertyName": "producttype.typename","title": "Product Type"
       },
       {
-        "title":"View" , "template":"custom/viewbutton"
+        "title":"View" , "template":"custom/viewinventory"
       },
 
 
