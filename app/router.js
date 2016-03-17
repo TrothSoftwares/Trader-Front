@@ -16,9 +16,11 @@ Router.map(function() {
     this.route('relations', function() {
       this.route('customers', function() {
         this.route('customer' , {path: ':id'});
+        this.route('new');
       });
       this.route('suppliers', function() {
         this.route('supplier' , {path: ':id'});
+        this.route('new');
       });
     });
   });

@@ -7,25 +7,7 @@ export default Ember.Controller.extend({
         "propertyName": "id", "title": "ID"
       },
       {
-        "propertyName": "companycode","title": "Company Code"
-      },
-      {
-        "propertyName": "email","title": "Email"
-      },
-      {
-        "propertyName": "phone","title": "Phone"
-      },
-      {
-        "title":"View" , "template":"custom/viewcustomer"
-      },
-    ],
-
-    customerColumns: [
-      {
-        "propertyName": "id", "title": "ID"
-      },
-      {
-        "propertyName": "companycode","title": "Company Code"
+        "propertyName": "companyname","title": "Company Name"
       },
       {
         "propertyName": "email","title": "Email"
@@ -35,6 +17,24 @@ export default Ember.Controller.extend({
       },
       {
         "title":"View" , "template":"custom/viewsupplier"
+      },
+    ],
+
+    customerColumns: [
+      {
+        "propertyName": "id", "title": "ID"
+      },
+      {
+        "propertyName": "companyname","title": "Company Name"
+      },
+      {
+        "propertyName": "email","title": "Email"
+      },
+      {
+        "propertyName": "phone","title": "Phone"
+      },
+      {
+        "title":"View" , "template":"custom/viewcustomer"
       },
     ],
 

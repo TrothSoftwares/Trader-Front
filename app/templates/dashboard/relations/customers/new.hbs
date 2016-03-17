@@ -1,67 +1,63 @@
 
 <div class="ui black segment" >
-  <div class="ui dividing header">Supplier Details  </div>
+  <div class="ui dividing header">Add New Customer  </div>
   <div class="ui small form">
     <div class="ui stackable grid">
       <div class="five wide dividing column">
 
         <div class="inline field" style="float:right">
           <label >Comapany Name :</label>
-          {{input placeholder="Comapany Name"  type="text" value=supplier.companyname }}
+          {{input placeholder="Comapany Name"  name="companyname" type="text" value=companyname }}
         </div>
         <div class="inline field" style="float:right">
           <label>Company Code : </label>
-          {{input placeholder="Comapany Code"  type="text"  value=supplier.companycode}}
+          {{input placeholder="Comapany Code" name="companycode"  type="text"  value=companycode}}
         </div>
         <div class="inline field" style="float:right">
           <label>Charge Code :</label>
-          {{input placeholder="Charge Code"   type="text"  value=supplier.chargecode}}
+          {{input placeholder="Charge Code"   type="text"  value=chargecode}}
         </div>
         <div class="inline field" style="float:right">
           <label>Address 1 : </label>
-          {{input placeholder="Address 1"  type="text"  value=supplier.address1}}
+          {{input placeholder="Address 1"  type="text"  value=address1}}
         </div>
         <div class="inline field" style="float:right">
           <label>Address 2 : </label>
-          {{input placeholder="Address 2"  type="text"  value=supplier.address2}}
+          {{input placeholder="Address 2"  type="text"  value=address2}}
         </div>
         <div class="inline field" style="float:right">
           <label>City :</label>
-          {{input placeholder="City"  type="text"  value=supplier.city}}
+          {{input placeholder="City"  type="text"  value=city}}
         </div>
         <div class="inline field" style="float:right">
           <label>State :</label>
-          {{input placeholder="State"  type="text" value=supplier.state }}
+          {{input placeholder="State"  type="text" value=state }}
         </div>
         <div class="inline field" style="float:right">
           <label>Country :</label>
-          {{input placeholder="Country"  type="text" value=supplier.country }}
+          {{input placeholder="Country"  type="text" value=country }}
         </div>
       </div>
       <div class="five wide column">
 
         <div class="inline field" style="float:right">
           <label> Email :</label>
-          {{input placeholder="Email"  type="text"  value=supplier.email}}
+          {{input placeholder="Email"  type="text"  value=email}}
         </div>
         <div class="inline field" style="float:right">
           <label>ZIP :</label>
-          {{input placeholder="ZIP"  type="text"  value=supplier.zipcode}}
+          {{input placeholder="ZIP"  type="text"  value=zipcode}}
         </div>
         <div class="inline field" style="float:right">
           <label>Phone :</label>
-          {{input placeholder="Phone"  type="text" value=supplier.phone }}
+          {{input placeholder="Phone"  type="text" value=phone }}
         </div>
         <br><br><br><br>
         <div class="ui clearing divider"></div>
 
-        <button class="ui primary tiny button "   {{action "saveSupplier"}}>
+        <button class="ui primary tiny button "   {{action "createCustomer"}}>
           <i class="save icon"></i>
           Save
-        </button>
-        <button class="ui primary tiny button "   {{action "deleteSupplier" supplier}}>
-          <i class="save icon"></i>
-          Delete
         </button>
 
       </div>
@@ -72,3 +68,17 @@
     </div>
   </div>
 </div>
+
+
+
+<script>
+
+$('.ui.form')
+  .form({
+    fields: {
+      companyname     : 'empty',
+      companycode   : 'empty'
+    }
+  })
+;
+</script>

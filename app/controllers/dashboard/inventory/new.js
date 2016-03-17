@@ -50,17 +50,9 @@ export default Ember.Controller.extend({
         });
       });
 
-      // controller.get('dashboard.inventory.index.router').refresh();
-
-
 
       controller.transitionToRoute('dashboard.inventory.index');
 
-
-
-
-
-      //window.location.replace("http://localhost:4200/#/inventory");
 
     },
 
