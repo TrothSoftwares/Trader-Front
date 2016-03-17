@@ -1,1 +1,68 @@
+<div class="ui segment ">
+<div class="ui dividing header">Add New Customer  </div>
+<div class="ui small form">
+  <div class="ui stackable grid">
+    <div class="five wide dividing column">
+
+  <div class="inline field">
+    <label >Comapany Name</label>
+    {{input placeholder="Comapany Name"  type="text"  value=supplier.companyname}}
+  </div>
+  <div class="inline field">
+    <label>Company Code </label>
+    {{input placeholder="Comapany Code"  type="text"  value=supplier.companycode}}
+  </div>
+  <div class="inline field">
+    <label>Charge Code</label>
+    {{input placeholder="Charge Code"  type="text" value=supplier.chargecode }}
+  </div>
+  <div class="inline field">
+    <label> Email</label>
+    {{input placeholder="Email"  type="text"  value=supplier.email}}
+  </div>
+  </div>
+  <!-- <div class="ui vertical divider"></div> -->
+  <div class="five wide column">
+
+<div class="inline field">
+  <label>Address 1 </label>
+  {{input placeholder="Address 1"  type="text"  value=supplier.address1}}
+</div>
+<div class="inline field">
+  <label>Address 2 </label>
+  {{input placeholder="Address 2"  type="text" value=supplier.address2}}
+</div>
+<div class="inline field">
+  <label>City</label>
+  {{input placeholder="City"  type="text" value=supplier.city}}
+</div>
+<div class="inline field">
+  <label>State</label>
+  {{input placeholder="State"  type="text" value=supplier.state }}
+</div>
+<div class="inline field">
+  <label>ZIP</label>
+  {{input placeholder="ZIP"  type="text" value=supplier.zipcode }}
+</div>
+<div class="inline field">
+  <label>Phone</label>
+  {{input placeholder="Phone"  type="text"  value=supplier.phone}}
+</div>
+<div class="inline field">
+  <label>Country</label>
+  {{input placeholder="Country"  type="text"  value=supplier.country}}
+</div>
+<button class="ui primary  button" {{action "saveSupplier"}}>
+  Save
+</button>
+<button class="ui secondary button" {{action "deleteSupplier" supplier}}>
+  Delete
+</button>
+</div>
+<div class="five wide column">
+
+</div>
+</div>
+</div>
+</div>
 {{outlet}}

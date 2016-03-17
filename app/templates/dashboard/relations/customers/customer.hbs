@@ -1,28 +1,24 @@
-{{outlet}}
-
-
-
 <div class="ui segment ">
-<div class="ui dividing header">Add New Customer  </div>
+<div class="ui dividing header">Customer Details</div>
 <div class="ui small form">
   <div class="ui stackable grid">
     <div class="five wide dividing column">
 
   <div class="inline field">
     <label >Comapany Name</label>
-    {{input placeholder="Comapany Name"  type="text" }}
+    {{input placeholder="Comapany Name"  type="text"  value=customer.companyname}}
   </div>
   <div class="inline field">
     <label>Company Code </label>
-    {{input placeholder="Comapany Code"  type="text" }}
+    {{input placeholder="Comapany Code"  type="text"  value=customer.companycode}}
   </div>
   <div class="inline field">
     <label>Charge Code</label>
-    {{input placeholder="Charge Code"  type="text" }}
+    {{input placeholder="Charge Code"  type="text" value=customer.chargecode }}
   </div>
   <div class="inline field">
     <label> Email</label>
-    {{input placeholder="Email"  type="text" }}
+    {{input placeholder="Email"  type="text"  value=customer.email}}
   </div>
   </div>
   <!-- <div class="ui vertical divider"></div> -->
@@ -30,36 +26,36 @@
 
 <div class="inline field">
   <label>Address 1 </label>
-  {{input placeholder="Address 1"  type="text" }}
+  {{input placeholder="Address 1"  type="text"  value=customer.address1}}
 </div>
 <div class="inline field">
   <label>Address 2 </label>
-  {{input placeholder="Address 2"  type="text" }}
+  {{input placeholder="Address 2"  type="text" value=customer.address2}}
 </div>
 <div class="inline field">
   <label>City</label>
-  {{input placeholder="City"  type="text" }}
+  {{input placeholder="City"  type="text" value=customer.city}}
 </div>
 <div class="inline field">
   <label>State</label>
-  {{input placeholder="State"  type="text" }}
+  {{input placeholder="State"  type="text" value=customer.state }}
 </div>
 <div class="inline field">
   <label>ZIP</label>
-  {{input placeholder="ZIP"  type="text" }}
+  {{input placeholder="ZIP"  type="text" value=customer.zipcode }}
 </div>
 <div class="inline field">
   <label>Phone</label>
-  {{input placeholder="Phone"  type="text" }}
+  {{input placeholder="Phone"  type="text"  value=customer.phone}}
 </div>
 <div class="inline field">
   <label>Country</label>
-  {{input placeholder="Country"  type="text" }}
+  {{input placeholder="Country"  type="text"  value=customer.country}}
 </div>
-<button class="ui primary  button">
+<button class="ui primary  button" {{action "saveCustomer"}}>
   Save
 </button>
-<button class="ui secondary button">
+<button class="ui secondary button" {{action "deleteCustomer" customer}}>
   Delete
 </button>
 </div>
