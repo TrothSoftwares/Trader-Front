@@ -1,10 +1,13 @@
 <h2 class="ui dividing header">Products</h2>
-{{link-to  "New Product" 'dashboard.inventory.new' class="ui tiny right floated primary button" }}
+
 <br><br>
 
+ {{link-to  "New Product" 'dashboard.inventory.new' class=" ui tiny right floated inverted green button" }}
 
 
-<div class="ui bottom attached tab segment active ">
+<div class="clearfix"style="margin-bottom:10px"></div>
+
+<div class="ui bottom attached tab segment active "style="background:rgba(256,256,256,0.7)">
   {{models-table
     data=products
     columns=columns

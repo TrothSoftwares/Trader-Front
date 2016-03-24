@@ -1,6 +1,6 @@
 @font-face {
     font-family: Lato;
-    src: url(fonts/Lato-Light.ttf);
+    src: url(fonts/Lato-Regular.ttf);
 }
 
 body {
@@ -8,7 +8,8 @@ body {
     /*height:83% !important;*/
     font-family:  "Lato","Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif/*rtl:prepend:"Droid Arabic Kufi","Droid Sans", */;
     // background: #FCFCFC url(../images/bg5.png) repeat;
-    background: rgba(245,222,80,0.5);
+    // background: rgba(245,222,80,0.5);
+    background: #F4F4F5;
     margin: 0px;
     padding: 0px;
     color: #555555;

@@ -1,0 +1,124 @@
+<h2 class="ui dividing header">New Purchase Order</h2>
+
+
+<div class="ui two column grid">
+  <div class="twelve wide column" style="border : 1px solid rgba(34, 36, 38, 0.15)">
+    <div class="ui three column grid">
+      <div class="column" style=" padding-bottom:0px">
+        {{ember-selectize
+          content=suppliers
+          optionValuePath="content.id"
+          optionLabelPath="content.companyname"
+          selection=product.supplier
+          placeholder="Select a Supplier"
+        }}
+</div>
+
+      <div class="column" >
+        <div  style="margin-top:10px" >
+        Or {{link-to  "Add new Supplier" 'dashboard.stockcontrol.purchaseorders.new'  }}
+      </div>
+    </div>
+      <div class=" column"><h3 style="margin-top:10px" class="ui right floated header">#P0001 </h3></div>
+    </div>
+    <div class="ui divider" ></div>
+    <div class="ui three column grid">
+
+      <div class="column" ></div>
+      <div class="right aligned column">
+      <div class="ui small form">
+
+
+        <div class="inline field" style="float:right">
+          <label >Stock Due :</label>
+          {{input placeholder="Select Date"  type="text"  }}
+        </div>
+        <div class="inline field" style="float:right">
+          <label>Reference :</label>
+          {{input placeholder="Reference"   type="text"  value=chargecode}}
+        </div>
+        <div class="inline field" style="float:right">
+          <label>Email : </label>
+          {{input placeholder="Email"  type="text"  value=address1}}
+        </div>
+      </div>
+    </div>
+    <div class="right aligned column">
+
+    </div>
+    <table class="ui celled table">
+      <thead  class="center aligned">
+        <tr>
+          <th>Item Name</th>
+          <th style="width:100px">Quantiy</th>
+          <th>AFter</th>
+          <th>item Cost</th>
+          <th>Tax </th>
+          <th>Total</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="center aligned">
+          <td>    {{ember-selectize
+                content=suppliers
+                optionValuePath="content.id"
+                optionLabelPath="content.companyname"
+                selection=product.supplier
+                placeholder="Select a Supplier"
+              }}
+            </td>
+            <td class="left aligned" ><div class="ui tiny transparent input">
+                <input type="text" style="width:100px" placeholder="Qty"></div>
+              </td>
+          <td>26</td>
+          <td class="" ><div class="ui tiny transparent input">
+              <input type="text" style="width:100px" placeholder="Cost"></div>
+            </td>
+          <td class="left aligned" style="width:100px"><div class="ui right tiny transparent input">
+              <input type="text" style="width:100px" placeholder="Tax">  <div class="ui basic label">%</div>
+            </div>
+            </td>
+        <td>12300</td>
+          <td><i class="trash icon"></i></td>
+
+        </tr>
+        <tr class="center aligned">
+          <td>    {{ember-selectize
+                content=suppliers
+                optionValuePath="content.id"
+                optionLabelPath="content.companyname"
+                selection=product.supplier
+                placeholder="Select a Supplier"
+              }}
+            </td>
+            <td class="left aligned" ><div class="ui tiny transparent input">
+                <input type="text" style="width:100px" placeholder="Qty"></div>
+              </td>
+          <td>26</td>
+          <td class="" ><div class="ui tiny transparent input">
+              <input type="text" style="width:100px" placeholder="Cost"></div>
+            </td>
+          <td class="left aligned" style="width:100px"><div class="ui right tiny transparent input">
+              <input type="text" style="width:100px" placeholder="Tax">  <div class="ui basic label">%</div>
+            </div>
+            </td>
+        <td>12300</td>
+          <td><i class="trash icon"></i></td>
+
+        </tr>
+
+      </tbody>
+    </table>
+    </div>
+</div>
+
+  <div class="four wide column">
+gdfgdfgsdf
+  </div>
+</div>
+
+
+
+{{outlet}}

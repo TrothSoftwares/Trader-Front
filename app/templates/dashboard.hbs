@@ -1,4 +1,9 @@
-<div class="ui left visible inverted vertical very thin sidebar labeled icon menu" style="width:90px; background: rgba(1,1,1,1) ">
+<div class="ui left visible inverted vertical very thin sidebar labeled icon menu" style="width:90px; background: rgb(45,48,51) ">
+  <div class="item">
+    {{#link-to 'dashboard'   }}
+    <img src="images/logo.gif">
+    {{/link-to}}
+  </div>
 
   {{#link-to 'dashboard.inventory.index'  class="item"}}
     <i class="block layout icon"></i>
@@ -8,6 +13,11 @@
   {{#link-to 'dashboard.relations.index'  class="item"}}
     <i class="block layout icon"></i>
     Relations
+  {{/link-to}}
+
+  {{#link-to 'dashboard.stockcontrol'  class="item"}}
+    <i class="block layout icon"></i>
+    Stock Control
   {{/link-to}}
 
   <a class="item" {{action "logout"}}>
