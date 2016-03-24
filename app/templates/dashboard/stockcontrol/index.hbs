@@ -5,11 +5,61 @@
 
 
  <div class="ui top attached tabular menu">
-   <a class="item active" data-tab="first">Suppliers</a>
-   <a class="item" data-tab="second">Customers</a>
+   <a class="item active" data-tab="first">All</a>
+   <a class="item" data-tab="second"></a>
 
  </div>
  <div class="ui bottom attached tab segment active" data-tab="first">
+
+   <table class="ui very basic table">
+  <thead>
+    <tr>
+      <th>Order # </th>
+      <th>Type</th>
+      <th>Source</th>
+      <th>Status</th>
+      <th>Recived</th>
+      <th>Quantity</th>
+      <th>Total Cost</th>
+      <th>Due</th>
+      <th>Last Updated</th>
+      <th>Recieved At</th>
+      <th></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PO001</td>
+      <td>Purchase Order</td>
+      <td>Acme Suppliers</td>
+      <td>Active</td>
+      <td><i class="radio icon"></i></td>
+      <td>25</td>
+      <td>25000</td>
+      <td>Apr-2-2016</td>
+      <td>Mar-25-2016</td>
+      <td></td>
+      <td>  {{link-to  "view" 'dashboard.stockcontrol.purchaseorders.purchaseorder' '656' class=" ui mini right floated primary button" }}</td>
+
+    </tr>
+    <tr>
+      <td>PO001</td>
+      <td>Purchase Order</td>
+      <td>Acme Suppliers</td>
+      <td>Active</td>
+      <td><i class="radio icon"></i></td>
+      <td>25</td>
+      <td>25000</td>
+      <td>Apr-2-2016</td>
+      <td>Mar-25-2016</td>
+      <td></td>
+      <td>  {{link-to  "view" 'dashboard.stockcontrol.purchaseorders.purchaseorder' '454' class=" ui mini right floated primary  button" }}</td>
+
+    </tr>
+
+  </tbody>
+</table>
  </div>
  <div class="ui bottom attached tab segment " data-tab="second">
  </div>

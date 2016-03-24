@@ -26,6 +26,7 @@ Router.map(function() {
     this.route('stockcontrol', function() {
       this.route('purchaseorders', function() {
         this.route('new');
+        this.route('purchaseorder' , {path: ':id'});
       });
     });
   });
