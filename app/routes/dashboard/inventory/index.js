@@ -12,9 +12,5 @@ export default Ember.Route.extend({
     controller.set('productbrands', this.store.findAll('productbrand') ,{reload: true});
   },
 
-  actions:{
-
-
-  }
-});
   
+});

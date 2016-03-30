@@ -50,6 +50,9 @@ export default Ember.Controller.extend({
         });
       });
 
+      
+
+
 
       controller.transitionToRoute('dashboard.inventory.index');
 

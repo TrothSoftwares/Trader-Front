@@ -15,4 +15,12 @@ productbrand: DS.belongsTo('productbrand' ,{async:true}),
 
 
 
+
+
+
+
+
+
+purchaseorderitems: DS.hasMany('purchaseorderitem' ,{embedded: 'always', async:true}),
+stockadjustmentitems :DS.hasMany('stockadjustmentitem',{embedded: 'always', async:true}),
 });

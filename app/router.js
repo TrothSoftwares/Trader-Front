@@ -23,9 +23,17 @@ Router.map(function() {
         this.route('new');
       });
     });
+
+
+
     this.route('stockcontrol', function() {
       this.route('purchaseorders', function() {
         this.route('new');
+        this.route('purchaseorder' , {path: ':id'});
+      });
+      this.route('stockadjustments', function() {
+        this.route('new');
+        this.route('stockadjustment' , {path: ':id'});
       });
     });
   });
