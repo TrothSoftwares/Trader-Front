@@ -48,7 +48,7 @@ export default Ember.Controller.extend({
     addNewStockadjustmentItem:function(){
       var controller = this;
       var stockadjustmentitem = controller.store.createRecord('stockadjustmentitem', {
-        quantity :'',
+        quantity :1,
         total :'',
         poitemstatus :'',
         recieveddate :'',

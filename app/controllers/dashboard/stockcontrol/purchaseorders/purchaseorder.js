@@ -123,7 +123,7 @@ export default Ember.Controller.extend({
       addNewPurchaseOrderItem:function(){
         var controller = this;
         var purchaseorderitem = controller.store.createRecord('purchaseorderitem', {
-          quantity :'',
+          quantity :1,
           total :'',
           poitemstatus :'',
           recieveddate :'',
