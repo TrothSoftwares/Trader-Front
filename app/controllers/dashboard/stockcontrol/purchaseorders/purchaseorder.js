@@ -38,10 +38,6 @@ export default Ember.Controller.extend({
 
 
 
-
-
-
-
     draftPurchaseOrder: function(){
       var controller = this;
 

@@ -1,0 +1,44 @@
+
+<h2 class="ui  left dividing floated header ">Stock Control</h2 >
+  {{link-to  "New Order" 'dashboard.orders.new' class=" ui tiny right floated inverted green button" }}
+
+
+
+  <div class="ui top attached tabular menu">
+    <a class="item active" data-tab="first">Orders</a>
+    <!-- <a class="item" data-tab="second">Stock Adjustments</a> -->
+  </div>
+
+
+  <div class="ui bottom attached tab segment active" data-tab="first">
+    <h2 class="ui dividing header">Orders</h2>
+    {{models-table
+      data=orders
+      columns=ordersColumns
+       useFilteringByColumns=true
+      showColumnsDropdown=false
+      useNumericPagination=true
+      filteringIgnoreCase=true
+     }}
+  </div>
+  <!-- <div class="ui bottom attached tab segment" data-tab="second">
+    <h2 class="ui dividing header">Stock Adjustments</h2> -->
+    <!-- {{models-table
+      data=stockadjustments
+      columns=stockadjustmentColumns
+      customMessages=customMessages
+      useFilteringByColumns=true
+      showColumnsDropdown=false
+      useNumericPagination=true
+      filteringIgnoreCase=true
+     }} -->
+  <!-- </div> -->
+
+
+
+
+  <script>
+  $('.menu .item')
+    .tab()
+  ;
+  </script>

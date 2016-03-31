@@ -1,5 +1,5 @@
 
-<h2 class="ui  header">New Stock Adjustment</h2>
+<h2 class="ui  header">New Order</h2>
 
 
 <div class="ui two column grid">
@@ -25,17 +25,26 @@
         </div>
 
         <div class="column" >
-          <div  style="margin-top:10px" >
 
 
-            <select onchange={{action "selectReason" value="target.value"}} class="form-control">
-              {{#each stockadjustmentReason as |reason|}}
-              <option value={{reason}} selected={{eq stockadjustment.reason reason}}>{{reason}}</option>
-              {{/each}}
-            </select>
+          <div class="right aligned column">
+            <div class="ui small form">
 
 
+              <div class="inline field" style="float:right">
+                <label >Stock Due :</label>
+
+                {{pikaday-input  placeholder="Select Date" value=duedate}}
+              </div>
+
+              <div class="inline field" style="float:right">
+                <label>Email : </label>
+                {{input placeholder="Email" readonly="true" type="text"  value=customer.email}}
+              </div>
+            </div>
           </div>
+
+
         </div>
         <!-- <div class=" column"><h3 style="margin-top:10px" class="ui right floated header">#P0001 </h3></div> -->
       </div>
@@ -65,33 +74,33 @@
         </thead>
         <tbody>
 
-          {{#each stockadjustmentitems  as |stockadjustmentitem|}}
+          {{#each orderitems  as |orderitem|}}
           <tr class="center aligned">
             <td>
               {{ember-selectize
                 content=products
                 optionValuePath="content.id"
                 optionLabelPath="content.productname"
-                selection=stockadjustmentitem.product
+                selection=orderitem.product
                 placeholder="Select a Product"
               }}
             </td>
             <td class="left aligned" >
               <div class="ui tiny transparent input">
-                {{input type="number" style="width:100px" placeholder="Qty" value=stockadjustmentitem.quantity}}
+                {{input type="number" style="width:100px" placeholder="Qty" value=orderitem.quantity}}
               </div>
             </td>
             <td>
-              <label>{{stockadjustmentitem.aftervalue}}</label>
+              <label>{{orderitem.aftervalue}}</label>
             </td>
             <td >
               <div class="ui tiny transparent input">
-                {{input type="number" readonly="true" style="width:100px" placeholder="Qty" value=stockadjustmentitem.product.retailprice}}
+                {{input type="number" readonly="true" style="width:100px" placeholder="Qty" value=orderitem.product.retailprice}}
               </div>
             </td>
-            <td>{{stockadjustmentitem.computedtotal}}</td>
+            <td>{{orderitem.computedtotal}}</td>
             <td>
-              <button class=" ui tiny right floated inverted button red"  {{action 'deleteStockadjustmentItem' stockadjustmentitem}}><i class="trash icon"></i></button>
+              <button class=" ui tiny right floated inverted button red"  {{action 'deleteOrderitem' orderitem}}><i class="trash icon"></i></button>
             </td>
 
           </tr>
@@ -100,7 +109,7 @@
       </table>
       <br>
       <div class="ui column grid centered">
-      <button class=" ui tiny right floated inverted button blue"  {{action 'addNewStockadjustmentItem'}}>Add New Item</button>
+      <button class=" ui tiny right floated inverted button blue"  {{action 'addNewOrderItem'}}>Add New Item</button>
     </div>
       <div class="ui three column grid">
         <div class="column" ></div>
@@ -110,11 +119,11 @@
             <tbody>
               <tr>
                 <td>Total Units</td>
-                <td class="right aligned">{{stockadjustment.computedtotalunits}}</td>
+                <td class="right aligned">{{order.computedtotalunits}}</td>
               </tr>
               <tr>
                 <td>Total Cost</td>
-                <td class="right aligned">{{stockadjustment.computedtotalcosts}}</td>
+                <td class="right aligned">{{order.computedtotalcosts}}</td>
               </tr>
             </tbody>
           </table>
@@ -123,26 +132,14 @@
     </div>
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.5)">
       <!-- .  <button class=" ui tiny right floated  green button" {{createPurchaseOrder}}>Create</button> -->
-      .  <button class=" ui tiny right floated inverted blue button"  {{action 'createStockAdjustment'}}>Create</button>
-      <button class=" ui tiny right floated inverted black button"  {{action 'cancelStockAdjustment'}}>Cancel</button>
+      .  <button class=" ui tiny right floated inverted blue button"  {{action 'createOrder'}}>Create</button>
+      <button class=" ui tiny right floated inverted black button"  {{action 'cancelOrder'}}>Cancel</button>
     </div>
   </div>
   <div class="four wide column">
 
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="ui small newcustomer modal">
   <i class="close icon"></i>
   <div class="header">Add New Customer</div>

@@ -14,7 +14,7 @@ actions:{
           stockadjustment.destroyRecord().then(function(){
             controller.transitionToRoute('dashboard.stockcontrol.index');
             controller.notifications.addNotification({
-              message: 'Purchaseorder deleted successfully' ,
+              message: 'Stock Adjustment deleted successfully' ,
               type: 'success',
               autoClear: true
             });
@@ -54,13 +54,17 @@ actions:{
         type: 'success',
         autoClear: true
       });
+    }).catch(function(){
+      controller.notifications.addNotification({
+        message: 'Sorry some thing went wrong!' ,
+        type: 'error',
+        autoClear: true
+      });
     });
 
   },
 
   deleteStockadjustmentItem:function(stockadjustmentitem){
-    // var controller = this;
-    // controller.get('stockadjustmentitems').removeObject(stockadjustmentitem);
      stockadjustmentitem.destroyRecord();
   },
 
@@ -79,6 +83,9 @@ actions:{
     stockadjustmentitem.save().then(function(){
 
     });
+  },
+  cancelStockAdjustment:function(){
+    this.transitionToRoute('dashboard.stockcontrol.index');
   },
 
 }
