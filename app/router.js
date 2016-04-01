@@ -9,39 +9,48 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('dashboard', {path: '/'}, function() {
+
+    this.route('orders', function() {
+      this.route('order', {path: ':id'}, function() {
+        this.route('edit');
+      });
+      this.route('new');
+    });
+
     this.route('inventory', function() {
       this.route('new');
-      this.route('product', {path: ':id'});
+      this.route('product', {path: ':id'}, function() {
+        this.route('edit');
+      });
     });
     this.route('relations', function() {
       this.route('customers', function() {
-        this.route('customer' , {path: ':id'});
+        this.route('customer', {path: ':id'}, function() {
+          this.route('edit');
+        });
         this.route('new');
       });
       this.route('suppliers', function() {
-        this.route('supplier' , {path: ':id'});
+        this.route('supplier', {path: ':id'}, function() {
+          this.route('edit');
+        });
         this.route('new');
       });
     });
-
-
 
     this.route('stockcontrol', function() {
       this.route('purchaseorders', function() {
         this.route('new');
-        this.route('purchaseorder' , {path: ':id'});
+        this.route('purchaseorder', {path: ':id'}, function() {
+          this.route('edit');
+        });
       });
       this.route('stockadjustments', function() {
         this.route('new');
-        this.route('stockadjustment' , {path: ':id'});
+        this.route('stockadjustment', {path: ':id'}, function() {
+          this.route('edit');
+        });
       });
-    });
-
-
-
-    this.route('orders', function() {
-      this.route('order' ,{path: ':id'});
-      this.route('new');
     });
 
 
