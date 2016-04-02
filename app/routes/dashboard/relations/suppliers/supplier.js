@@ -5,7 +5,5 @@ export default Ember.Route.extend({
       return this.store.findRecord('supplier', params.id );
   },
 
-  setupController: function(controller ,model) {
-    controller.set('supplier',model );
-  }
+
 });

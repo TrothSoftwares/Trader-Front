@@ -13,6 +13,7 @@ Router.map(function() {
     this.route('orders', function() {
       this.route('order', {path: ':id'}, function() {
         this.route('edit');
+        this.route('view');
       });
       this.route('new');
     });
@@ -21,20 +22,28 @@ Router.map(function() {
       this.route('new');
       this.route('product', {path: ':id'}, function() {
         this.route('edit');
+        this.route('view');
       });
     });
+
+
+
     this.route('relations', function() {
       this.route('customers', function() {
-        this.route('customer', {path: ':id'}, function() {
-          this.route('edit');
-        });
-        this.route('new');
+      this.route('customer', {path: ':id'},function(){
+        this.route('edit' );
+        this.route('view');
       });
+      this.route('new');
+      });
+
+
       this.route('suppliers', function() {
-        this.route('supplier', {path: ':id'}, function() {
-          this.route('edit');
-        });
-        this.route('new');
+      this.route('supplier', {path: ':id'},function(){
+        this.route('edit' );
+        this.route('view');
+      });
+      this.route('new');
       });
     });
 
