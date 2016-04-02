@@ -52,12 +52,14 @@ Router.map(function() {
         this.route('new');
         this.route('purchaseorder', {path: ':id'}, function() {
           this.route('edit');
+          this.route('view');
         });
       });
       this.route('stockadjustments', function() {
         this.route('new');
         this.route('stockadjustment', {path: ':id'}, function() {
           this.route('edit');
+          this.route('view');
         });
       });
     });

@@ -1,1 +1,11 @@
-{{outlet}}
+<div class="ui bottom attached tab segment active" data-tab="first">
+  <h2 class="ui dividing header">Purchase Orders</h2>
+  {{models-table
+    data=purchaseorders
+    columns=purchaseorderColumns
+    useFilteringByColumns=true
+    showColumnsDropdown=false
+    useNumericPagination=true
+    filteringIgnoreCase=true
+   }}
+</div>

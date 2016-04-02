@@ -1,1 +1,12 @@
-{{outlet}}
+<div class="ui bottom attached tab segment active " data-tab="second">
+  <h2 class="ui dividing header">Stock Adjustments</h2>
+  {{models-table
+    data=stockadjustments
+    columns=stockadjustmentColumns
+    customMessages=customMessages
+    useFilteringByColumns=true
+    showColumnsDropdown=false
+    useNumericPagination=true
+    filteringIgnoreCase=true
+   }}
+</div>
