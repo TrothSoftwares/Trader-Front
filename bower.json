@@ -1,7 +1,7 @@
 {
   "name": "zahid-staging",
   "dependencies": {
-    "ember": "2.3.3",
+    "ember": "2.4.3",
     "ember-cli-shims": "0.1.0",
     "ember-cli-test-loader": "0.2.2",
     "ember-qunit-notifications": "0.1.0",
@@ -9,6 +9,11 @@
     "bootstrap": "~3.3.5",
     "selectize": "miguelcobain/selectize.js#master",
     "pikaday": "^1.4.0"
+  },
+"resolutions": {
+    "ember": "2.4.3",
+    "qunit": "1.20.0",
+    "loader.js": "3.4.0"
   }
 
 }
