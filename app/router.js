@@ -9,7 +9,6 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('dashboard', {path: '/'}, function() {
-
     this.route('orders', function() {
       this.route('order', {path: ':id'}, function() {
         this.route('edit');
@@ -65,6 +64,7 @@ Router.map(function() {
     });
 
 
+    this.route('reports');
   });
   this.route('login');
 
