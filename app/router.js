@@ -64,7 +64,11 @@ Router.map(function() {
     });
 
 
-    this.route('reports');
+    this.route('reports', function() {
+      this.route('inventory');
+      this.route('sales');
+      this.route('purchaseorders');
+    });
   });
   this.route('login');
 

@@ -1,0 +1,48 @@
+<h2 class="ui  left dividing floated header ">Reports</h2 >
+  <div class="ui four column grid">
+    <div class="column">
+      <div class="ui fluid card">
+        <div class="image">
+          <i class=" massive newspaper red layout icon"></i>
+          <h4 class="header">Product Report</h4>
+        </div>
+        <div class="content">
+          {{#if customerReport}}
+
+          <a class=" ui tiny right floated inverted green button ember-view" href={{customerReportLink}} target="_blank">Downlad Report</a>
+          {{else}}
+          <button class=" ui tiny right floated inverted green button ember-view" {{action "generateReport"}}>Generate Report</button>
+          {{/if}}
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="column">
+      <div class="ui fluid card">
+        <div class="image">
+          <i class=" massive newspaper red layout icon"></i>
+          <h4 class="header">Customer</h4>
+        </div>
+        <div class="content">
+          <button class=" ui tiny right floated inverted green button ember-view" >Generate Report</button>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="ui fluid card">
+        <div class="image">
+          <i class=" massive newspaper red layout icon"></i>
+          <h4 class="header">Suppliers</h4>
+        </div>
+        <div class="content">
+          <button class=" ui tiny right floated inverted green button ember-view" >Generate Report</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>

@@ -1,5 +1,6 @@
 import Ember from 'ember';
 
+import ENV from '../../config/environment';
 export default Ember.Controller.extend({
 
  ajax: Ember.inject.service(),
@@ -19,7 +20,9 @@ customerReportLink:'',
 
 
         controller.set('customerReport', true);
-        controller.set('customerReportLink', reports.file_path);
+        controller.set('customerReportLink', ENV.APP.host+reports.file_path);
+        
+
 
 
       });
