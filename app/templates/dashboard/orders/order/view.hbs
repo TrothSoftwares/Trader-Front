@@ -6,25 +6,24 @@
   <div class="twelve wide column" style="padding:0">
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:550px;overflow:auto ">
       <div class="ui three column grid">
-        <div class="column" style=" padding-bottom:0px">
-          {{ember-selectize
-            content=customers
-            optionValuePath="content.id"
-            optionLabelPath="content.companyname"
-            selection=order.customer
-            placeholder="Select a Customer"
-          }}
+        <div class="column" >
+          <div class="ui  form">
+            <div class="inline field" >
+              <label style="width:75px">Customer </label>:
+              {{order.customer.companyname}}
+            </div>
+          </div>
         </div>
 
         <div class="column" >
           <div class="ui small form">
-            <div class="inline field" style="float:right">
-              <label >Stock Due :</label>
-              {{pikaday-input  placeholder="Select Date" value=order.duedate}}
+            <div class="inline field" >
+              <label  style="width:75px">Stock Due </label>:
+              {{order.duedate}}
             </div>
-            <div class="inline field" style="float:right">
-              <label>Email : </label>
-              {{input placeholder="Email" readonly="true" type="text"  value=order.customer.email}}
+            <div class="inline field">
+              <label style="width:75px">Email  </label>:
+              {{order.customer.email}}
             </div>
           </div>
 
@@ -52,7 +51,6 @@
             <th>After</th>
             <th>item Cost</th>
             <th>Total</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -60,40 +58,26 @@
           {{#each order.orderitems  as |orderitem|}}
           <tr class="center aligned">
             <td>
-              {{ember-selectize
-                content=products
-                optionValuePath="content.id"
-                optionLabelPath="content.productname"
-                selection=orderitem.product
-                placeholder="Select a Product"
-              }}
+              {{orderitem.product.productname}}
             </td>
-            <td class="left aligned" >
-              <div class="ui tiny transparent input">
-                {{input type="number" style="width:100px" placeholder="Qty" value=orderitem.quantity}}
-              </div>
+            <td  >
+                {{orderitem.quantity}}
             </td>
             <td>
               <label>{{orderitem.aftervalue}}</label>
             </td>
             <td >
-              <div class="ui tiny transparent input">
-                {{input type="number" readonly="true" style="width:100px" placeholder="Qty" value=orderitem.product.retailprice}}
-              </div>
+                {{orderitem.product.retailprice}}
             </td>
             <td>{{orderitem.computedtotal}}</td>
-            <td>
-<button class=" ui tiny right floated inverted button red"  {{action 'deleteOrderItem' orderitem}}><i class="trash icon"></i></button>
-            </td>
+
 
           </tr>
           {{/each}}
         </tbody>
       </table>
       <br>
-      <div class="ui column grid centered">
-      <button class=" ui tiny right floated inverted button blue"  {{action 'addNewOrderItem'}}>Add New Item</button>
-    </div>
+
       <div class="ui three column grid">
         <div class="column" ></div>
         <div class="column" ></div>
@@ -113,11 +97,17 @@
         </div>
       </div>
     </div>
-    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.5)">
+    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.4)">
       <!-- .  <button class=" ui tiny right floated  green button" {{createPurchaseOrder}}>Create</button> -->
-      .  <button class=" ui tiny right floated inverted blue button"  {{action 'draftOrder'}}>Save Draft</button>
-      <button class=" ui tiny right floated inverted black button"  {{action 'cancelOrder'}}>Cancel</button>
-      <button class=" ui tiny right floated inverted red button"  {{action 'deleteOrder' order }}>Delete</button>
+      <div class="ui three column grid">
+        <div class="column" ></div>
+        <div class="column" ></div>
+        <div class="column"  style="padding-top:0;padding-bottom:0" >
+          <br>
+          <button class=" ui small fluid green button "  >Deliver Order</button>
+          <br>
+        </div>
+      </div>
     </div>
   </div>
   <div class="four wide column">
