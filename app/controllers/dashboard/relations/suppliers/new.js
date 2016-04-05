@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
         controller.set('country','');
         controller.set('zipcode','');
         controller.set('phone','');
-        controller.transitionToRoute('dashboard.relations.suppliers.supplier' , supplier);
+        controller.transitionToRoute('dashboard.relations.suppliers.supplier.view' , supplier);
       }).catch(function(){
         controller.notifications.addNotification({
           message: 'Sorry, cant save at the moment !' ,
