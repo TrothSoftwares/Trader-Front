@@ -1,0 +1,24 @@
+{
+  "name": "zahid-staging",
+  "version": "0.0.0",
+  "description": "Small description for zahid-staging goes here",
+  "private": true,
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "ember build",
+    "start": "ember server",
+    "test": "ember test"
+  },
+  "repository": "",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+
+  }
+}
