@@ -1,45 +1,43 @@
 
-<h2 class="ui  header">Purchase Order: #PO{{purchaseorder.id}}</h2>
 
 
 <div class="ui two column grid">
-  <div class="twelve wide column" style="padding:0">
-    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:550px;overflow:auto ">
-      <div class="ui three column grid">
+  <div class="twelve wide column" style="margin-top:20px">
+    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:450px;overflow:auto ">
+      <div class="ui two column grid">
         <div class="column" style=" padding-bottom:0px">
-          {{ember-selectize
-            content=suppliers
-            optionValuePath="content.id"
-            optionLabelPath="content.companyname"
-            selection=purchaseorder.supplier
-            placeholder="Select a Supplier"
-          }}
+          <h2 class="ui  header">Purchase Order: #PO{{purchaseorder.id}}</h2>
         </div>
 
-        <div class="column" >
-          <div  style="margin-top:10px" >
-            Or <div class="ui blue small submit button"  {{action "openSupplierModal"}}>New Supplier</div>
-          </div>
+        <div class="column right aligned"  >
+          {{link-to 'Edit''dashboard.stockcontrol.purchaseorders.purchaseorder.edit'   style="margin-top:20px"  }}
         </div>
-        <div class=" column"><h3 style="margin-top:10px" class="ui right floated header">#PO{{purchaseorder.id}}</h3></div>
+
       </div>
       <div class="ui divider" ></div>
       <div class="ui three column grid">
 
-        <div class="column" ></div>
-        <div class="right aligned column">
+        <div class="column" >
+          <div class="ui  form">
+            <div class="inline field" >
+              <label style="width:75px">Supplier </label>:
+              {{purchaseorder.supplier.companyname}}
+            </div>
+          </div>
+        </div>
+        <div class="  column">
           <div class="ui small form">
 
 
-            <div class="inline field" style="float:right">
-              <label >Stock Due :</label>
+            <div class="inline field" >
+              <label style="width:75px">Stock Due </label>:
 
-              {{pikaday-input  placeholder="Select Date" value=purchaseorder.duedate}}
+              {{purchaseorder.duedate}}
             </div>
 
-            <div class="inline field" style="float:right">
-              <label>Email : </label>
-              {{input placeholder="Email"  type="text"  value=purchaseorder.supplier.email}}
+            <div class="inline field">
+              <label style="width:75px">Email  </label>:
+              {{purchaseorder.supplier.email}}
             </div>
           </div>
         </div>
@@ -55,7 +53,6 @@
             <th>After</th>
             <th>item Cost</th>
             <th>Total</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -63,32 +60,22 @@
           {{#each purchaseorder.purchaseorderitems  as |purchaseorderitem|}}
           <tr class="center aligned">
             <td>
-              {{ember-selectize
-                content=products
-                optionValuePath="content.id"
-                optionLabelPath="content.productname"
-                selection=purchaseorderitem.product
-                placeholder="Select a Product"
+              {{
+              purchaseorderitem.product.productname
+
               }}
             </td>
-            <td class="left aligned" >
+            <td class=" aligned" >
 
-              <div class="ui tiny transparent input">
-                {{input type="number" style="width:100px" placeholder="Qty" value=purchaseorderitem.quantity}}
-              </div>
+                {{purchaseorderitem.quantity}}
             </td>
             <td>
               <label>{{purchaseorderitem.aftervalue}}</label>
             </td>
             <td class="" >
-              <div class="ui tiny transparent input">
-                {{input type="number" readonly="true" style="width:100px" placeholder="Qty" value=purchaseorderitem.product.retailprice}}
-              </div>
+                {{purchaseorderitem.product.retailprice}}
             </td>
             <td>{{purchaseorderitem.computedtotal}}</td>
-            <td>
-<button class=" ui tiny right floated inverted button red"  {{action 'deletePurchaseorderitem' purchaseorderitem}}><i class="trash icon"></i></button>
-            </td>
 
           </tr>
           {{/each}}
@@ -96,16 +83,12 @@
 
         </tbody>
       </table>
-      <br>
-      <div class="ui column grid centered">
-      <button class=" ui tiny right floated inverted button blue"  {{action 'addNewPurchaseOrderItem'}}>Add New Item</button>
-    </div>
 
       <div class="ui three column grid">
         <div class="column" ></div>
         <div class="column" ></div>
         <div class="column" >
-          <table class="ui very basic table">
+        <table class="ui very basic table">
             <tbody>
               <tr>
                 <td>Total Units</td>
@@ -121,15 +104,20 @@
         </div>
       </div>
     </div>
-    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.5)">
+    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.4)">
+      <!-- .  <button class=" ui tiny right floated  green button" {{createPurchaseOrder}}>Create</button> -->
+      <div class="ui three column grid">
+        <div class="column" ></div>
+        <div class="column" ></div>
+        <div class="column"  style="padding-top:0;padding-bottom:0" >
+          <br>
+          <button class=" ui small fluid green button "  >Receive Order</button>
+          <br>
+        </div>
+      </div>
 
-    <!-- .  <button class=" ui tiny right floated  green button" {{createPurchaseOrder}}>Create</button> -->
-    .  <button class=" ui tiny right floated inverted blue button"  {{action 'draftPurchaseOrder'}}>Save</button>
-      <button class=" ui tiny right floated inverted black button"  {{action 'cancelPurchaseOrder'}}>Cancel</button>
-      <button class=" ui tiny right floated inverted red button"  {{action 'deletePurchaseOrder' purchaseorder }}>Delete</button>
 
     </div>
-
   </div>
 
   <div class="four wide column">
@@ -140,7 +128,7 @@
 
 
 
-
+<!--
 <div class="ui small newsupplier modal">
   <i class="close icon"></i>
   <div class="header">Add New Supplier</div>
@@ -208,4 +196,4 @@
     </p>
 
   </div>
-</div>
+</div> -->

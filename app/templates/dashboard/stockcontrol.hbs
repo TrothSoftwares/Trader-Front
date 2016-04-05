@@ -1,12 +1,16 @@
 
-<h2 class="ui  left dividing floated header ">Stock Control</h2 >
+<h2 class="ui  left  floated header ">Stock Control</h2 >
   {{link-to  "New Purchase Order" 'dashboard.stockcontrol.purchaseorders.new' class=" ui tiny right floated inverted green button" }}
   {{link-to  "New Stock Adjustment" 'dashboard.stockcontrol.stockadjustments.new' class=" ui tiny right floated inverted green button" }}
+<div class="ui clearing divider"></div>
+  <div class="ui tabular menu" style="margin:0">
+    {{link-to  "Purchase Orders" 'dashboard.stockcontrol.purchaseorders.index' class=" item" }}
+
+    {{link-to  "Stock Adjustments" 'dashboard.stockcontrol.stockadjustments.index' class="item"  }}
 
 
-  <div class="ui top attached tabular menu">
-    {{link-to  "Purchaseorders" 'dashboard.stockcontrol.purchaseorders.index' class="ui button" }}
-    {{link-to  "Stockadjustments" 'dashboard.stockcontrol.stockadjustments.index' class="ui button" }}
+
   </div>
+
 
   {{outlet}}

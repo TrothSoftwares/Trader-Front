@@ -1,35 +1,45 @@
 
-<h2 class="ui  header">Purchase Order: #SO{{stockadjustment.id}}</h2>
 
 
 <div class="ui two column grid">
-  <div class="twelve wide column" style="padding:0">
+
+  <div class="twelve wide column" style="margin-top:20px">
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:550px;overflow:auto ">
+      <div class="ui two column grid">
+        <div class="column" >
+      <h2 class="ui  header">Stock Adjustment: #SO{{stockadjustment.id}}</h2>
+    </div>
+    <div class="right aligned column" >
+      {{link-to 'Edit''dashboard.stockcontrol.stockadjustments.stockadjustment.edit'   style="margin-top:20px"  }}
+</div>
+  </div>
+  <div class="ui divider" ></div>
+
       <div class="ui three column grid">
-        <div class="column" style=" padding-bottom:0px">
-          {{ember-selectize
-            content=customers
-            optionValuePath="content.id"
-            optionLabelPath="content.companyname"
-            selection=stockadjustment.customer
-            placeholder="Select a Customer"
-          }}
+        <div class="column" >
+          <div class="ui  form">
+            <div class="inline field" >
+              <label style="width:75px">Customer </label>:
+              {{stockadjustment.customer.companyname}}
+            </div>
+          </div>
         </div>
 
         <div class="column" >
+          <div class="ui small form">
+            <div class="inline field" >
+              <label style="width:75px">Type </label>:
+              {{stockadjustment.reason}}
+            </div>
+          </div>
           <div  style="margin-top:10px" >
 
 
-            <select onchange={{action "selectReason" value="target.value"}} class="form-control">
-              {{#each stockadjustmentReason as |reason|}}
-              <option value={{reason}} selected={{eq stockadjustment.reason reason}}>{{reason}}</option>
-              {{/each}}
-            </select>
+
 
 
           </div>
         </div>
-        <div class=" column"><h3 style="margin-top:10px" class="ui right floated header">#SO{{stockadjustment.id}} </h3></div>
       </div>
       <div class="ui divider" ></div>
       <div class="ui three column grid">
@@ -52,7 +62,7 @@
             <th>After</th>
             <th>item Cost</th>
             <th>Total</th>
-            <th></th>
+
           </tr>
         </thead>
         <tbody>
@@ -60,31 +70,19 @@
           {{#each stockadjustment.stockadjustmentitems  as |stockadjustmentitem|}}
           <tr class="center aligned">
             <td>
-              {{ember-selectize
-                content=products
-                optionValuePath="content.id"
-                optionLabelPath="content.productname"
-                selection=stockadjustmentitem.product
-                placeholder="Select a Product"
-              }}
+              {{stockadjustmentitem.product.productname}}
             </td>
-            <td class="left aligned" >
-              <div class="ui tiny transparent input">
-                {{input type="number" style="width:100px" placeholder="Qty" value=stockadjustmentitem.quantity}}
-              </div>
+            <td  >
+                {{stockadjustmentitem.quantity}}
             </td>
             <td>
               <label>{{stockadjustmentitem.aftervalue}}</label>
             </td>
             <td >
-              <div class="ui tiny transparent input">
-                {{input type="number" readonly="true" style="width:100px" placeholder="Qty" value=stockadjustmentitem.product.retailprice}}
-              </div>
+                {{stockadjustmentitem.product.retailprice}}
             </td>
             <td>{{stockadjustmentitem.computedtotal}}</td>
-            <td>
-<button class=" ui tiny right floated inverted button red"  {{action 'deleteStockadjustmentItem' stockadjustmentitem}}><i class="trash icon"></i></button>
-            </td>
+
 
           </tr>
           {{/each}}
@@ -92,7 +90,6 @@
       </table>
       <br>
       <div class="ui column grid centered">
-      <button class=" ui tiny right floated inverted button blue"  {{action 'addNewStockadjustmentItem'}}>Add New Item</button>
     </div>
       <div class="ui three column grid">
         <div class="column" ></div>
@@ -113,11 +110,19 @@
         </div>
       </div>
     </div>
-    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.5)">
+    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.4)">
       <!-- .  <button class=" ui tiny right floated  green button" {{createPurchaseOrder}}>Create</button> -->
-      .  <button class=" ui tiny right floated inverted blue button"  {{action 'draftStockAdjustment'}}>Save Draft</button>
-      <button class=" ui tiny right floated inverted black button"  {{action 'cancelStockAdjustment'}}>Cancel</button>
-      <button class=" ui tiny right floated inverted red button"  {{action 'deleteStockAdjustment' stockadjustment }}>Delete</button>
+      <div class="ui three column grid">
+        <div class="column" ></div>
+        <div class="column" ></div>
+        <div class="column"  style="padding-top:0;padding-bottom:0" >
+          <br>
+          <button class=" ui small fluid green button "  >Receive Order</button>
+          <br>
+        </div>
+      </div>
+
+
     </div>
   </div>
   <div class="four wide column">
