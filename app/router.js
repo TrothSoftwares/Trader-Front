@@ -9,7 +9,6 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('dashboard', {path: '/'}, function() {
-
     this.route('orders', function() {
       this.route('order', {path: ':id'}, function() {
         this.route('edit');
@@ -65,6 +64,11 @@ Router.map(function() {
     });
 
 
+    this.route('reports', function() {
+      this.route('inventory');
+      this.route('sales');
+      this.route('purchaseorders');
+    });
   });
   this.route('login');
 
@@ -74,3 +78,10 @@ Router.map(function() {
 
 
 export default Router;
+
+
+
+// TODO:
+//
+// 1. Validations
+// 2.
