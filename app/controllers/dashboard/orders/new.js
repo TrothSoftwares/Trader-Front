@@ -3,30 +3,28 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
 
-  orderitems: [],
+  order: '',
+  orderNotsaved:true,
   actions:{
 
 
 
-    createOrder:function(){
+
+    initOrder:function(){
+
       var controller = this;
       var order = this.store.createRecord('order', {
-        customer :this.get('customer'),
-        duedate :this.get('duedate'),
+        customer :controller.get('customers').get('firstObject'),
+        duedate :new Date(),
         orderstatus :'created',
-        totalunits :this.get('totalunits'),
-        totalcost :this.get('totalcost'),
-
+        totalunits :'',
+        totalcost :'',
       });
 
-      var templateOrderitems = controller.get('orderitems');
-      order.save().then(function(){
-        controller.set('customer','');
-        controller.set('duedate','');
-        templateOrderitems.forEach(function(orderitem){
-          orderitem.set('order', order);
-          orderitem.save();
-        });
+      order.save().then(function(order){
+        controller.set('order',order);
+
+
       }).catch(function(){
         controller.notifications.addNotification({
           message: 'Sorry, cant save at the moment !' ,
@@ -34,13 +32,43 @@ export default Ember.Controller.extend({
           autoClear: true
         });
       });
-      controller.set('orderitems' , []);
-      controller.transitionToRoute('dashboard.orders.index');
     },
 
+
+
+
+        createOrder:function(){
+
+          var controller = this;
+          var order = controller.get('order');
+
+          order.set('totalunits' , order.get('computedtotalunits'));
+          order.set('totalcost' , order.get('computedtotalcosts'));
+
+          order.save().then(function(order){
+
+
+            var orderitems = order.get('orderitems');
+            orderitems.forEach(function(orderitems){
+              orderitems.save() ;
+            });
+
+            controller.notifications.addNotification({
+              message: 'Saved !' ,
+              type: 'success',
+              autoClear: true
+            });
+          });
+
+          controller.set('orderNotsaved' , false);
+          controller.transitionToRoute('dashboard.orders.index');
+        },
     cancelOrder:function(){
       this.transitionToRoute('dashboard.orders.index');
     },
+
+
+
 
     addNewOrderItem:function(){
       var controller = this;
@@ -49,11 +77,11 @@ export default Ember.Controller.extend({
         total :'',
         poitemstatus :'',
         product :controller.get('products').get('firstObject'),
-        order : controller.get('orders').get('firstObject'),
+        order : controller.get('order'),
       });
 
       orderitem.save().then(function(){
-        controller.get('orderitems').pushObject(orderitem);
+
       }).catch(function(){
         controller.notifications.addNotification({
           message: 'Sorry, cant save at the moment !' ,
@@ -106,7 +134,7 @@ export default Ember.Controller.extend({
 
 
         controller.get('customers').pushObject(newCustomer._internalModel);
-        controller.set('customer',newCustomer);
+        controller.set('order.customer',newCustomer);
 
         Ember.$('.ui.newcustomer.modal')
         .modal('hide')

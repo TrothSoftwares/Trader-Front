@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-  purchaseorder: [],
+  purchaseorder: '',
   poNotsaved:true,
 
   actions:{
@@ -43,46 +43,29 @@ export default Ember.Controller.extend({
     createPurchaseOrder:function(){
 
       var controller = this;
-
-
       var purchaseorder = controller.get('purchaseorder');
-
-
 
       purchaseorder.set('totalunits' , purchaseorder.get('computedtotalunits'));
       purchaseorder.set('totalcost' , purchaseorder.get('computedtotalcosts'));
-
 
       purchaseorder.save().then(function(purchaseorder){
         controller.set('supplier','');
         controller.set('duedate','');
 
-
-        purchaseorder.purchaseorderitems.forEach(function(purchaseorderitem){
+        var purchaseorderitems = purchaseorder.get('purchaseorderitems');
+        purchaseorderitems.forEach(function(purchaseorderitem){
           purchaseorderitem.save() ;
         });
-
-
 
         controller.notifications.addNotification({
           message: 'Saved !' ,
           type: 'success',
           autoClear: true
         });
-
       });
 
-
-
-
       controller.set('poNotsaved' , false);
-
-
-
       controller.transitionToRoute('dashboard.stockcontrol.purchaseorders.index');
-
-
-
     },
     cancelPurchaseOrder:function(){
       this.transitionToRoute('dashboard.stockcontrol.purchaseorders.index');
@@ -163,7 +146,7 @@ export default Ember.Controller.extend({
 
       var controller = this;
       controller.get('purchaseorder.items').removeObject(purchaseorderitem);
-       purchaseorderitem.destroyRecord();
+      purchaseorderitem.destroyRecord();
     }
 
   }

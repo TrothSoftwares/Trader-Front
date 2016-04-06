@@ -17,10 +17,13 @@ export default Ember.Controller.extend({
     {
       "propertyName": "totalcost", "title": "Total Cost"
     },
+    {
+      "propertyName": "sastatus", "title": "Recieved"
+    },
 
     {
       "title":"View" , "template":"custom/viewstockadjustment"
     },
   ],
-  
+
 });

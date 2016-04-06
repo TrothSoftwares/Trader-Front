@@ -1,10 +1,13 @@
 
-<h2 class="ui  header">Order: #OR{{order.id}}</h2>
 
 
 <div class="ui two column grid">
   <div class="twelve wide column" style="padding:0">
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:550px;overflow:auto ">
+      <h2 class="ui left floated header">Order: #OR{{order.id}}</h2>
+      {{link-to 'Edit' 'dashboard.orders.order.edit'  class="ui blue inverted mini right floated button "}}
+      <div class="ui clearing divider" ></div>
+
       <div class="ui three column grid">
         <div class="column" >
           <div class="ui  form">
@@ -104,7 +107,11 @@
         <div class="column" ></div>
         <div class="column"  style="padding-top:0;padding-bottom:0" >
           <br>
-          <button class=" ui small fluid green button "  >Deliver Order</button>
+          {{#if (eq order.orderstatus 'created')}}
+          <button class=" ui small fluid red button" {{action "deliverOrder" order}} >Deliver Order</button>
+          {{else}}
+          <button class=" ui small fluid green button" >Order Delivered</button>
+          {{/if}}
           <br>
         </div>
       </div>

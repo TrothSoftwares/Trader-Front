@@ -4,7 +4,6 @@ export default Ember.Controller.extend({
 
   reason:'',
   stockadjustmentReason :['Retured From Customer','Damaged','Production'],
-  stockadjustment: [],
   soNotsaved:true,
 
   actions:{
@@ -21,7 +20,7 @@ export default Ember.Controller.extend({
         var stockadjustment = this.store.createRecord('stockadjustment', {
           customer :controller.get('customers').get('firstObject'),
           duedate :new Date(),
-          postatus :'created',
+          sastatus :'created',
           totalunits :'',
           totalcost :'',
           reason: this.get('stockadjustment.reason')
@@ -57,12 +56,9 @@ export default Ember.Controller.extend({
 
 
       stockadjustment.save().then(function(stockadjustment){
-        controller.set('customer','');
-        controller.set('duedate','');
 
-
-console.log(stockadjustment.stockadjustmentitems);
-        stockadjustment.stockadjustmentitems.forEach(function(stockadjustmentitem){
+var stockadjustmentitems = stockadjustment.get('stockadjustmentitems');
+        stockadjustmentitems.forEach(function(stockadjustmentitem){
           stockadjustmentitem.save() ;
         });
 
@@ -87,6 +83,7 @@ console.log(stockadjustment.stockadjustmentitems);
 
     cancelStockadjustment:function(){
       this.transitionToRoute('dashboard.stockcontrol.stockadjustments.index');
+      return false;
     },
 
     addNewStockadjustmentItem:function(){
