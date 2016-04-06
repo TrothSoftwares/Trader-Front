@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
       var controller = this;
       purchaseorder.set('postatus','recieved');
       var purchaseorderitems= purchaseorder.get('purchaseorderitems');
-      purchaseorderitems.forEach(function(purchaseorderitem){
+      purchaseorderitems.forEach(function(purchaseorderitem){ 
         var purchaseorderitemquantity = purchaseorderitem.get('quantity');
         var purchaseorderitemproduct = purchaseorderitem.get('product');
          controller.store.findRecord('product',purchaseorderitemproduct.get('id')).then(function(product){
