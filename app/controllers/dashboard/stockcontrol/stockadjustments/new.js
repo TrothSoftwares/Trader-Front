@@ -38,7 +38,7 @@ export default Ember.Controller.extend({
         });
       });
       controller.set('stockadjustmentitems' , []);
-      controller.transitionToRoute('dashboard.stockcontrol.index');
+      controller.transitionToRoute('dashboard.stockcontrol.stockadjustments.index');
     },
 
     cancelStockadjustment:function(){

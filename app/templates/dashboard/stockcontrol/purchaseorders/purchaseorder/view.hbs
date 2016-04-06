@@ -111,7 +111,14 @@
         <div class="column" ></div>
         <div class="column"  style="padding-top:0;padding-bottom:0" >
           <br>
-          <button class=" ui small fluid green button "  >Receive Order</button>
+
+          {{#if (eq purchaseorder.postatus 'created')}}
+          <button class=" ui small fluid red button" {{action "recieveOrder" purchaseorder}} >Receive Order</button>
+          {{else}}
+          <button class=" ui small fluid green button" >Order Recieved</button>
+          {{/if}}
+
+
           <br>
         </div>
       </div>

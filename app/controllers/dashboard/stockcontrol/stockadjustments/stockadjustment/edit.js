@@ -13,7 +13,7 @@ actions:{
         var confirm = window.confirm("Are you sure you want to delete?");
         if (confirm) {
           stockadjustment.destroyRecord().then(function(){
-            controller.transitionToRoute('dashboard.stockcontrol.index');
+            controller.transitionToRoute('dashboard.stockcontrol.stockadjustments.index');
             controller.notifications.addNotification({
               message: 'Stock Adjustment deleted successfully' ,
               type: 'success',
@@ -86,7 +86,7 @@ actions:{
     });
   },
   cancelStockAdjustment:function(){
-    this.transitionToRoute('dashboard.stockcontrol.index');
+    this.transitionToRoute('dashboard.stockcontrol.stockadjustments.index');
   },
 
 }

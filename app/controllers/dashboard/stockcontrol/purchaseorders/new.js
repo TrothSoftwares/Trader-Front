@@ -2,32 +2,33 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-  purchaseorderitems: [],
+  purchaseorder: [],
+  poNotsaved:true,
 
   actions:{
 
-    createPurchaseOrder:function(){
+
+
+
+
+    initPurchaseOrder:function(){
 
       var controller = this;
-
       var purchaseorder = this.store.createRecord('purchaseorder', {
-        supplier :this.get('supplier'),
-        duedate :this.get('duedate'),
+        supplier :controller.get('suppliers').get('firstObject'),
+        duedate :new Date(),
         postatus :'created',
-        totalunits :this.get('totalunits'),
-        totalcost :this.get('totalcost'),
+        totalunits :'',
+        totalcost :'',
       });
 
-      var templatePurchaseorderitems = controller.get('purchaseorderitems');
+
 
       purchaseorder.save().then(function(purchaseorder){
-        controller.set('supplier','');
-        controller.set('duedate','');
 
-        templatePurchaseorderitems.forEach(function(purchaseorderitem){
-          purchaseorderitem.set('purchaseorder', purchaseorder);
-          purchaseorderitem.save() ;
-        });
+        controller.set('purchaseorder',purchaseorder);
+
+
       }).catch(function(){
         controller.notifications.addNotification({
           message: 'Sorry, cant save at the moment !' ,
@@ -35,33 +36,68 @@ export default Ember.Controller.extend({
           autoClear: true
         });
       });
+    },
 
 
 
-      controller.set('purchaseorderitems' , []);
+    createPurchaseOrder:function(){
 
-      controller.transitionToRoute('dashboard.stockcontrol.index');
+      var controller = this;
+
+
+      var purchaseorder = controller.get('purchaseorder');
+
+
+
+      purchaseorder.set('totalunits' , purchaseorder.get('computedtotalunits'));
+      purchaseorder.set('totalcost' , purchaseorder.get('computedtotalcosts'));
+
+
+      purchaseorder.save().then(function(purchaseorder){
+        controller.set('supplier','');
+        controller.set('duedate','');
+
+        purchaseorder.purchaseorderitems.forEach(function(purchaseorderitem){
+          purchaseorderitem.save() ;
+        });
+
+
+        controller.notifications.addNotification({
+          message: 'Saved !' ,
+          type: 'success',
+          autoClear: true
+        });
+
+      });
+
+
+      controller.set('poNotsaved' , false);
+
+
+
+      controller.transitionToRoute('dashboard.stockcontrol.purchaseorders.index');
 
 
 
     },
     cancelPurchaseOrder:function(){
-      this.transitionToRoute('dashboard.stockcontrol.index');
+      this.transitionToRoute('dashboard.stockcontrol.purchaseorders.index');
     },
 
     addNewPurchaseOrderItem:function(){
       var controller = this;
+
+
       var purchaseorderitem = controller.store.createRecord('purchaseorderitem', {
         quantity :1,
         total :'',
         poitemstatus :'',
         recieveddate :'',
         product :controller.get('products').get('firstObject'),
-        purchaseorder : controller.get('purchaseorders').get('firstObject'),
+        purchaseorder : controller.get('purchaseorder'),
       });
 
       purchaseorderitem.save().then(function(){
-        controller.get('purchaseorderitems').pushObject(purchaseorderitem);
       }).catch(function(){
         controller.notifications.addNotification({
           message: 'Sorry, cant save at the moment !' ,
@@ -106,7 +142,7 @@ export default Ember.Controller.extend({
         controller.set('phone','');
 
         controller.get('suppliers').pushObject(newsupplier._internalModel);
-        controller.set('supplier',newsupplier);
+        controller.set('purchaseorder.supplier',newsupplier);
         Ember.$('.ui.newsupplier.modal')
         .modal('hide')
         ;
