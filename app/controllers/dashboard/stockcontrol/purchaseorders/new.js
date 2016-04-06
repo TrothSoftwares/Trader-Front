@@ -57,9 +57,11 @@ export default Ember.Controller.extend({
         controller.set('supplier','');
         controller.set('duedate','');
 
+
         purchaseorder.purchaseorderitems.forEach(function(purchaseorderitem){
           purchaseorderitem.save() ;
         });
+
 
 
         controller.notifications.addNotification({
@@ -69,6 +71,8 @@ export default Ember.Controller.extend({
         });
 
       });
+
+
 
 
       controller.set('poNotsaved' , false);
@@ -158,7 +162,7 @@ export default Ember.Controller.extend({
     deletePurchaseorderitem:function(purchaseorderitem){
 
       var controller = this;
-      controller.get('purchaseorderitems').removeObject(purchaseorderitem);
+      controller.get('purchaseorder.items').removeObject(purchaseorderitem);
        purchaseorderitem.destroyRecord();
     }
 

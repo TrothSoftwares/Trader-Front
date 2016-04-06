@@ -11,7 +11,7 @@
             content=customers
             optionValuePath="content.id"
             optionLabelPath="content.companyname"
-            selection=customer
+            selection=stockadjustment.customer
             placeholder="Select a Customer"
           }}
         </div>
@@ -37,7 +37,7 @@
 
           </div>
         </div>
-        
+
       </div>
       <div class="ui divider" ></div>
       <div class="ui three column grid">
@@ -65,7 +65,7 @@
         </thead>
         <tbody>
 
-          {{#each stockadjustmentitems  as |stockadjustmentitem|}}
+          {{#each stockadjustment.stockadjustmentitems  as |stockadjustmentitem|}}
           <tr class="center aligned">
             <td>
               {{ember-selectize

@@ -2,14 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model: function() {
-    //      return this.store.findRecord('purchaseorder', params.id );
 
     return Ember.RSVP.hash({
       suppliers: this.store.findAll('supplier' ,{reload :true}),
       products: this.store.findAll('product' ,{reload :true}),
       purchaseorders: this.store.findAll('purchaseorder' ,{reload :true}),
-
-
     });
   },
 
