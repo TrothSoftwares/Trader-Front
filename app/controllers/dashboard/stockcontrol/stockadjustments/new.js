@@ -3,8 +3,25 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   reason:'',
-  stockadjustmentReason :['Retured From Customer','Damaged','Production'],
+  stockadjustmentReason :['Please Select' , 'Retured From Customer','Damaged','Production'],
   soNotsaved:true,
+
+
+
+  isCreateCustomerButtonDisabled: Ember.computed('companyname' , 'companycode' , 'chargecode' ,'address1', 'email' , 'phone'  ,  function() {
+    if( Ember.isEmpty(this.get('companyname')) ||
+    Ember.isEmpty(this.get('companycode')) ||
+    Ember.isEmpty(this.get('chargecode')) ||
+    Ember.isEmpty(this.get('address1')) ||
+    Ember.isEmpty(this.get('email')) ||
+    Ember.isEmpty(this.get('phone'))
+  ){return 'disabled';}
+  else{return '';}
+  }),
+
+
+
+
 
   actions:{
 
