@@ -5,6 +5,17 @@ export default Ember.Controller.extend({
   purchaseorder: '',
   poNotsaved:true,
 
+  isSupplierButtonDisabled: Ember.computed('companyname' , 'companycode' , 'chargecode' ,'address1', 'email' , 'phone'  ,  function() {
+    if( Ember.isEmpty(this.get('companyname')) ||
+    Ember.isEmpty(this.get('companycode')) ||
+    Ember.isEmpty(this.get('chargecode')) ||
+    Ember.isEmpty(this.get('address1')) ||
+    Ember.isEmpty(this.get('email')) ||
+    Ember.isEmpty(this.get('phone'))
+  ){return 'disabled';}
+  else{return '';}
+  }),
+
   actions:{
 
 
@@ -106,6 +117,8 @@ export default Ember.Controller.extend({
       var controller = this;
       var newsupplier = this.store.createRecord('supplier', {
         companyname :this.get('companyname'),
+        companycode :this.get('companycode'),
+        chargecode :this.get('chargecode'),
         email :this.get('email'),
         address1 :this.get('address1'),
         address2 :this.get('address2'),
@@ -118,6 +131,8 @@ export default Ember.Controller.extend({
 
       newsupplier.save().then(function(){
         controller.set('companyname','');
+        controller.set('companycode','');
+        controller.set('chargecode','');
         controller.set('email','');
         controller.set('address1','');
         controller.set('address2','');
