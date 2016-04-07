@@ -14,8 +14,10 @@ session: Ember.inject.service('session'),
   actions: {
     authenticate(){
       var controller = this;
-        this.get('session').authenticate('authenticator:devise', this.get('email'), this.get('password')).then(function(){
+      controller.send('loading');
 
+        this.get('session').authenticate('authenticator:devise', this.get('email'), this.get('password')).then(function(){
+controller.send('finished');
         }).catch(function(){
 
           controller.notifications.addNotification({
