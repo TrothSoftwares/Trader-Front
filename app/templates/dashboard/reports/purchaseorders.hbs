@@ -6,20 +6,25 @@
 <button class="ui tiny primary right floated button no-print" {{action "printReport"}}>Print</button>
 <table class="ui celled structured center aligned table">
   <thead>
-    <tr><th>Item Code</th>
-    <th>Product Name</th>
-    <th>Wholesale price </th>
-    <th>Retail Price</th>
-    <th>Total</th>
+    <tr><th>No.</th>
+    <th>Supplier</th>
+    <th>Incoming Stocks </th>
+    <th>Total Cost of Incoming Stocks</th>
   </tr></thead>
+
+
+
+
+
   <tbody>
+    {{#each purchaseorders  as |purchaseorder index|}}
     <tr>
-      <td>cell</td>
-      <td>Cell</td>
-      <td>Cell</td>
-      <td>Cell</td>
-      <td>Cell</td>
+  <td> {{ incrementone index}}</td>
+  <td> {{purchaseorder.supplier.companyname}}</td>
+  <td> {{purchaseorder.totalunits}}</td>
+  <td> {{purchaseorder.totalcost}}</td>
     </tr>
+    {{/each}}
   </tbody>
 </table>
 </div>

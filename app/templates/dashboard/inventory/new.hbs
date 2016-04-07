@@ -1,4 +1,5 @@
 
+
 <div class="ui small form segment">
   <div class=" two fields">
     <div class="field">
@@ -50,28 +51,28 @@
           </div>
           <div class="field">
             <label>Initial Stock</label>
-            {{input placeholder="Initial Stock" type="text" value=initialstocklevel}}
+            {{input placeholder="Initial Stock" type="number" value=initialstocklevel}}
           </div>
         </div>
         <div class="two fields">
           <div class="field">
             <label>Initial Cost Price</label>
-            {{input placeholder="Initial Cost Price" type="text" value=initialcostprice}}
+            {{input placeholder="Initial Cost Price" type="number" value=initialcostprice}}
           </div>
           <div class="field">
             <label>Buy Price</label>
-            {{input placeholder="Buy Price" type="text" value=buyprice }}
+            {{input placeholder="Buy Price" type="number" value=buyprice }}
           </div>
         </div>
 
         <div class="two fields">
           <div class="field">
             <label>Retail Price</label>
-            {{input placeholder="Retails Price"   readonly="readonly" type="text" value=retailprice}}
+            {{input placeholder="Retails Price"   readonly="readonly" type="number" value=retailprice}}
           </div>
 
         </div>
-        <div class="ui blue small submit button"  {{action "createProduct"}}>Submit</div>
+        <div class="ui blue small submit button {{isCreateProductButtonDisabled}}"   {{action "createProduct"}}>Submit</div>
       </div>
 
       <div class="ui small newsupplier modal">
@@ -173,6 +174,6 @@
               </div>
             </div>
           </div>
-          <div class="ui blue small submit button" {{action "createProductType"}}>Submit</div>
+          <div class="ui blue small submit button " {{action "createProductType"}}>Submit</div>
         </div>
       </div>

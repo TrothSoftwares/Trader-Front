@@ -8,6 +8,24 @@ export default Ember.Controller.extend({
 
 actions:{
 
+
+
+  recieveStock: function(stockadjustment){
+    var controller = this;
+    stockadjustment.set('sastatus','recieved');
+    var stockadjustmentitems= stockadjustment.get('stockadjustmentitems');
+    stockadjustmentitems.forEach(function(stockadjustmentitem){
+      var stockadjustmentitemquantity = stockadjustmentitem.get('quantity');
+      var stockadjustmentitemproduct = stockadjustmentitem.get('product');
+       controller.store.findRecord('product',stockadjustmentitemproduct.get('id')).then(function(product){
+         var initialstocklevel = product.get('initialstocklevel');
+      product.set('initialstocklevel' , initialstocklevel + stockadjustmentitemquantity);
+      product.save();
+    });
+    });
+    stockadjustment.save(); //TODO : catch function pending
+  },
+
       deleteStockAdjustment:function(stockadjustment){
 
         var controller = this;

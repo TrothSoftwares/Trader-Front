@@ -11,7 +11,7 @@
             content=suppliers
             optionValuePath="content.id"
             optionLabelPath="content.companyname"
-            selection=supplier
+            selection=purchaseorder.supplier
             placeholder="Select a Supplier"
           }}
         </div>
@@ -34,12 +34,12 @@
             <div class="inline field" style="float:right">
               <label >Stock Due :</label>
 
-              {{pikaday-input  placeholder="Select Date" value=duedate}}
+              {{pikaday-input  placeholder="Select Date" value=purchaseorder.duedate}}
             </div>
 
             <div class="inline field" style="float:right">
               <label>Email : </label>
-              {{input placeholder="Email" readonly="true" type="text"  value=supplier.email}}
+              {{input placeholder="Email" readonly="true" type="text"  value=purchaseorder.supplier.email}}
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@
         </thead>
         <tbody>
 
-          {{#each purchaseorderitems  as |purchaseorderitem|}}
+          {{#each purchaseorder.purchaseorderitems  as |purchaseorderitem|}}
           <tr class="center aligned">
             <td>
               {{ember-selectize
@@ -152,13 +152,27 @@
             <label>Company Name</label>
             {{input placeholder="Company Name" type="text" value=companyname}}
           </div>
+
+          <div class="field">
+            <label>Company Code</label>
+            {{input placeholder="Company Code" type="text" value=companycode}}
+          </div>
           <div class="field">
             <label>Email</label>
             {{input placeholder="Email" type="email" value=email}}
           </div>
         </div>
 
+
+
+
+
+
         <div class="two fields">
+          <div class="field">
+            <label>Address 2</label>
+            {{input placeholder="Charge Code" type="text" value=chargecode}}
+          </div>
           <div class="field">
             <label>Address 1</label>
             {{input placeholder="Address 1" type="text" value=address1}}
@@ -203,7 +217,7 @@
             {{input placeholder="Phone" type="text" value=phone}}
           </div>
         </div>
-        <div class="ui blue small submit button" {{action "createSupplier"}}>Submit</div>
+        <div class="ui blue small submit button {{isSupplierButtonDisabled}}" {{action "createSupplier"}}>Submit</div>
       </div>
     </p>
 

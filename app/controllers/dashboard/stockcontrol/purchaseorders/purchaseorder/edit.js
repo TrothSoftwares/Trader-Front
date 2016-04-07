@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
       var confirm = window.confirm("Are you sure you want to delete?");
       if (confirm) {
         purchaseorder.destroyRecord().then(function(){
-          controller.transitionToRoute('dashboard.stockcontrol.index');
+          controller.transitionToRoute('dashboard.stockcontrol.purchaseorders.index');
           controller.notifications.addNotification({
             message: 'Purchaseorder deleted successfully' ,
             type: 'success',

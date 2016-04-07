@@ -13,8 +13,5 @@ return this.store.findAll('product' ,{reload: true});
   },
 
 
-  actions:{
-
-
-  }
+  activeClass: 'active',
 });

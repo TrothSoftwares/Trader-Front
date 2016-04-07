@@ -5,7 +5,9 @@ export default DS.Model.extend({
   notes : DS.attr('string'),
   customer: DS.belongsTo('customer' ,{async:true}),
   totalunits :DS.attr('number'),
+  sastatus : DS.attr('string'),
   totalcost : DS.attr('number'),
+
   stockadjustmentitems: DS.hasMany('stockadjustmentitem' ,{embedded: 'always', async:true}),
 
   computedtotalunits: function() {
@@ -13,7 +15,7 @@ export default DS.Model.extend({
           return sum + parseInt(split.get('quantity'));
       }, 0);
   }.property('stockadjustmentitems.@each.quantity'),
-  
+
   computedtotalcosts: function() {
       return this.get('stockadjustmentitems').reduce(function(sum, split) {
           return sum + parseInt(split.get('computedtotal'));

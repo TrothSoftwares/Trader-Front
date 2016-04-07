@@ -3,46 +3,104 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   reason:'',
-  stockadjustmentReason :['Retured From Customer','Damaged','Production'],
-  stockadjustmentitems: [],
+  stockadjustmentReason :['Please Select' , 'Retured From Customer','Damaged','Production'],
+  soNotsaved:true,
+
+
+
+  isCreateCustomerButtonDisabled: Ember.computed('companyname' , 'companycode' , 'chargecode' ,'address1', 'email' , 'phone'  ,  function() {
+    if( Ember.isEmpty(this.get('companyname')) ||
+    Ember.isEmpty(this.get('companycode')) ||
+    Ember.isEmpty(this.get('chargecode')) ||
+    Ember.isEmpty(this.get('address1')) ||
+    Ember.isEmpty(this.get('email')) ||
+    Ember.isEmpty(this.get('phone'))
+  ){return 'disabled';}
+  else{return '';}
+  }),
+
+
+
+
+
   actions:{
 
     selectReason(reason) {
-        this.set('reason', reason);
+        this.set('stockadjustment.reason', reason);
       },
+
+
+
+      initStockadjustment:function(){
+
+        var controller = this;
+        var stockadjustment = this.store.createRecord('stockadjustment', {
+          customer :controller.get('customers').get('firstObject'),
+          duedate :new Date(),
+          sastatus :'created',
+          totalunits :'',
+          totalcost :'',
+          reason: this.get('stockadjustment.reason')
+        });
+
+
+
+        stockadjustment.save().then(function(stockadjustment){
+
+          controller.set('stockadjustment',stockadjustment);
+
+
+        }).catch(function(){
+          controller.notifications.addNotification({
+            message: 'Sorry, cant save at the moment !' ,
+            type: 'error',
+            autoClear: true
+          });
+        });
+      },
+
 
     createStockAdjustment:function(){
       var controller = this;
-      var stockadjustment = this.store.createRecord('stockadjustment', {
-        customer :this.get('customer'),
-        duedate :this.get('duedate'),
-        postatus :'created',
-        totalunits :this.get('totalunits'),
-        totalcost :this.get('totalcost'),
-        reason : this.get('reason')
-      });
 
-      var templateStockadjustmentitems = controller.get('stockadjustmentitems');
+
+      var stockadjustment = controller.get('stockadjustment');
+
+
+
+      stockadjustment.set('totalunits' , stockadjustment.get('computedtotalunits'));
+      stockadjustment.set('totalcost' , stockadjustment.get('computedtotalcosts'));
+
+
       stockadjustment.save().then(function(stockadjustment){
-        controller.set('customer','');
-        controller.set('duedate','');
-        templateStockadjustmentitems.forEach(function(stockadjustmentitem){
-          stockadjustmentitem.set('stockadjustment', stockadjustment);
-          stockadjustmentitem.save();
+
+var stockadjustmentitems = stockadjustment.get('stockadjustmentitems');
+        stockadjustmentitems.forEach(function(stockadjustmentitem){
+          stockadjustmentitem.save() ;
         });
-      }).catch(function(){
+
         controller.notifications.addNotification({
-          message: 'Sorry, cant save at the moment !' ,
-          type: 'error',
+          message: 'Saved !' ,
+          type: 'success',
           autoClear: true
         });
+
       });
-      controller.set('stockadjustmentitems' , []);
-      controller.transitionToRoute('dashboard.stockcontrol.index');
+
+
+      controller.set('soNotsaved' , false);
+
+
+
+      controller.transitionToRoute('dashboard.stockcontrol.stockadjustments.index');
+
+
+
     },
 
     cancelStockadjustment:function(){
-      this.transitionToRoute('dashboard.stockcontrol.index');
+      this.transitionToRoute('dashboard.stockcontrol.stockadjustments.index');
+      return false;
     },
 
     addNewStockadjustmentItem:function(){
@@ -53,11 +111,11 @@ export default Ember.Controller.extend({
         poitemstatus :'',
         recieveddate :'',
         product :controller.get('products').get('firstObject'),
-        stockadjustment : controller.get('stockadjustments').get('firstObject'),
+        stockadjustment : controller.get('stockadjustment'),
       });
 
       stockadjustmentitem.save().then(function(){
-        controller.get('stockadjustmentitems').pushObject(stockadjustmentitem);
+
       }).catch(function(){
         controller.notifications.addNotification({
           message: 'Sorry, cant save at the moment !' ,
@@ -110,7 +168,7 @@ export default Ember.Controller.extend({
 
 
         controller.get('customers').pushObject(newCustomer._internalModel);
-        controller.set('customer',newCustomer);
+        controller.set('stockadjustment.customer',newCustomer);
 
         Ember.$('.ui.newcustomer.modal')
         .modal('hide')
@@ -133,7 +191,7 @@ export default Ember.Controller.extend({
 
     deleteStockadjustmentItem:function(stockadjustmentitem){
       var controller = this;
-      controller.get('stockadjustmentitems').removeObject(stockadjustmentitem);
+      controller.get('stockadjustment.items').removeObject(stockadjustmentitem);
        stockadjustmentitem.destroyRecord();
     }
 

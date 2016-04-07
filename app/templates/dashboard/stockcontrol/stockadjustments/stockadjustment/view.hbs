@@ -28,7 +28,7 @@
         <div class="column" >
           <div class="ui small form">
             <div class="inline field" >
-              <label style="width:75px">Type </label>:
+              <label style="width:75px">Reason </label>:
               {{stockadjustment.reason}}
             </div>
           </div>
@@ -117,7 +117,11 @@
         <div class="column" ></div>
         <div class="column"  style="padding-top:0;padding-bottom:0" >
           <br>
-          <button class=" ui small fluid green button "  >Receive Order</button>
+          {{#if (eq stockadjustment.sastatus 'created')}}
+          <button class=" ui small fluid red button" {{action "recieveStock" stockadjustment}} >Recieve Stock</button>
+          {{else}}
+          <button class=" ui small fluid green button" >Stock Recieved</button>
+          {{/if}}
           <br>
         </div>
       </div>

@@ -1,8 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  moment: Ember.inject.service(),
 
-
+  actions: {
+      changeDefaultFormat() {
+        this.set('moment.defaultFormat', 'MM.DD.YYYY');
+      }
+    },
 
       purchaseorderColumns: [
         {
@@ -21,6 +26,9 @@ export default Ember.Controller.extend({
         {
           "propertyName": "postatus", "title": "Recieved"
         },
+        // {
+        //   "title": "Recieved Date" , "template":"custom/recieveddate"
+        // },
 
         {
           "title":"View" , "template":"custom/viewpurchaseorder"
