@@ -14,10 +14,6 @@ export default DS.Model.extend({
   }),
 
 
-
-
-
-
   computedtotal: Ember.computed('product' , 'quantity', function() {
     var total =   parseInt(this.get('product.retailprice')) * parseInt(this.get('quantity'));
      return total;

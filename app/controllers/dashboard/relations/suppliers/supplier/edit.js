@@ -2,6 +2,19 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+
+  isSaveSupplierButtonDisabled: Ember.computed('supplier.companyname' , 'supplier.companycode' , 'supplier.chargecode' , 'supplier.email' , 'supplier.phone'  ,  function() {
+    if( Ember.isEmpty(this.get('supplier.companyname')) ||
+    Ember.isEmpty(this.get('supplier.chargecode')) ||
+    Ember.isEmpty(this.get('supplier.companycode')) ||
+    Ember.isEmpty(this.get('supplier.email')) ||
+    Ember.isEmpty(this.get('supplier.phone'))
+  ){return 'disabled';}
+  else{return '';}
+  }),
+
+
+
   actions:{
 
     deleteSupplier:function(supplier){

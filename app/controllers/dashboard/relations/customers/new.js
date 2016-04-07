@@ -3,13 +3,12 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
 
-  isCreateCustomerButtonDisabled: Ember.computed('companyname' , 'companycode' , 'chargecode' ,'address1', 'email' , 'phone'  ,  function() {
+  isCreateCustomerButtonDisabled: Ember.computed('companyname' , 'companycode' , 'chargecode' , 'email' , 'phone'  ,  function() {
     if( Ember.isEmpty(this.get('companyname')) ||
     Ember.isEmpty(this.get('companycode')) ||
     Ember.isEmpty(this.get('chargecode')) ||
-    Ember.isEmpty(this.get('address1')) ||
     Ember.isEmpty(this.get('email')) ||
-    Ember.isEmpty(this.get('phone')) 
+    Ember.isEmpty(this.get('phone'))
   ){return 'disabled';}
   else{return '';}
 }),

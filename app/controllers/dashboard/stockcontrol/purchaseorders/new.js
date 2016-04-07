@@ -5,11 +5,10 @@ export default Ember.Controller.extend({
   purchaseorder: '',
   poNotsaved:true,
 
-  isSupplierButtonDisabled: Ember.computed('companyname' , 'companycode' , 'chargecode' ,'address1', 'email' , 'phone'  ,  function() {
+  isSupplierButtonDisabled: Ember.computed('companyname' , 'companycode' , 'chargecode' , 'email' , 'phone'  ,  function() {
     if( Ember.isEmpty(this.get('companyname')) ||
     Ember.isEmpty(this.get('companycode')) ||
     Ember.isEmpty(this.get('chargecode')) ||
-    Ember.isEmpty(this.get('address1')) ||
     Ember.isEmpty(this.get('email')) ||
     Ember.isEmpty(this.get('phone'))
   ){return 'disabled';}
