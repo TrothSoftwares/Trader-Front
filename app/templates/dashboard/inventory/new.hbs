@@ -15,39 +15,59 @@
   </div>
   <div class="two fields">
     <div class="field">
-      <label>New Supplier </label>
-      <div class="ui blue small submit button"  {{action "openSupplierModal"}}>New Supplier</div>
-      {{ember-selectize
-        content=suppliers
-        optionValuePath="content.id"
-        optionLabelPath="content.companyname"
-        selection=supplier
-        placeholder="Select an item" }}
+      <label> Supplier </label>
+      <div class="ui grid">
+        <div class="twelve wide column ">
+          {{ember-selectize
+            content=suppliers
+            optionValuePath="content.id"
+            optionLabelPath="content.companyname"
+            selection=supplier
+            placeholder="Select Supplier"
+            class="ui left floated"
+          }}
+        </div>
+        <div class="four wide column ">
+      <div class="ui blue small  submit button"  {{action "openSupplierModal"}}>New Supplier</div>
+    </div>
       </div>
+    </div>
+
 
       <div class="field">
-        <label>New Product type</label>
+        <label> Product type</label>
+        <div class="ui grid">
+          <div class="eleven wide column ">
+            {{ember-selectize
+              content=producttypes
+              optionValuePath="content.id"
+              optionLabelPath="content.typename"
+              selection=typename
+              placeholder="Select Product Type" }}
+            </div>
+            <div class="five wide column ">
         <div class="ui blue small submit button"  {{action "openProductTypeModal"}}>New Product Type</div>
-
-        {{ember-selectize
-          content=producttypes
-          optionValuePath="content.id"
-          optionLabelPath="content.typename"
-          selection=typename
-          placeholder="Select an item" }}
+      </div>
+    </div>
         </div>
       </div>
 
       <div class="two fields">
         <div class="field">
           <label>Product Brand</label>
+          <div class="ui grid">
+            <div class="eleven wide column ">
+              {{ember-selectize
+                content=productbrands
+                optionValuePath="content.id"
+                optionLabelPath="content.brandname"
+                selection=brandname
+                placeholder="Select  Brand" }}
+              </div>
+              <div class="five wide column ">
           <div class="ui blue small submit button"  {{action "openProductBrandModal"}}>New Product Brand</div>
-          {{ember-selectize
-            content=productbrands
-            optionValuePath="content.id"
-            optionLabelPath="content.brandname"
-            selection=brandname
-            placeholder="Select an item" }}
+        </div>
+      </div>
           </div>
           <div class="field">
             <label>Initial Stock</label>
@@ -75,7 +95,7 @@
         <div class="ui blue small submit button {{isCreateProductButtonDisabled}}"   {{action "createProduct"}}>Submit</div>
       </div>
 
-      <div class="ui small newsupplier modal">
+      <div class="ui small newsupplier modal"style="top:150px;bottom:50px">
         <i class="close icon"></i>
         <div class="header">Add New Supplier</div>
         <div class="content">
@@ -145,7 +165,7 @@
       </div>
 
 
-      <div class="ui newproductbrand small modal">
+      <div class="ui newproductbrand small modal" style="top:150px;bottom:250px">
         <div class="header">New Product Brand</div>
         <div class="content">
           <div class="ui small form segment">
@@ -162,7 +182,7 @@
       </div>
 
 
-      <div class="ui newproducttype small modal">
+      <div class="ui newproducttype small modal"style="top:150px;bottom:250px">
         <div class="header">New Product Type</div>
         <div class="content">
           <div class="ui small form segment">
