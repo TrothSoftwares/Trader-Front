@@ -4,9 +4,14 @@
 
 <div class="ui two column grid">
   <div class="twelve wide column" style="padding:0">
-    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:550px;overflow:auto ">
+    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:425px;overflow:auto ">
       <div class="ui three column grid">
         <div class="column" style=" padding-bottom:0px">
+          <div class="ui grid">
+            <div class="four wide column ">
+              <label style="margin-top:10px"> Supplier:</label>
+            </div>
+            <div class="twelve wide column ">
           {{ember-selectize
             content=suppliers
             optionValuePath="content.id"
@@ -15,10 +20,12 @@
             placeholder="Select a Supplier"
           }}
         </div>
+      </div>
+    </div>
 
         <div class="column" >
           <div  style="margin-top:10px" >
-            Or <div class="ui blue small submit button"  {{action "openSupplierModal"}}>New Supplier</div>
+            Or <a style="cursor:pointer "  {{action "openSupplierModal"}}>New Supplier</a>
           </div>
         </div>
         <div class=" column"><h3 style="margin-top:10px" class="ui right floated header">#PO{{purchaseorder.id}}</h3></div>

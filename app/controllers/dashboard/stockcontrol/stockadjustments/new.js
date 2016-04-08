@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   reason:'',
-  stockadjustmentReason :['Please Select' , 'Retured From Customer','Damaged','Production'],
+  stockadjustmentReason :['Please Select' , 'Returned From Customer','Damaged','Production'],
   soNotsaved:true,
 
 

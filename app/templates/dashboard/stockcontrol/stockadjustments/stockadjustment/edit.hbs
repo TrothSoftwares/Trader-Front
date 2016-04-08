@@ -7,6 +7,11 @@
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:550px;overflow:auto ">
       <div class="ui three column grid">
         <div class="column" style=" padding-bottom:0px">
+          <div class="ui grid">
+            <div class="four wide column ">
+              <label style="margin-top:10px"> Customer:</label>
+            </div>
+            <div class="twelve wide column ">
           {{ember-selectize
             content=customers
             optionValuePath="content.id"
@@ -15,10 +20,15 @@
             placeholder="Select a Customer"
           }}
         </div>
+      </div>
+    </div>
 
         <div class="column" >
-          <div  style="margin-top:10px" >
-
+          <div class="ui grid">
+            <div class="four wide column ">
+              <label style="margin-top:10px"> Type :</label>
+            </div>
+            <div class="twelve wide column ">
 
             <select onchange={{action "selectReason" value="target.value"}} class="form-control">
               {{#each stockadjustmentReason as |reason|}}
@@ -26,9 +36,10 @@
               {{/each}}
             </select>
 
-
           </div>
+
         </div>
+      </div>
         <div class=" column"><h3 style="margin-top:10px" class="ui right floated header">#SO{{stockadjustment.id}} </h3></div>
       </div>
       <div class="ui divider" ></div>

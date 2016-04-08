@@ -7,6 +7,11 @@
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:550px;overflow:auto ">
       <div class="ui three column grid">
         <div class="column" style=" padding-bottom:0px">
+          <div class="ui grid">
+            <div class="four wide column ">
+              <label style="margin-top:10px"> Customer:</label>
+            </div>
+            <div class="twelve wide column ">
           {{ember-selectize
             content=orders
             optionValuePath="content.id"
@@ -14,9 +19,9 @@
             selection=order
             placeholder="Select an Order"
           }}
-        </div>
-
-
+      </div>
+      </div>
+    </div>
 
 
 
@@ -26,6 +31,7 @@
           <div class="field">
             <label>Reason :</label>
             {{input placeholder="Reason"  type="text"  value=reason}}
+
           </div>
 
         </div>
@@ -60,6 +66,7 @@
           {{#each order.orderitems  as |orderitem|}}
           <tr class="center aligned">
             <td>
+
               {{ember-selectize
                 content=products
                 optionValuePath="content.id"
