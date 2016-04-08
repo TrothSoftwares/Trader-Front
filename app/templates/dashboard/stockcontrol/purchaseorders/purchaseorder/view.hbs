@@ -41,7 +41,15 @@
             </div>
           </div>
         </div>
-        <div class="right aligned column">
+        <div class="  column">
+          <div class="ui small form">
+
+
+            <div class="inline field" >
+              <label style="width:75px">Order Status </label>: Received Partially
+
+            </div>
+          </div>
 
         </div>
       </div>
@@ -145,15 +153,15 @@
 
 
 
-<div class="ui small modal">
+<div class="ui small modal" style="bottom:250px">
   <i class="close icon"></i>
   <div class="header">
     Recieve Order
   </div>
   <div class="content">
     <div class="actions">
-   <div class="ui approve button" {{action "recieveOrder" purchaseorder}}>Approve</div>
-   <div class="ui button"  {{action "recievePartial" purchaseorder}}>Neutral</div>
+   <div class="ui green button" {{action "recieveOrder" purchaseorder}}>Receive All</div>
+   <div class="ui primary button"  {{action "recievePartial" purchaseorder}}>Receive Partially</div>
    <div class="ui cancel button">Cancel</div>
  </div>
   </div>
