@@ -9,11 +9,7 @@ export default DS.Model.extend({
   orderstatus : DS.attr('string'),
   customer: DS.belongsTo('customer' ,{async:true}),
   orderitems: DS.hasMany('orderitem' ,{embedded: 'always', async:true}),
-
-
-
-
-
+  stockadjustments: DS.hasMany('stockadjustment' ,{embedded: 'always', async:true}),
 
 
 

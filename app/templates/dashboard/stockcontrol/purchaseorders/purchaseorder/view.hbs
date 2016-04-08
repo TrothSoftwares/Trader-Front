@@ -112,11 +112,17 @@
         <div class="column"  style="padding-top:0;padding-bottom:0" >
           <br>
 
-          {{#if (eq purchaseorder.postatus 'created')}}
-          <button class=" ui small fluid red button" {{action "recieveOrder" purchaseorder}} >Receive Order</button>
-          {{else}}
-          <button class=" ui small fluid green button" >Order Recieved</button>
-          {{/if}}
+          <!-- {{#if (eq purchaseorder.postatus 'created')}} -->
+
+          <!-- {{/if}} -->
+
+
+          <button class=" ui small fluid red button" {{action "recieveOrderPopUp" purchaseorder}} >Receive Order</button>
+          <!-- <button class=" ui small fluid green button" >Order Recieved</button> -->
+
+
+
+
 
 
           <br>
@@ -135,72 +141,24 @@
 
 
 
-<!--
-<div class="ui small newsupplier modal">
+
+
+
+
+<div class="ui small modal">
   <i class="close icon"></i>
-  <div class="header">Add New Supplier</div>
-  <div class="content">
-    <p>
-      <div class="ui small form segment">
-        <div class="two fields">
-          <div class="field">
-            <label>Company Name</label>
-            {{input placeholder="Company Name" type="text" value=companyname}}
-          </div>
-          <div class="field">
-            <label>Email</label>
-            {{input placeholder="Email" type="email" value=email}}
-          </div>
-        </div>
-
-        <div class="two fields">
-          <div class="field">
-            <label>Address 1</label>
-            {{input placeholder="Address 1" type="text" value=address1}}
-          </div>
-          <div class="field">
-            <label>Address 2</label>
-            {{input placeholder="Address 2" type="text" value=address2}}
-          </div>
-        </div>
-
-        <div class="two fields">
-          <div class="field">
-            <label>Suburb</label>
-            {{input placeholder="Suburb" type="text" value=suburb}}
-          </div>
-          <div class="field">
-            <label>City</label>
-            {{input placeholder="City" type="text" value=city}}
-          </div>
-        </div>
-
-        <div class="two fields">
-          <div class="field">
-            <label>State</label>
-            {{input placeholder="State" type="text" value=state}}
-          </div>
-          <div class="field">
-            <label>Country</label>
-            {{input placeholder="Country" type="text" value=country}}
-          </div>
-        </div>
-
-
-
-        <div class="two fields">
-          <div class="field">
-            <label>Zip Code</label>
-            {{input placeholder="Zipcode" type="text" value=zipcode}}
-          </div>
-          <div class="field">
-            <label>Phone</label>
-            {{input placeholder="Phone" type="text" value=phone}}
-          </div>
-        </div>
-        <div class="ui blue small submit button" {{action "createSupplier"}}>Submit</div>
-      </div>
-    </p>
-
+  <div class="header">
+    Recieve Order
   </div>
-</div> -->
+  <div class="content">
+    <div class="actions">
+   <div class="ui approve button" {{action "recieveOrder" purchaseorder}}>Approve</div>
+   <div class="ui button"  {{action "recievePartial" purchaseorder}}>Neutral</div>
+   <div class="ui cancel button">Cancel</div>
+ </div>
+  </div>
+
+
+
+
+</div>

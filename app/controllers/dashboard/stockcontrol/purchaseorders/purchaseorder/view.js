@@ -6,11 +6,13 @@ export default Ember.Controller.extend({
 
   actions:{
 
+
+
     recieveOrder: function(purchaseorder){
       var controller = this;
       purchaseorder.set('postatus','recieved');
       var purchaseorderitems= purchaseorder.get('purchaseorderitems');
-      purchaseorderitems.forEach(function(purchaseorderitem){ 
+      purchaseorderitems.forEach(function(purchaseorderitem){
         var purchaseorderitemquantity = purchaseorderitem.get('quantity');
         var purchaseorderitemproduct = purchaseorderitem.get('product');
          controller.store.findRecord('product',purchaseorderitemproduct.get('id')).then(function(product){
@@ -21,5 +23,21 @@ export default Ember.Controller.extend({
       });
       purchaseorder.save(); //TODO : catch function pending
     },
+
+
+    recievePartial: function(purchaseorder){
+
+      purchaseorder.set('postatus','partial');
+      purchaseorder.save();
+
+    },
+
+
+    recieveOrderPopUp:function(){
+      Ember.$('.small.modal')
+  .modal('show')
+;
+
+    }
   }
 });

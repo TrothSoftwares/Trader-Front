@@ -4,6 +4,7 @@ export default DS.Model.extend({
   reason : DS.attr('string'),
   notes : DS.attr('string'),
   customer: DS.belongsTo('customer' ,{async:true}),
+  order: DS.belongsTo('order' ,{async:true}),
   totalunits :DS.attr('number'),
   sastatus : DS.attr('string'),
   totalcost : DS.attr('number'),

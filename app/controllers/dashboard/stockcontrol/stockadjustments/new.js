@@ -24,9 +24,6 @@ export default Ember.Controller.extend({
 
   actions:{
 
-    selectReason(reason) {
-        this.set('stockadjustment.reason', reason);
-      },
 
 
 
@@ -62,37 +59,79 @@ export default Ember.Controller.extend({
     createStockAdjustment:function(){
       var controller = this;
 
-
-      var stockadjustment = controller.get('stockadjustment');
-
-
-
-      stockadjustment.set('totalunits' , stockadjustment.get('computedtotalunits'));
-      stockadjustment.set('totalcost' , stockadjustment.get('computedtotalcosts'));
-
-
-      stockadjustment.save().then(function(stockadjustment){
-
-var stockadjustmentitems = stockadjustment.get('stockadjustmentitems');
-        stockadjustmentitems.forEach(function(stockadjustmentitem){
-          stockadjustmentitem.save() ;
-        });
-
-        controller.notifications.addNotification({
-          message: 'Saved !' ,
-          type: 'success',
-          autoClear: true
-        });
-
+      var stockadjustment = this.store.createRecord('stockadjustment', {
+        customer :controller.get('order').get('customer'),
+        duedate :new Date(),
+        sastatus :'created',
+        totalunits :'',
+        totalcost :'',
+        reason: this.get('reason'),
+        order: controller.get('order')
       });
 
 
-      controller.set('soNotsaved' , false);
+
+
+              stockadjustment.save().then(function(stockadjustment){
+
+                var orderitems = controller.get('order.orderitems');
+
+                orderitems.forEach(function(orderitem){
+                  var stockadjustmentitem = controller.store.createRecord('stockadjustmentitem', {
+                    quantity :orderitem.get('quantity'),
+                    total :orderitem.get('total'),
+                    product :orderitem.get('product'),
+                    stockadjustment : stockadjustment,
+                  });
+
+                    stockadjustmentitem.save();
+                });
 
 
 
-      controller.transitionToRoute('dashboard.stockcontrol.stockadjustments.index');
 
+
+              }).catch(function(){
+                controller.notifications.addNotification({
+                  message: 'Sorry, cant save at the moment !' ,
+                  type: 'error',
+                  autoClear: true
+                });
+              });
+
+
+//
+//
+//       var stockadjustment = controller.get('stockadjustment');
+//
+//
+//
+//       stockadjustment.set('totalunits' , stockadjustment.get('computedtotalunits'));
+//       stockadjustment.set('totalcost' , stockadjustment.get('computedtotalcosts'));
+//
+//
+//       stockadjustment.save().then(function(stockadjustment){
+//
+// var stockadjustmentitems = stockadjustment.get('stockadjustmentitems');
+//         stockadjustmentitems.forEach(function(stockadjustmentitem){
+//           stockadjustmentitem.save() ;
+//         });
+//
+//         controller.notifications.addNotification({
+//           message: 'Saved !' ,
+//           type: 'success',
+//           autoClear: true
+//         });
+//
+//       });
+//
+//
+//       controller.set('soNotsaved' , false);
+//
+//
+//
+//       controller.transitionToRoute('dashboard.stockcontrol.stockadjustments.index');
+//
 
 
     },
@@ -124,69 +163,12 @@ var stockadjustmentitems = stockadjustment.get('stockadjustmentitems');
       });
     },
 
-    openCustomerModal: function(){
-      Ember.$('.ui.newcustomer.modal')
-      .modal('show')
-      ;
-    },
 
 
 
 
-    createCustomer: function(){
-
-      var controller = this;
-
-      var newCustomer = this.store.createRecord('customer', {
-        companyname :this.get('companyname'),
-        companycode :this.get('companycode'),
-        chargecode :this.get('chargecode'),
-        email :this.get('email'),
-        address1 :this.get('address1'),
-        address2 :this.get('address2'),
-        suburb :this.get('suburb'),
-        city : this.get('city'),
-        state :this.get('state'),
-        country :this.get('country'),
-        zipcode :this.get('zipcode'),
-        phone :this.get('phone'),
-      });
-
-      newCustomer.save().then(function(){
-        controller.set('companyname','');
-        controller.set('companycode','');
-        controller.set('chargecode','');
-        controller.set('email','');
-        controller.set('address1','');
-        controller.set('address2','');
-        controller.set('suburb','');
-        controller.set('city','');
-        controller.set('country','');
-        controller.set('zipcode','');
-        controller.set('phone','');
 
 
-        controller.get('customers').pushObject(newCustomer._internalModel);
-        controller.set('stockadjustment.customer',newCustomer);
-
-        Ember.$('.ui.newcustomer.modal')
-        .modal('hide')
-        ;
-
-
-
-      }).catch(function(){
-        controller.notifications.addNotification({
-          message: 'Sorry, cant save at the moment !' ,
-          type: 'error',
-          autoClear: true
-        });
-      });
-
-
-
-
-    },
 
     deleteStockadjustmentItem:function(stockadjustmentitem){
       var controller = this;

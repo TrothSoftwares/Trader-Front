@@ -13,6 +13,11 @@ buyprice: DS.attr('number'),
 retailprice: DS.attr('number'),
 
 
+
+
+
+
+
 computedtotal_retail_intialstocklevel: Ember.computed('retailprice' , 'initialstocklevel', function() {
     return parseInt(this.get('initialstocklevel')) * parseInt(this.get('retailprice'));
   }),

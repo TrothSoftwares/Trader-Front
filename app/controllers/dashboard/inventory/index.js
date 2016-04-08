@@ -13,6 +13,12 @@ export default Ember.Controller.extend({
         "propertyName": "productname","title": "Product Name"
       },
       {
+        "propertyName": "initialstocklevel","title": "Stock in hand"
+      },
+      {
+        "propertyName": "retailprice","title": "Retail Price"
+      },
+      {
         "propertyName": "producttype.typename","title": "Product Type"
       },
       {
