@@ -3,7 +3,7 @@ import DS from 'ember-data';
 
 
 export default DS.Model.extend({
-  duedate: DS.attr('string'),
+  duedate: DS.attr('date'),
   totalunits :DS.attr('number'),
   totalcost : DS.attr('number'),
   orderstatus : DS.attr('string'),

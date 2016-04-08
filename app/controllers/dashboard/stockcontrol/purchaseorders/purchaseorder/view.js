@@ -17,7 +17,9 @@ export default Ember.Controller.extend({
         var purchaseorderitemproduct = purchaseorderitem.get('product');
          controller.store.findRecord('product',purchaseorderitemproduct.get('id')).then(function(product){
            var initialstocklevel = product.get('initialstocklevel');
+
         product.set('initialstocklevel' , initialstocklevel + purchaseorderitemquantity);
+        // product.set('buyprice','')
         product.save();
       });
       });
