@@ -46,7 +46,7 @@
 
 
             <div class="inline field" >
-              <label style="width:75px">Order Status </label>: Received Partially
+
 
             </div>
           </div>
@@ -116,17 +116,42 @@
       <!-- .  <button class=" ui tiny right floated  green button" {{createPurchaseOrder}}>Create</button> -->
       <div class="ui three column grid">
         <div class="column" ></div>
-        <div class="column" ></div>
+        <div class="column" >
+          {{#if (eq purchaseorder.postatus 'created')}}
+          <div class="ui red button" >Not Received</div>
+          {{/if}}
+
+          {{#if (eq purchaseorder.postatus 'partial')}}
+          <div class="ui yellow button" >Partially Received</div>
+          {{/if}}
+
+          {{#if (eq purchaseorder.postatus 'received')}}
+          <div class="ui green button" >Received</div>
+          {{/if}}
+
+
+
+
+
+
+
+
+        </div>
         <div class="column"  style="padding-top:0;padding-bottom:0" >
           <br>
 
-          <!-- {{#if (eq purchaseorder.postatus 'created')}} -->
-
-          <!-- {{/if}} -->
-
-
+          {{#if (eq purchaseorder.postatus 'created')}}
           <button class=" ui small fluid red button" {{action "recieveOrderPopUp" purchaseorder}} >Receive Order</button>
-          <!-- <button class=" ui small fluid green button" >Order Recieved</button> -->
+          {{/if}}
+          {{#if (eq purchaseorder.postatus 'partial')}}
+          <button class=" ui small fluid red button" {{action "recieveOrderPopUp" purchaseorder}} >Receive Order</button>
+          {{/if}}
+          {{#if (eq purchaseorder.postatus 'received')}}
+          <button class=" ui small fluid blue button"  {{action "revertOrder" purchaseorder}}>Undo Receive</button>
+          {{/if}}
+
+
+
 
 
 
@@ -159,9 +184,19 @@
     Recieve Order
   </div>
   <div class="content">
-    <div class="actions">
-   <div class="ui green button" {{action "recieveOrder" purchaseorder}}>Receive All</div>
-   <div class="ui primary button"  {{action "recievePartial" purchaseorder}}>Receive Partially</div>
+    <div class="actions centered">
+
+      {{#if (eq purchaseorder.postatus 'created')}}
+      <div class="ui green button" {{action "recieveOrder" purchaseorder}}>Receive All</div>
+      <div class="ui primary button"  {{action "recievePartial" purchaseorder}}>Receive Partially</div>
+      {{/if}}
+
+      {{#if (eq purchaseorder.postatus 'partial')}}
+      <div class="ui green button" {{action "recieveOrder" purchaseorder}}>Receive All</div>
+      {{/if}}
+
+
+
    <div class="ui cancel button">Cancel</div>
  </div>
   </div>

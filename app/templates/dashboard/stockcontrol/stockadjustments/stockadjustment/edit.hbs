@@ -9,37 +9,20 @@
         <div class="column" style=" padding-bottom:0px">
           <div class="ui grid">
             <div class="four wide column ">
-              <label style="margin-top:10px"> Customer:</label>
+              <label > Customer:</label>
             </div>
             <div class="twelve wide column ">
-          {{ember-selectize
-            content=customers
-            optionValuePath="content.id"
-            optionLabelPath="content.companyname"
-            selection=stockadjustment.customer
-            placeholder="Select a Customer"
-          }}
+          <label>{{stockadjustment.customer.companyname}}</label>
         </div>
       </div>
     </div>
 
-        <div class="column" >
-          <div class="ui grid">
-            <div class="four wide column ">
-              <label style="margin-top:10px"> Type :</label>
-            </div>
-            <div class="twelve wide column ">
-
-            <select onchange={{action "selectReason" value="target.value"}} class="form-control">
-              {{#each stockadjustmentReason as |reason|}}
-              <option value={{reason}} selected={{eq stockadjustment.reason reason}}>{{reason}}</option>
-              {{/each}}
-            </select>
-
-          </div>
-
-        </div>
+    <div class="column" >
+      <div class="field">
+        <label>Reason :</label>
+        {{input placeholder="Reason"  type="text"  value=stockadjustment.reason}}
       </div>
+    </div>
         <div class=" column"><h3 style="margin-top:10px" class="ui right floated header">#SO{{stockadjustment.id}} </h3></div>
       </div>
       <div class="ui divider" ></div>
@@ -48,7 +31,6 @@
         <div class="column" ></div>
         <div class="right aligned column">
           <div class="ui small form">
-
           </div>
         </div>
         <div class="right aligned column">
@@ -64,6 +46,7 @@
             <th>item Cost</th>
             <th>Total</th>
             <th></th>
+
           </tr>
         </thead>
         <tbody>
@@ -71,13 +54,7 @@
           {{#each stockadjustment.stockadjustmentitems  as |stockadjustmentitem|}}
           <tr class="center aligned">
             <td>
-              {{ember-selectize
-                content=products
-                optionValuePath="content.id"
-                optionLabelPath="content.productname"
-                selection=stockadjustmentitem.product
-                placeholder="Select a Product"
-              }}
+              {{stockadjustmentitem.product.productname}}
             </td>
             <td class="left aligned" >
               <div class="ui tiny transparent input">
@@ -102,9 +79,7 @@
         </tbody>
       </table>
       <br>
-      <div class="ui column grid centered">
-      <button class=" ui tiny right floated inverted button blue"  {{action 'addNewStockadjustmentItem'}}>Add New Item</button>
-    </div>
+      
       <div class="ui three column grid">
         <div class="column" ></div>
         <div class="column" ></div>

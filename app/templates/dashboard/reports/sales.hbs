@@ -5,16 +5,11 @@
 <div class="ui center aligned dividing header only-print">Sales Report</div>
 <button class="ui tiny primary right floated button no-print" {{action "printReport"}}>Print</button>
 <br>
+
 <div class="ui small form">
-
 <div class=" four fields" >
-
-
   <div class=" field" >
     <label >Customer:</label>
-
-
-
     {{ember-selectize
       content=customers
       optionValuePath="content.id"
@@ -32,7 +27,9 @@
     <label>End Date</label>
     {{pikaday-input  placeholder="Select Date" value=enddate}}
   </div>
-
+  <div class=" field" >
+  <button class="ui tiny right  inverted red button " {{action "clearFilters"}}>Clear All Filters</button>
+  </div>
 </div>
 </div>
 
@@ -43,9 +40,8 @@
     <th>Date</th>
     <th>Sales Volume</th>
     <th>Sales Value </th>
-
-
-  </tr></thead>
+  </tr>
+</thead>
   <tbody>
     {{#each filteredProducts  as |order index|}}
     <tr>
@@ -55,7 +51,12 @@
   <td> {{order.totalcost}}</td>
     </tr>
     {{/each}}
-
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>{{computedSalesTotal}}</td>
+    </tr>
 
   </tbody>
 

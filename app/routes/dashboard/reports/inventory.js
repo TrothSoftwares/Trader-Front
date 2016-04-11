@@ -6,12 +6,20 @@ export default Ember.Route.extend({
 
     return Ember.RSVP.hash({
       products: this.store.findAll('product' ,{reload :true}),
+      producttypes: this.store.findAll('producttype' ,{reload :true}),
     });
 
   },
 
+
+
+
+
+
+
   setupController: function(controller,model) {
-    controller.set('products',model.products);
+  controller.set('products',model.products);
+    controller.set('producttypes',model.producttypes);
   },
 
 });

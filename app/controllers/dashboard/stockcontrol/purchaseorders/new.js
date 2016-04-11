@@ -18,9 +18,6 @@ export default Ember.Controller.extend({
   actions:{
 
 
-
-
-
     initPurchaseOrder:function(){
 
       var controller = this;
@@ -32,12 +29,8 @@ export default Ember.Controller.extend({
         totalcost :'',
       });
 
-
-
       purchaseorder.save().then(function(purchaseorder){
-
         controller.set('purchaseorder',purchaseorder);
-
 
       }).catch(function(){
         controller.notifications.addNotification({
@@ -47,8 +40,6 @@ export default Ember.Controller.extend({
         });
       });
     },
-
-
 
     createPurchaseOrder:function(){
 
@@ -83,7 +74,6 @@ export default Ember.Controller.extend({
 
     addNewPurchaseOrderItem:function(){
       var controller = this;
-
 
       var purchaseorderitem = controller.store.createRecord('purchaseorderitem', {
         quantity :1,

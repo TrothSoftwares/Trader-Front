@@ -23,6 +23,8 @@ computedtotalcosts: function() {
     return this.get('orderitems').reduce(function(sum, split) {
         return sum + parseInt(split.get('computedtotal'));
     }, 0);
-}.property('orderitems.@each.computedtotal')
+}.property('orderitems.@each.computedtotal'),
+
+
 
 });

@@ -3,7 +3,6 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
 
-  stockadjustmentReason :['Retured From Customer','Damaged','Production'],
 
 actions:{
 
@@ -30,9 +29,6 @@ actions:{
 
       },
 
-  selectReason(reason) {
-      this.get('stockadjustment').set('reason', reason);
-    },
 
   draftStockAdjustment: function(){
     var controller = this;

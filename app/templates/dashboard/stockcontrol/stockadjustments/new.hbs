@@ -12,30 +12,22 @@
               <label style="margin-top:10px"> Customer:</label>
             </div>
             <div class="twelve wide column ">
-          {{ember-selectize
-            content=orders
-            optionValuePath="content.id"
-            optionLabelPath="content.id"
-            selection=order
-            placeholder="Select an Order"
-          }}
-      </div>
-      </div>
-    </div>
-
-
-
+              {{ember-selectize
+                content=orders
+                optionValuePath="content.id"
+                optionLabelPath="content.id"
+                selection=order
+                placeholder="Select an Order"
+              }}
+            </div>
+          </div>
+        </div>
         <div class="column" >
-
-
           <div class="field">
             <label>Reason :</label>
             {{input placeholder="Reason"  type="text"  value=reason}}
-
           </div>
-
         </div>
-
       </div>
       <div class="ui divider" ></div>
       <div class="ui three column grid">
@@ -43,11 +35,9 @@
         <div class="column" ></div>
         <div class="right aligned column">
           <div class="ui small form">
-
           </div>
         </div>
         <div class="right aligned column">
-
         </div>
       </div>
       <table class="ui celled table">
@@ -55,33 +45,21 @@
           <tr>
             <th>Item Name</th>
             <th style="width:100px">Quantiy</th>
-            <th>After</th>
             <th>item Cost</th>
             <th>Total</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-
           {{#each order.orderitems  as |orderitem|}}
           <tr class="center aligned">
             <td>
-
-              {{ember-selectize
-                content=products
-                optionValuePath="content.id"
-                optionLabelPath="content.productname"
-                selection=orderitem.product
-                placeholder="Select a Product"
-              }}
+              <label>{{orderitem.product.productname}}</label>
             </td>
             <td class="left aligned" >
               <div class="ui tiny transparent input">
                 {{input type="number" style="width:100px" placeholder="Qty" max=orderitem.quantity value=orderitem.quantity}}
               </div>
-            </td>
-            <td>
-              <label>{{stockadjustmentitem.aftervalue}}</label>
             </td>
             <td >
               <div class="ui tiny transparent input">
@@ -90,17 +68,13 @@
             </td>
             <td>{{orderitem.computedtotal}}</td>
             <td>
-              <button class=" ui tiny right floated inverted button red"  {{action 'deleteStockadjustmentItem' stockadjustmentitem}}><i class="trash icon"></i></button>
+                  <button class=" ui tiny right floated inverted button red"  {{action 'deleteStockadjustmentItem' orderitem}}><i class="trash icon"></i></button>
             </td>
-
           </tr>
           {{/each}}
         </tbody>
       </table>
       <br>
-      <div class="ui column grid centered">
-        <button class=" ui tiny right floated inverted button blue"  {{action 'addNewStockadjustmentItem'}}>Add New Item</button>
-      </div>
       <div class="ui three column grid">
         <div class="column" ></div>
         <div class="column" ></div>
@@ -109,11 +83,11 @@
             <tbody>
               <tr>
                 <td>Total Units</td>
-                <td class="right aligned">{{stockadjustment.computedtotalunits}}</td>
+                <td class="right aligned">{{computedStockAdjustmentTotalUnits}}</td>
               </tr>
               <tr>
                 <td>Total Cost</td>
-                <td class="right aligned">{{stockadjustment.computedtotalcosts}}</td>
+                <td class="right aligned">{{computedStockAdjustmentTotalCost}}</td>
               </tr>
             </tbody>
           </table>
@@ -121,8 +95,7 @@
       </div>
     </div>
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.5)">
-
-      .  <button class=" ui tiny right floated inverted blue button"  {{action 'createStockAdjustment'}}>Create</button>
+      .<button class=" ui tiny right floated inverted blue button {{isCreateStockadjustmentButtonDisabled}}"  {{action 'createStockAdjustment'}}>Create</button>
       <button class=" ui tiny right floated inverted black button"  {{action 'cancelStockAdjustment'}}>Cancel</button>
     </div>
   </div>

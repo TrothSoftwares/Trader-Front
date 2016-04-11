@@ -1,7 +1,4 @@
-
 <h2 class="ui  header">New Purchase Order</h2>
-
-
 <div class="ui two column grid">
   <div class="twelve wide column" style="padding:0">
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:550px;overflow:auto ">
@@ -22,7 +19,6 @@
             </div>
               </div>
         </div>
-
         <div class="column" >
           <div  style="margin-top:10px" >
             Or <a style="cursor:pointer " {{action "openSupplierModal"}}>New Supplier</a>
@@ -32,18 +28,13 @@
       </div>
       <div class="ui divider" ></div>
       <div class="ui three column grid">
-
         <div class="column" ></div>
         <div class="right aligned column">
           <div class="ui small form">
-
-
             <div class="inline field" style="float:right">
               <label >Stock Due :</label>
-
               {{pikaday-input  placeholder="Select Date" value=purchaseorder.duedate}}
             </div>
-
             <div class="inline field" style="float:right">
               <label>Email : </label>
               {{input placeholder="Email" readonly="true" type="text"  value=purchaseorder.supplier.email}}
@@ -51,7 +42,6 @@
           </div>
         </div>
         <div class="right aligned column">
-
         </div>
       </div>
       <table class="ui celled table">
@@ -66,7 +56,6 @@
           </tr>
         </thead>
         <tbody>
-
           {{#each purchaseorder.purchaseorderitems  as |purchaseorderitem|}}
           <tr class="center aligned">
             <td>
@@ -88,16 +77,13 @@
             </td>
             <td class="" >
               <div class="ui tiny transparent input">
-                {{input type="number" readonly="true" style="width:100px" placeholder="Qty" value=purchaseorderitem.product.retailprice}}
+                {{input type="number"  style="width:100px" placeholder="Qty" value=purchaseorderitem.product.retailprice}}
               </div>
             </td>
             <td>{{purchaseorderitem.computedtotal}}</td>
             <td>
                   <button class=" ui tiny right floated inverted button red"  {{action 'deletePurchaseorderitem' purchaseorderitem}}><i class="trash icon"></i></button>
-
-
             </td>
-
           </tr>
           {{/each}}
 
