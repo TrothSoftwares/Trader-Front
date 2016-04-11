@@ -48,7 +48,12 @@
     {{#each filteredProducts  as |order index|}}
     <tr>
   <td> {{ incrementone index}}</td>
-  <td> {{order.duedate}}</td>
+
+
+
+
+  <td>  {{moment-format order.duedate inputFormat }} </td>
+
   <td> {{order.totalunits}}</td>
   <td> {{order.totalcost}}</td>
     </tr>

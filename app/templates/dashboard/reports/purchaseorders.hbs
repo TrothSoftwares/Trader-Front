@@ -44,7 +44,7 @@
     <tr>
   <td> {{ incrementone index}}</td>
   <td> {{purchaseorder.supplier.companyname}}</td>
-  <td> {{purchaseorder.duedate}}</td>
+  <td>{{ moment-format purchaseorder.duedate inputFormat}}</td>
   <td> {{purchaseorder.totalunits}}</td>
   <td> {{purchaseorder.totalcost}}</td>
     </tr>

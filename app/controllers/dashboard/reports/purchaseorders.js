@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   startdate: '',
   enddate: '',
   supplier:'',
+  inputFormat:'MM/DD/YYYY',
 
 
   computedIncomingTotal:Ember.computed(  'filteredProducts.@each.totalcost', function() {

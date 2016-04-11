@@ -30,6 +30,15 @@ retailprice: Ember.computed('initialcostprice', 'buyprice', function() {
 }),
 
 
+  isCreateSupplierButtonDisabled: Ember.computed('companyname' , 'companycode' , 'chargecode' , 'email' , 'phone'  ,  function() {
+    if( Ember.isEmpty(this.get('companyname')) ||
+    Ember.isEmpty(this.get('companycode')) ||
+    Ember.isEmpty(this.get('chargecode')) ||
+    Ember.isEmpty(this.get('email')) ||
+    Ember.isEmpty(this.get('phone'))
+  ){return 'disabled';}
+  else{return '';}
+  }),
 
 actions:{
 
@@ -88,6 +97,8 @@ actions:{
     var controller = this;
     var newsupplier = this.store.createRecord('supplier', {
       companyname :this.get('companyname'),
+      companycode :this.get('companycode'),
+      chargecode :this.get('chargecode'),
       email :this.get('email'),
       address1 :this.get('address1'),
       address2 :this.get('address2'),
@@ -175,14 +186,12 @@ actions:{
     var controller = this;
     var newproducttypesaved = this.store.createRecord('producttype', {
       typename :this.get('newproducttype')
-
     });
 
     newproducttypesaved.save().then(function(){
       controller.set('newproducttype','');
       controller.get('producttypes').pushObject(newproducttypesaved._internalModel);
       controller.set('typename',newproducttypesaved);
-
       Ember.$('.ui.newproducttype.modal')
       .modal('hide')
       ;
@@ -194,10 +203,6 @@ actions:{
       });
     });
   },
-
-
-
-
 
 }
 });

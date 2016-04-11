@@ -114,6 +114,17 @@
 
               <div class="two fields">
                 <div class="field">
+                  <label>Charge Code</label>
+                  {{input placeholder="Charge Code" type="text" value=chargecode}}
+                </div>
+                <div class="field">
+                  <label>Company Code</label>
+                  {{input placeholder="Company Code" type="email" value=companycode}}
+                </div>
+              </div>
+
+              <div class="two fields">
+                <div class="field">
                   <label>Address 1</label>
                   {{input placeholder="Address 1" type="text" value=address1}}
                 </div>
@@ -157,7 +168,7 @@
                   {{input placeholder="Phone" type="text" value=phone}}
                 </div>
               </div>
-              <div class="ui blue small submit button" {{action "createSupplier"}}>Submit</div>
+              <div class="ui blue small submit button {{isCreateSupplierButtonDisabled}}" {{action "createSupplier"}}>Submit</div>
             </div>
           </p>
 
