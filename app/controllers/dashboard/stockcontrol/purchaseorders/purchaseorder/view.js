@@ -2,12 +2,20 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-
+ajax: Ember.inject.service(),
 inputFormat:'MM/DD/YYYY',
   actions:{
 
 
+sendMail:function(purchaseorder){
 
+       return this.get('ajax').request('/mailorder', {
+         method: 'GET',
+          data: {
+            id: purchaseorder.id
+          }
+       });
+},
     revertOrder: function(purchaseorder){
 
 

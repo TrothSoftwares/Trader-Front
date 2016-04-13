@@ -13,7 +13,48 @@ export default Ember.Controller.extend({
   else{return '';}
 }),
 
+
+
+
+
+
+chargecodes :  Ember.computed.mapBy('customers', 'chargecode'),
+validChargecodeMessage: '',
+validChargecodeError:'',
+
+companycodes :  Ember.computed.mapBy('customers', 'companycode'),
+validCompanycodeMessage: '',
+validCompanycodeError:'',
+
+
   actions:{
+
+
+
+        validChargecode: function(chargecode){
+          var chargecodes = this.get('chargecodes');
+          if(chargecodes.indexOf(chargecode)!== -1)
+          {
+            this.set('validChargecodeMessage' , 'Charge Code Already Exists');
+            this.set('validChargecodeError' , 'error');
+          }
+          else{
+            this.set('validChargecodeMessage' , '');
+            this.set('validChargecodeError' , '');
+          }
+        },
+        validCompanycode: function(companycode){
+          var companycodes = this.get('companycodes');
+          if(companycodes.indexOf(companycode)!== -1)
+          {
+            this.set('validCompanycodeMessage' , 'Company Code Already Exists');
+            this.set('validCompanycodeError' , 'error');
+          }
+          else{
+            this.set('validCompanycodeMessage' , '');
+            this.set('validCompanycodeError' , '');
+          }
+        },
 
     createCustomer: function(){
 

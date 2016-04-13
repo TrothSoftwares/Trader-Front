@@ -2,6 +2,22 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+  itemcodes :  Ember.computed.mapBy('products', 'itemcode'),
+  validItemcodeMessage: '',
+  validItemcodeError:'',
+
+  chargecodes :  Ember.computed.mapBy('suppliers', 'chargecode'),
+  validChargecodeMessage: '',
+  validChargecodeError:'',
+
+  companycodes :  Ember.computed.mapBy('suppliers', 'companycode'),
+  validCompanycodeMessage: '',
+  validCompanycodeError:'',
+
+
+  producttypescomputed :  Ember.computed.mapBy('producttypes', 'typename'),
+  validProductTypeMessage: '',
+  validProductTypeError:'',
 
   isCreateProductButtonDisabled: Ember.computed('itemcode' , 'productname' , 'supplier' ,'typename', 'brandname' , 'initialstocklevel' ,'initialcostprice', 'buyprice'  ,  function() {
     if( Ember.isEmpty(this.get('itemcode')) ||
@@ -30,17 +46,80 @@ retailprice: Ember.computed('initialcostprice', 'buyprice', function() {
 }),
 
 
-  isCreateSupplierButtonDisabled: Ember.computed('companyname' , 'companycode' , 'chargecode' , 'email' , 'phone'  ,  function() {
-    if( Ember.isEmpty(this.get('companyname')) ||
-    Ember.isEmpty(this.get('companycode')) ||
-    Ember.isEmpty(this.get('chargecode')) ||
-    Ember.isEmpty(this.get('email')) ||
-    Ember.isEmpty(this.get('phone'))
-  ){return 'disabled';}
-  else{return '';}
-  }),
+isCreateSupplierButtonDisabled: Ember.computed('companyname' , 'companycode' , 'chargecode' , 'email' , 'phone'  ,  function() {
+  if( Ember.isEmpty(this.get('companyname')) ||
+  Ember.isEmpty(this.get('companycode')) ||
+  Ember.isEmpty(this.get('chargecode')) ||
+  Ember.isEmpty(this.get('email')) ||
+  Ember.isEmpty(this.get('phone'))
+){return 'disabled';}
+else{return '';}
+}),
+
+
+
 
 actions:{
+
+
+
+  validItemcode: function(itemcode){
+    var itemcodes = this.get('itemcodes');
+    if(itemcodes.indexOf(itemcode)!== -1)
+    {
+      this.set('validItemcodeMessage' , 'Item Code Already Exists');
+      this.set('validItemcodeError' , 'error');
+    }
+    else{
+      this.set('validItemcodeMessage' , '');
+      this.set('validItemcodeError' , '');
+    }
+  },
+
+  validChargecode: function(chargecode){
+    var chargecodes = this.get('chargecodes');
+    if(chargecodes.indexOf(chargecode)!== -1)
+    {
+      this.set('validChargecodeMessage' , 'Charge Code Already Exists');
+      this.set('validChargecodeError' , 'error');
+    }
+    else{
+      this.set('validChargecodeMessage' , '');
+      this.set('validChargecodeError' , '');
+    }
+  },
+  validCompanycode: function(companycode){
+    var companycodes = this.get('companycodes');
+    if(companycodes.indexOf(companycode)!== -1)
+    {
+      this.set('validCompanycodeMessage' , 'Company Code Already Exists');
+      this.set('validCompanycodeError' , 'error');
+    }
+    else{
+      this.set('validCompanycodeMessage' , '');
+      this.set('validCompanycodeError' , '');
+    }
+  },
+
+  validProductType: function(typename){
+    var producttypescomputed = this.get('producttypescomputed');
+    if(producttypescomputed.indexOf(typename)!== -1)
+    {
+      this.set('validProductTypeMessage' , 'Product Type Already Exists');
+      this.set('validProductTypeError' , 'error');
+    }
+    else{
+      this.set('validProductTypeMessage' , '');
+      this.set('validProductTypeError' , '');
+    }
+  },
+
+
+
+
+
+
+
 
 
   createProduct: function(){
@@ -165,8 +244,6 @@ actions:{
         autoClear: true
       });
     });
-
-
 
 
 
