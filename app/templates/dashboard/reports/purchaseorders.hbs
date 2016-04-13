@@ -25,12 +25,13 @@
   <div class=" field" >
     <label >Start Date:</label>
     {{pikaday-input  placeholder="Select Date" value=startdate class="no-print"}}
-    <p class="only-print">{{startdate}}</p>
+    <p class="only-print">{{ moment-format startdate inputFormat}}</p>
+
   </div>
   <div class=" field" >
     <label>End Date</label>
     {{pikaday-input  placeholder="Select Date" value=enddate class="no-print"}}
-    <p class="only-print">{{enddate}}</p>
+    <p class="only-print">{{ moment-format enddate inputFormat}}</p>
   </div>
   <div class=" field" >
   <button class="ui tiny right floated inverted red button no-print" style="margin-top:25px" {{action "clearFilters"}}>Clear All Filters</button>
