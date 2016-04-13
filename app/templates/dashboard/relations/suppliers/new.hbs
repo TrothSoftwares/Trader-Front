@@ -3,19 +3,21 @@
   <div class="ui dividing header">Add New Supplier  </div>
   <div class="ui small form">
     <div class="ui stackable grid">
-      <div class="five wide dividing column">
+      <div class="five wide right aligned dividing column">
 
         <div class="inline field" style="float:right">
           <label >Comapany Name :</label>
           {{input placeholder="Comapany Name"  type="text" value=companyname }}
         </div>
-        <div class="inline field" style="float:right">
+        <div class="inline field  {{validCompanycodeError}}" >
           <label>Company Code : </label>
-          {{input placeholder="Comapany Code"  type="text"  value=companycode}}
+          {{input placeholder="Comapany Code"  type="text"  value=companycode key-up="validCompanycode"}}
+          <label>{{validCompanycodeMessage}}</label>
         </div>
-        <div class="inline field" style="float:right">
+        <div class="inline field {{validChargecodeError}}" style="float:right">
           <label>Charge Code :</label>
-          {{input placeholder="Charge Code"   type="text"  value=chargecode}}
+          {{input placeholder="Charge Code"   type="text"  value=chargecode key-up="validChargecode"}}
+          <label>{{validChargecodeMessage}}</label>
         </div>
         <div class="inline field" style="float:right">
           <label>Address 1 : </label>
@@ -38,7 +40,7 @@
           {{input placeholder="Country"  type="text" value=country }}
         </div>
       </div>
-      <div class="five wide column">
+      <div class="five wide  right aligned  column">
 
         <div class="inline field" style="float:right">
           <label> Email :</label>

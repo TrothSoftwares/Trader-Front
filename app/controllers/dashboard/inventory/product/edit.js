@@ -18,6 +18,9 @@ export default Ember.Controller.extend({
 
     actions:{
 
+  
+
+
       deleteProduct:function(product){
         var controller= this;
         product.destroyRecord().then(function () {

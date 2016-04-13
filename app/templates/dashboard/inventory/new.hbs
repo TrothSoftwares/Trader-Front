@@ -1,10 +1,15 @@
 
 
 <div class="ui small form segment">
+
+
+
+
   <div class=" two fields">
-    <div class="field">
+    <div class="field {{validItemcodeError}}">
       <label>Item Code</label>
-      {{input placeholder="Item Code"  type="text" value=itemcode}}
+      {{input placeholder="Item Code"  type="text"   value=itemcode  key-up="validItemcode"}}
+      <label>{{validItemcodeMessage}}</label>
     </div>
 
     <div class="field">
@@ -104,11 +109,24 @@
               <div class="two fields">
                 <div class="field">
                   <label>Company Name</label>
-                  {{input placeholder="Company Name" type="text" value=companyname}}
+                  {{input placeholder="Company Name" type="text" value=companyname }}
                 </div>
                 <div class="field">
                   <label>Email</label>
                   {{input placeholder="Email" type="email" value=email}}
+                </div>
+              </div>
+
+              <div class="two fields">
+                <div class="field {{validChargecodeError}}">
+                  <label>Charge Code</label>
+                  {{input placeholder="Charge Code" type="text" value=chargecode key-up="validChargecode"}}
+                  <label>{{validChargecodeMessage}}</label>
+                </div>
+                <div class="field {{validCompanycodeError}}">
+                  <label>Company Code</label>
+                  {{input placeholder="Company Code" type="email" value=companycode key-up="validCompanycode"}}
+                  <label>{{validCompanycodeMessage}}</label>
                 </div>
               </div>
 
@@ -157,7 +175,7 @@
                   {{input placeholder="Phone" type="text" value=phone}}
                 </div>
               </div>
-              <div class="ui blue small submit button" {{action "createSupplier"}}>Submit</div>
+              <div class="ui blue small submit button {{isCreateSupplierButtonDisabled}}" {{action "createSupplier"}}>Submit</div>
             </div>
           </p>
 
@@ -188,9 +206,10 @@
           <div class="ui small form segment">
 
             <div class=" fields">
-              <div class="field">
+              <div class="field {{validProductTypeError}}">
                 <label>New Product Type</label>
-                {{input placeholder="Product Type" type="text" value=newproducttype}}
+                {{input placeholder="Product Type" type="text" value=newproducttype key-up="validProductType"}}
+                <label>{{validProductTypeMessage}}</label>
               </div>
             </div>
           </div>
