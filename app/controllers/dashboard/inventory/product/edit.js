@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
 
     actions:{
 
-  
+
 
 
       deleteProduct:function(product){

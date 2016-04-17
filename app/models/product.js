@@ -11,6 +11,7 @@ initialstocklevel: DS.attr('number'),
 initialcostprice: DS.attr('number'),
 buyprice: DS.attr('number'),
 retailprice: DS.attr('number'),
+newitemcost : DS.attr('number'),
 
 
 

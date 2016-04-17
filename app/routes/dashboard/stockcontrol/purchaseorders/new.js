@@ -20,34 +20,34 @@ export default Ember.Route.extend({
   },
 
   actions:{
-    didTransition: function() {
-      var controller = this.get('controller');
-      controller.send('initPurchaseOrder');
-    },
+    // didTransition: function() {
+    //   var controller = this.get('controller');
+    //   controller.send('initPurchaseOrder');
+    // },
 
-
-    willTransition: function(transition) {
-      var route= this;
-      var controller = this.get('controller');
-      var posaved = this.controller.get('poNotsaved');
-      if(this.controller.get('poNotsaved') ===true){
-        var confirm = window.confirm("Leave without Saving ?" + posaved);
-        if (confirm) {
-          var purchaseorder = controller.get('purchaseorder');
-
-           purchaseorder.destroyRecord().then(function(){
-            route.transitionTo('dashboard.stockcontrol.purchaseorders.index');
-          });
-
-        }
-        else{
-          transition.abort();
-        }
-      }
-      else{
-        this.transitionTo('dashboard.stockcontrol.purchaseorders.index');
-      }
-    },
+    // 
+    // willTransition: function(transition) {
+    //   var route= this;
+    //   var controller = this.get('controller');
+    //   var posaved = this.controller.get('poNotsaved');
+    //   if(this.controller.get('poNotsaved') ===true){
+    //     var confirm = window.confirm("Leave without Saving ?" + posaved);
+    //     if (confirm) {
+    //       var purchaseorder = controller.get('purchaseorder');
+    //
+    //        purchaseorder.destroyRecord().then(function(){
+    //         route.transitionTo('dashboard.stockcontrol.purchaseorders.index');
+    //       });
+    //
+    //     }
+    //     else{
+    //       transition.abort();
+    //     }
+    //   }
+    //   else{
+    //     this.transitionTo('dashboard.stockcontrol.purchaseorders.index');
+    //   }
+    // },
 
 
   }

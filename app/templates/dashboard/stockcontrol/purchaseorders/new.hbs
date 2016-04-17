@@ -1,47 +1,50 @@
+
 <h2 class="ui  header">New Purchase Order</h2>
+
+
 <div class="ui two column grid">
   <div class="twelve wide column" style="padding:0">
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:550px;overflow:auto ">
       <div class="ui three column grid">
         <div class="column" style=" padding-bottom:0px">
-          <div class="ui grid">
-            <div class="four wide column ">
-              <label style="margin-top:10px"> Supplier:</label>
-            </div>
-            <div class="twelve wide column ">
           {{ember-selectize
             content=suppliers
             optionValuePath="content.id"
             optionLabelPath="content.companyname"
-            selection=purchaseorder.supplier
+            selection=supplier
             placeholder="Select a Supplier"
           }}
-            </div>
-              </div>
         </div>
+
         <div class="column" >
           <div  style="margin-top:10px" >
-            Or <a style="cursor:pointer " {{action "openSupplierModal"}}>New Supplier</a>
+            Or <div class="ui blue small submit button"  {{action "openSupplierModal"}}>New Supplier</div>
           </div>
         </div>
         <div class=" column"><h3 style="margin-top:10px" class="ui right floated header">#P0001 </h3></div>
       </div>
       <div class="ui divider" ></div>
       <div class="ui three column grid">
+
         <div class="column" ></div>
         <div class="right aligned column">
           <div class="ui small form">
+
+
             <div class="inline field" style="float:right">
               <label >Stock Due :</label>
-              {{pikaday-input  placeholder="Select Date" value=purchaseorder.duedate}}
+
+              {{pikaday-input  placeholder="Select Date" value=duedate}}
             </div>
+
             <div class="inline field" style="float:right">
               <label>Email : </label>
-              {{input placeholder="Email" readonly="true" type="text"  value=purchaseorder.supplier.email}}
+              {{input placeholder="Email" readonly="true" type="text"  value=supplier.email}}
             </div>
           </div>
         </div>
         <div class="right aligned column">
+
         </div>
       </div>
       <table class="ui celled table">
@@ -49,14 +52,13 @@
           <tr>
             <th>Item Name</th>
             <th style="width:100px">Quantiy</th>
-            <th>After</th>
-            <th>item Cost</th>
-            <th>Total</th>
+
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {{#each purchaseorder.purchaseorderitems  as |purchaseorderitem|}}
+
+          {{#each purchaseorderitems  as |purchaseorderitem|}}
           <tr class="center aligned">
             <td>
               {{ember-selectize
@@ -73,17 +75,11 @@
               </div>
             </td>
             <td>
-              <label>{{purchaseorderitem.aftervalue}}</label>
-            </td>
-            <td class="" >
-              <div class="ui tiny transparent input">
-                {{input type="number"  style="width:100px" placeholder="Qty" value=purchaseorderitem.product.retailprice}}
-              </div>
-            </td>
-            <td>{{purchaseorderitem.computedtotal}}</td>
-            <td>
                   <button class=" ui tiny right floated inverted button red"  {{action 'deletePurchaseorderitem' purchaseorderitem}}><i class="trash icon"></i></button>
+
+
             </td>
+
           </tr>
           {{/each}}
 
@@ -100,21 +96,7 @@
 
         <div class="column" ></div>
         <div class="column" ></div>
-        <div class="column" >
-          <table class="ui very basic table">
-            <tbody>
-              <tr>
-                <td>Total Units</td>
-                <td class="right aligned">{{purchaseorder.computedtotalunits}}</td>
-              </tr>
 
-              <tr>
-                <td>Total Cost</td>
-                <td class="right aligned">{{purchaseorder.computedtotalcosts}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.5)">
@@ -134,7 +116,7 @@
 
 
 
-<div class="ui small newsupplier modal" style="bottom:50px;top:100px">
+<div class="ui small newsupplier modal">
   <i class="close icon"></i>
   <div class="header">Add New Supplier</div>
   <div class="content">
@@ -145,27 +127,13 @@
             <label>Company Name</label>
             {{input placeholder="Company Name" type="text" value=companyname}}
           </div>
-
-          <div class="field">
-            <label>Company Code</label>
-            {{input placeholder="Company Code" type="text" value=companycode}}
-          </div>
           <div class="field">
             <label>Email</label>
             {{input placeholder="Email" type="email" value=email}}
           </div>
         </div>
 
-
-
-
-
-
         <div class="two fields">
-          <div class="field">
-            <label>Address 2</label>
-            {{input placeholder="Charge Code" type="text" value=chargecode}}
-          </div>
           <div class="field">
             <label>Address 1</label>
             {{input placeholder="Address 1" type="text" value=address1}}
@@ -210,7 +178,7 @@
             {{input placeholder="Phone" type="text" value=phone}}
           </div>
         </div>
-        <div class="ui blue small submit button {{isSupplierButtonDisabled}}" {{action "createSupplier"}}>Submit</div>
+        <div class="ui blue small submit button" {{action "createSupplier"}}>Submit</div>
       </div>
     </p>
 

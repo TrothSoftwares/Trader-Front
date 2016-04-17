@@ -9,12 +9,16 @@
           <h2 class="ui  header">Purchase Order: #PO{{purchaseorder.id}}</h2>
         </div>
 
+
+
         <div class="column right aligned"  >
+          {{#if (not-eq purchaseorderStatusBoolean booleanTrue)}}
           {{link-to 'Edit''dashboard.stockcontrol.purchaseorders.purchaseorder.edit'   style="margin-top:20px"  }}
-
+          {{/if}}
           <button {{action "sendMail" purchaseorder}}>Send Mail </button>
-
         </div>
+
+
 
 
 
@@ -62,125 +66,94 @@
         <thead  class="center aligned">
           <tr>
             <th>Item Name</th>
-            <th style="width:100px">Quantiy</th>
-            <th>After</th>
+            <th style="width:100px">Quantity</th>
+            {{#if (eq purchaseorderStatusBoolean booleanTrue)}}
             <th>item Cost</th>
             <th>Total</th>
+            {{/if}}
+
           </tr>
         </thead>
         <tbody>
-
           {{#each purchaseorder.purchaseorderitems  as |purchaseorderitem|}}
           <tr class="center aligned">
             <td>
               {{
-              purchaseorderitem.product.productname
-
+                purchaseorderitem.product.productname
               }}
             </td>
             <td class=" aligned" >
-
-                {{purchaseorderitem.quantity}}
+              {{purchaseorderitem.quantity}}
             </td>
-            <td>
-              <label>{{purchaseorderitem.aftervalue}}</label>
-            </td>
+            {{#if (eq purchaseorderStatusBoolean booleanTrue)}}
             <td class="" >
-                {{purchaseorderitem.product.retailprice}}
-            </td>
-            <td>{{purchaseorderitem.computedtotal}}</td>
-
-          </tr>
-          {{/each}}
-
-
-        </tbody>
-      </table>
-
-      <div class="ui three column grid">
-        <div class="column" ></div>
-        <div class="column" ></div>
-        <div class="column" >
-        <table class="ui very basic table">
-            <tbody>
-              <tr>
-                <td>Total Units</td>
-                <td class="right aligned">{{purchaseorder.computedtotalunits}}</td>
-              </tr>
-
-              <tr>
-                <td>Total Cost</td>
-                <td class="right aligned">{{purchaseorder.computedtotalcosts}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.4)">
-      <!-- .  <button class=" ui tiny right floated  green button" {{createPurchaseOrder}}>Create</button> -->
-      <div class="ui three column grid">
-        <div class="column" ></div>
-        <div class="column" >
-          {{#if (eq purchaseorder.postatus 'created')}}
-          <div class="ui red button" >Not Received</div>
+            {{purchaseorderitem.product.buyprice}}
+          </td>
+          <td>{{purchaseorderitem.computedtotal}}</td>
           {{/if}}
-
-          {{#if (eq purchaseorder.postatus 'partial')}}
-          <div class="ui yellow button" >Partially Received</div>
-          {{/if}}
-
-          {{#if (eq purchaseorder.postatus 'received')}}
-          <div class="ui green button" >Received</div>
-          {{/if}}
-
-
-
-
-
-
-
-
-        </div>
-        <div class="column"  style="padding-top:0;padding-bottom:0" >
-          <br>
-
-          {{#if (eq purchaseorder.postatus 'created')}}
-          <button class=" ui small fluid red button" {{action "recieveOrderPopUp" purchaseorder}} >Receive Order</button>
-          {{/if}}
-          {{#if (eq purchaseorder.postatus 'partial')}}
-          <button class=" ui small fluid red button" {{action "recieveOrderPopUp" purchaseorder}} >Receive Order</button>
-          {{/if}}
-          {{#if (eq purchaseorder.postatus 'received')}}
-          <button class=" ui small fluid blue button"  {{action "revertOrder" purchaseorder}}>Undo Receive</button>
-          {{/if}}
-
-
-
-
-
-
-
-
-
-          <br>
-        </div>
-      </div>
-
-
-    </div>
-  </div>
-
-  <div class="four wide column">
-
-  </div>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{#if (eq purchaseorderStatusBoolean booleanTrue)}}
+    <div class="ui three column grid">
+      <div class="column" ></div>
+      <div class="column" ></div>
+      <div class="column" >
+      <table class="ui very basic table">
+      <tbody>
+      <tr>
+      <td>Total Units</td>
+      <td class="right aligned">{{purchaseorder.computedtotalunits}}</td>
+    </tr>
+    <tr>
+    <td>Total Cost</td>
+    <td class="right aligned">{{purchaseorder.computedtotalcosts}}</td>
+  </tr>
+</tbody>
+</table>
+</div>
 </div>
 
+{{/if}}
+</div>
+<div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.4)">
+  <!-- .  <button class=" ui tiny right floated  green button" {{createPurchaseOrder}}>Create</button> -->
+  <div class="ui three column grid">
+    <div class="column" ></div>
+    <div class="column" >
+      {{#if (eq purchaseorder.postatus 'created')}}
+      <div class="ui red button" >Not Received</div>
+      {{/if}}
 
+      {{#if (eq purchaseorder.postatus 'partial')}}
+      <div class="ui yellow button" >Partially Received</div>
+      {{/if}}
 
+      {{#if (eq purchaseorder.postatus 'received')}}
+      <div class="ui green button" >Received</div>
+      {{/if}}
 
-
-
+    </div>
+    <div class="column"  style="padding-top:0;padding-bottom:0" >
+      <br>
+      {{#if (eq purchaseorder.postatus 'created')}}
+      <button class=" ui small fluid red button" {{action "recieveOrderPopUp" purchaseorder}} >Receive Order</button>
+      {{/if}}
+      {{#if (eq purchaseorder.postatus 'partial')}}
+      <button class=" ui small fluid red button" {{action "recieveOrderPopUp" purchaseorder}} >Receive Order</button>
+      {{/if}}
+      {{#if (eq purchaseorder.postatus 'received')}}
+      <button class=" ui small fluid blue button"  {{action "revertOrder" purchaseorder}}>Undo Receive</button>
+      {{/if}}
+      <br>
+    </div>
+  </div>
+</div>
+</div>
+<div class="four wide column">
+</div>
+</div>
 
 
 <div class="ui small modal" style="bottom:250px">
@@ -190,23 +163,76 @@
   </div>
   <div class="content">
     <div class="actions centered">
-
       {{#if (eq purchaseorder.postatus 'created')}}
-      <div class="ui green button" {{action "recieveOrder" purchaseorder}}>Receive All</div>
+      <div class="ui green button" {{action "showRecieveAllModal" }}>Receive All</div>
       <div class="ui primary button"  {{action "recievePartial" purchaseorder}}>Receive Partially</div>
       {{/if}}
-
       {{#if (eq purchaseorder.postatus 'partial')}}
-      <div class="ui green button" {{action "recieveOrder" purchaseorder}}>Receive All</div>
+      <div class="ui green button" {{action "showRecieveAllModal" }}>Receive All</div>
       {{/if}}
-
-
-
-   <div class="ui cancel button">Cancel</div>
- </div>
+      <div class="ui cancel button">Cancel</div>
+    </div>
   </div>
+</div>
 
 
 
 
+<div class="ui  modal large entercost" >
+  <i class="close icon"></i>
+  <div class="header">
+    Add To Stock
+  </div>
+  <div class="content">
+
+    <table class="ui celled table">
+      <thead  class="center aligned">
+        <tr>
+          <th>Item Name</th>
+
+          <th>Item Cost</th>
+          <th>Current Retail Price</th>
+
+
+
+        </tr>
+      </thead>
+      <tbody>
+        {{#each purchaseorder.purchaseorderitems  as |purchaseorderitem|}}
+        <tr class="center aligned">
+          <td>
+            {{
+              purchaseorderitem.product.productname
+            }}
+          </td>
+
+          <td class="" >
+          {{ input type="number" value=purchaseorderitem.product.newitemcost}}
+
+
+        </td>
+
+        <td>{{purchaseorderitem.product.retailprice}}</td>
+
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+
+
+
+    <div class="actions centered">
+      {{#if (eq purchaseorder.postatus 'created')}}
+      <div class="ui green button" {{action "recieveOrder" purchaseorder}}>Receive All</div>
+      {{#if (eq purchaseorder.postatus 'partial')}}
+      <div class="ui primary button"  {{action "recievePartial" purchaseorder}}>Receive Partially</div>
+      {{/if}}
+      {{/if}}
+      {{#if (eq purchaseorder.postatus 'partial')}}
+      <div class="ui green button " {{action "recieveOrder" purchaseorder}}>Receive All</div>
+      {{/if}}
+      <div class="ui cancel button">Cancel</div>
+    </div>
+  </div>
 </div>

@@ -9,13 +9,22 @@ export default DS.Model.extend({
   product: DS.belongsTo('product' ,{async:true}),
   purchaseorder: DS.belongsTo('purchaseorder' ,{async:true}),
 
+
+
+
+
   aftervalue: Ember.computed('product' , 'quantity', function() {
     return parseInt(this.get('product.initialstocklevel')) + parseInt(this.get('quantity'));
   }),
-  
 
-  computedtotal: Ember.computed('product' , 'quantity', function() {
-    var total =   parseInt(this.get('product.retailprice')) * parseInt(this.get('quantity'));
+
+  computedNewItemCostTotal: Ember.computed('product' , 'quantity'  , 'product.newitemcost', function() {
+    var total =   parseInt(this.get('product.newitemcost')) * parseInt(this.get('quantity'));
+     return total;
+  }),
+
+  computedtotal: Ember.computed('product' , 'quantity'  , 'product.buyprice', function() {
+    var total =   parseInt(this.get('product.buyprice')) * parseInt(this.get('quantity'));
      return total;
   }),
 

@@ -18,4 +18,7 @@ export default Ember.Route.extend({
     controller.set('products', this.store.findAll('product'));
 
   },
+
+
+
 });
