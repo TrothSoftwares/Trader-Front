@@ -9,8 +9,8 @@ export default Ember.Controller.extend({
     },
 
 
-    cancelPurchaseOrder:function(){
-      this.transitionToRoute('dashboard.stockcontrol.index');
+    cancelPurchaseOrder:function(purchaseorder){
+      this.transitionToRoute('dashboard.stockcontrol.purchaseorders.purchaseorder.view' , purchaseorder);
     },
 
 
@@ -61,7 +61,7 @@ export default Ember.Controller.extend({
           type: 'success',
           autoClear: true
         });
-        
+
         controller.transitionToRoute('dashboard.stockcontrol.purchaseorders.purchaseorder.view', purchaseorder);
 
       });
