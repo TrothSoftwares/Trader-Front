@@ -53,6 +53,12 @@ body {
 {
   display: none !important;
 }
+.lato .item
+{
+  font-family: Lato-light !important;
+  font-size: 0.75rem;
+  text-transform: uppercase !important;
+}
 @media print {
   .no-print
   {

@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
         },
 
         {
-          "propertyName": "postatus", "title": "Recieved"
+          "propertyName": "postatus", "title": "Status"
         },
         // {
         //   "title": "Recieved Date" , "template":"custom/recieveddate"

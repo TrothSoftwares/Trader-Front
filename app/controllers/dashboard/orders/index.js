@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
         },
 
         {
-          "propertyName": "orderstatus", "title": "Recieved"
+          "propertyName": "orderstatus", "title": "Order Status"
         },
 
         {
