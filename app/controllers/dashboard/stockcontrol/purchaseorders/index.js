@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
         },
 
         {
-          "propertyName": "postatus", "title": "Recieved" ,"sortedBy" : "postatus"
+          "propertyName": "postatus", "title": "Status"
         },
 
 

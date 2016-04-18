@@ -4,7 +4,7 @@
 
 <div class="ui two column grid">
   <div class="twelve wide column" style="padding:0">
-    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:550px;overflow:auto ">
+    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:480px;overflow:auto ">
       <div class="ui three column grid">
         <div class="column" style=" padding-bottom:0px">
           <div class="ui grid">
@@ -112,10 +112,12 @@
           {{/each}}
         </tbody>
       </table>
-      <br>
-      <div class="ui column grid centered">
-      <button class=" ui tiny right floated inverted button blue"  {{action 'addNewOrderItem'}}>Add New Item</button>
-    </div>
+      <table class="ui celled center aligned table" style="margin-top:-20px" >
+      <tr>
+      <button class=" ui tiny labeled icon center aligned button " style="margin:5px" {{action 'addNewOrderItem'}}><i class="plus icon"></i>Add New Item</button>
+    </tr>
+    </table>
+
       <div class="ui three column grid">
         <div class="column" ></div>
         <div class="column" ></div>

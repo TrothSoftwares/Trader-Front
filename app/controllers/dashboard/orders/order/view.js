@@ -21,6 +21,9 @@ actions:{
     });
     order.save(); //TODO : catch function pending
   },
+  printOrder:function(){
+    window.print();
+  }
 }
 
 });

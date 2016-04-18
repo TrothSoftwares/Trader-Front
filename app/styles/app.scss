@@ -53,6 +53,12 @@ body {
 {
   display: none !important;
 }
+.lato .item
+{
+  font-family: Lato-light !important;
+  font-size: 0.75rem;
+  text-transform: uppercase !important;
+}
 @media print {
   .no-print
   {
@@ -66,6 +72,15 @@ body {
   {
   margin-left: -50px;
   }
+  .print-box2
+  {
+  margin-left: -50px;
+  // margin-right: -100px !important;
+  width: 108% !important;
+
+
+  }
+
 }
 
 

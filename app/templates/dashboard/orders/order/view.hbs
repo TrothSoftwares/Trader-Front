@@ -1,11 +1,13 @@
 
 
 
-<div class="ui two column grid">
+<div class="ui two column grid no-print">
   <div class="twelve wide column" style="padding:0">
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:550px;overflow:auto ">
       <h2 class="ui left floated header">Order: #OR{{order.id}}</h2>
-      {{link-to 'Edit' 'dashboard.orders.order.edit'  class="ui blue inverted mini right floated button "}}
+      <button class="ui mini right floated primary button " {{action "printOrder" }}>Print</button>
+      {{link-to 'Edit' 'dashboard.orders.order.edit'  class="ui primary mini right floated button "}}
+
       <div class="ui clearing divider" ></div>
 
       <div class="ui three column grid">
@@ -117,5 +119,93 @@
   </div>
   <div class="four wide column">
 
+  </div>
+</div>
+<div class="only-print print-box2">
+  <h2 class="ui left floated header">Order: #OR{{order.id}}</h2>
+  <div class="ui clearing divider" ></div>
+
+  <div class="ui three column grid">
+    <div class="column" >
+      <div class="ui  form">
+        <div class="inline field" >
+          <label style="width:75px">Customer </label>:
+          {{order.customer.companyname}}
+        </div>
+      </div>
+    </div>
+
+    <div class="column" >
+      <div class="ui small form">
+        <div class="inline field" >
+          <label  style="width:75px">Stock Due </label>:
+          {{moment-format order.duedate inputFormat}}
+
+        </div>
+
+      </div>
+
+    </div>
+    <div class=" column">
+      <div class="ui small form">
+        <div class="inline field">
+          <label style="width:40px">Email  </label>:
+          {{order.customer.email}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <table class="ui celled table">
+    <thead  class="center aligned">
+      <tr>
+        <th>Item Name</th>
+        <th style="width:100px">Quantiy</th>
+        <th>After</th>
+        <th>item Cost</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {{#each order.orderitems  as |orderitem|}}
+      <tr class="center aligned">
+        <td>
+          {{orderitem.product.productname}}
+        </td>
+        <td  >
+            {{orderitem.quantity}}
+        </td>
+        <td>
+          <label>{{orderitem.aftervalue}}</label>
+        </td>
+        <td >
+            {{orderitem.product.retailprice}}
+        </td>
+        <td>{{orderitem.computedtotal}}</td>
+
+
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <br>
+
+  <div class="ui three column grid">
+    <div class="column" ></div>
+    <div class="column" ></div>
+    <div class="column" >
+      <table class="ui very basic table">
+        <tbody>
+          <tr>
+            <td>Total Units</td>
+            <td class="right aligned">{{order.computedtotalunits}}</td>
+          </tr>
+          <tr>
+            <td>Total Cost</td>
+            <td class="right aligned">{{order.computedtotalcosts}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

@@ -36,6 +36,8 @@ export default Ember.Controller.extend({
         }
       });
     },
+
+
     revertOrder: function(purchaseorder){
 
 
@@ -143,6 +145,10 @@ export default Ember.Controller.extend({
 
     recieveOrderPopUp:function(){
       Ember.$('.small.modal').modal('show');
+    },
+
+    printOrder:function(){
+      window.print();
     }
   }
 });
