@@ -58,6 +58,8 @@ ENV['ember-simple-auth'] = {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    
   }
 
   if (environment === 'test') {
