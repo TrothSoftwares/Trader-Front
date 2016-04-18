@@ -9,6 +9,7 @@
 
 
 <div class="ui bottom attached tab segment active" data-tab="first">
+  <!-- {{input type="text" value=searchTerm}} -->
   {{models-table
     data=products
     columns=columns
@@ -18,4 +19,9 @@
     useNumericPagination=true
     filteringIgnoreCase=true
    }}
+
+
+   <!-- {{#each matchingProducts as |product|}}
+{{product.itemcode}}
+   {{/each}} -->
 </div>

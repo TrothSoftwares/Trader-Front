@@ -30,7 +30,7 @@ export default Ember.Controller.extend({
       }).catch(function () {
         supplier.rollbackAttributes();
         controller.notifications.addNotification({
-          message: 'Supplier cannot be deleted. This agent may be assigned to some project!' ,
+          message: 'Supplier cannot be deleted. This supplier may be assigned to some product!' ,
           type: 'error',
           autoClear: true
         });

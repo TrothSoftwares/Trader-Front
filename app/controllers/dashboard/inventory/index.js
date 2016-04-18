@@ -24,9 +24,18 @@ export default Ember.Controller.extend({
       {
         "title":"View" , "template":"custom/viewinventory"
       },
-
-
     ],
+
+
+searchTerm: '',
+
+
+    matchingProducts: Ember.computed('products.@each.itemcode','searchTerm', function() {
+      var searchTerm = this.get('searchTerm').toLowerCase();
+      return this.get('products').filter(function(product) {
+        return product.get('itemcode').toLowerCase().indexOf(searchTerm) !==-1;
+      });
+    }),
 
 
     customMessages: {
@@ -39,6 +48,7 @@ export default Ember.Controller.extend({
       "allColumnsAreHidden": "No visible columns, dude!",
       "noDataToShow": "No data. Sorry, bro..."
     },
+
 
 
 

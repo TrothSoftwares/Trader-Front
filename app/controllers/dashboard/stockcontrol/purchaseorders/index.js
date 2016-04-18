@@ -24,11 +24,9 @@ export default Ember.Controller.extend({
         },
 
         {
-          "propertyName": "postatus", "title": "Recieved"
+          "propertyName": "postatus", "title": "Recieved" ,"sortedBy" : "postatus"
         },
-        // {
-        //   "title": "Recieved Date" , "template":"custom/recieveddate"
-        // },
+
 
         {
           "title":"View" , "template":"custom/viewpurchaseorder"

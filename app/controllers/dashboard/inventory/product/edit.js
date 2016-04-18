@@ -19,31 +19,31 @@ export default Ember.Controller.extend({
     actions:{
 
 
-
-
       deleteProduct:function(product){
+
         var controller= this;
+
+        var confirm = window.confirm("Are you sure you want to delete?");
+        if (confirm) {
         product.destroyRecord().then(function () {
           controller.notifications.addNotification({
-            message: 'Agent Deleted!' ,
+            message: 'Product Deleted!' ,
             type: 'success',
             autoClear: true
           });
-
-
-
-
 
           controller.transitionToRoute('dashboard.inventory.index');
 
         }).catch(function () {
           product.rollbackAttributes();
           controller.notifications.addNotification({
-            message: 'Agent cannot be deleted. This agent may be assigned to some project!' ,
+            message: 'Product cannot be deleted. It may be used in Purchase Order or New Orders' ,
             type: 'error',
             autoClear: true
           });
         });
+
+      }
 
       },
       saveProduct:function(){

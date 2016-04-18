@@ -4,8 +4,7 @@ import Ember from 'ember';
 
 
 export default DS.Model.extend({
-
-itemcode: DS.attr('string'),
+ itemcode: DS.attr('string'),
 productname: DS.attr('string'),
 initialstocklevel: DS.attr('number'),
 initialcostprice: DS.attr('number'),
@@ -31,4 +30,5 @@ productbrand: DS.belongsTo('productbrand' ,{async:true}),
 
 purchaseorderitems: DS.hasMany('purchaseorderitem' ,{embedded: 'always', async:true}),
 stockadjustmentitems :DS.hasMany('stockadjustmentitem',{embedded: 'always', async:true}),
+orderitems :DS.hasMany('orderitem',{embedded: 'always', async:true}),
 });

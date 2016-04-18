@@ -61,6 +61,9 @@ export default Ember.Controller.extend({
           type: 'success',
           autoClear: true
         });
+        
+        controller.transitionToRoute('dashboard.stockcontrol.purchaseorders.purchaseorder.view', purchaseorder);
+
       });
 
     },

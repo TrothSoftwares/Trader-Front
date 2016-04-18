@@ -98,9 +98,9 @@ controller.transitionToRoute('dashboard.stockcontrol.stockadjustments.stockadjus
 
   },
 
-  cancelStockadjustment:function(){
-    this.transitionToRoute('dashboard.stockcontrol.stockadjustments.index');
-    return false;
+  cancelStockAdjustment:function(){
+    var controller = this;
+    controller.transitionToRoute('dashboard.stockcontrol.stockadjustments.index');
   },
 
   addNewStockadjustmentItem:function(){
