@@ -73,8 +73,10 @@ actions:{
     });
   },
 
-  cancelOrder:function(){
-    this.transitionToRoute('dashboard.stockcontrol.index');
+  cancelOrder:function(order){
+
+    
+    this.transitionToRoute('dashboard.orders.order.view' , order);
   },
 
 }

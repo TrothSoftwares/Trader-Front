@@ -21,10 +21,10 @@ export default Ember.Route.extend({
 
 
     actions:{
-      didTransition: function() {
-        var controller = this.get('controller');
-        controller.send('initOrder');
-      },
+      // didTransition: function() {
+      //   var controller = this.get('controller');
+      //   controller.send('initOrder');
+      // },
 
 
       willTransition: function(transition) {

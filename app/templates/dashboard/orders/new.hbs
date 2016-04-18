@@ -16,7 +16,7 @@
             content=customers
             optionValuePath="content.id"
             optionLabelPath="content.companyname"
-            selection=order.customer
+            selection=customer
             placeholder="Select a Customer"
           }}
         </div>
@@ -41,12 +41,12 @@
               <div class="inline field" style="float:right">
                 <label >Stock Due :</label>
 
-                {{pikaday-input  placeholder="Select Date" value=order.duedate}}
+                {{pikaday-input  placeholder="Select Date" value=duedate}}
               </div>
 
               <div class="inline field" style="float:right">
                 <label>Email : </label>
-                {{input placeholder="Email" readonly="true" type="text"  value=order.customer.email}}
+                {{input placeholder="Email" readonly="true" type="text"  value=customer.email}}
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@
         </thead>
         <tbody>
 
-          {{#each order.orderitems  as |orderitem|}}
+          {{#each orderitems  as |orderitem|}}
           <tr class="center aligned">
             <td>
               {{ember-selectize
@@ -97,7 +97,7 @@
                 {{input type="number" style="width:100px" placeholder="Qty" value=orderitem.quantity}}
               </div>
             </td>
-            
+
             <td >
               <div class="ui tiny transparent input">
                 {{input type="number" readonly="true" style="width:100px" placeholder="Qty" value=orderitem.product.retailprice}}
@@ -124,11 +124,11 @@
             <tbody>
               <tr>
                 <td>Total Units</td>
-                <td class="right aligned">{{order.computedtotalunits}}</td>
+                <td class="right aligned">{{computedOrderTotalUnits}}</td>
               </tr>
               <tr>
                 <td>Total Cost</td>
-                <td class="right aligned">{{order.computedtotalcosts}}</td>
+                <td class="right aligned">{{computedOrderTotalCost}}</td>
               </tr>
             </tbody>
           </table>
@@ -137,7 +137,7 @@
     </div>
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.5)">
       <!-- .  <button class=" ui tiny right floated  green button" {{createPurchaseOrder}}>Create</button> -->
-      .  <button class=" ui tiny right floated inverted blue button"  {{action 'createOrder'}}>Create</button>
+      .  <button class=" ui tiny right floated inverted blue button {{isCreateOrderButtonDisabled}}"  {{action 'createOrder'}}>Create</button>
       <button class=" ui tiny right floated inverted black button"  {{action 'cancelOrder'}}>Cancel</button>
     </div>
   </div>

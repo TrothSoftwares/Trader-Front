@@ -3,8 +3,9 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
 
-  order: '',
-  orderNotsaved:true,
+
+
+  orderitems: [],
 
   isCreateCustomerButtonDisabled: Ember.computed('companyname' , 'companycode' , 'chargecode' , 'email' , 'phone'  ,  function() {
     if( Ember.isEmpty(this.get('companyname')) ||
@@ -15,26 +16,79 @@ export default Ember.Controller.extend({
   ){return 'disabled';}
   else{return '';}
 }),
+
+
+
+
+  isCreateOrderButtonDisabled: Ember.computed('customer' , 'duedate' ,  function() {
+    if( Ember.isEmpty(this.get('customer')) ||
+    Ember.isEmpty(this.get('duedate'))
+  ){return 'disabled';}
+  else{return '';}
+}),
+
+
+
+  computedOrderTotalUnits: Ember.computed('orderitems.@each.quantity', function() {
+
+    var orderitems = this.get('orderitems');
+    if(orderitems){
+      var ret = 0;
+      orderitems.forEach(function(orderitem){
+        ret += parseInt(orderitem.get('quantity'));
+      });
+      return ret;
+    }
+  }),
+
+
+
+
+  computedOrderTotalCost: Ember.computed('orderitems.@each.computedtotal', function() {
+
+    var orderitems = this.get('orderitems');
+    if(orderitems){
+
+      var ret =0;
+      orderitems.forEach(function(orderitem){
+        ret += orderitem.get('computedtotal');
+      });
+      return ret;
+    }
+  }),
+
+
+
   actions:{
 
 
-
-
-    initOrder:function(){
+    createOrder:function(){
 
       var controller = this;
+
       var order = this.store.createRecord('order', {
-        customer :controller.get('customers').get('firstObject'),
-        duedate :new Date(),
+        customer :this.get('customer'),
+        duedate :this.get('duedate'),
         orderstatus :'created',
-        totalunits :'',
-        totalcost :'',
+        totalunits :this.get('computedOrderTotalUnits'),
+        totalcost :this.get('computedOrderTotalCost'),
       });
 
+      var templateOrderitems = controller.get('orderitems');
+
       order.save().then(function(order){
-        controller.set('order',order);
+        controller.set('customer','');
+        controller.set('duedate','');
+
+        templateOrderitems.forEach(function(orderitem){
+          orderitem.set('order', order);
+          orderitem.save() ;
+        });
 
 
+        controller.set('orderitems' , []);
+        controller.transitionToRoute('dashboard.orders.order.view' , order);
+        console.log("created");
       }).catch(function(){
         controller.notifications.addNotification({
           message: 'Sorry, cant save at the moment !' ,
@@ -46,33 +100,6 @@ export default Ember.Controller.extend({
 
 
 
-
-        createOrder:function(){
-
-          var controller = this;
-          var order = controller.get('order');
-
-          order.set('totalunits' , order.get('computedtotalunits'));
-          order.set('totalcost' , order.get('computedtotalcosts'));
-
-          order.save().then(function(order){
-
-
-            var orderitems = order.get('orderitems');
-            orderitems.forEach(function(orderitems){
-              orderitems.save() ;
-            });
-
-            controller.notifications.addNotification({
-              message: 'Saved !' ,
-              type: 'success',
-              autoClear: true
-            });
-          });
-
-          controller.set('orderNotsaved' , false);
-          controller.transitionToRoute('dashboard.orders.index');
-        },
     cancelOrder:function(){
       this.transitionToRoute('dashboard.orders.index');
     },
@@ -87,11 +114,11 @@ export default Ember.Controller.extend({
         total :'',
         poitemstatus :'',
         product :controller.get('products').get('firstObject'),
-        order : controller.get('order'),
+        order : controller.get('orders').get('firstObject'),
       });
 
       orderitem.save().then(function(){
-
+        controller.get('orderitems').pushObject(orderitem);
       }).catch(function(){
         controller.notifications.addNotification({
           message: 'Sorry, cant save at the moment !' ,
@@ -144,7 +171,7 @@ export default Ember.Controller.extend({
 
 
         controller.get('customers').pushObject(newCustomer._internalModel);
-        controller.set('order.customer',newCustomer);
+        controller.set('customer',newCustomer);
 
         Ember.$('.ui.newcustomer.modal')
         .modal('hide')
