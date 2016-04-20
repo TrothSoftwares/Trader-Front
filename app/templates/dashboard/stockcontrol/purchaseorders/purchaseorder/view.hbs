@@ -1,6 +1,6 @@
 
 
-<div class="ui two column grid">
+<div class="ui two column grid no-print ">
   <div class="twelve wide column" style="margin-top:20px">
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:425px;overflow:auto ">
       <div class="ui two column grid">
@@ -12,9 +12,11 @@
 
         <div class="column right aligned"  >
           {{#if (not-eq purchaseorderStatusBoolean booleanTrue)}}
-          {{link-to 'Edit''dashboard.stockcontrol.purchaseorders.purchaseorder.edit'   style="margin-top:20px"  }}
+          {{link-to 'Edit''dashboard.stockcontrol.purchaseorders.purchaseorder.edit' class="ui mini primary button"  style="margin-top:20px"  }}
           {{/if}}
-          <button {{action "sendMail" purchaseorder}}>Send Mail </button>
+          <button class="ui mini primary button"{{action "sendMail" purchaseorder}}>Send Mail </button>
+          <button class="ui mini primary button"{{action "printOrder" }}>Print </button>
+
         </div>
 
 
@@ -120,18 +122,18 @@
   <!-- .  <button class=" ui tiny right floated  green button" {{createPurchaseOrder}}>Create</button> -->
   <div class="ui three column grid">
     <div class="column" ></div>
-    <div class="column" >
+       <div class="right aligned column " style="padding-top:28px" >
       {{#if (eq purchaseorder.postatus 'created')}}
-      <div class="ui red button" >Not Received</div>
-      {{/if}}
+      <i class="remove circle red  icon"></i>
+      <label class="ui red" >Not Received</label>      {{/if}}
 
       {{#if (eq purchaseorder.postatus 'partial')}}
-      <div class="ui yellow button" >Partially Received</div>
-      {{/if}}
+      <i class="small minus square yellow  icon"></i>
+     <label class="ui yellow" >Partially Received</label>      {{/if}}
 
       {{#if (eq purchaseorder.postatus 'received')}}
-      <div class="ui green button" >Received</div>
-      {{/if}}
+               <i class="medium check circle green  icon"></i>
+               <label class="ui green" > Received All</label>      {{/if}}
 
     </div>
     <div class="column"  style="padding-top:0;padding-bottom:0" >
@@ -234,4 +236,79 @@
       <div class="ui cancel button">Cancel</div>
     </div>
   </div>
+</div>
+
+<div class="only-print print-box2">
+  <h2 class="ui  header">Purchase Order: #PO{{purchaseorder.id}}</h2>
+  <div class="ui divider" ></div>
+  <div class="ui three column grid">
+
+    <div class="column" >
+      <div class="ui  form">
+        <div class="inline field" >
+          <label style="width:75px">Supplier </label>:
+          {{purchaseorder.supplier.companyname}}
+        </div>
+      </div>
+    </div>
+    <div class="  column">
+      <div class="ui small form">
+
+
+        <div class="inline field" >
+          <label style="width:75px">Stock Due </label>:
+
+          {{ moment-format purchaseorder.duedate inputFormat}}
+        </div>
+
+
+      </div>
+    </div>
+    <div class="  column">
+      <div class="ui small form">
+
+
+        <div class="inline field">
+          <label style="width:40px">Email  </label>:
+          {{purchaseorder.supplier.email}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="ui divider" ></div>
+
+  <table class="ui celled table">
+    <thead  class="center aligned">
+      <tr>
+        <th>Item Name</th>
+        <th style="width:100px">Quantity</th>
+        {{#if (eq purchaseorderStatusBoolean booleanTrue)}}
+        <th>item Cost</th>
+        <th>Total</th>
+        {{/if}}
+
+      </tr>
+    </thead>
+    <tbody>
+      {{#each purchaseorder.purchaseorderitems  as |purchaseorderitem|}}
+      <tr class="center aligned">
+        <td>
+          {{
+            purchaseorderitem.product.productname
+          }}
+        </td>
+        <td class=" aligned" >
+          {{purchaseorderitem.quantity}}
+        </td>
+        {{#if (eq purchaseorderStatusBoolean booleanTrue)}}
+        <td class="" >
+        {{purchaseorderitem.product.buyprice}}
+      </td>
+      <td>{{purchaseorderitem.computedtotal}}</td>
+      {{/if}}
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
 </div>
