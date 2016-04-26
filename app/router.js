@@ -83,5 +83,5 @@ export default Router;
 
 // TODO:
 //
-// 1. Validations
+// 1. Retail Price not calculated for second time
 // 2.

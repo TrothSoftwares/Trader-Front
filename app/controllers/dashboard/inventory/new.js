@@ -19,6 +19,8 @@ export default Ember.Controller.extend({
   validProductTypeMessage: '',
   validProductTypeError:'',
 
+  // retailprice:'',
+
   isCreateProductButtonDisabled: Ember.computed('itemcode' , 'productname' , 'supplier' ,'typename', 'brandname' , 'initialstocklevel' ,'initialcostprice', 'buyprice'  ,  function() {
     if( Ember.isEmpty(this.get('itemcode')) ||
     Ember.isEmpty(this.get('productname')) ||
@@ -40,10 +42,28 @@ retailprice: Ember.computed('initialcostprice', 'buyprice', function() {
   var initialcostprice = this.get('initialcostprice');
   var buyprice = this.get('buyprice');
 
+if(initialcostprice && buyprice){
   var retailprice = (parseInt(initialcostprice) + parseInt(buyprice)) / 2 ;
   return retailprice;
-
+}
+else{
+  return '';
+}
 }),
+
+
+// retailprice: function() {
+//
+//   var initialcostprice = this.get('initialcostprice');
+//   var buyprice = this.get('buyprice');
+//
+//   if(initialcostprice && buyprice){
+//     var retailprice = (parseInt(initialcostprice) + parseInt(buyprice)) / 2 ;
+//     return retailprice;
+//   }
+// }.property('initialcostprice','buyprice'),
+
+
 
 
 isCreateSupplierButtonDisabled: Ember.computed('companyname' , 'companycode' , 'chargecode' , 'email' , 'phone'  ,  function() {
@@ -148,6 +168,9 @@ actions:{
       controller.set('supplier','');
       controller.set('typename','');
       controller.set('brandname','');
+
+       window.location.reload();
+       controller.transitionToRoute('dashboard.inventory.index');
     }).catch(function(){
       controller.notifications.addNotification({
         message: 'Sorry, cant save at the moment !' ,
@@ -160,7 +183,7 @@ actions:{
 
 
 
-    controller.transitionToRoute('dashboard.inventory.index');
+
 
 
   },
