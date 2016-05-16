@@ -5,7 +5,11 @@ export default Ember.Route.extend({
   model: function() {
 
     return Ember.RSVP.hash({
-      orders: this.store.findAll('order' ,{reload :true}),
+      orders: this.store.findAll('order' ,{reload :true}).then(function(data){
+        return data.filter(function(item){
+           return item.get('id') !== '1';
+        });
+      }),
       customers: this.store.findAll('customer' ,{reload :true}),
       producttypes: this.store.findAll('producttype' ,{reload :true}),
     });

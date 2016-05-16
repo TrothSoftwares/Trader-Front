@@ -6,11 +6,9 @@ export default Ember.Route.extend({
 
     return Ember.RSVP.hash({
       suppliers: this.store.findAll('supplier' ,{reload :true}).then(function(data){
-          data.splice(data.get('firstObject'));
-         return data;
-        // return data.filter(function(item){
-        //    return item.get('id') !== 1;
-        // });
+        return data.filter(function(item){
+           return item.get('id') !== '1';
+        });
       })
     });
 

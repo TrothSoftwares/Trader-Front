@@ -108,6 +108,8 @@ export default Ember.Controller.extend({
 
 
     addNewOrderItem:function(){
+
+      console.log('sdfsd');
       var controller = this;
       var orderitem = controller.store.createRecord('orderitem', {
         quantity :1,

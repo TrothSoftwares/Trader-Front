@@ -6,8 +6,9 @@ export default Ember.Route.extend({
 
     return Ember.RSVP.hash({
       customers: this.store.findAll('customer' ,{reload :true}).then(function(data){
-         data.removeObject(data.get('firstObject'));
-        return data;
+        return data.filter(function(item){
+           return item.get('id') !== '1';
+        });
       }),
     });
 

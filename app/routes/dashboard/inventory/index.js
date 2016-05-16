@@ -4,8 +4,10 @@ export default Ember.Route.extend({
   model: function() {
     // return this.store.findAll('product' ,{reload: true});
     return  this.store.findAll('product' ,{reload :true}).then(function(data){
-       data.removeObject(data.get('firstObject'));
-      return data;
+      return data.filter(function(item){
+        
+         return item.get('id') !== '1';
+      });
     });
   },
 
