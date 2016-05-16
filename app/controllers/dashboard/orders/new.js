@@ -108,8 +108,7 @@ export default Ember.Controller.extend({
 
 
     addNewOrderItem:function(){
-
-      console.log('sdfsd');
+console.log(this.get('orders').get('firstObject'));
       var controller = this;
       var orderitem = controller.store.createRecord('orderitem', {
         quantity :1,
@@ -194,7 +193,7 @@ export default Ember.Controller.extend({
 
     },
 
-    deleteOrderItem:function(orderitem){
+    deleteOrderitem:function(orderitem){
       var controller = this;
       controller.get('orderitems').removeObject(orderitem);
        orderitem.destroyRecord();
