@@ -76,7 +76,7 @@ ENV['ember-simple-auth'] = {
   }
 
   if (environment === 'production') {
-    ENV.APP.host =  'http://zahid-backend.herokuapp.com';
+    ENV.APP.host =  'http://zahid-rails.herokuapp.com';
 
   }
 //   if (deployTarget === 'staging') {
