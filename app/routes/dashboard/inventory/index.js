@@ -2,7 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model: function() {
-    return this.store.findAll('product' ,{reload: true});
+    // return this.store.findAll('product' ,{reload: true});
+    return  this.store.findAll('product' ,{reload :true}).then(function(data){
+       data.removeObject(data.get('firstObject'));
+      return data;
+    });
   },
 
   setupController: function(controller ,model) {
@@ -12,5 +16,5 @@ export default Ember.Route.extend({
     controller.set('productbrands', this.store.findAll('productbrand') ,{reload: true});
   },
 
-  
+
 });
