@@ -1,6 +1,4 @@
 import DS from 'ember-data';
-// import Ember from 'ember';
-
 
 export default DS.Model.extend({
   duedate: DS.attr('date'),
@@ -11,11 +9,13 @@ export default DS.Model.extend({
   supplier: DS.belongsTo('supplier' ,{async:true}),
   purchaseorderitems: DS.hasMany('purchaseorderitem' ,{embedded: 'always', async:true}),
 
-// computedtotalunits: Ember.computed('purchaseorderitems.@each.quantity' , 'purchaseorderitems', function() {
-//     return this.get('purchaseorderitems').reduce(function(sum, split) {
-//         return sum + parseInt(split.get('quantity'));
-//     }, 0);
-//   }),
+
+
+
+
+
+
+
 
 computedtotalunits: function() {
     return this.get('purchaseorderitems').reduce(function(sum, split) {
