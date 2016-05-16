@@ -8,6 +8,7 @@ export default Ember.Route.extend({
       suppliers: this.store.findAll('supplier' ,{reload :true}).then(function(data){
         return data.filter(function(item){
            return item.get('id') !== '1';
+           
         });
       })
     });
