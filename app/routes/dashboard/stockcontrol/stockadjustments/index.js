@@ -5,7 +5,10 @@ export default Ember.Route.extend({
   model: function() {
 
     return Ember.RSVP.hash({
-      stockadjustments: this.store.findAll('stockadjustment' ,{reload :true}),
+      stockadjustments: this.store.findAll('stockadjustment' ,{reload :true}).then(function(data){
+         data.removeObject(data.get('firstObject'));
+        return data;
+      }),
     });
 
   },
