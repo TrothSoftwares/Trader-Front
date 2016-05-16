@@ -17,6 +17,9 @@ export default Ember.Route.extend({
 
 
 
+
+
+
   setupController: function(controller , model) {
     controller.set('products',model.products);
     controller.set('orders',model.orders);
