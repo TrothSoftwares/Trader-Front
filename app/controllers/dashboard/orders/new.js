@@ -108,8 +108,7 @@ export default Ember.Controller.extend({
 
 
     addNewOrderItem:function(){
-console.log(this.get('orders').get('firstObject'));
-      var controller = this;
+       var controller = this;
       var orderitem = controller.store.createRecord('orderitem', {
         quantity :1,
         total :'',
