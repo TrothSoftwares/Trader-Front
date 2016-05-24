@@ -13,13 +13,13 @@ export default Ember.Controller.extend({
 
   {
     label: 'Product Name',
-    valuePath:"name",
+    valuePath:"productname",
 
   }],
   table: null,
   sort: null,
   page: 1,
-  limit: 20,
+  size: 2,
   dir: 'asc',
   isLoading: false,
   canLoadMore: true,
@@ -31,7 +31,7 @@ export default Ember.Controller.extend({
 
   fetchRecords() {
     this.set('isLoading', true);
-    this.store.query('user', this.getProperties(['page', 'limit', 'sort', 'dir'])).then(records => {
+    this.store.query('product', this.getProperties(['page', 'size', 'sort', 'dir'])).then(records => {
       this.table.addRows(records);
       this.set('isLoading', false);
       this.set('canLoadMore', !isEmpty(records));

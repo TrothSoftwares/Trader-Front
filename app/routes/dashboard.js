@@ -5,7 +5,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,{
 
 
   model() {
-      return this.store.findAll('product');
+      return this.store.query('product',{page: 1, size: 2});
+
     },
 
     setupController(controller, model) {
@@ -13,7 +14,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,{
 
 var products =[{id:1 , name: "acer"} , {id:2, name:"sony"}];
 
-controller.get('table').setRows(products);
+controller.get('table').setRows(model);
 
       // controller.set('table',model.get('content'));
     },
