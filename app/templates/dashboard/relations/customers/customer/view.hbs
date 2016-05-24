@@ -1,5 +1,5 @@
 <div class="ui black segment" >
- <div class="ui left floated header"> Customer Details </div>
+ <div class="ui left floated header"> Department Details </div>
  {{link-to 'Edit' 'dashboard.relations.customers.customer.edit'  class="ui blue inverted mini right floated button "}}
  <div class="ui clearing divider"></div>
 <div class="ui small form">
@@ -7,11 +7,11 @@
     <div class="five wide dividing column">
 
       <div class="inline field" style="float:right;margin-bottom :25px">
-    <label >Comapany Name :</label>
+    <label >Department Name :</label>
     <div class="ui transparent input"><input type="text" readonly="true" value= {{ customer.companyname }} ></div>
   </div>
   <div class="inline field" style="float:right;margin-bottom :25px">
-    <label>Company Code : </label>
+    <label>Department Code : </label>
     <div class="ui transparent input"><input type="text" readonly="true" value= {{ customer.companycode }} ></div>
   </div>
   <div class="inline field" style="float:right;margin-bottom :25px">
@@ -19,14 +19,14 @@
     <div class="ui transparent input"><input type="text" readonly="true" value= {{ customer.chargecode }} ></div>
 
   </div>
-  <div class="inline field" style="float:right;margin-bottom :25px">
+  <!-- <div class="inline field" style="float:right;margin-bottom :25px">
 <label>Address 1 : </label>
 <div class="ui transparent input"><input type="text" readonly="true" value= {{ customer.address1 }} ></div>
 
-</div>
+</div> -->
 </div>
 
-<div class="five wide column">
+<!-- <div class="five wide column">
   <div class="inline field" style="float:right;margin-bottom :25px">
 <label>Address 2 : </label>
 <div class="ui transparent input"><input type="text" readonly="true" value= {{ customer.address2 }} ></div>
@@ -47,7 +47,7 @@
 <div class="ui transparent input"><input type="text" readonly="true" value= {{ customer.country }} ></div>
 
 </div>
-  </div>
+  </div> -->
   <div class="five wide column">
 
     <div class="inline field" style="float:right;margin-bottom :25px">
@@ -55,18 +55,13 @@
       <div class="ui transparent input"><input type="text" readonly="true" value= {{ customer.email }} ></div>
 
     </div>
-    <div class="inline field" style="float:right;margin-bottom :25px">
-  <label>ZIP :</label>
-  <div class="ui transparent input"><input type="text" readonly="true" value= {{ customer.zipcode }} ></div>
 
-</div>
 <div class="inline field" style="float:right;margin-bottom :25px">
   <label>Phone :</label>
   <div class="ui transparent input"><input type="text" readonly="true" value= {{ customer.phone }} ></div>
 
 </div>
 
-<div class="ui clearing divider"></div>
 
 
 </div>

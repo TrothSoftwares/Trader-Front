@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
 
     columns: [
       {
-        "propertyName": "id", "title": "ID"
+        "propertyName": "id", "title": "Sl.No"
       },
       {
         "propertyName": "itemcode","title": "Item Code"

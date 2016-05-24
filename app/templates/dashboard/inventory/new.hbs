@@ -58,25 +58,13 @@
       </div>
 
       <div class="two fields">
-        <div class="field">
-          <label>Product Brand</label>
-          <div class="ui grid">
-            <div class="eleven wide column ">
-              {{ember-selectize
-                content=productbrands
-                optionValuePath="content.id"
-                optionLabelPath="content.brandname"
-                selection=brandname
-                placeholder="Select  Brand" }}
-              </div>
-              <div class="five wide column ">
-          <div class="ui blue small submit button"  {{action "openProductBrandModal"}}>New Product Brand</div>
-        </div>
-      </div>
-          </div>
           <div class="field">
             <label>Initial Stock</label>
             {{input placeholder="Initial Stock" type="number" value=initialstocklevel}}
+          </div>
+          <div class="field">
+            <label>Buy Price</label>
+            {{input placeholder="Buy Price" type="number" value=buyprice }}
           </div>
         </div>
         <div class="two fields">
@@ -85,16 +73,13 @@
             {{input placeholder="Initial Cost Price" type="number" value=initialcostprice}}
           </div>
           <div class="field">
-            <label>Buy Price</label>
-            {{input placeholder="Buy Price" type="number" value=buyprice }}
+            <label>Retail Price</label>
+            {{input placeholder="Retails Price"    type="number" value=retailprice}}
           </div>
         </div>
 
         <div class="two fields">
-          <div class="field">
-            <label>Retail Price</label>
-            {{input placeholder="Retails Price"    type="number" value=retailprice}}
-          </div>
+
 
         </div>
         <div class="ui blue small submit button {{isCreateProductButtonDisabled}}"   {{action "createProduct"}}>Submit</div>

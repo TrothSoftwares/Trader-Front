@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
 
       ordersColumns: [
         {
-          "propertyName": "id", "title": "ID"
+          "propertyName": "id", "title": "Sl.No"
         },
         {
           "propertyName": "customer.companyname", "title": "Customer"

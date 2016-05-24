@@ -12,7 +12,7 @@
 
   {{#link-to 'dashboard.relations.suppliers.index'  class="item"}}
     <i class="users  layout icon" style="color:#338d11"></i>
-    Relations
+    Misc
   {{/link-to}}
 
   {{#link-to 'dashboard.stockcontrol.purchaseorders.index'  class="item"}}
@@ -23,10 +23,13 @@
 
   {{#link-to 'dashboard.orders.index'  class="item"}}
     <i class="newspaper  layout icon" style="color:#ff0000"></i>
-    Orders
+    Issuance
   {{/link-to}}
 
-
+  {{#link-to 'dashboard.orders.index'  class="item"}}
+    <i class="settings icon" style="color:#abc"></i>
+    Tools
+  {{/link-to}}
 
 
   {{#link-to 'dashboard.reports'  class="item"}}
@@ -34,7 +37,9 @@
     Reports
   {{/link-to}}
 
-  <a class="item" {{action "logout"}} style="margin-top:279px;border-top:1px solid rgba(150,150,150,0.2)">
+
+
+  <a class="item" {{action "logout"}} style="margin-top:219px;border-top:1px solid rgba(150,150,150,0.2)">
     <i class="sign out icon" ></i>
     Logout
   </a>
