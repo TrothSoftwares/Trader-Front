@@ -26,7 +26,7 @@ export default Ember.Controller.extend({
           type: 'success',
           autoClear: true
         });
-        controller.transitionToRoute('dashboard.relations.index');
+        controller.transitionToRoute('dashboard.relations.suppliers.index');
       }).catch(function () {
         supplier.rollbackAttributes();
         controller.notifications.addNotification({

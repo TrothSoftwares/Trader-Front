@@ -1,0 +1,82 @@
+
+<div class="ui black segment" >
+  <div class="ui dividing header">Employee Details  </div>
+  <div class="ui small form">
+    <div class="ui stackable grid">
+      <div class="five wide dividing column">
+
+        <div class="inline field" style="float:right">
+          <label >Slno :</label>
+          {{input placeholder="SlNo"  type="text" value=employee.slno }}
+        </div>
+        <div class="inline field" style="float:right">
+          <label>Payroll : </label>
+          {{input placeholder="Payroll"  type="text"  value=employee.payroll}}
+        </div>
+        <div class="inline field" style="float:right">
+          <label> Name:</label>
+          {{input placeholder="Name"   type="text"  value=employee.name}}
+        </div>
+        <!-- <div class="inline field" style="float:right">
+          <label>Address 1 : </label>
+          {{input placeholder="Address 1"  type="text"  value=supplier.address1}}
+        </div> -->
+      </div>
+        <!-- <div class="five wide column">
+        <div class="inline field" style="float:right">
+          <label>Address 2 : </label>
+          {{input placeholder="Address 2"  type="text"  value=supplier.address2}}
+        </div>
+        <div class="inline field" style="float:right">
+          <label>City :</label>
+          {{input placeholder="City"  type="text"  value=supplier.city}}
+        </div>
+        <div class="inline field" style="float:right">
+          <label>State :</label>
+          {{input placeholder="State"  type="text" value=supplier.state }}
+        </div>
+        <div class="inline field" style="float:right">
+          <label>Country :</label>
+          {{input placeholder="Country"  type="text" value=supplier.country }}
+        </div>
+      </div> -->
+      <div class="five wide column">
+
+        <div class="inline field" style="float:right">
+          <label> Email :</label>
+          {{input placeholder="Email"  type="text"  value=employee.department}}
+        </div>
+        <!-- <div class="inline field" style="float:right">
+          <label>ZIP :</label>
+          {{input placeholder="ZIP"  type="text"  value=supplier.zipcode}}
+        </div> -->
+        <div class="inline field" style="float:right">
+          <label>Workcontact :</label>
+          {{input placeholder="Phone"  type="text" value=employee.workcontact }}
+        </div>
+        <div class="inline field" style="float:right">
+          <label>Personalcontact :</label>
+          {{input placeholder="Phone"  type="text" value=employee.personalcontact }}
+        </div>
+        <br><br><br><br>
+        <div class="ui clearing divider"></div>
+
+
+
+        <button class="ui primary right floated tiny button {{isSaveEmployeeButtonDisabled}}"   {{action "saveEmployee"}}>
+          <i class="save icon"></i>
+          Save
+        </button>
+        <button class="ui primary right floated tiny button "   {{action "deleteEmployee" employee}}>
+          <i class="save icon"></i>
+          Delete
+        </button>
+
+      </div>
+      <div class="five wide column">
+
+      </div>
+
+    </div>
+  </div>
+</div>

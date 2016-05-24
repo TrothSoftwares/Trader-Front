@@ -1,8 +1,8 @@
 
 <div class="ui black segment" >
-  <div class="ui left floated header">Supplier Details  </div>
-  {{link-to 'Edit' 'dashboard.relations.suppliers.supplier.edit'  class="ui blue inverted mini right floated button "}}
-  {{link-to 'Go Back' 'dashboard.relations.suppliers'  class="ui brown inverted mini right floated button "}}
+  <div class="ui left floated header">Employee Details  </div>
+  {{link-to 'Edit' 'dashboard.relations.employees.employee.edit'  class="ui blue inverted mini right floated button "}}
+  {{link-to 'Go Back' 'dashboard.relations.employees'  class="ui brown inverted mini right floated button "}}
 
   <div class="ui clearing divider"></div>
   <div class="ui small form">
@@ -10,17 +10,17 @@
       <div class="five wide dividing column">
 
         <div class="inline field" style="float:right;margin-bottom :25px">
-          <label >Supplier Name :</label>
-          <div class="ui transparent input"><input type="text" readonly="true" value= {{ supplier.companyname }} ></div>
-        </div>
-        <div class="inline field" style="float:right;margin-bottom :25px">
-          <label>Supplier Code : </label>
-          <div class="ui transparent input"><input type="text" readonly="true" value= {{ supplier.companycode }} ></div>
-        </div>
-        <div class="inline field" style="float:right;margin-bottom :25px">
-          <label>Charge Code :</label>
-          <div class="ui transparent input"><input type="text" readonly="true" value= {{ supplier.chargecode }} ></div>
+          <label > Slno :</label>
 
+          <div class="ui transparent input"><input type="text" readonly="true" value={{employee.slno}} ></div>
+        </div>
+        <div class="inline field" style="float:right;margin-bottom :25px">
+          <label>Payroll: </label>
+          <div class="ui transparent input"><input type="text" readonly="true" value={{employee.payroll}} ></div>
+        </div>
+        <div class="inline field" style="float:right;margin-bottom :25px">
+          <label> Name:</label>
+          <div class="ui transparent input"><input type="text" readonly="true" value= {{ employee.name }} ></div>
         </div>
         <!-- <div class="inline field" style="float:right;margin-bottom :25px">
           <label>Address 1 : </label>
@@ -51,20 +51,29 @@
       </div> -->
       <div class="five wide column">
         <div class="inline field" style="float:right;margin-bottom :25px">
-          <label> Email :</label>
-          <div class="ui transparent input"><input type="text" readonly="true" value= {{ supplier.email }} ></div>
+          <label> Department :</label>
+          <div class="ui transparent input"><input type="text" readonly="true" value= {{ employee.department }} ></div>
         </div>
         <!-- <div class="inline field" style="float:right;margin-bottom :25px">
           <label>ZIP :</label>
           <div class="ui transparent input"><input type="text" readonly="true" value= {{ supplier.zipcode }} ></div>
         </div> -->
         <div class="inline field" style="float:right;margin-bottom :25px">
-          <label>Phone :</label>
-          <div class="ui transparent input"><input type="text" readonly="true" value= {{ supplier.phone }} ></div>
+          <label>Workcontact :</label>
+          <div class="ui transparent input"><input type="text" readonly="true" value= {{ employee.workcontact }} ></div>
+        </div>
+        <div class="inline field" style="float:right;margin-bottom :25px">
+          <label>Personalcontact :</label>
+          <div class="ui transparent input"><input type="text" readonly="true" value= {{ employee.personalcontact }} ></div>
         </div>
         <br><br><br><br>
         <div class="ui clearing divider"></div>
+
+
+
       </div>
+
+
     </div>
   </div>
 </div>

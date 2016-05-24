@@ -44,6 +44,13 @@ Router.map(function() {
       });
       this.route('new');
       });
+      this.route('employees', function() {
+        this.route('employee', {path: ':id'}, function() {
+          this.route('view');
+          this.route('edit');
+        });
+        this.route('new');
+      });
     });
 
     this.route('stockcontrol', function() {
@@ -69,6 +76,7 @@ Router.map(function() {
       this.route('sales');
       this.route('purchaseorders');
     });
+    this.route('tools');
   });
   this.route('login');
 
