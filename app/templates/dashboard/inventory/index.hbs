@@ -1,27 +1,38 @@
 
 
-
-<div  class="clearfix"style="margin-bottom:10px"></div>
 <div class="ui top attached tabular menu">
-  <a class="item active" data-tab="first">Products</a>
-  <!-- <a class="item" data-tab="second">Stock Adjustments</a> -->
+  <a class="item {{allActiveClass}}" {{action "changeActiveClass" 'active'}}  >All</a>
+  {{#each producttypes as |producttype|}}
+  {{#if (not-eq producttype.id '1')}}
+  <a class="item {{producttype.activeclass}}" {{action "changeActiveClass" producttype}}  >{{producttype.typename}}</a>
+  {{/if}}
+  {{/each}}
 </div>
 
-
-<div class="ui bottom attached tab segment active" data-tab="first">
-  <!-- {{input type="text" value=searchTerm}} -->
+<div class="ui bottom attached tab segment {{allActiveClass}} ">
   {{models-table
-    data=products
+    data=computedProducts
     columns=columns
     customMessages=customMessages
     useFilteringByColumns=false
     showColumnsDropdown=false
     useNumericPagination=true
-    filteringIgnoreCase=true
    }}
-
-
-   <!-- {{#each matchingProducts as |product|}}
-{{product.itemcode}}
-   {{/each}} -->
 </div>
+
+{{#each producttypes as |producttype|}}
+<div class="ui bottom attached tab segment {{producttype.activeclass}}" >
+  {{models-table
+    data=computedProducts
+    columns=columns
+    customMessages=customMessages
+    useFilteringByColumns=false
+    showColumnsDropdown=false
+    useNumericPagination=true
+  }}
+</div>
+{{/each}}
+
+
+ {{intialize-semanticuitabs}}
+{{outlet}}

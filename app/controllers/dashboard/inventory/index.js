@@ -27,19 +27,8 @@ export default Ember.Controller.extend({
     ],
 
 
-sharan: 'guy',
 
-searchTerm: '',
-
-
-    matchingProducts: Ember.computed('products.@each.itemcode','searchTerm', function() {
-      var searchTerm = this.get('searchTerm').toLowerCase();
-      return this.get('products').filter(function(product) {
-        return product.get('itemcode').toLowerCase().indexOf(searchTerm) !==-1;
-      });
-    }),
-
-
+ 
     customMessages: {
       "searchLabel": "Search",
       "columns-title": "Columns",
@@ -52,12 +41,44 @@ searchTerm: '',
     },
 
 
+  currentProductType: 'all',
+    allActiveClass :'active',
+
+
+  // i forgot what logic is this;  Working : dont touch please
+    computedProducts: function() {
+       var currentProductType = this.get('currentProductType');
+      if (currentProductType === 'all'){
+         return this.get('products');
+      }
+      else{
+         return this.get('products').filterBy('producttype.typename', currentProductType);
+      }
+    }.property('currentProductType','products'),
+
 
 
 
 
     actions: {
 
+
+      changeActiveClass: function(producttype){
+        this.set('allActiveClass','');
+        this.producttypes.forEach(function(ptype){
+          ptype.set('activeclass' , '');
+
+        });
+        if(producttype === 'active'){
+          this.set('allActiveClass' , 'active');
+          this.set('currentProductType' ,  'all');
+        }
+        else{
+        producttype.set('activeclass' , 'active');
+        this.set('currentProductType' , producttype.get('typename'));
+      }
+
+      },
 
 
 
