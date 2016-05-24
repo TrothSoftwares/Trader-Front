@@ -8,12 +8,12 @@ const {
 export default Ember.Controller.extend({
   columns: [{
     label: 'Id',
-    valuePath:"sdfsdf",
+    valuePath:"id",
   },
-  
+
   {
-    label: 'Id',
-    valuePath:"sdfsdf",
+    label: 'Product Name',
+    valuePath:"name",
 
   }],
   table: null,

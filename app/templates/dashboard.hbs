@@ -8,24 +8,7 @@
   </div>
 
 
-  {{!-- BEGIN-SNIPPET simple-table --}}
-  {{#light-table table onScrolledToBottom=(action 'onScrolledToBottom') as |t|}}
-    {{t.head
-      onColumnClick=(action 'onColumnClick')
-      iconAscending='fa fa-sort-asc'
-      iconDescending='fa fa-sort-desc'
-      fixed=true
-    }}
 
-    {{#t.body canSelect=false height='64vh' as |body|}}
-      {{#if isLoading}}
-        {{#body.loader}}
-          {{table-loader}}
-        {{/body.loader}}
-      {{/if}}
-    {{/t.body}}
-  {{/light-table}}
-  {{!-- END-SNIPPET --}}
 
 
 
@@ -77,6 +60,27 @@
   <div class="ui segment basic  ">
 
 
+    {{!-- BEGIN-SNIPPET simple-table --}}
+
+    {{#light-table table onScrolledToBottom=(action 'onScrolledToBottom') as |t|}}
+      {{t.head
+        onColumnClick=(action 'onColumnClick')
+        iconAscending='fa fa-sort-asc'
+        iconDescending='fa fa-sort-desc'
+        fixed=true
+      }}
+
+      {{#t.body canSelect=false height='64vh' as |body|}}
+        {{#if isLoading}}
+          {{#body.loader}}
+            {{table-loader}}
+          {{/body.loader}}
+        {{/if}}
+      {{/t.body}}
+    {{/light-table}}
+    {{!-- END-SNIPPET --}}
+
+    
 
 
 

@@ -9,10 +9,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,{
     },
 
     setupController(controller, model) {
-       controller.get('table').setRows(model.toArray());
+      //  controller.get('table').setRows(model.toArray());
 
+var products =[{id:1 , name: "acer"} , {id:2, name:"sony"}];
 
-
+controller.get('table').setRows(products);
 
       // controller.set('table',model.get('content'));
     },
