@@ -4,9 +4,20 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin,{
 
 
+  model() {
+      return this.store.findAll('product');
+    },
+
+    setupController(controller, model) {
+       controller.get('table').setRows(model.toArray());
 
 
- 
+
+
+      // controller.set('table',model.get('content'));
+    },
+
+
 
 session: Ember.inject.service('session'),
 

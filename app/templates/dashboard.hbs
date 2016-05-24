@@ -1,9 +1,37 @@
+
+
 <div class="ui left visible inverted vertical very thin sidebar labeled icon menu lato no-print" style="width:90px; background: rgb(45,48,51) ">
   <div class="item" style="padding:17px 3px">
     {{#link-to 'dashboard'   }}
     <img src="images/logo.png" width="60px">
     {{/link-to}}
   </div>
+
+
+  {{!-- BEGIN-SNIPPET simple-table --}}
+  {{#light-table table onScrolledToBottom=(action 'onScrolledToBottom') as |t|}}
+    {{t.head
+      onColumnClick=(action 'onColumnClick')
+      iconAscending='fa fa-sort-asc'
+      iconDescending='fa fa-sort-desc'
+      fixed=true
+    }}
+
+    {{#t.body canSelect=false height='64vh' as |body|}}
+      {{#if isLoading}}
+        {{#body.loader}}
+          {{table-loader}}
+        {{/body.loader}}
+      {{/if}}
+    {{/t.body}}
+  {{/light-table}}
+  {{!-- END-SNIPPET --}}
+
+
+
+
+
+
 
   {{#link-to 'dashboard.inventory.index'  class="item"}}
     <i class="block  layout icon" style="color:#0077c0"></i>
