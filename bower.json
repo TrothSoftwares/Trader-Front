@@ -9,7 +9,8 @@
     "bootstrap": "~3.3.5",
     "selectize": "miguelcobain/selectize.js#master",
     "pikaday": "^1.4.0",
-    "slick-carousel": "^1.5.9"
+    "slick-carousel": "^1.5.9",
+    "font-awesome": "~4.5.0"
   },
   "resolutions": {
     "ember": "2.4.3",
