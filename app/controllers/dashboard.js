@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
   sort: null,
   page: 1,
   size: 2,
-  dir: 'asc',
+  direction: 'asc',
   isLoading: false,
   canLoadMore: true,
 
@@ -31,7 +31,7 @@ export default Ember.Controller.extend({
 
   fetchRecords() {
     this.set('isLoading', true);
-    this.store.query('product', this.getProperties(['page', 'size', 'sort', 'dir'])).then(records => {
+    this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction'])).then(records => {
       this.table.addRows(records);
       this.set('isLoading', false);
       this.set('canLoadMore', !isEmpty(records));
@@ -49,7 +49,7 @@ export default Ember.Controller.extend({
     onColumnClick(column) {
       if (column.sorted) {
         this.setProperties({
-          dir: column.ascending ? 'asc' : 'desc',
+          direction: column.ascending ? 'asc' : 'desc',
           sort: column.get('valuePath'),
           page: 1
         });
