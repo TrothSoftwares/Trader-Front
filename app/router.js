@@ -76,7 +76,17 @@ Router.map(function() {
       this.route('sales');
       this.route('purchaseorders');
     });
-    this.route('tools');
+
+
+    this.route('tools', function() {
+      this.route('tool', function() {
+        this.route('view');
+        this.route('edit');
+      });
+      this.route('new');
+    });
+
+
   });
   this.route('login');
 
