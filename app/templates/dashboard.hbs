@@ -61,14 +61,17 @@
 
 
     {{!-- BEGIN-SNIPPET simple-table --}}
+    <table class="ui celled table">
 
     {{#light-table table onScrolledToBottom=(action 'onScrolledToBottom') as |t|}}
+    <thead>
       {{t.head
         onColumnClick=(action 'onColumnClick')
         iconAscending='fa fa-sort-asc'
         iconDescending='fa fa-sort-desc'
         fixed=true
       }}
+    </thead>
 
       {{#t.body canSelect=false height='64vh' as |body|}}
         {{#if isLoading}}
@@ -83,8 +86,42 @@
           {{/body.loader}}
         {{/if}}
       {{/t.body}}
+      {{#t.foot}}
+      <tfoot>
+    <tr>
+
+
+      <th colspan="3">
+
+
+
+
+
+
+<div class="ui right floated pagination menu">
+      {{#each count as |number|}}
+      {{#if (eq number mdata.meta.pagination.self.number) }}
+      <a class="icon item " {{action "onPaginationClick" number}}>
+        <i class="chevron icon" style="text-transform:capitalize"> {{ number }}</i>
+      </a>
+
+      {{else}}
+      <a class="icon item" {{action "onPaginationClick" number}}>
+        <i class="chevron icon" style="text-transform:capitalize"> {{ number }}</i>
+      </a>
+      {{/if}}
+      {{/each}}
+</div>
+
+
+    </th>
+  </tr></tfoot>
+      {{/t.foot}}
     {{/light-table}}
+  </table>
     {{!-- END-SNIPPET --}}
+
+
 
 
 

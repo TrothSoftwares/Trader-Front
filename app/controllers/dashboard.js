@@ -6,16 +6,38 @@ const {
 } = Ember;
 
 export default Ember.Controller.extend({
+
+
+  count: Ember.computed('mdata.meta.pagination.last.number', 'mdata.meta.pagination.self.number', function() {
+   const total = this.get('mdata.meta.pagination.last.number') || this.get('mdata.meta.pagination.self.number');
+   if (!total){
+   return [];
+ }
+   return new Array(total+1).join('x').split('').map((e,i) => i+1);
+ }),
+
+
   columns: [{
     label: 'Id',
     valuePath:"id",
   },
-
+  {
+    label: 'Item Code',
+    valuePath:"itemcode",
+  },
   {
     label: 'Product Name',
     valuePath:"productname",
-
-  }],
+  },
+  {
+    label: 'Initial Stock Level',
+    valuePath:"initialstocklevel",
+  },
+  {
+    label: 'Retail Price',
+    valuePath:"retailprice",
+  }
+],
   table: null,
   sort: null,
   page: 1,
@@ -55,6 +77,18 @@ export default Ember.Controller.extend({
         });
         this.table.setRows([]);
         this.fetchRecords();
+      }
+    },
+
+    onPaginationClick(number) {
+      if (number) {
+        this.setProperties({
+          direction: 'asc',
+          page: number
+        });
+        this.table.setRows([]);
+        this.fetchRecords();
+
       }
     }
   }

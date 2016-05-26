@@ -16,7 +16,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,{
 
 controller.get('table').setRows(model);
 
-      // controller.set('table',model.get('content'));
+
+       controller.set('mdata',model);
     },
 
 
