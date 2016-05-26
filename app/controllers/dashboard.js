@@ -7,7 +7,6 @@ const {
 
 export default Ember.Controller.extend({
 
-
   count: Ember.computed('mdata.meta.pagination.last.number', 'mdata.meta.pagination.self.number', function() {
    const total = this.get('mdata.meta.pagination.last.number') || this.get('mdata.meta.pagination.self.number');
    if (!total){
@@ -83,13 +82,44 @@ export default Ember.Controller.extend({
     onPaginationClick(number) {
       if (number) {
         this.setProperties({
-          direction: 'asc',
+          productname: 'asc',
           page: number
         });
         this.table.setRows([]);
         this.fetchRecords();
 
       }
+    },
+    searchProduct(searchproduct){
+
+        this.setProperties({
+          productname: searchproduct,
+          sort: 'asc',
+          page: 1
+        });
+
+        this.table.setRows([]);
+
+
+// redoing fetchRecords
+        this.set('isLoading', true);
+        if (searchproduct) {
+        this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' , 'productname'])).then(records => {
+          this.table.addRows(records);
+          this.set('isLoading', false);
+          this.set('canLoadMore', !isEmpty(records));
+        });
+      }
+      else{
+        this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' ])).then(records => {
+          this.table.addRows(records);
+          this.set('isLoading', false);
+          this.set('canLoadMore', !isEmpty(records));
+        });
+      }
+
+
+      }
     }
-  }
+
 });

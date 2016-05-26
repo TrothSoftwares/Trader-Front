@@ -6,17 +6,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,{
 
   model() {
       return this.store.query('product',{page: 1, size: 3});
-
     },
 
     setupController(controller, model) {
-      //  controller.get('table').setRows(model.toArray());
 
-
-
-controller.get('table').setRows(model);
-
-
+      controller.get('table').setRows(model);
        controller.set('mdata',model);
     },
 
