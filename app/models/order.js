@@ -4,10 +4,16 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   duedate: DS.attr('date'),
+  issuancedate: DS.attr('date'),
   totalunits :DS.attr('number'),
   totalcost : DS.attr('number'),
   orderstatus : DS.attr('string'),
+  mrf : DS.attr('string'),
+  location : DS.attr('string'),
+  natureofwork : DS.attr('string'),
   customer: DS.belongsTo('customer' ,{async:true}),
+  supplier: DS.belongsTo('supplier' ,{async:true}),
+  employee: DS.belongsTo('employee' ,{async:true}),
   orderitems: DS.hasMany('orderitem' ,{embedded: 'always', async:true}),
   stockadjustments: DS.hasMany('stockadjustment' ,{embedded: 'always', async:true}),
 

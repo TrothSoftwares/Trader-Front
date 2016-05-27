@@ -68,7 +68,13 @@ export default Ember.Controller.extend({
 
       var order = this.store.createRecord('order', {
         customer :this.get('customer'),
+        supplier :this.get('supplier'),
+        employee :this.get('employee'),
+        natureofwork :this.get('natureofwork'),
+        mrf :this.get('mrf'),
+        location :this.get('location'),
         duedate :this.get('duedate'),
+        issuancedate :this.get('issuancedate'),
         orderstatus :'created',
         totalunits :this.get('computedOrderTotalUnits'),
         totalcost :this.get('computedOrderTotalCost'),
@@ -78,6 +84,12 @@ export default Ember.Controller.extend({
 
       order.save().then(function(order){
         controller.set('customer','');
+        controller.set('issuancedate','');
+        controller.set('supplier','');
+        controller.set('employee','');
+        controller.set('natureofwork','');
+        controller.set('mrf','');
+        controller.set('location','');
         controller.set('duedate','');
 
         templateOrderitems.forEach(function(orderitem){

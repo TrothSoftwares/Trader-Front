@@ -85,9 +85,32 @@
 
 <div class="ui black segment" >
   <div class="ui left floated header">  Tools Issued  </div>
-  {{#each employee.tools as |tool|}}
-  {{tool.name}}
-  {{/each}}
+
+
+  <table class="ui celled table">
+  <thead>
+    <tr>
+    <th>ID</th>
+    <th>Tool</th>
+    <th>Issued Date</th>
+    <th>Status</th>
+    <th></th>
+  </tr></thead>
+  <tbody>
+    {{#each employee.tools as |tool|}}
+    <tr>
+      <td>{{tool.id}}</td>
+      <td>{{tool.name}}</td>
+      <td>{{tool.issuedate}}</td>
+      <td>{{tool.status}}</td>
+      <td>{{link-to "View"  'dashboard.tools.tool.view'  tool }}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+
+
 
 
 </div>

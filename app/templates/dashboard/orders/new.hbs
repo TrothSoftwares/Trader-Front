@@ -9,26 +9,27 @@
         <div class="column" style=" padding-bottom:0px">
           <div class="ui grid">
             <div class="four wide column ">
-              <label style="margin-top:10px"> Customer:</label>
+              <label style="margin-top:10px"> MRF:</label>
             </div>
             <div class="twelve wide column ">
-          {{ember-selectize
-            content=customers
-            optionValuePath="content.id"
-            optionLabelPath="content.companyname"
-            selection=customer
-            placeholder="Select a Customer"
-          }}
-        </div>
-      </div>
+              {{input placeholder="MRF"  type="text"  value=mrf}}
+            </div>
+          </div>
+
+          <div class="ui grid">
+            <div class="four wide column ">
+              <label style="margin-top:10px"> Location:</label>
+            </div>
+            <div class="twelve wide column ">
+              {{input placeholder="Location"  type="text"  value=location}}
+            </div>
+          </div>
     </div>
 
 
 
         <div class="column" >
-          <div  style="margin-top:10px" >
-            Or <a style="cursor:pointer "  {{action "openCustomerModal"}}>New Customer</a>
-          </div>
+
         </div>
 
         <div class="column" >
@@ -36,6 +37,18 @@
 
           <div class="right aligned column">
             <div class="ui small form">
+
+
+              <div class="inline field" style="float:right">
+                <label >Nature Of Work :</label>
+
+                {{input placeholder="Nature Of Work"  type="text"  value=natureofwork}}
+              </div>
+              <div class="inline field" style="float:right">
+                <label >Issuance Date :</label>
+
+                {{pikaday-input  placeholder="Issuance Date" value=issuancedate}}
+              </div>
 
 
               <div class="inline field" style="float:right">
@@ -119,8 +132,62 @@
     </table>
 
       <div class="ui three column grid">
-        <div class="column" ></div>
-        <div class="column" ></div>
+        <div class="column" >
+
+          <div class="ui grid">
+            <div class="four wide column ">
+              <label style="margin-top:10px"> Requested By:</label>
+            </div>
+            <div class="twelve wide column ">
+          {{ember-selectize
+            content=customers
+            optionValuePath="content.id"
+            optionLabelPath="content.companyname"
+            selection=customer
+            placeholder="Select a Customer"
+          }}
+        </div>
+      </div>
+
+      <div class="ui grid">
+        <div class="four wide column ">
+          <label style="margin-top:10px"> Issued By:</label>
+        </div>
+        <div class="twelve wide column ">
+      {{ember-selectize
+        content=suppliers
+        optionValuePath="content.id"
+        optionLabelPath="content.companyname"
+        selection=supplier
+        placeholder="Select a Supplier"
+      }}
+    </div>
+  </div>
+
+  <div class="ui grid">
+    <div class="four wide column ">
+      <label style="margin-top:10px"> Approved By:</label>
+    </div>
+    <div class="twelve wide column ">
+  {{ember-selectize
+    content=employees
+    optionValuePath="content.id"
+    optionLabelPath="content.name"
+    selection=employee
+    placeholder="Select an Employee"
+  }}
+</div>
+</div>
+
+
+
+
+        </div>
+        <div class="column" >
+          <div  style="margin-top:10px" >
+            Or <a style="cursor:pointer "  {{action "openCustomerModal"}}>New Customer</a>
+          </div>
+        </div>
         <div class="column" >
           <table class="ui very basic table">
             <tbody>
