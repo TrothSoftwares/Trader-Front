@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
 
-  isCreateSupplierButtonDisabled: Ember.computed('slno' , 'payroll' , 'name' , 'department' , 'workcontact' , 'personalcontact'  ,  function() {
+  isCreateEmployeeButtonDisabled: Ember.computed('slno' , 'payroll' , 'name' , 'department' , 'workcontact' , 'personalcontact'  ,  function() {
     if( Ember.isEmpty(this.get('slno')) ||
     Ember.isEmpty(this.get('payroll')) ||
     Ember.isEmpty(this.get('name')) ||

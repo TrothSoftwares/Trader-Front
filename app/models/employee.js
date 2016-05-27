@@ -6,5 +6,6 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   department: DS.attr('string'),
   workcontact: DS.attr('string'),
-  personalcontact: DS.attr('string')  
+  personalcontact: DS.attr('string'),
+  tools: DS.hasMany('tool' ,{embedded: 'always', async:true}),
 });

@@ -79,7 +79,7 @@ Router.map(function() {
 
 
     this.route('tools', function() {
-      this.route('tool', function() {
+      this.route('tool', {path: ':id'}, function() {
         this.route('view');
         this.route('edit');
       });

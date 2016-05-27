@@ -66,6 +66,9 @@
           <label>Personalcontact :</label>
           <div class="ui transparent input"><input type="text" readonly="true" value= {{ employee.personalcontact }} ></div>
         </div>
+
+
+
         <br><br><br><br>
         <div class="ui clearing divider"></div>
 
@@ -76,4 +79,15 @@
 
     </div>
   </div>
+</div>
+
+
+
+<div class="ui black segment" >
+  <div class="ui left floated header">  Tools Issued  </div>
+  {{#each employee.tools as |tool|}}
+  {{tool.name}}
+  {{/each}}
+
+
 </div>

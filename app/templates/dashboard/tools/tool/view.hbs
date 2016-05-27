@@ -1,1 +1,66 @@
+
+<div class="ui black segment" >
+  <div class="ui left floated header">Tool Details  </div>
+  {{link-to 'Edit' 'dashboard.tools.tool.edit'  class="ui blue inverted mini right floated button "}}
+  {{link-to 'Go Back' 'dashboard.tools.index'  class="ui brown inverted mini right floated button "}}
+
+  <div class="ui clearing divider"></div>
+  <div class="ui small form">
+    <div class="ui stackable grid">
+      <div class="five wide dividing column">
+
+        <div class="inline field" style="float:right;margin-bottom :25px">
+          <label > ID :</label>
+
+          <div class="ui transparent input"><input type="text" readonly="true" value={{tool.id}} ></div>
+        </div>
+        <div class="inline field" style="float:right;margin-bottom :25px">
+          <label>Name: </label>
+          <div class="ui transparent input"><input type="text" readonly="true" value={{tool.name}} ></div>
+        </div>
+        <div class="inline field" style="float:right;margin-bottom :25px">
+          <label> Status:</label>
+          <div class="ui transparent input"><input type="text" readonly="true" value={{tool.status}} ></div>
+        </div>
+      </div>
+
+      <div class="five wide column">
+        <div class="inline field" style="float:right;margin-bottom :25px">
+          <label> Employee :</label>
+          <div class="ui transparent input"><input type="text" readonly="true" value={{tool.employee.name}}></div>
+        </div>
+
+        <div class="inline field" style="float:right;margin-bottom :25px">
+          <label>Issued  Date :</label>
+          <div class="ui transparent input">
+            {{#if tool.issuedate}}
+            {{ moment-format tool.issuedate inputFormat}}
+            {{/if}}
+          </div>
+
+        </div>
+        <div class="inline field" style="float:right;margin-bottom :25px">
+          <label>Lost Date :</label>
+          <div class="ui transparent input">
+            {{#if tool.lostdate}}
+            {{ moment-format tool.lostdate inputFormat}}
+            {{/if}}
+          </div>
+
+        </div>
+        <div class="inline field" style="float:right;margin-bottom :25px">
+          <label>Damaged Date :</label>
+          <div class="ui transparent input">
+            {{#if tool.damagedate}}
+            {{ moment-format tool.damagedate inputFormat}}
+            {{/if}}
+          </div>
+        </div>
+        <br><br><br><br>
+        <div class="ui clearing divider"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
 {{outlet}}
