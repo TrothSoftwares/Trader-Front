@@ -5,51 +5,45 @@
 <div class="ui two column grid">
   <div class="twelve wide column" style="padding:0">
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:480px;overflow:auto ">
-      <div class="ui three column grid">
-        <div class="column" style=" padding-bottom:0px">
-          <div class="ui grid">
-            <div class="four wide column ">
-              <label style="margin-top:10px"> MRF:</label>
-            </div>
-            <div class="twelve wide column ">
-              {{input placeholder="MRF"  type="text"  value=mrf}}
-            </div>
+      <div class="ui  three column grid">
+        <div class="five column wide" style=" padding-bottom:0px">
+          <div class="ui small form">
+          <div class="inline field" style="float:right">
+            <label >MRF: :</label>
+
+            {{input placeholder="MRF"  type="text" class="ui input"  value=mrf}}
+          </div>
+          <div class="inline field" style="float:right">
+            <label > Location:</label>
+
+            {{input placeholder="Location"  type="text"  value=location}}
           </div>
 
-          <div class="ui grid">
-            <div class="four wide column ">
-              <label style="margin-top:10px"> Location:</label>
-            </div>
-            <div class="twelve wide column ">
-              {{input placeholder="Location"  type="text"  value=location}}
-            </div>
-          </div>
     </div>
+  </div>
+
+        <div class=" six column wide" style="width:310px">
+          <div class="ui small form">
 
 
+            <div class="inline field" style="float:right">
+              <label >Nature :</label>
 
-        <div class="column" >
+              {{input placeholder="Nature Of Work"  type="text"  value=natureofwork}}
+            </div>
+            <div class="inline field" style="float:right">
+              <label >Issuance Date :</label>
 
+              {{pikaday-input  placeholder="Issuance Date" value=issuancedate}}
+            </div>
+
+          </div>
         </div>
 
-        <div class="column" >
 
 
-          <div class="right aligned column">
+          <div class="five column wide" style="width:290px">
             <div class="ui small form">
-
-
-              <div class="inline field" style="float:right">
-                <label >Nature Of Work :</label>
-
-                {{input placeholder="Nature Of Work"  type="text"  value=natureofwork}}
-              </div>
-              <div class="inline field" style="float:right">
-                <label >Issuance Date :</label>
-
-                {{pikaday-input  placeholder="Issuance Date" value=issuancedate}}
-              </div>
-
 
               <div class="inline field" style="float:right">
                 <label >Stock Due :</label>
@@ -62,7 +56,6 @@
                 {{input placeholder="Email" readonly="true" type="text"  value=customer.email}}
               </div>
             </div>
-          </div>
 
 
         </div>
@@ -135,10 +128,10 @@
         <div class="column" >
 
           <div class="ui grid">
-            <div class="four wide column ">
+            <div class="seven wide column ">
               <label style="margin-top:10px"> Requested By:</label>
             </div>
-            <div class="twelve wide column ">
+            <div class="nine wide column ">
           {{ember-selectize
             content=customers
             optionValuePath="content.id"
@@ -150,10 +143,10 @@
       </div>
 
       <div class="ui grid">
-        <div class="four wide column ">
+        <div class="seven wide column ">
           <label style="margin-top:10px"> Issued By:</label>
         </div>
-        <div class="twelve wide column ">
+        <div class="nine wide column ">
       {{ember-selectize
         content=suppliers
         optionValuePath="content.id"
@@ -164,20 +157,6 @@
     </div>
   </div>
 
-  <div class="ui grid">
-    <div class="four wide column ">
-      <label style="margin-top:10px"> Approved By:</label>
-    </div>
-    <div class="twelve wide column ">
-  {{ember-selectize
-    content=employees
-    optionValuePath="content.id"
-    optionLabelPath="content.name"
-    selection=employee
-    placeholder="Select an Employee"
-  }}
-</div>
-</div>
 
 
 
@@ -187,7 +166,22 @@
           <div  style="margin-top:10px" >
             Or <a style="cursor:pointer "  {{action "openCustomerModal"}}>New Customer</a>
           </div>
+          <div class="ui grid" style="margin-top:23px">
+            <div class="six wide column ">
+              <label style="margin-top:10px"> Approved By:</label>
+            </div>
+            <div class="ten wide column ">
+          {{ember-selectize
+            content=employees
+            optionValuePath="content.id"
+            optionLabelPath="content.name"
+            selection=employee
+            placeholder="Select an Employee"
+          }}
         </div>
+        </div>
+        </div>
+
         <div class="column" >
           <table class="ui very basic table">
             <tbody>

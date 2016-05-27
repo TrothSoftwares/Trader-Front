@@ -10,17 +10,23 @@
           {{input placeholder="Name"  type="text"  value=name }}
 
         </div>
-        <div class="inline field {{validChargecodeError}}" style="float:right">
-          <label>Status :</label>
 
-          <select onchange={{action "selectStatus" value="target.value"}} class="form-control">
-                                      {{#each statuses as |statusChoice|}}
-                                      <option value={{statusChoice}} selected={{eq tool.status statusChoice}}>{{statusChoice}}</option>
-                                      {{/each}}
-                                    </select>
+                <div class="inline field" style="float:right">
+                  <label> Issued Date :</label>
+                  {{pikaday-input  placeholder="Issue Date" value=issuedate }}
+                </div>
+
+                <div class="inline field" style="float:right">
+                  <label>Lost Date:</label>
+                  {{pikaday-input  placeholder="Lost Date" value=lostdate }}
+                </div>
 
 
-        </div>
+                <div class="inline field" style="float:right">
+                  <label>Damaged Date:</label>
+                  {{pikaday-input  placeholder="Damaged Date" value=damagedate }}
+                </div>
+
 
       </div>
       <div class="five wide  right aligned  column">
@@ -35,25 +41,20 @@
             selection=employee
             placeholder="Select an employee" }}
         </div>
+        <div class="inline field {{validChargecodeError}}" style="float:right">
+          <label>Status :</label>
+
+          <select onchange={{action "selectStatus" value="target.value"}} class="form-control">
+                                      {{#each statuses as |statusChoice|}}
+                                      <option value={{statusChoice}} selected={{eq tool.status statusChoice}}>{{statusChoice}}</option>
+                                      {{/each}}
+                                    </select>
 
 
-
-
-        <div class="inline field" style="float:right">
-          <label> Issued Date :</label>
-          {{pikaday-input  placeholder="Issue Date" value=issuedate }}
         </div>
 
-        <div class="inline field" style="float:right">
-          <label>Lost Date:</label>
-          {{pikaday-input  placeholder="Lost Date" value=lostdate }}
-        </div>
 
 
-        <div class="inline field" style="float:right">
-          <label>Damaged Date:</label>
-          {{pikaday-input  placeholder="Damaged Date" value=damagedate }}
-        </div>
 
         <br><br><br><br>
         <div class="ui clearing divider"></div>
