@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
   }),
 
 
-statuses :["Running", "Damaged" , "Lost"],
+statuses :["Select","Running", "Damaged" , "Lost"],
 
 
 
