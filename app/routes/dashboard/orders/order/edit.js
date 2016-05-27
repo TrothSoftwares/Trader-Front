@@ -14,6 +14,8 @@ export default Ember.Route.extend({
   setupController: function(controller ,model) {
     controller.set('order',model.order );
     controller.set('customers', this.store.findAll('customer'));
+    controller.set('suppliers', this.store.findAll('supplier'));
+    controller.set('employees', this.store.findAll('employee'));
     controller.set('products', this.store.findAll('product'));
 
 

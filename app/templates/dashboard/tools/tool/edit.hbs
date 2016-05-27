@@ -4,31 +4,37 @@
   <div class="ui small form">
     <div class="ui stackable grid">
       <div class="five wide dividing column">
-
-        <div class="inline field" style="float:right">
-          <label >ID :</label>
-          {{input placeholder="ID"  type="text" value=tool.id }}
-        </div>
-        <div class="inline field" style="float:right">
-          <label>Name: </label>
-          {{input placeholder="Name"  type="text"  value=tool.name}}
-        </div>
-        <div class="inline field" style="float:right">
-          <label> Status:</label>
-          <select onchange={{action "selectStatus" value="target.value"}} class="form-control">
-                                      {{#each statuses as |statusChoice|}}
-                                      <option value={{statusChoice}} selected={{eq tool.status statusChoice}}>{{statusChoice}}</option>
-                                      {{/each}}
-                                    </select>
+        <div class="inline field  {{validCompanycodeError}}"style="float:right" >
+          <label>Name : </label>
+          {{input placeholder="Name"  type="text"  value=tool.name }}
 
         </div>
 
+                <div class="inline field" style="float:right">
+                  <label> Issued Date :</label>
+                  {{pikaday-input  placeholder="Issue Date" value=tool.issuedate  }}
+                </div>
+
+                <div class="inline field" style="float:right">
+                  <label>Lost Date:</label>
+                  {{pikaday-input  placeholder="Lost Date" value=tool.lostdate }}
+                </div>
+
+
+                <div class="inline field" style="float:right">
+                  <label>Damaged Date:</label>
+                  {{pikaday-input  placeholder="Damaged Date" value=tool.damagedate }}
+                </div>
       </div>
 
       <div class="five wide column">
 
-        <div class="inline field" style="float:right">
-          <label> Employee :</label>
+        <div class="ui grid" >
+          <div class=" five wide column ">
+            <label style="margin-top:10px"> Employee :</label>
+          </div>
+          <div class=" eleven wide column ">
+
           {{ember-selectize
             content=employees
             optionValuePath="content.id"
@@ -36,19 +42,27 @@
             selection=tool.employee
             placeholder="Select an employee" }}
         </div>
+      </div>
 
-        <div class="inline field" style="float:right">
-          <label>Issue Date:</label>
-          {{pikaday-input  placeholder="Issue Date" value=tool.issuedate }}
+        <div class="ui grid {{validChargecodeError}}" >
+          <div class=" five wide column ">
+
+          <label style="margin-top:10px">Status :</label>
         </div>
-        <div class="inline field" style="float:right">
-          <label>Damaged Date :</label>
-          {{pikaday-input  placeholder="Damaged Date" value=tool.damagedate }}
+        <div class=" eleven wide column ">
+          <select onchange={{action "selectStatus" value="target.value"}} class="form-control">
+                                      {{#each statuses as |statusChoice|}}
+                                      <option value={{statusChoice}} selected={{eq tool.status statusChoice}}>{{statusChoice}}</option>
+                                      {{/each}}
+                                    </select>
+
+
         </div>
-        <div class="inline field" style="float:right">
-          <label>Lost Date :</label>
-          {{pikaday-input  placeholder="Lost Date" value=tool.lostdate }}
-        </div>
+      </div>
+
+
+
+
         <br><br><br><br>
         <div class="ui clearing divider"></div>
         <button class="ui primary right floated tiny button {{isSaveToolButtonDisabled}}"   {{action "saveTool"}}>

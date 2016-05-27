@@ -30,12 +30,12 @@
             <div class="inline field" style="float:right">
               <label >Nature :</label>
 
-              {{input placeholder="Nature Of Work"  type="text"  value=natureofwork}}
+              {{input placeholder="Nature Of Work"  type="text"  value=order.natureofwork}}
             </div>
             <div class="inline field" style="float:right">
               <label >Issuance Date :</label>
 
-              {{pikaday-input  placeholder="Issuance Date" value=issuancedate}}
+              {{pikaday-input  placeholder="Issuance Date" value=order.issuancedate}}
             </div>
 
           </div>
@@ -143,7 +143,7 @@
         content=suppliers
         optionValuePath="content.id"
         optionLabelPath="content.companyname"
-        selection=supplier
+        selection=order.supplier
         placeholder="Select a Supplier"
       }}
     </div>
@@ -159,7 +159,7 @@
             content=employees
             optionValuePath="content.id"
             optionLabelPath="content.name"
-            selection=employee
+            selection=order.employee
             placeholder="Select an Employee"
           }}
         </div>
