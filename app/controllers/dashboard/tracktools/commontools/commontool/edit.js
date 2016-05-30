@@ -28,7 +28,7 @@ statuses :["Select","Issued", "Returned" , "Damaged", "Lost"],
             type: 'success',
             autoClear: true
           });
-          controller.transitionToRoute('dashboard.commontools.commontool.index');
+          controller.transitionToRoute('dashboard.tracktools.commontools.index');
         }).catch(function () {
           tool.rollbackAttributes();
           controller.notifications.addNotification({
