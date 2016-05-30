@@ -1,5 +1,5 @@
 
-<div class="ui black segment" >
+<div class="ui black segment" style="min-height:255px" >
   <div class="ui dividing header">Employee Details  </div>
   <div class="ui small form">
     <div class="ui stackable grid">
@@ -63,7 +63,14 @@
 
 
 
-        <button class="ui primary right floated tiny button {{isSaveEmployeeButtonDisabled}}"   {{action "saveEmployee"}}>
+        
+      </div>
+      <div class="five wide column">
+
+      </div>
+
+    </div>
+    <button class="ui primary right floated tiny button {{isSaveEmployeeButtonDisabled}}"   {{action "saveEmployee"}}>
           <i class="save icon"></i>
           Save
         </button>
@@ -71,12 +78,7 @@
           <i class="save icon"></i>
           Delete
         </button>
+              {{link-to 'Cancel' 'dashboard.relations.employees.employee.view'  class="ui black basic tiny right floated button "}}
 
-      </div>
-      <div class="five wide column">
-
-      </div>
-
-    </div>
   </div>
 </div>

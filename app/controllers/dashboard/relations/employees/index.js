@@ -17,10 +17,10 @@ export default Ember.Controller.extend({
       "propertyName": "department","title": "Department"
     },
     {
-      "propertyName": "workcontact","title": "Workcontact"
+      "propertyName": "workcontact","title": "Work Contact"
     },
     {
-      "propertyName": "personalcontact","title": "Personalcontact"
+      "propertyName": "personalcontact","title": "Personal Contact"
     },
     {
       "title":"View" , "template":"custom/viewemployee"

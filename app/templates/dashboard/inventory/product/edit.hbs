@@ -1,5 +1,5 @@
 
-<div class="ui small form segment">
+<div class="ui small form segment" style="min-height:425px">
   <div class="two fields">
     <div class="field {{validItemcodeError}}">
       <label>Item Code</label>
@@ -76,7 +76,8 @@
     </div>
 
   </div>
+  <div class="ui blue right floated small submit button" {{action "saveProduct" product}}>Save</div>
+  <div class="ui red right floated small submit button" {{action "deleteProduct" product}}>Delete</div>
+  {{link-to 'Cancel' 'dashboard.inventory.product.view'  class="ui  basic grey small right floated button "}}
 
-  <div class="ui blue small submit button" {{action "deleteProduct" product}}>Delete</div>
-  <div class="ui blue small submit button" {{action "saveProduct" product}}>Save</div>
 </div>

@@ -11,8 +11,8 @@ body {
     /*height:83% !important;*/
     font-family:  "Lato","Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif/*rtl:prepend:"Droid Arabic Kufi","Droid Sans", */;
 
-    background: #f4f4f5;
-    background: #FCFCFC url(../images/13.jpg) repeat;
+    background: #fff;
+    /*background: #FCFCFC url(../images/13.jpg) repeat;*/
 
     margin: 0px;
     padding: 0px;
@@ -247,4 +247,14 @@ body {
 	md-input-container {
 		padding: 0;
 	}
+}
+.hseg
+{
+	border: 2px solid #00A1B1 !important;
+}
+.hseg:hover
+
+{
+		border: 2px solid #FDBC11 !important;
+
 }

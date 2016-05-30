@@ -13,16 +13,7 @@
 
             {{input placeholder="MRF"  type="text" class="ui input"  value=mrf}}
           </div>
-          <div class="inline field" style="float:right">
-            <label > Location:</label>
-            {{ember-selectize
-              content=customers
-              optionValuePath="content.id"
-              optionLabelPath="content.companyname"
-              selection=customer
-              placeholder="Select a Location"
-            }}
-          </div>
+
 
     </div>
   </div>
@@ -40,31 +31,46 @@
                                           {{/each}}
                                         </select>
             </div>
-            <div class="inline field" style="float:right">
-              <label >Date :</label>
 
-              {{pikaday-input  placeholder="Date" value=issuancedate}}
-            </div>
 
           </div>
         </div>
 
 
 
-          <!-- <div class="five column wide" style="width:290px">
+           <div class="five column wide" style="width:290px">
             <div class="ui small form">
+                        <div class="inline field" style="float:right">
+              <label >Date :</label>
 
+              {{pikaday-input  placeholder="Date" value=issuancedate}}
+            </div>
 
+            <!--
               <div class="inline field" style="float:right">
                 <label>Email : </label>
                 {{input placeholder="Email" readonly="true" type="text"  value=customer.email}}
-              </div>
+              </div>-->
             </div>
 
 
-        </div> -->
+        </div> 
         <!-- <div class=" column"><h3 style="margin-top:10px" class="ui right floated header">#P0001 </h3></div> -->
       </div>
+           <div class= "ui grid">
+          <div class="ui six wide cloumn ">
+            <label style="margin-top:12px;float:right" > Location:</label>
+                      </div>
+          <div class="ui ten cloumn" style="width:232px" >
+            {{ember-selectize
+              content=customers
+              optionValuePath="content.id"
+              optionLabelPath="content.companyname"
+              selection=customer
+              placeholder="Select a Location"
+            }}
+          </div>
+          </div>
       <div class="ui divider" ></div>
       <div class="ui three column grid">
 
@@ -168,7 +174,7 @@
         </div>
         <div class="column" >
 
-          <div class="ui grid" style="margin-top:23px">
+          <div class="ui grid" >
             <div class="six wide column ">
               <label style="margin-top:10px"> Approved By:</label>
             </div>
