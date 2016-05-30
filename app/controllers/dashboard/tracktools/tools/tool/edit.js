@@ -2,22 +2,19 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-  isSaveToolButtonDisabled: Ember.computed( 'commontool.name'   ,  function() {
-    if( Ember.isEmpty(this.get('commontool.name'))
+  isSaveToolButtonDisabled: Ember.computed( 'tool.name'   ,  function() {
+    if( Ember.isEmpty(this.get('tool.name'))
   ){return 'disabled';}
   else{return '';}
   }),
 
 
-statuses :["Select","Issued", "Returned" , "Damaged", "Lost"],
+statuses :["Select","Running", "Damaged" , "Lost"],
 
 
 
 
     actions:{
-
-
-
 
       deleteTool:function(tool){
 
@@ -28,7 +25,7 @@ statuses :["Select","Issued", "Returned" , "Damaged", "Lost"],
             type: 'success',
             autoClear: true
           });
-          controller.transitionToRoute('dashboard.commontools.commontool.index');
+          controller.transitionToRoute('dashboard.tools.index');
         }).catch(function () {
           tool.rollbackAttributes();
           controller.notifications.addNotification({
@@ -43,11 +40,11 @@ statuses :["Select","Issued", "Returned" , "Damaged", "Lost"],
 
       saveTool:function(){
         var controller = this;
-        var currentTool = this.get('commontool');
+        var currentTool = this.get('tool');
 
         currentTool.save().then(function(){
           controller.notifications.addNotification({
-            message: 'Common Tool Saved!' ,
+            message: 'Tool Saved!' ,
             type: 'success',
             autoClear: true
           });
@@ -61,13 +58,7 @@ statuses :["Select","Issued", "Returned" , "Damaged", "Lost"],
       },
 
       selectStatus(status) {
-        this.set('commontool.status', status);
-        // if(status === 'Issued'){
-          this.set("commontool.returndate" , '');
-        // }
-        // if(status === 'Returned'){
-          this.set("commontool.issuedate","");
-        // }
+        this.get('tool').set('status', status);
       },
     },
 

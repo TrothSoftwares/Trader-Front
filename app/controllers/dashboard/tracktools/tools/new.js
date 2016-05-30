@@ -10,31 +10,27 @@ export default Ember.Controller.extend({
   }),
 
 
-statuses :["Select","Issued", "Returned" , "Damaged", "Lost"],
+statuses :["Select","Running", "Damaged" , "Lost"],
 
 
 actions: {
 
   selectStatus(status) {
     this.set('status', status);
-    // if(status === 'Issued'){
-      this.set("returndate" , '');
-    // }
-    // if(status === 'Returned'){
-      this.set("issuedate","");
-    // }
   },
 
       createTool: function(){
 
         var controller = this;
 
-        var tool = this.store.createRecord('commontool', {
+        var tool = this.store.createRecord('tool', {
           name :this.get('name'),
           status :this.get('status'),
-          location :this.get('location'),
+          vendor :this.get('vendor'),
+          invoiceno :this.get('invoiceno'),
           issuedate :this.get('issuedate'),
-          returndate :this.get('returndate'),
+          damagedate :this.get('damagedate'),
+          lostdate :this.get('lostdate'),
           employee :this.get('employee')
 
 
@@ -42,12 +38,13 @@ actions: {
 
         tool.save().then(function(){
           controller.set('name','');
-          controller.set('status','');
-          controller.set('location','');
+          controller.set('toolstatus','');
+          controller.set('vendor','');
+          controller.set('invoiceno','');
           controller.set('issuedate','');
-          controller.set('returndate','');
+          controller.set('damagedate','');
           controller.set('employee','');
-          controller.transitionToRoute('dashboard.tracktools.commontools.commontool.view' , tool);
+          controller.transitionToRoute('dashboard.tracktools.tools.view' , tool);
         });
       },
 

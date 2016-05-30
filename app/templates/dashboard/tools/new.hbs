@@ -55,7 +55,7 @@
         <div class=" eleven wide column ">
           <select onchange={{action "selectStatus" value="target.value"}} class="form-control">
                                       {{#each statuses as |statusChoice|}}
-                                      <option value={{statusChoice}} selected={{eq tool.status statusChoice}}>{{statusChoice}}</option>
+                                      <option value={{statusChoice}} selected={{eq toolstatus statusChoice}}>{{statusChoice}}</option>
                                       {{/each}}
                                     </select>
 
