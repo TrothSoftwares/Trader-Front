@@ -20,25 +20,12 @@
             </div>
             <div class="inline field">
               <label style="width:75px">Location  </label>:
-              {{order.location}}
+              {{order.customer.companyname}}
             </div>
           </div>
         </div>
 
-        <div class="column" >
-          <div class="ui small form">
-            <div class="inline field" >
-              <label  style="width:75px">Stock Due </label>:
-              {{moment-format order.duedate inputFormat}}
 
-            </div>
-            <div class="inline field">
-              <label style="width:75px">Email  </label>:
-              {{order.customer.email}}
-            </div>
-          </div>
-
-        </div>
         <div class=" column">
           <div class="ui small form">
             <div class="inline field" >
@@ -47,7 +34,7 @@
 
             </div>
             <div class="inline field">
-              <label style="width:100px">Issuance Date  </label>:
+              <label style="width:100px">Date  </label>:
               {{moment-format order.issuancedate inputFormat}}
             </div>
           </div>
@@ -103,18 +90,18 @@
           <div class="ui  form">
             <div class="inline field" >
               <label style="width:110px">Requested By </label>:
-              {{order.customer.companyname}}
+              {{order.requestedby.name}}
             </div>
             <div class="inline field" >
               <label style="width:110px">Issued By </label>:
-              {{order.supplier.companyname}}
+              {{order.employee.name}}
             </div>
           </div>
         </div>
         <div class="column" >
           <div class="inline field" >
             <label style="width:110px">Approved By </label>:
-            {{order.employee.name}}
+            {{order.approvedby.name}}
           </div>
         </div>
         <div class="column" >
@@ -215,8 +202,6 @@
             {{orderitem.product.retailprice}}
         </td>
         <td>{{orderitem.computedtotal}}</td>
-
-
       </tr>
       {{/each}}
     </tbody>

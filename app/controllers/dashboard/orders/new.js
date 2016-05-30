@@ -5,6 +5,8 @@ export default Ember.Controller.extend({
 
 
 
+natures :["Select","Electrical", "Plumbing" , "Masonry" , "Telephone"],
+
   orderitems: [],
 
   isCreateCustomerButtonDisabled: Ember.computed('companyname' , 'companycode' , 'chargecode' , 'email' , 'phone'  ,  function() {
@@ -20,9 +22,8 @@ export default Ember.Controller.extend({
 
 
 
-  isCreateOrderButtonDisabled: Ember.computed('customer' , 'duedate' ,  function() {
-    if( Ember.isEmpty(this.get('customer')) ||
-    Ember.isEmpty(this.get('duedate'))
+  isCreateOrderButtonDisabled: Ember.computed('customer' ,  function() {
+    if( Ember.isEmpty(this.get('customer'))
   ){return 'disabled';}
   else{return '';}
 }),
@@ -62,18 +63,21 @@ export default Ember.Controller.extend({
   actions:{
 
 
+    selectNature(nature) {
+      this.set('natureofwork', nature);
+    },
     createOrder:function(){
 
       var controller = this;
 
       var order = this.store.createRecord('order', {
-        customer :this.get('customer'),
-        supplier :this.get('supplier'),
-        employee :this.get('employee'),
+        employee :this.get('employee'),  // instead of issuedby
+        customer :this.get('customer'),  // instead of issuedby
+        requestedby :this.get('requestedby'),
+        approvedby :this.get('approvedby'),
         natureofwork :this.get('natureofwork'),
         mrf :this.get('mrf'),
         location :this.get('location'),
-        duedate :this.get('duedate'),
         issuancedate :this.get('issuancedate'),
         orderstatus :'created',
         totalunits :this.get('computedOrderTotalUnits'),

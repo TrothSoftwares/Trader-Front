@@ -2,9 +2,16 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+natures :["Select","Electrical", "Plumbing" , "Masonry" , "Telephone"],
 
 actions:{
 
+
+  selectNature(nature) {
+    this.set('natureofwork', nature);
+  },
+
+  
       deleteOrder:function(order){
 
         var controller = this;
@@ -75,7 +82,7 @@ actions:{
 
   cancelOrder:function(order){
 
-    
+
     this.transitionToRoute('dashboard.orders.order.view' , order);
   },
 

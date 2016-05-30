@@ -15,8 +15,13 @@
           </div>
           <div class="inline field" style="float:right">
             <label > Location:</label>
-
-            {{input placeholder="Location"  type="text"  value=location}}
+            {{ember-selectize
+              content=customers
+              optionValuePath="content.id"
+              optionLabelPath="content.companyname"
+              selection=customer
+              placeholder="Select a Location"
+            }}
           </div>
 
     </div>
@@ -29,12 +34,16 @@
             <div class="inline field" style="float:right">
               <label >Nature :</label>
 
-              {{input placeholder="Nature Of Work"  type="text"  value=natureofwork}}
+              <select onchange={{action "selectNature" value="target.value"}} class="form-control">
+                                          {{#each natures as |natureChoice|}}
+                                          <option value={{natureChoice}} selected={{eq order.natureofwork natureChoice}}>{{natureChoice}}</option>
+                                          {{/each}}
+                                        </select>
             </div>
             <div class="inline field" style="float:right">
-              <label >Issuance Date :</label>
+              <label >Date :</label>
 
-              {{pikaday-input  placeholder="Issuance Date" value=issuancedate}}
+              {{pikaday-input  placeholder="Date" value=issuancedate}}
             </div>
 
           </div>
@@ -42,14 +51,9 @@
 
 
 
-          <div class="five column wide" style="width:290px">
+          <!-- <div class="five column wide" style="width:290px">
             <div class="ui small form">
 
-              <div class="inline field" style="float:right">
-                <label >Stock Due :</label>
-
-                {{pikaday-input  placeholder="Select Date" value=duedate}}
-              </div>
 
               <div class="inline field" style="float:right">
                 <label>Email : </label>
@@ -58,7 +62,7 @@
             </div>
 
 
-        </div>
+        </div> -->
         <!-- <div class=" column"><h3 style="margin-top:10px" class="ui right floated header">#P0001 </h3></div> -->
       </div>
       <div class="ui divider" ></div>
@@ -133,11 +137,11 @@
             </div>
             <div class="nine wide column ">
           {{ember-selectize
-            content=customers
+            content=employees
             optionValuePath="content.id"
-            optionLabelPath="content.companyname"
-            selection=customer
-            placeholder="Select a Customer"
+            optionLabelPath="content.name"
+            selection=requestedby
+            placeholder="Select an Employee"
           }}
         </div>
       </div>
@@ -148,11 +152,11 @@
         </div>
         <div class="nine wide column ">
       {{ember-selectize
-        content=suppliers
+        content=employees
         optionValuePath="content.id"
-        optionLabelPath="content.companyname"
-        selection=supplier
-        placeholder="Select a Supplier"
+        optionLabelPath="content.name"
+        selection=employee
+        placeholder="Select an Employee"
       }}
     </div>
   </div>
@@ -163,9 +167,7 @@
 
         </div>
         <div class="column" >
-          <div  style="margin-top:10px" >
-            Or <a style="cursor:pointer "  {{action "openCustomerModal"}}>New Customer</a>
-          </div>
+
           <div class="ui grid" style="margin-top:23px">
             <div class="six wide column ">
               <label style="margin-top:10px"> Approved By:</label>
@@ -175,7 +177,7 @@
             content=employees
             optionValuePath="content.id"
             optionLabelPath="content.name"
-            selection=employee
+            selection=approvedby
             placeholder="Select an Employee"
           }}
         </div>

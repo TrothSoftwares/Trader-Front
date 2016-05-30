@@ -15,10 +15,14 @@
           </div>
           <div class="inline field" style="float:right">
             <label > Location:</label>
-
-            {{input placeholder="Location"  type="text"  value=order.location}}
+            {{ember-selectize
+              content=customers
+              optionValuePath="content.id"
+              optionLabelPath="content.companyname"
+              selection=order.customer
+              placeholder="Select a Location"
+            }}
           </div>
-
     </div>
     </div>
 
@@ -30,10 +34,14 @@
             <div class="inline field" style="float:right">
               <label >Nature :</label>
 
-              {{input placeholder="Nature Of Work"  type="text"  value=order.natureofwork}}
+              <select onchange={{action "selectNature" value="target.value"}} class="form-control">
+                                          {{#each natures as |natureChoice|}}
+                                          <option value={{natureChoice}} selected={{eq order.natureofwork natureChoice}}>{{natureChoice}}</option>
+                                          {{/each}}
+                                        </select>
             </div>
             <div class="inline field" style="float:right">
-              <label >Issuance Date :</label>
+              <label > Date :</label>
 
               {{pikaday-input  placeholder="Issuance Date" value=order.issuancedate}}
             </div>
@@ -41,19 +49,7 @@
           </div>
         </div>
 
-                <div class="column " style="width:290px">
-                  <div class="ui small form">
-                    <div class="inline field" style="float:right">
-                      <label >Stock Due :</label>
-                      {{pikaday-input  placeholder="Select Date" value=order.duedate}}
-                    </div>
-                    <div class="inline field" style="float:right">
-                      <label>Email : </label>
-                      {{input placeholder="Email" readonly="true" type="text"  value=order.customer.email}}
-                    </div>
-                  </div>
 
-                </div>
       </div>
       <div class="ui divider" ></div>
       <div class="ui three column grid">
@@ -126,11 +122,11 @@
             </div>
             <div class="nine wide column ">
           {{ember-selectize
-            content=customers
+            content=employees
             optionValuePath="content.id"
-            optionLabelPath="content.companyname"
-            selection=order.customer
-            placeholder="Select a Customer"
+            optionLabelPath="content.name"
+            selection=order.requestedby
+            placeholder="Select an Employee"
           }}
         </div>
       </div>
@@ -140,11 +136,11 @@
         </div>
         <div class="nine wide column ">
       {{ember-selectize
-        content=suppliers
+        content=employees
         optionValuePath="content.id"
-        optionLabelPath="content.companyname"
-        selection=order.supplier
-        placeholder="Select a Supplier"
+        optionLabelPath="content.name"
+        selection=order.employee
+        placeholder="Select an Employee"
       }}
     </div>
   </div>
@@ -159,7 +155,7 @@
             content=employees
             optionValuePath="content.id"
             optionLabelPath="content.name"
-            selection=order.employee
+            selection=order.approvedby
             placeholder="Select an Employee"
           }}
         </div>
