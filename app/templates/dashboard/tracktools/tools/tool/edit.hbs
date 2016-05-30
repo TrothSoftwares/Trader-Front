@@ -1,0 +1,84 @@
+
+<div class="ui black segment" >
+  <div class="ui dividing header">Tool Details  </div>
+  <div class="ui small form">
+    <div class="ui stackable grid">
+      <div class="five wide dividing column">
+        <div class="inline field  {{validCompanycodeError}}"style="float:right" >
+          <label>Name : </label>
+          {{input placeholder="Name"  type="text"  value=tool.name }}
+
+        </div>
+
+                <div class="inline field" style="float:right">
+                  <label> Issued Date :</label>
+                  {{pikaday-input  placeholder="Issue Date" value=tool.issuedate  }}
+                </div>
+
+                <div class="inline field" style="float:right">
+                  <label>Vendor:</label>
+                  {{input placeholder="Name"  type="text"  value=tool.vendor }}
+                </div>
+
+
+                <div class="inline field" style="float:right">
+                  <label>Invoice No:</label>
+                  {{input placeholder="Name"  type="text"  value=tool.invoiceno }}
+                </div>
+      </div>
+
+      <div class="five wide column">
+
+        <div class="ui grid" >
+          <div class=" five wide column ">
+            <label style="margin-top:10px"> Employee :</label>
+          </div>
+          <div class=" eleven wide column ">
+
+          {{ember-selectize
+            content=employees
+            optionValuePath="content.id"
+            optionLabelPath="content.name"
+            selection=tool.employee
+            placeholder="Select an employee" }}
+        </div>
+      </div>
+
+        <div class="ui grid {{validChargecodeError}}" >
+          <div class=" five wide column ">
+
+          <label style="margin-top:10px">Status :</label>
+        </div>
+        <div class=" eleven wide column ">
+          <select onchange={{action "selectStatus" value="target.value"}} class="form-control">
+                                      {{#each statuses as |statusChoice|}}
+                                      <option value={{statusChoice}} selected={{eq tool.status statusChoice}}>{{statusChoice}}</option>
+                                      {{/each}}
+                                    </select>
+
+
+        </div>
+      </div>
+
+
+
+
+        <br><br><br><br>
+        <div class="ui clearing divider"></div>
+        <button class="ui primary right floated tiny button {{isSaveToolButtonDisabled}}"   {{action "saveTool"}}>
+          <i class="save icon"></i>
+          Save
+        </button>
+        <button class="ui primary right floated tiny button "   {{action "deleteTool" tool}}>
+          <i class="save icon"></i>
+          Delete
+        </button>
+
+      </div>
+      <div class="five wide column">
+
+      </div>
+
+    </div>
+  </div>
+</div>

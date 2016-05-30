@@ -1,0 +1,16 @@
+<div class="ui tabular menu" style="margin:0">
+  {{link-to  "Tools" 'dashboard.tracktools.employeetools.index' class="item" }}
+  {{link-to  "CommonTools" 'dashboard.tracktools.commontools.index' class="item" }}
+</div>
+<div class="ui bottom attached tab segment active" data-tab="first">
+  <h2 class="ui dividing header">Common Tools</h2>
+  {{models-table
+    data=commontools
+    columns=commontoolsColumns
+    customMessages=customMessages
+    useFilteringByColumns=false
+    showColumnsDropdown=false
+    useNumericPagination=true
+    filteringIgnoreCase=true
+   }}
+ </div>
