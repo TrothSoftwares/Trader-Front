@@ -87,6 +87,23 @@ Router.map(function() {
     });
 
 
+    this.route('tracktools', function() {
+      this.route('tools', function() {
+        this.route('new');
+        this.route('tool', {path: ':id'},function() {
+          this.route('view');
+          this.route('edit');
+        });
+      });
+      this.route('commontools', function() {
+        this.route('new');
+        this.route('commontool', {path: ':id'}, function() {
+          this.route('edit');
+          this.route('view');
+        });
+      });
+      this.route('employeetools');
+    });
   });
   this.route('login');
 

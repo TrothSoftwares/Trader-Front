@@ -1,3 +1,10 @@
+<div class="ui tabular menu" style="margin:0">
+  {{link-to  "Supplier" 'dashboard.relations.suppliers.index' class="item" }}
+
+  {{link-to  "Department" 'dashboard.relations.customers.index' class="item" }}
+
+  {{link-to  "Employee" 'dashboard.relations.employees.index' class="item" }}
+</div>
 <div class="ui bottom attached tab segment active" data-tab="first">
   <h2 class="ui dividing header">Employees</h2>
   {{models-table
