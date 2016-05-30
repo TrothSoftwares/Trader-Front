@@ -1,0 +1,12 @@
+<div class="ui bottom attached tab segment active" data-tab="first">
+  <h2 class="ui dividing header">Employees</h2>
+  {{models-table
+    data=employees
+    columns=employeeColumns
+    customMessages=customMessages
+    useFilteringByColumns=false
+    showColumnsDropdown=false
+    useNumericPagination=true
+    filteringIgnoreCase=true
+   }}
+ </div>

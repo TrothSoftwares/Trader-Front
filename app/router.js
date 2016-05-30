@@ -102,7 +102,12 @@ Router.map(function() {
           this.route('view');
         });
       });
-      this.route('employeetools');
+      this.route('employeetools', function() {
+        this.route('employeetool',  {path: ':id'},  function() {
+          this.route('view');
+          this.route('edit');
+        });
+      });
     });
   });
   this.route('login');
