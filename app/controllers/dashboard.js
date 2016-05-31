@@ -6,9 +6,6 @@ const {
 } = Ember;
 
 export default Ember.Controller.extend({
-  currentProductType: 'all',
-  allActiveClass :'active',
-
 
   count: Ember.computed('mdata.meta.pagination.last.number', 'mdata.meta.pagination.self.number', function() {
    const total = this.get('mdata.meta.pagination.last.number') || this.get('mdata.meta.pagination.self.number');
@@ -63,9 +60,6 @@ export default Ember.Controller.extend({
   },
 
   actions: {
-
-
-
     onScrolledToBottom() {
       if(this.get('canLoadMore')) {
         this.incrementProperty('page');
@@ -88,7 +82,7 @@ export default Ember.Controller.extend({
     onPaginationClick(number) {
       if (number) {
         this.setProperties({
-          direction: 'asc',
+          productname: 'asc',
           page: number
         });
         this.table.setRows([]);
@@ -96,9 +90,6 @@ export default Ember.Controller.extend({
 
       }
     },
-
-
-
     searchProduct(searchproduct){
 
         this.setProperties({
@@ -128,70 +119,7 @@ export default Ember.Controller.extend({
       }
 
 
-    },
-
-
-    changeActiveClass: function(producttype){
-
-var controller = this;
-
-  this.set('allActiveClass','');
-  this.producttypes.forEach(function(ptype){
-    ptype.set('activeclass' , '');
-
-  });
-  if(producttype === 'active'){
-
-    this.set('allActiveClass' , 'active');
-    this.set('currentProductType' ,  'all');
-    this.setProperties({
-      sort: 'asc',
-      page: 1
-    });
-  }
-  else{
-
-  producttype.set('activeclass' , 'active');
-  this.set('currentProductType' , producttype.get('typename'));
-  this.setProperties({
-    producttype: producttype.get('id'),
-    sort: 'asc',
-    page: 1
-  });
-}
-
-
-
-
-
-
-
-this.table.setRows([]);
-
-
-// redoing fetchRecords
-this.set('isLoading', true);
-if (producttype && producttype !=="active") {
-this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' , 'producttype'])).then(records => {
-  this.table.addRows(records);
-  controller.set('mdata',records);
-  this.set('isLoading', false);
-  this.set('canLoadMore', !isEmpty(records));
-});
-}
-else{
-this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' ])).then(records => {
-  this.table.addRows(records);
-  controller.set('mdata',records);
-  this.set('isLoading', false);
-  this.set('canLoadMore', !isEmpty(records));
-});
-}
-
-
-},
-
-
+      }
     }
 
 });

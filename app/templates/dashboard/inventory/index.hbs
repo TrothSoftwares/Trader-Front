@@ -1,6 +1,10 @@
 
-
-<div class="ui top attached tabular menu">
+  <div class="ui segment basic  ">
+    <div class="ui item active transparent icon input">
+                    {{input type="text" class="ui " value=searchproduct  placeholder="Search product..." key-up="searchProduct" }}
+                    <i class="search icon"></i>
+    </div>
+    <div class="ui top attached tabular menu">
 
   <a class="item {{allActiveClass}}" {{action "changeActiveClass" 'active'}}  >All</a>
   {{#each producttypes as |producttype|}}
@@ -12,30 +16,68 @@
 
 </div>
 
-<div class="ui bottom attached tab segment {{allActiveClass}} ">
-  {{models-table
-    data=computedProducts
-    columns=columns
-    customMessages=customMessages
-    useFilteringByColumns=false
-    showColumnsDropdown=false
-    useNumericPagination=true
-   }}
+
+    {{!-- BEGIN-SNIPPET simple-table --}}
+    <table class="ui celled table">
+
+    {{#light-table table onScrolledToBottom=(action 'onScrolledToBottom') as |t|}}
+    <thead>
+      {{t.head
+        onColumnClick=(action 'onColumnClick')
+        iconAscending='fa fa-sort-asc'
+        iconDescending='fa fa-sort-desc'
+        fixed=true
+      }}
+    </thead>
+
+      {{#t.body canSelect=false height='64vh' as |body|}}
+        {{#if isLoading}}
+          {{#body.loader}}
+          <div class="spinner">
+<div class="rect1"></div>
+<div class="rect2"></div>
+<div class="rect3"></div>
+<div class="rect4"></div>
+<div class="rect5"></div>
+</div>
+          {{/body.loader}}
+        {{/if}}
+      {{/t.body}}
+      {{#t.foot}}
+      <tfoot>
+    <tr>
+
+      <th colspan="3">
+<div class="ui right floated pagination menu">
+      {{#each count as |number|}}
+      {{#if (eq number mdata.meta.pagination.self.number) }}
+      <a class="icon item " {{action "onPaginationClick" number}}>
+        <i class="chevron icon" style="text-transform:capitalize"> {{ number }}</i>
+      </a>
+
+      {{else}}
+      <a class="icon item" {{action "onPaginationClick" number}}>
+        <i class="chevron icon" style="text-transform:capitalize"> {{ number }}</i>
+      </a>
+      {{/if}}
+      {{/each}}
 </div>
 
-{{#each producttypes as |producttype|}}
-<div class="ui bottom attached tab segment {{producttype.activeclass}}" >
-  {{models-table
-    data=computedProducts
-    columns=columns
-    customMessages=customMessages
-    useFilteringByColumns=false
-    showColumnsDropdown=false
-    useNumericPagination=true
-  }}
-</div>
-{{/each}}
+
+    </th>
+  </tr></tfoot>
+      {{/t.foot}}
+    {{/light-table}}
+  </table>
+    {{!-- END-SNIPPET --}}
 
 
- {{intialize-semanticuitabs}}
+
+
+
+
+
+
+
 {{outlet}}
+</div>
