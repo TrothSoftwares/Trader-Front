@@ -1,86 +1,182 @@
 import Ember from 'ember';
+import Table from 'ember-light-table';
+
+const {
+  isEmpty
+} = Ember;
 
 export default Ember.Controller.extend({
 
-    columns: [
-      {
-        "propertyName": "id", "title": "Sl.No"
-      },
-      {
-        "propertyName": "itemcode","title": "Item Code"
-      },
-      {
-        "propertyName": "productname","title": "Product Name"
-      },
-      {
-        "propertyName": "initialstocklevel","title": "Stock in hand"
-      },
-      {
-        "propertyName": "retailprice","title": "Retail Price"
-      },
-      {
-        "propertyName": "producttype.typename","title": "Product Type"
-      },
-      {
-        "title":"View" , "template":"custom/viewinventory"
-      },
-    ],
+  count: Ember.computed('mdata.meta.pagination.last.number', 'mdata.meta.pagination.self.number', function() {
+   const total = this.get('mdata.meta.pagination.last.number') || this.get('mdata.meta.pagination.self.number');
+   if (!total){
+   return [];
+ }
+   return new Array(total+1).join('x').split('').map((e,i) => i+1);
+ }),
+
+
+  columns: [{
+    label: 'Id',
+    valuePath:"id",
+  },
+  {
+    label: 'Item Code',
+    valuePath:"itemcode",
+  },
+  {
+    label: 'Product Name',
+    valuePath:"productname",
+  },
+  {
+    label: 'Initial Stock Level',
+    valuePath:"initialstocklevel",
+  },
+  {
+    label: 'Retail Price',
+    valuePath:"retailprice",
+  }
+],
+  table: null,
+  sort: null,
+  page: 1,
+  size: 2,
+  direction: 'asc',
+  isLoading: false,
+  canLoadMore: true,
+
+  init() {
+    this._super(...arguments);
+    this.set('table', new Table(this.get('columns')));
+  },
+
+  fetchRecords() {
+    this.set('isLoading', true);
+    this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction'])).then(records => {
+      this.table.addRows(records);
+      this.set('isLoading', false);
+      this.set('canLoadMore', !isEmpty(records));
+    });
+  },
+
+  actions: {
 
 
 
- 
-    customMessages: {
-      "searchLabel": "Search",
-      "columns-title": "Columns",
-      "columns-showAll": "Show all",
-      "columns-hideAll": "Hide all",
-      "columns-restoreDefaults": "Restore Columns",
-      "tableSummary": "Now are showing %@ - %@ of %@",
-      "allColumnsAreHidden": "No visible columns, dude!",
-      "noDataToShow": "No data. Sorry, bro..."
+    onScrolledToBottom() {
+      if(this.get('canLoadMore')) {
+        this.incrementProperty('page');
+        this.fetchRecords();
+      }
+    },
+
+    onColumnClick(column) {
+      if (column.sorted) {
+        this.setProperties({
+          direction: column.ascending ? 'asc' : 'desc',
+          sort: column.get('valuePath'),
+          page: 1
+        });
+        this.table.setRows([]);
+        this.fetchRecords();
+      }
+    },
+
+    onPaginationClick(number) {
+      if (number) {
+        this.setProperties({
+          direction: 'asc',
+          page: number
+        });
+        this.table.setRows([]);
+        this.fetchRecords();
+
+      }
     },
 
 
-  currentProductType: 'all',
-    allActiveClass :'active',
+
+    searchProduct(searchproduct){
+
+        this.setProperties({
+          productname: searchproduct,
+          sort: 'asc',
+          page: 1
+        });
+
+        this.table.setRows([]);
 
 
-  // i forgot what logic is this;  Working : dont touch please
-    computedProducts: function() {
-       var currentProductType = this.get('currentProductType');
-      if (currentProductType === 'all'){
-         return this.get('products');
+// redoing fetchRecords
+        this.set('isLoading', true);
+        if (searchproduct) {
+        this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' , 'productname'])).then(records => {
+          this.table.addRows(records);
+          this.set('isLoading', false);
+          this.set('canLoadMore', !isEmpty(records));
+        });
       }
       else{
-         return this.get('products').filterBy('producttype.typename', currentProductType);
-      }
-    }.property('currentProductType','products'),
-
-
-
-
-
-    actions: {
-
-
-      changeActiveClass: function(producttype){
-        this.set('allActiveClass','');
-        this.producttypes.forEach(function(ptype){
-          ptype.set('activeclass' , '');
-
+        this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' ])).then(records => {
+          this.table.addRows(records);
+          this.set('isLoading', false);
+          this.set('canLoadMore', !isEmpty(records));
         });
-        if(producttype === 'active'){
-          this.set('allActiveClass' , 'active');
-          this.set('currentProductType' ,  'all');
-        }
-        else{
-        producttype.set('activeclass' , 'active');
-        this.set('currentProductType' , producttype.get('typename'));
       }
 
-      },
 
+    },
+
+
+    changeActiveClass: function(producttype){
+  this.set('allActiveClass','');
+  this.producttypes.forEach(function(ptype){
+    ptype.set('activeclass' , '');
+
+  });
+  if(producttype === 'active'){
+    this.set('allActiveClass' , 'active');
+    this.set('currentProductType' ,  'all');
+  }
+  else{
+  producttype.set('activeclass' , 'active');
+  this.set('currentProductType' , producttype.get('typename'));
+}
+
+
+
+
+
+this.setProperties({
+  producttype: producttype.get('id'),
+  sort: 'asc',
+  page: 1
+});
+
+this.table.setRows([]);
+
+
+// redoing fetchRecords
+this.set('isLoading', true);
+if (producttype) {
+this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' , 'producttype'])).then(records => {
+  this.table.addRows(records);
+  this.set('isLoading', false);
+  this.set('canLoadMore', !isEmpty(records));
+});
+}
+else{
+this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' ])).then(records => {
+  this.table.addRows(records);
+  this.set('isLoading', false);
+  this.set('canLoadMore', !isEmpty(records));
+});
+}
+
+
+},
 
 
     }
-  });
+
+});

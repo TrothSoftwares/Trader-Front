@@ -1,30 +1,29 @@
 import Ember from 'ember';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Route.extend({
-  model: function() {
-    // return this.store.findAll('product' ,{reload: true});
-    return  this.store.findAll('product' ,{reload :true}).then(function(data){
-      return data.filter(function(item){
-
-         return item.get('id') !== '1';
-      });
-    });
-  },
+export default Ember.Route.extend(AuthenticatedRouteMixin,{
 
 
+  model() {
+      return this.store.query('product',{page: 1, size: 3});
+    },
 
+    setupController(controller, model) {
+      controller.set('producttypes', controller.store.findAll('producttype',{reload: true}));
+      controller.get('table').setRows(model);
+       controller.set('mdata',model);
 
-
-
+    },
 
 
 
-  setupController: function(controller ,model) {
-    controller.set('products',model);
-    controller.set('suppliers', this.store.findAll('supplier',{reload: true}) );
-    controller.set('producttypes', controller.store.findAll('producttype',{reload: true}));
-    controller.set('productbrands', this.store.findAll('productbrand',{reload: true}) );
-  },
+session: Ember.inject.service('session'),
 
+  actions: {
+    logout() {
 
+      this.get('session').invalidate();
+      this.transitionTo('login');
+    }
+  }
 });
