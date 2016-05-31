@@ -25,7 +25,7 @@ statuses :["Select","Running", "Damaged" , "Lost"],
             type: 'success',
             autoClear: true
           });
-          controller.transitionToRoute('dashboard.tools.index');
+          controller.transitionToRoute('dashboard.tracktools.tools.index');
         }).catch(function () {
           tool.rollbackAttributes();
           controller.notifications.addNotification({
