@@ -26,7 +26,6 @@ export default Ember.Controller.extend({
     Ember.isEmpty(this.get('productname')) ||
     Ember.isEmpty(this.get('supplier')) ||
     Ember.isEmpty(this.get('typename')) ||
-    Ember.isEmpty(this.get('brandname')) ||
     Ember.isEmpty(this.get('initialstocklevel')) ||
     Ember.isEmpty(this.get('initialcostprice')) ||
     Ember.isEmpty(this.get('buyprice'))
