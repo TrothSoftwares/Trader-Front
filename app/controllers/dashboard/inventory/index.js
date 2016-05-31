@@ -50,7 +50,7 @@ export default Ember.Controller.extend({
   table: null,
   sort: null,
   page: 1,
-  size: 10,
+  size: 8,
   direction: 'asc',
   isLoading: false,
   canLoadMore: true,
