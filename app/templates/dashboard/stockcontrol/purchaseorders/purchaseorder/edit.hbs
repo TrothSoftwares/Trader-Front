@@ -95,17 +95,18 @@
       </table>
       <br>
       <div class="ui column grid centered">
-      <button class=" ui tiny right floated inverted button blue"  {{action 'addNewPurchaseOrderItem'}}>Add New Item</button>
+      <button class=" ui tiny right floated inverted button blue" style="magin-bottom:10px" {{action 'addNewPurchaseOrderItem'}}>Add New Item</button>
     </div>
 
+      <br>
 
     </div>
-    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.5)">
+    <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:#fff">
 
     <!-- .  <button class=" ui tiny right floated  green button" {{createPurchaseOrder}}>Create</button> -->
     .  <button class=" ui tiny right floated inverted blue button"  {{action 'draftPurchaseOrder'}}>Save</button>
-      <button class=" ui tiny right floated inverted black button"  {{action 'cancelPurchaseOrder' purchaseorder}}>Cancel</button>
-      <button class=" ui tiny right floated inverted red button"  {{action 'deletePurchaseOrder' purchaseorder }}>Delete</button>
+      <button class=" ui tiny right floated basic black button"  {{action 'cancelPurchaseOrder' purchaseorder}}>Cancel</button>
+      <button class=" ui tiny left floated inverted red button"  {{action 'deletePurchaseOrder' purchaseorder }}>Delete</button>
 
     </div>
 

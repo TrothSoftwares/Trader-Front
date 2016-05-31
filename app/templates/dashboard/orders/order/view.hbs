@@ -239,7 +239,6 @@
         <td  >
             {{orderitem.quantity}}
         </td>
-      
         <td >
             {{orderitem.product.retailprice}}
         </td>
@@ -250,6 +249,25 @@
   </table>
   <br>
 
+  <div class="ui three column grid">
+    <div class="column" ></div>
+    <div class="column" ></div>
+    <div class="column" >
+            
+      <table class="ui very basic table">
+        <tbody>
+          <tr>
+            <td>Total Units</td>
+            <td class="right aligned">{{order.computedtotalunits}}</td>
+          </tr>
+          <tr>
+            <td>Total Cost</td>
+            <td class="right aligned">{{order.computedtotalcosts}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
   <div class="ui three column grid">
     <div class="column" >
 <div class="ui small form">
@@ -274,18 +292,7 @@
           {{order.approvedby.name}}
         </div>
       </div>
-      <table class="ui very basic table">
-        <tbody>
-          <tr>
-            <td>Total Units</td>
-            <td class="right aligned">{{order.computedtotalunits}}</td>
-          </tr>
-          <tr>
-            <td>Total Cost</td>
-            <td class="right aligned">{{order.computedtotalcosts}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+            </div>
+            </div>
+
 </div>
