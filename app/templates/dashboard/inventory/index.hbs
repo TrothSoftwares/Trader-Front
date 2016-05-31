@@ -29,8 +29,8 @@
         fixed=true
       }}
     </thead>
-
-      {{#t.body canSelect=false height='64vh' as |body|}}
+      <div style="height:300px">
+      {{#t.body canSelect=false maxheight='300px' overflow='auto' as |body|}}
         {{#if isLoading}}
           {{#body.loader}}
           <div class="spinner">
@@ -43,28 +43,13 @@
           {{/body.loader}}
         {{/if}}
       {{/t.body}}
+      </div>
       {{#t.foot}}
       <tfoot>
     <tr>
 
 
-{{#if count}}
- <div class="ui right floated pagination menu">
-      {{#each count as |number|}}
-      {{#if (eq number mdata.meta.pagination.self.number) }}
-      <a class="icon item " {{action "onPaginationClick" number}}>
-        <i class="chevron icon" style="text-transform:capitalize"> {{ number }}</i>
-      </a>
 
-      {{else}}
-      <a class="icon item" {{action "onPaginationClick" number}}>
-        <i class="chevron icon" style="text-transform:capitalize"> {{ number }}</i>
-      </a>
-      {{/if}}
-      {{/each}}
- 
-</div>
-{{/if}}
 
 
    </tr></tfoot>
