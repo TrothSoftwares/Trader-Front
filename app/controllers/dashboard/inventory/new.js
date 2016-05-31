@@ -187,6 +187,12 @@ actions:{
 
   },
 
+  closeSupplierModal: function(){
+    Ember.$('.ui.newsupplier.modal')
+    .modal('hide')
+    ;
+  },
+
   openSupplierModal: function(){
     Ember.$('.ui.newsupplier.modal')
     .modal('show')
@@ -272,6 +278,13 @@ actions:{
   },
 
 
+
+  closeProductTypeModal:function(){
+
+    Ember.$('.ui.newproducttype.modal')
+    .modal('hide')
+    ;
+  },
 
   openProductTypeModal:function(){
 

@@ -83,6 +83,8 @@
 
         </div>
         <div class="ui blue small submit button {{isCreateProductButtonDisabled}}"   {{action "createProduct"}}>Submit</div>
+                    {{link-to 'Cancel' 'dashboard.inventory.index'  class="ui  basic  small button "}}
+
       </div>
 
       <div class="ui small newsupplier modal"style="top:50px;bottom:50px">
@@ -161,6 +163,9 @@
                 </div>
               </div>
               <div class="ui blue small submit button {{isCreateSupplierButtonDisabled}}" {{action "createSupplier"}}>Submit</div>
+      <div class="ui basic grey small  submit button"  {{action "closeSupplierModal"}}>Cancel</div>
+
+
             </div>
           </p>
 
@@ -199,5 +204,7 @@
             </div>
           </div>
           <div class="ui blue small submit button " {{action "createProductType"}}>Submit</div>
+      <div class="ui basic grey small  submit button"  {{action "closeProductTypeModal"}}>Cancel</div>
+
         </div>
       </div>
