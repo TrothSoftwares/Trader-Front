@@ -5,7 +5,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,{
 
 
   model() {
-      return this.store.query('product',{page: 1, size: 3});
+      return this.store.query('product',{page: 1, size: 10});
     },
 
     setupController(controller, model) {
