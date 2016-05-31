@@ -1,5 +1,5 @@
 
-<div class="ui black segment" style="min-height:275px" >
+<div class="ui black segment" style="min-height:305px" >
   <div class="ui dividing header">Tool Details  </div>
   <div class="ui small form">
     <div class="ui stackable grid">
@@ -24,7 +24,7 @@
                 <div class="inline field" style="float:right">
                   <label>Invoice No:</label>
                   {{input placeholder="Name"  type="text"  value=tool.invoiceno }}
-                </div>
+                </div>tracktools
       </div>
 
       <div class="five wide column">
@@ -66,17 +66,18 @@
 
 
       </div>
-      <div class="five wide column">
-
-      </div>
+      <div class="five wide column"></div>
 
     </div>
+    <div class="ui divider"></div>
+
     <button class="ui primary right floated tiny button {{isSaveToolButtonDisabled}}"   {{action "saveTool"}}>
       <i class="save icon"></i>
       Save
     </button>
-    <button class="ui primary right floated tiny button "   {{action "deleteTool" tool}}>
-      <i class="save icon"></i>
+    {{link-to 'Cancel' 'dashboard.tracktools.tools.tool.view'  class="ui black basic tiny right floated button "}}
+    <button class="ui red left floated tiny button "   {{action "deleteTool" tool}}>
+      <i class="trash icon"></i>
       Delete
     </button>
   </div>
