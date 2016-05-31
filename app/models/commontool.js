@@ -7,5 +7,5 @@ status: DS.attr('string'),
 issuedate: DS.attr('date'),
 returndate: DS.attr('date'),
 location: DS.attr('string'),
-employee: DS.belongsTo('employee' ,{async:true})
+commontoolissuances: DS.hasMany('commontoolissuance' ,{embedded: 'always', async:true}),
 });

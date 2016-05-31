@@ -1,64 +1,114 @@
+.
+{{#if (or (eq commontool.status 'Returned') (eq commontool.status ''))}}
+<button class="ui primary right floated tiny button"   {{action "NewIssuance"}}>
+  <i class="save icon"></i>
+  New Issuance
+</button>
+{{/if}}
 
-<div class="ui black segment" >
-  <div class="ui left floated header">Tool Details  </div>
-    {{link-to 'Go Back' 'dashboard.tracktools.commontools.index'  class="ui green inverted mini right floated button "}}
 
-  {{link-to 'Edit' 'dashboard.tracktools.commontools.commontool.edit'  class="ui blue inverted mini right floated button "}}
+{{#if (eq commontool.status 'Issued')}}
+<div class="ui black segment" style="min-height:260px" >
+  {{link-to 'Go Back' 'dashboard.tracktools.commontools.index'  class="ui green inverted tiny right floated button "}}
 
-  <div class="ui clearing divider"></div>
+  <div class="ui dividing header">Tool Details  </div>
+
   <div class="ui small form">
-    <h4 class="ui header"style="margin-top:5px">Tool ID: {{commontool.id}}</h4>
     <div class="ui stackable grid">
-      <div class="two wide column">
-      </div>
-      <div class="five wide dividing  column">
-        <div class="inline field" style="margin-bottom :20px">
-          <label  style="width:110px">Name </label>:
-          {{commontool.name}}
-        </div>
-        <div class="inline field" style="margin-bottom :20px">
-          <label  style="width:100px">Issued  Date </label>:
-          <div class="ui transparent input">
-            {{#if commontool.issuedate}}
-            {{ moment-format commontool.issuedate inputFormat}}
-            {{/if}}
-          </div>
-
-        </div>
-        <div class="inline field" style="margin-bottom :20px">
 
 
-        </div>
-        <div class="inline field" style="margin-bottom :20px">
-          <label style="width:100px">Return Date </label>:
-          <div class="ui transparent input">
-            {{#if commontool.returndate}}
-            {{ moment-format commontool.returndate inputFormat}}
-            {{/if}}
-          </div>
-        </div>
+      <div class="five wide dividing column">
+                <div class="inline field" style="float:right">
+                  <label> Issued Date :</label>
+                  {{pikaday-input  placeholder="Issue Date" value=commontool.commontoolissuances.lastObject.issuedate  }}
+                </div>
 
 
 
 
+                <div class="inline field" style="float:right">
+                  <label>Location</label>
+                  {{input placeholder="Location"  type="text"  value=commontool.commontoolissuances.lastObject.location }}
+                </div>
       </div>
 
       <div class="five wide column">
-        <div class="inline field" style="margin-bottom :25px">
-          <label  style="width:75px">Employee </label>:
-        {{commontool.employee.name}}
-        </div>
-        <div class="inline field" style="margin-bottom :20px">
-          <label  style="width:75px">Status </label>:
-          {{commontool.status}}
-        </div>
 
+        <div class="ui grid" >
+          <div class=" five wide column " >
+            <label style="margin-top:10px"> Employee :</label>
+          </div>
+          <div class=" eleven wide column ">
 
-        <br><br><br><br>
-        <div class="ui clearing divider"></div>
+          {{ember-selectize
+            content=employees
+            optionValuePath="content.id"
+            optionLabelPath="content.name"
+            selection=commontool.commontoolissuances.lastObject.employee
+            placeholder="Select an employee" }}
+        </div>
+      </div>
+
+        <div class="ui grid {{validChargecodeError}}" >
+          <div class=" five wide column " style="padding-top:0">
+
+          <label style="margin-top:10px">Return Date :</label>
+        </div>
+        <div class=" eleven wide column "style="padding-top:0">
+          {{pikaday-input  placeholder="Return Date" value=commontool.commontoolissuances.lastObject.returndate  }}
+
+        </div>
+      </div>
+      </div>
+      <div class="five wide column">
+
       </div>
 
     </div>
+    <div class="ui divider">  </div>
+    <button class="ui primary right floated tiny button"   {{action "saveIssuance"}}>
+      <i class="save icon"></i>
+      Update
+    </button>
+    <button class="ui primary right floated tiny button "   {{action "returnIssuance"}}>
+      <i class="save icon"></i>
+      Return
+    </button>
   </div>
 </div>
-{{outlet}}
+
+{{/if}}
+
+<div class="ui black segment" style="max-height:260px;overflow:auto" >
+  <div class="ui left floated header">  Common Tools Issuance History  </div>
+  <table class="ui celled table">
+  <thead>
+    <tr>
+    <th>ID</th>
+    <th>Employee Name</th>
+    <th>Issued Date</th>
+    <th>Location</th>
+    <th>Returned Date</th>
+  </tr></thead>
+  <tbody>
+    {{#each commontool.commontoolissuances as |commontoolissuance|}}
+    <tr>
+      <td>{{commontoolissuance.id}}</td>
+      <td>{{commontoolissuance.employee.name}}</td>
+      <td>
+        {{#if commontoolissuance.issuedate}}
+        {{ moment-format commontoolissuance.issuedate inputFormat}}
+        {{/if}}
+      </td>
+      <td>{{ commontoolissuance.location }}</td>
+      <td>
+        {{#if commontoolissuance.returndate}}
+        {{ moment-format commontoolissuance.returndate inputFormat}}
+        {{/if}}
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+</div>
