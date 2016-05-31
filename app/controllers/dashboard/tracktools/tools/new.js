@@ -44,7 +44,7 @@ actions: {
           controller.set('issuedate','');
           controller.set('damagedate','');
           controller.set('employee','');
-          controller.transitionToRoute('dashboard.tracktools.tools.view' , tool);
+          controller.transitionToRoute('dashboard.tracktools.tools.tool.view' , tool);
         });
       },
 
