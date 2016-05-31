@@ -21,6 +21,7 @@
     <table class="ui celled table">
 
     {{#light-table table onScrolledToBottom=(action 'onScrolledToBottom') as |t|}}
+    <div style="margin-right:15px">
     <thead>
       {{t.head
         onColumnClick=(action 'onColumnClick')
@@ -29,6 +30,7 @@
         fixed=true
       }}
     </thead>
+    </div>
       <div style="height:399px">
 
       {{#t.body canSelect=false maxheight='300px' overflow='auto' as |body|}}
