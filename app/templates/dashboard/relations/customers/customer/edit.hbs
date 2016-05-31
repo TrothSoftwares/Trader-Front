@@ -1,4 +1,4 @@
-<div class="ui black segment" style="min-height:245px">
+<div class="ui black segment" style="min-height:255px">
  <div class="ui dividing header">Edit Department  </div>
 <div class="ui small form">
   <div class="ui stackable grid">
@@ -54,7 +54,6 @@
   {{input placeholder="Phone"  type="text" value=customer.phone }}
 </div>
 
-<div class="ui clearing divider"></div>
 
 
 
@@ -67,11 +66,13 @@
 </div>
 
 </div>
+<div class="ui clearing divider"></div>
+
 <button class="ui right floated primary tiny button  {{isSaveCustomerButtonDisabled}}"   {{action "saveCustomer"}}>
    <i class="save icon"></i>
   Save
 </button>
-<button class="ui left floated secondary tiny button"style="width:" {{action "deleteCustomer" customer}}>
+<button class="ui left floated red tiny button"style="width:" {{action "deleteCustomer" customer}}>
   <i class="trash outline icon"></i>
   Delete
 </button>
