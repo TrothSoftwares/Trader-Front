@@ -208,28 +208,13 @@
       </div>
     </div>
     <div class="column" >
-      <div class="ui small form">
-        <div class="inline field" >
-          <label  style="width:100px">Requested By </label>:
-          {{order.requestedby.name}}
-        </div>
-      </div>
+      
     </div>
     <div class="column" >
-      <div class="ui small form">
-        <div class="inline field" >
-          <label  style="width:100px">Issued By </label>:
-          {{order.employee.name}}
-        </div>
-      </div>
+
     </div>
     <div class="column" >
-      <div class="ui small form">
-        <div class="inline field" >
-          <label  style="width:100px">Approved By </label>:
-          {{order.approvedby.name}}
-        </div>
-      </div>
+   
     </div>
 
 
@@ -269,9 +254,29 @@
   <br>
 
   <div class="ui three column grid">
-    <div class="column" ></div>
-    <div class="column" ></div>
     <div class="column" >
+<div class="ui small form">
+        <div class="inline field" >
+          <label  style="width:100px">Requested By </label>:
+          {{order.requestedby.name}}
+        </div>
+      </div>
+
+    </div>
+    <div class="column" >
+          <div class="ui small form">
+        <div class="inline field" >
+          <label  style="width:100px">Issued By </label>:
+          {{order.employee.name}}
+        </div>
+      </div></div>
+    <div class="column" >
+             <div class="ui small form">
+        <div class="inline field" >
+          <label  style="width:100px">Approved By </label>:
+          {{order.approvedby.name}}
+        </div>
+      </div>
       <table class="ui very basic table">
         <tbody>
           <tr>
