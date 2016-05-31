@@ -43,7 +43,7 @@ export default Ember.Controller.extend({
   table: null,
   sort: null,
   page: 1,
-  size: 2,
+  size: 10,
   direction: 'asc',
   isLoading: false,
   canLoadMore: true,
