@@ -12,7 +12,7 @@
 
         <div class="column right aligned"  >
           {{#if (not-eq purchaseorderStatusBoolean booleanTrue)}}
-          {{link-to 'Edit''dashboard.stockcontrol.purchaseorders.purchaseorder.edit' class="ui mini primary button"  style="margin-top:20px"  }}
+          {{link-to 'Edit''dashboard.stockcontrol.purchaseorders.purchaseorder.edit' class="ui mini blue inverted button"  style="margin-top:20px"  }}
           {{/if}}
           <button class="ui mini primary button"{{action "sendMail" purchaseorder}}>Send Mail </button>
           <button class="ui mini primary button"{{action "printOrder" }}>Print </button>
