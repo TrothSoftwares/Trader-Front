@@ -1,4 +1,4 @@
-.
+
 {{#if (or (eq commontool.status 'Returned') (eq commontool.status ''))}}
 <button class="ui primary right floated tiny button"   {{action "NewIssuance"}}>
   <i class="save icon"></i>
@@ -66,11 +66,13 @@
 
     </div>
     <div class="ui divider">  </div>
-    <button class="ui yellow right floated tiny inverted button"   {{action "saveIssuance"}}>
+
+    <button class="ui primary right floated tiny button {{isSaveButtonDisabled}}"   {{action "saveIssuance"}}>
       <i class="save icon"></i>
       Update
     </button>
-    <button class="ui purple right floated inverted tiny button "   {{action "returnIssuance"}}>
+    <button class="ui primary right floated tiny button {{isReturnButtonDisabled}}"   {{action "returnIssuance"}}>
+
       <i class="save icon"></i>
       Return
     </button>
@@ -91,9 +93,9 @@
     <th>Returned Date</th>
   </tr></thead>
   <tbody>
-    {{#each commontool.commontoolissuances as |commontoolissuance|}}
+    {{#each commontool.commontoolissuances as |commontoolissuance index|}}
     <tr>
-      <td>{{commontoolissuance.id}}</td>
+      <td>{{ incrementone index}}</td>
       <td>{{commontoolissuance.employee.name}}</td>
       <td>
         {{#if commontoolissuance.issuedate}}
