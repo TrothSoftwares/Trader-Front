@@ -38,12 +38,19 @@ export default Ember.Controller.extend({
   {
     label: 'Retail Price',
     valuePath:"retailprice",
-  }
+  },
+  {
+      label: 'View',
+      valuePath: 'id',
+      width: '60px',
+      sortable: false,
+      cellComponent: 'inventory-view'
+    },
 ],
   table: null,
   sort: null,
   page: 1,
-  size: 2,
+  size: 10,
   direction: 'asc',
   isLoading: false,
   canLoadMore: true,
