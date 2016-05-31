@@ -6,6 +6,21 @@ export default Ember.Controller.extend({
   statuses :["Select","Running", "Damaged" , "Lost"],
 
 
+  isReturnButtonDisabled: Ember.computed('commontool.commontoolissuances.lastObject.returndate'   ,  function() {
+    if( Ember.isEmpty(this.get('commontool.commontoolissuances.lastObject.returndate'))
+
+  ){return 'disabled';}
+  else{return '';}
+}),
+
+
+isSaveButtonDisabled: Ember.computed('commontool.commontoolissuances.lastObject.issuedate' ,'commontool.commontoolissuances.lastObject.location'  ,  function() {
+  if( Ember.isEmpty(this.get('commontool.commontoolissuances.lastObject.issuedate'))
+
+){return 'disabled';}
+else{return '';}
+}),
+
   actions:{
     selectStatus(status) {
       this.get('commontool').set('status', status);
