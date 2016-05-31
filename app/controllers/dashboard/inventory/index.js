@@ -62,26 +62,31 @@ export default Ember.Controller.extend({
 
   fetchRecords() {
     this.set('isLoading', true);
-if(this.get('searchproduct')){
-    this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' , 'searchproduct'])).then(records => {
-      this.table.addRows(records);
-      this.set('isLoading', false);
-      this.set('canLoadMore', !isEmpty(records));
-    });}
-else if(this.get('producttype')){
-    this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' , 'producttype'])).then(records => {
-      this.table.addRows(records);
-      this.set('isLoading', false);
-      this.set('canLoadMore', !isEmpty(records));
-    });
+
+var searchArray;
+
+
+
+if(this.get('searchproduct') && this.get('producttype')){
+    searchArray =['page','size','sort','direction', 'productname' , 'producttype'];
+  }
+else if(this.get('searchproduct')){
+    searchArray =['page','size','sort','direction', 'productname'];
+  }
+
+else if(this.get('producttype') && this.get('producttype') !== 'active'){
+     searchArray =['page','size','sort','direction', 'producttype'];
   }
   else{
-    this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction'])).then(records => {
-      this.table.addRows(records);
-      this.set('isLoading', false);
-      this.set('canLoadMore', !isEmpty(records));
-    });
+    searchArray =['page','size','sort','direction'];
   }
+
+
+  this.store.query('product', this.getProperties(searchArray)).then(records => {
+    this.table.addRows(records);
+    this.set('isLoading', false);
+    this.set('canLoadMore', !isEmpty(records));
+  });
   },
 
   actions: {
@@ -91,25 +96,6 @@ else if(this.get('producttype')){
     onScrolledToBottom() {
       if(this.get('canLoadMore')) {
         this.incrementProperty('page');
-
-        if(this.get('searchproduct')!== '')
-        {
-          console.log(this.get('searchproduct'));
-        }
-        else{
-          console.log("no search product");
-        }
-
-        if(this.get('producttype')!== '')
-        {
-          console.log(this.get('producttype'));
-        }
-        else{
-          console.log("no producttype");
-        }
-
-
-
         this.fetchRecords();
       }
     },
@@ -153,20 +139,7 @@ else if(this.get('producttype')){
 
 // redoing fetchRecords
         this.set('isLoading', true);
-        if (searchproduct) {
-        this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' , 'productname'])).then(records => {
-          this.table.addRows(records);
-          this.set('isLoading', false);
-          this.set('canLoadMore', !isEmpty(records));
-        });
-      }
-      else{
-        this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' ])).then(records => {
-          this.table.addRows(records);
-          this.set('isLoading', false);
-          this.set('canLoadMore', !isEmpty(records));
-        });
-      }
+  this.fetchRecords();
 
 
     },
@@ -213,22 +186,7 @@ this.table.setRows([]);
 
 // redoing fetchRecords
 this.set('isLoading', true);
-if (producttype && producttype !=="active") {
-this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' , 'producttype'])).then(records => {
-  this.table.addRows(records);
-  controller.set('mdata',records);
-  this.set('isLoading', false);
-  this.set('canLoadMore', !isEmpty(records));
-});
-}
-else{
-this.store.query('product', this.getProperties(['page', 'size', 'sort', 'direction' ])).then(records => {
-  this.table.addRows(records);
-  controller.set('mdata',records);
-  this.set('isLoading', false);
-  this.set('canLoadMore', !isEmpty(records));
-});
-}
+this.fetchRecords();
 
 
 },
