@@ -5,7 +5,7 @@ export default Ember.Route.extend({
 
     return Ember.RSVP.hash({
       suppliers: this.store.findAll('supplier' ,{reload :true}),
-      products: this.store.findAll('product' ,{reload :true}),
+      // products: this.store.findAll('product' ,{reload :true}),
       purchaseorders: this.store.findAll('purchaseorder' ,{reload :true}),
     });
   },
@@ -13,7 +13,7 @@ export default Ember.Route.extend({
   setupController: function(controller,model) {
 
     controller.set('suppliers',model.suppliers);
-    controller.set('products',model.products);
+    // controller.set('products',model.products);
     controller.set('purchaseorders',model.purchaseorders);
 
 
@@ -25,7 +25,7 @@ export default Ember.Route.extend({
     //   controller.send('initPurchaseOrder');
     // },
 
-    // 
+    //
     // willTransition: function(transition) {
     //   var route= this;
     //   var controller = this.get('controller');

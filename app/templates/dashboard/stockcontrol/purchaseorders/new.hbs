@@ -59,13 +59,25 @@
           {{#each purchaseorderitems  as |purchaseorderitem|}}
           <tr class="center aligned">
             <td>
-              {{ember-selectize
+              <!-- {{ember-selectize
                 content=products
                 optionValuePath="content.id"
                 optionLabelPath="content.productname"
                 selection=purchaseorderitem.product
                 placeholder="Select a Product"
+              }} -->
+
+              {{#power-select
+                search=(action "searchProduct" purchaseorderitem)
+                selected=purchaseorderitem.product
+                onchange=(action "selectPurchaseOrderitem" purchaseorderitem)
+                as |repo|
               }}
+              {{repo.attributes.productname}}
+              {{#if (not-eq purchaseorderitem.isSearchBarOpen true)}}
+              {{purchaseorderitem.product.productname}}
+              {{/if}}
+              {{/power-select}}
             </td>
             <td class="left aligned" >
               <div class="ui tiny transparent input">

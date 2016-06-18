@@ -15,7 +15,7 @@ export default Ember.Route.extend({
   setupController: function(controller ,model) {
     controller.set('purchaseorder',model.purchaseorder );
     controller.set('suppliers', this.store.findAll('supplier'));
-    controller.set('products', this.store.findAll('product'));
+    // controller.set('products', this.store.findAll('product'));
 
   },
 

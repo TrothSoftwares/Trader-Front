@@ -7,6 +7,7 @@ export default DS.Model.extend({
   poitemstatus : DS.attr('number'),
   recieveddate : DS.attr('date'),
   product: DS.belongsTo('product' ,{async:true}),
+  isSearchBarOpen:DS.attr('boolean'),
   purchaseorder: DS.belongsTo('purchaseorder' ,{async:true}),
 
 

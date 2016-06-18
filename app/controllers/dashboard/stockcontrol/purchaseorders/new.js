@@ -4,7 +4,29 @@ export default Ember.Controller.extend({
 
   purchaseorderitems: [],
 
+  ajax: Ember.inject.service(),
+
   actions:{
+
+
+    selectPurchaseOrderitem( purchaseorderitem , selected){
+      purchaseorderitem.set('isSearchBarOpen',false);
+      return this.store.findRecord('product', selected.id).then(product => purchaseorderitem.set('product', product));
+
+    },
+
+
+    searchProduct( purchaseorderitem , term ) {
+
+      purchaseorderitem.set('isSearchBarOpen',true);
+
+      if (Ember.isBlank(term)) { return []; }
+
+      const url = `/products?direction=asc&page=1&productname=${term}`;
+      return this.get('ajax').request(url).then(json=>json.data);
+    },
+
+
 
     createPurchaseOrder:function(){
 
@@ -60,7 +82,6 @@ export default Ember.Controller.extend({
         total :'',
         poitemstatus :'',
         recieveddate :'',
-        product :controller.get('products').get('firstObject'),
         purchaseorder : controller.get('purchaseorders').get('firstObject'),
       });
 
