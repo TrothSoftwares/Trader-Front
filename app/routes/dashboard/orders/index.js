@@ -6,7 +6,7 @@ export default Ember.Route.extend({
 
 
     return Ember.RSVP.hash({
-      products: this.store.findAll('product' ,{reload: true}),
+      // products: this.store.findAll('product' ,{reload: true}),
       orders: this.store.findAll('order' ,{reload: true}).then(function(data){
         return data.filter(function(item){
            return item.get('id') !== '1';
@@ -22,7 +22,7 @@ export default Ember.Route.extend({
 
 
   setupController: function(controller , model) {
-    controller.set('products',model.products);
+    // controller.set('products',model.products);
     controller.set('orders',model.orders);
 
 

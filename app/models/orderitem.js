@@ -7,6 +7,7 @@ export default DS.Model.extend({
   orderitemstatus : DS.attr('number'),
   product: DS.belongsTo('product' ,{async:true}),
   order: DS.belongsTo('order' ,{async:true}),
+  isSearchBarOpen:DS.attr('boolean'),
 
   aftervalue: Ember.computed('product' , 'quantity', function() {
     return parseInt(this.get('product.initialstocklevel')) - parseInt(this.get('quantity'));

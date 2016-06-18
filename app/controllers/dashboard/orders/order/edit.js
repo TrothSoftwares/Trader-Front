@@ -4,14 +4,32 @@ export default Ember.Controller.extend({
 
 natures :["Select","Electrical", "Plumbing" , "Masonry" , "Telephone"],
 
+ajax: Ember.inject.service(),
+
 actions:{
+
+
+
+  selectOrderitem( orderitem , selected){
+    orderitem.set('isSearchBarOpen',false);
+    return this.store.findRecord('product', selected.id).then(product => orderitem.set('product', product));
+  },
+
+
+  searchProduct( orderitem , term ) {
+
+    orderitem.set('isSearchBarOpen',true);
+    if (Ember.isBlank(term)) { return []; }
+    const url = `/products?direction=asc&page=1&productname=${term}`;
+    return this.get('ajax').request(url).then(json=>json.data);
+  },
 
 
   selectNature(nature) {
     this.set('natureofwork', nature);
   },
 
-  
+
       deleteOrder:function(order){
 
         var controller = this;
