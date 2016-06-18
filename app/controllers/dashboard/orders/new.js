@@ -126,8 +126,7 @@ actions:{
 
       controller.set('orderitems' , []);
       controller.transitionToRoute('dashboard.orders.order.view' , order);
-      console.log("created");
-    }).catch(function(){
+     }).catch(function(){
       controller.notifications.addNotification({
         message: 'Sorry, cant save at the moment !' ,
         type: 'error',
@@ -151,7 +150,6 @@ actions:{
       quantity :1,
       total :'',
       poitemstatus :'',
-      product :controller.get('products').get('firstObject'),
       order : controller.get('orders').get('firstObject'),
     });
 

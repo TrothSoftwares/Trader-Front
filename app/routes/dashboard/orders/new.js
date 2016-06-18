@@ -6,7 +6,7 @@ export default Ember.Route.extend({
       customers: this.store.findAll('customer' ,{reload :true}),
       suppliers: this.store.findAll('supplier' ,{reload :true}),
       employees: this.store.findAll('employee' ,{reload :true}),
-      products: this.store.findAll('product' ,{reload :true}),
+      // products: this.store.findAll('product' ,{reload :true}),
       orders: this.store.findAll('order' ,{reload :true}),
     });
   },
@@ -20,7 +20,7 @@ export default Ember.Route.extend({
     controller.set('suppliers',model.suppliers);
     controller.set('employees',model.employees);
     controller.set('customers',model.customers);
-    controller.set('products',model.products);
+    // controller.set('products',model.products);
     controller.set('orders',model.orders);
 
 
