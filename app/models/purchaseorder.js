@@ -6,6 +6,7 @@ export default DS.Model.extend({
   totalunits :DS.attr('number'),
   totalcost : DS.attr('number'),
   postatus : DS.attr('string'),
+  invoiceno : DS.attr('string'),
   supplier: DS.belongsTo('supplier' ,{async:true}),
   purchaseorderitems: DS.hasMany('purchaseorderitem' ,{embedded: 'always', async:true}),
 

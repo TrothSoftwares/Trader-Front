@@ -14,6 +14,6 @@ export default Ember.Route.extend({
   setupController: function(controller ,model) {
     controller.set('stockadjustment',model.stockadjustment );
     controller.set('customers', this.store.findAll('customer'));
-    controller.set('products', this.store.findAll('product'));
+    // controller.set('products', this.store.findAll('product'));
   },
 });

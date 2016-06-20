@@ -9,44 +9,44 @@ export default Ember.Controller.extend({
   currentProductType: 'all',
   allActiveClass :'active',
 
+  isSearchByName :true,
+  isSearchByCode :false,
+
 
   count: Ember.computed('mdata.meta.pagination.last.number', 'mdata.meta.pagination.self.number', function() {
-   const total = this.get('mdata.meta.pagination.last.number') || this.get('mdata.meta.pagination.self.number');
-   if (!total){
-   return [];
- }
-   return new Array(total+1).join('x').split('').map((e,i) => i+1);
- }),
+    const total = this.get('mdata.meta.pagination.last.number') || this.get('mdata.meta.pagination.self.number');
+    if (!total){
+      return [];
+    }
+    return new Array(total+1).join('x').split('').map((e,i) => i+1);
+  }),
 
 
-  columns: [{
-    label: 'Id',
-    valuePath:"id",
-  },
-  {
-    label: 'Item Code',
-    valuePath:"itemcode",
-  },
-  {
-    label: 'Product Name',
-    valuePath:"productname",
-  },
-  {
-    label: 'Initial Stock Level',
-    valuePath:"initialstocklevel",
-  },
-  {
-    label: 'Retail Price',
-    valuePath:"retailprice",
-  },
-  {
+  columns: [
+    {
+      label: 'Item Code',
+      valuePath:"itemcode",
+    },
+    {
+      label: 'Product Name',
+      valuePath:"productname",
+    },
+    {
+      label: 'Initial Stock Level',
+      valuePath:"initialstocklevel",
+    },
+    {
+      label: 'Retail Price',
+      valuePath:"retailprice",
+    },
+    {
       label: 'View',
       valuePath: 'id',
       width: '60px',
       sortable: false,
       cellComponent: 'inventory-view'
     },
-],
+  ],
   table: null,
   sort: null,
   page: 1,
@@ -63,34 +63,51 @@ export default Ember.Controller.extend({
   fetchRecords() {
     this.set('isLoading', true);
 
-var searchArray;
+    var searchArray;
 
 
 
-if(this.get('searchproduct') && this.get('producttype')){
-    searchArray =['page','size','sort','direction', 'productname' , 'producttype'];
-  }
-else if(this.get('searchproduct')){
-    searchArray =['page','size','sort','direction', 'productname'];
-  }
+    if(this.get('searchproduct') && this.get('producttype')){
+      searchArray =['page','size','sort','direction', 'productname' , 'producttype'];
+    }
+    else if(this.get('searchproduct')){
+      searchArray =['page','size','sort','direction', 'productname'];
+    }
+    else if(this.get('searchproductcode')){
+      searchArray =['page','size','sort','direction', 'itemcode'];
+    }
 
-else if(this.get('producttype') && this.get('producttype') !== 'active'){
-     searchArray =['page','size','sort','direction', 'producttype'];
-  }
-  else{
-    searchArray =['page','size','sort','direction'];
-  }
+    else if(this.get('producttype') && this.get('producttype') !== 'active'){
+      searchArray =['page','size','sort','direction', 'producttype'];
+    }
+    else{
+      searchArray =['page','size','sort','direction'];
+    }
 
 
-  this.store.query('product', this.getProperties(searchArray)).then(records => {
-    this.table.addRows(records);
-    this.set('isLoading', false);
-    this.set('canLoadMore', !isEmpty(records));
-  });
+    this.store.query('product', this.getProperties(searchArray)).then(records => {
+      this.table.addRows(records);
+      this.set('isLoading', false);
+      this.set('canLoadMore', !isEmpty(records));
+    });
   },
 
   actions: {
 
+
+searchByName(){
+  this.set('searchproduct','');
+  this.set('searchproductcode','');
+  this.toggleProperty('isSearchByCode');
+  this.toggleProperty('isSearchByName');
+},
+
+searchByCode(){
+  this.set('searchproduct','');
+  this.set('searchproductcode','');
+  this.toggleProperty('isSearchByCode');
+  this.toggleProperty('isSearchByName');
+},
 
 
     onScrolledToBottom() {
@@ -126,20 +143,37 @@ else if(this.get('producttype') && this.get('producttype') !== 'active'){
 
 
 
+
+
+
+
+    searchProductCode(searchproductcode){
+
+      this.setProperties({
+        itemcode: searchproductcode,
+        sort: 'asc',
+        page: 1
+      });
+
+      this.table.setRows([]);
+      // redoing fetchRecords
+      this.set('isLoading', true);
+      this.fetchRecords();
+    },
+
+
     searchProduct(searchproduct){
 
-        this.setProperties({
-          productname: searchproduct,
-          sort: 'asc',
-          page: 1
-        });
+      this.setProperties({
+        productname: searchproduct,
+        sort: 'asc',
+        page: 1
+      });
 
-        this.table.setRows([]);
-
-
-// redoing fetchRecords
-        this.set('isLoading', true);
-  this.fetchRecords();
+      this.table.setRows([]);
+      // redoing fetchRecords
+      this.set('isLoading', true);
+      this.fetchRecords();
 
 
     },
@@ -147,51 +181,44 @@ else if(this.get('producttype') && this.get('producttype') !== 'active'){
 
     changeActiveClass: function(producttype){
 
-var controller = this;
+      // var controller = this;
 
-  this.set('allActiveClass','');
-  this.producttypes.forEach(function(ptype){
-    ptype.set('activeclass' , '');
+      this.set('allActiveClass','');
+      this.producttypes.forEach(function(ptype){
+        ptype.set('activeclass' , '');
 
-  });
-  if(producttype === 'active'){
+      });
+      if(producttype === 'active'){
 
-    this.set('allActiveClass' , 'active');
-    this.set('currentProductType' ,  'all');
-    this.setProperties({
-      producttype: '',
-      sort: 'asc',
-      page: 1
-    });
+        this.set('allActiveClass' , 'active');
+        this.set('currentProductType' ,  'all');
+        this.setProperties({
+          producttype: '',
+          sort: 'asc',
+          page: 1
+        });
+      }
+      else{
+
+        producttype.set('activeclass' , 'active');
+        this.set('currentProductType' , producttype.get('typename'));
+        this.setProperties({
+          producttype: producttype.get('id'),
+          sort: 'asc',
+          page: 1
+        });
+      }
+
+    this.table.setRows([]);
+
+      // redoing fetchRecords
+      this.set('isLoading', true);
+      this.fetchRecords();
+
+
+    },
+
+
   }
-  else{
-
-  producttype.set('activeclass' , 'active');
-  this.set('currentProductType' , producttype.get('typename'));
-  this.setProperties({
-    producttype: producttype.get('id'),
-    sort: 'asc',
-    page: 1
-  });
-}
-
-
-
-
-
-
-
-this.table.setRows([]);
-
-
-// redoing fetchRecords
-this.set('isLoading', true);
-this.fetchRecords();
-
-
-},
-
-
-    }
 
 });

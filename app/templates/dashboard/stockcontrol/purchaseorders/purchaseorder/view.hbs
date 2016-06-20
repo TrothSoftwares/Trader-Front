@@ -14,7 +14,7 @@
           {{#if (not-eq purchaseorderStatusBoolean booleanTrue)}}
           {{link-to 'Edit''dashboard.stockcontrol.purchaseorders.purchaseorder.edit' class="ui mini blue inverted button"  style="margin-top:20px"  }}
           {{/if}}
-          <button class="ui mini primary button"{{action "sendMail" purchaseorder}}>Send Mail </button>
+          <!-- <button class="ui mini primary button"{{action "sendMail" purchaseorder}}>Send Mail </button> -->
           <button class="ui mini primary button"{{action "printOrder" }}>Print </button>
 
         </div>
@@ -33,6 +33,10 @@
               <label style="width:75px">Supplier </label>:
               {{purchaseorder.supplier.companyname}}
             </div>
+            <div class="inline field" >
+              <label style="width:75px">Invoice No. </label>:
+              {{purchaseorder.invoiceno}}
+            </div>
           </div>
         </div>
         <div class="  column">
@@ -40,7 +44,7 @@
 
 
             <div class="inline field" >
-              <label style="width:75px">Stock Due </label>:
+              <label style="width:75px">Invoice Date  </label>:
 
               {{ moment-format purchaseorder.duedate inputFormat}}
             </div>
@@ -49,6 +53,7 @@
               <label style="width:75px">Email  </label>:
               {{purchaseorder.supplier.email}}
             </div>
+
           </div>
         </div>
         <div class="  column">
@@ -166,7 +171,7 @@
     <div class="actions centered">
       {{#if (eq purchaseorder.postatus 'created')}}
       <div class="ui green button" {{action "showRecieveAllModal" }}>Receive All</div>
-      <div class="ui primary button"  {{action "recievePartial" purchaseorder}}>Receive Partially</div>
+      <!-- <div class="ui primary button"  {{action "recievePartial" purchaseorder}}>Receive Partially</div> -->
       {{/if}}
       {{#if (eq purchaseorder.postatus 'partial')}}
       <div class="ui green button" {{action "showRecieveAllModal" }}>Receive All</div>
@@ -186,6 +191,7 @@
   </div>
   <div class="content">
 
+    {{ input type="text" placeholder="Invoice No." value=purchaseorder.invoiceno}}
     <table class="ui celled table">
       <thead  class="center aligned">
         <tr>
@@ -250,6 +256,11 @@
           <label style="width:75px">Supplier </label>:
           {{purchaseorder.supplier.companyname}}
         </div>
+        <div class="inline field" >
+          <label style="width:75px">Invoice No. </label>:
+          {{purchaseorder.invoiceno}}
+        </div>
+
       </div>
     </div>
     <div class="  column">
@@ -257,7 +268,7 @@
 
 
         <div class="inline field" >
-          <label style="width:75px">Stock Due </label>:
+          <label style="width:75px">Invoice Date  </label>:
 
           {{ moment-format purchaseorder.duedate inputFormat}}
         </div>

@@ -14,6 +14,9 @@ export default Ember.Controller.extend({
           "propertyName": "id", "title": "ID"
         },
         {
+          "propertyName": "invoiceno", "title": "Invoice No."
+        },
+        {
           "propertyName": "supplier.companyname", "title": "Supplier"
         },
         {

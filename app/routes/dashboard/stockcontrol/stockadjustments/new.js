@@ -6,7 +6,7 @@ export default Ember.Route.extend({
 
     return Ember.RSVP.hash({
       orders: this.store.findAll('order' ,{reload :true}),
-      products: this.store.findAll('product' ,{reload :true}),
+      // products: this.store.findAll('product' ,{reload :true}),
       stockadjustments: this.store.findAll('stockadjustment' ,{reload :true}),
     });
   },
@@ -14,7 +14,7 @@ export default Ember.Route.extend({
   setupController: function(controller , model) {
 
     controller.set('orders',model.orders);
-    controller.set('products',model.products);
+    // controller.set('products',model.products);
     controller.set('stockadjustments',model.stockadjustments);
 
   },

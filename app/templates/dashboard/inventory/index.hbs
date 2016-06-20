@@ -1,9 +1,28 @@
 
   <div class="ui segment basic  ">
+    <i class="search icon"></i>
     <div class="ui item active transparent icon input">
+
+                      {{#if (eq isSearchByName true)}}
                     {{input type="text" class="ui " value=searchproduct  placeholder="Search product..." key-up="searchProduct" }}
-                    <i class="search icon"></i>
+                    {{/if}}
+
+                    {{#if (eq isSearchByCode true)}}
+                    {{input type="text" class="ui " value=searchproductcode  placeholder="Search product code..." key-up="searchProductCode" }}
+                    {{/if}}
+
+
+
+&emsp;
+                    {{#if (eq isSearchByName true)}}
+                    <div class="ui blue small submit button"  {{action "searchByCode"}}>Search By Code</div>
+                    {{/if}}
+
+                    {{#if (eq isSearchByCode true)}}
+                    <div class="ui blue small submit button"  {{action "searchByName"}}>Search By Name</div>
+                    {{/if}}
     </div>
+
     <div class="ui top attached tabular menu">
 
   <a class="item {{allActiveClass}}" {{action "changeActiveClass" 'active'}}  >All</a>
