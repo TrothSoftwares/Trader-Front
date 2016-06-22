@@ -75,6 +75,7 @@ Router.map(function() {
       this.route('inventory');
       this.route('sales');
       this.route('purchaseorders');
+      this.route('tools');
     });
 
 
