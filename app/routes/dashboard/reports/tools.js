@@ -19,6 +19,7 @@ export default Ember.Route.extend({
   setupController: function(controller,model) {
 
     controller.set('tools',model.tools);
+    controller.set('routetools',model.tools);
     controller.set('employees',model.employees);
   },
 

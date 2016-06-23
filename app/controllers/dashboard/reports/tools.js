@@ -10,32 +10,45 @@ inputFormat:'MM/DD/YYYY',
 filteredtools: groupBy('tools', 'employee.name'),
 
 
+  actions:{
+    applyFilters:function(){
 
-  filteredEmployees: Ember.computed('employee', 'startdate' , 'enddate', function() {
+      var tools = this.get('routetools');
+      var start = this.get('startdate');
+      var end = this.get('enddate');
+      var employee = this.get('employee');
+      if(employee){
+        tools = tools.filter(function(tool){
+          return tool.get('employee.name') === employee.get('name');
+        });
+      }
 
-    var employees = this.get('employees');
-    var start = this.get('startdate');
-    var end = this.get('enddate');
-    var employee = this.get('employee');
-    console.log(employee);
 
-    if(employee){
-      employees = employees.filter(function(emp){
-        return emp.get('name') === employee.get('name');
-      });
+      if(start && end) {
+        var startDate = new Date(start),
+        endDate       = new Date(end);
+        tools = tools.filter(function (tool) {
+
+          return (tool.get('issuedate') >= startDate) && (tool.get('issuedate') <= endDate);
+        });
+      }
+
+      this.set('tools',tools);
+
+    },
+
+    clearFilters:function(){
+      this.set('employee','');
+      this.set('startdate','');
+      this.set('enddate','');
+
+      this.send('applyFilters');
+    },
+
+    printReport:function(){
+      window.print();
     }
-
-
-    // if(start && end) {
-    //   var startDate = new Date(start),
-    //   endDate       = new Date(end);
-    //   return employees.filter(function (emp) {
-    //     return (emp.get('')get('duedate') >= startDate) && (order.get('duedate') <= endDate);
-    //   });
-    // }
-    return employees;
-
-  }),
+  }
 
 
 });

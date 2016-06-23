@@ -22,15 +22,16 @@
   </div>
   <div class=" field" >
     <label >Start Date:</label>
-    {{pikaday-input  placeholder="Select Date" value=startdate class="no-print"}}
+    {{pikaday-input  placeholder="Select Date" value=startdate class="no-print" }}
   <p class="only-print">{{ moment-format startdate inputFormat}}</p>
   </div>
   <div class=" field" >
     <label>End Date</label>
-    {{pikaday-input  placeholder="Select Date" value=enddate class="no-print"}}
+    {{pikaday-input  placeholder="Select Date" value=enddate class="no-print" }}
     <p class="only-print">{{ moment-format enddate inputFormat}}</p>
   </div>
   <div class=" field" >
+    <button class="ui tiny right floated  inverted blue button no-print " style="margin-top:25px" {{action "applyFilters"}}> Filters</button>
   <button class="ui tiny right floated  inverted red button no-print " style="margin-top:25px" {{action "clearFilters"}}>Clear All Filters</button>
   </div>
 </div>
@@ -40,7 +41,8 @@
 
 {{#each filteredtools as |group|}}
 
-<h3> {{group.value}}</h3>
+{{#if (not-eq group.value 'Select Employee')}}
+<h3> {{group.value}} </h3>
 <table class="ui celled structured center aligned table">
   <thead>
     <tr>
@@ -64,6 +66,7 @@
 
   </tbody>
 </table>
-
+{{/if}}
 {{/each}}
+
 </div>
