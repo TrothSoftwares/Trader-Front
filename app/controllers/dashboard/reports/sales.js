@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import groupBy from 'ember-group-by';
 
 export default Ember.Controller.extend({
 
@@ -6,7 +7,17 @@ export default Ember.Controller.extend({
   startdate: '',
   enddate: '',
   customer:'',
-inputFormat:'MM/DD/YYYY',
+  inputFormat:'MM/DD/YYYY',
+  monthNames : ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"],
+
+  customerMapBy: groupBy('orders', 'customer'),
+
+
+
+
+
+
+
 
 
   computedSalesTotal:Ember.computed(  'filteredProducts.@each.totalcost', function() {

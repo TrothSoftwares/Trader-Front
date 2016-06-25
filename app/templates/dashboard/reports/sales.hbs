@@ -1,3 +1,58 @@
+
+
+
+
+
+
+
+{{pikaday-input format="YYYY"}}
+
+
+<table class="ui celled structured center aligned table">
+  <thead>
+    <tr>
+      <th>Department</th>
+      {{#each monthNames as |monnames|}}
+      <th>{{monnames}}</th>
+      {{/each}}
+  </tr>
+</thead>
+  <tbody>
+
+    {{#each customers as |customer|}}
+      <tr>
+        <td>{{customer.companyname}}</td>
+        <td>{{customer.orderByMonthJanuvary}}</td>
+        <td>{{customer.orderByMonthFebruvary}}</td>
+        <td>{{customer.orderByMonthMarch}}</td>
+        <td>{{customer.orderByMonthApril}}</td>
+        <td>{{customer.orderByMonthMay}}</td>
+        <td>{{customer.orderByMonthJune}}</td>
+        <td>{{customer.orderByMonthJuly}}</td>
+        <td>{{customer.orderByMonthAugust}}</td>
+        <td>{{customer.orderByMonthSeptember}}</td>
+        <td>{{customer.orderByMonthOctober}}</td>
+        <td>{{customer.orderByMonthNovember}}</td>
+        <td>{{customer.orderByMonthDecember}}</td>
+
+
+        <!-- {{#each group.items as |order|}}
+      <td>{{order.computedtotalcosts}}</td>
+    {{/each}} -->
+
+
+      </tr>
+    {{/each}}
+
+
+  </tbody>
+</table>
+
+
+
+
+
+
 <div class="print-box" >
 <h2 class="ui left floated header no-print"> Sales Report</h2>
 <img src="images/hed1.png" class="only-print" >
@@ -37,20 +92,33 @@
 <table class="ui celled structured center aligned table">
   <thead>
     <tr>
-    <th>No.</th>
+    <th>Item No.</th>
+    <th>Item Name</th>
+    <th>Unit Qty.</th>
+    <th>Unit Price</th>
+    <th>Tot.Amt </th>
+    <th>MRF</th>
     <th>Date</th>
-    <th>Sales Volume</th>
-    <th>Sales Value </th>
+    <th>Department</th>
   </tr>
 </thead>
   <tbody>
     {{#each filteredProducts  as |order index|}}
+    {{#each order.orderitems as |orderitem|}}
     <tr>
-  <td> {{ incrementone index}}</td>
-  <td>  {{moment-format order.duedate inputFormat }} </td>
-  <td> {{order.totalunits}}</td>
-  <td> {{order.totalcost}}</td>
+      <td>{{orderitem.product.itemcode}}</td>
+  <td>{{orderitem.product.productname}}</td>
+  <td>{{orderitem.quantity}}</td>
+  <td>{{orderitem.product.retailprice}}</td>
+  <td>{{orderitem.computedtotal}}</td>
+  <td>{{order.mrf}}</td>
+  <td>{{moment-format order.issuancedate inputFormat}}</td>
+  <td>{{order.customer.companyname}}</td>
+
+
+
     </tr>
+    {{/each}}
     {{/each}}
     <tr>
       <td></td>

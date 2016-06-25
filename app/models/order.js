@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 
 
 
@@ -32,6 +33,8 @@ computedtotalcosts: function() {
         return sum + parseInt(split.get('computedtotal'));
     }, 0);
 }.property('orderitems.@each.computedtotal'),
+
+
 
 
 

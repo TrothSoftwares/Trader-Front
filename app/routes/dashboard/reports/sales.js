@@ -10,7 +10,13 @@ export default Ember.Route.extend({
            return item.get('id') !== '1';
         });
       }),
-      customers: this.store.findAll('customer' ,{reload :true}),
+
+      customers: this.store.findAll('customer' ,{reload :true}).then(function(data){
+        return data.filter(function(item){
+           return item.get('id') !== '1';
+        });
+      }),
+      
       producttypes: this.store.findAll('producttype' ,{reload :true}),
     });
 
