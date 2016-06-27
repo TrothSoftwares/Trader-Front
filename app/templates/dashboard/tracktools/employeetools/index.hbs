@@ -19,6 +19,7 @@
    <thead>
      <tr>
      <th>SlNo.</th>
+     <th>Payroll.</th>
      <th>Employee Name</th>
      <th>View</th>
    </tr></thead>
@@ -26,6 +27,7 @@
      {{#each employees as |employee index|}}
      <tr>
        <td>{{incrementone index}}</td>
+       <td>{{employee.payroll}}</td>
        <td>{{employee.name}}</td>
        <td>{{link-to "View"  'dashboard.tracktools.employeetools.employeetool.view'  employee }}</td>
      </tr>

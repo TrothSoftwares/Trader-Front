@@ -10,7 +10,7 @@
 </div>
 <div class="ui bottom attached tab segment active" data-tab="first">
   <h2 class="ui dividing header">Suppliers</h2>
-  {{models-table
+  <!-- {{models-table
     data=suppliers
     columns=supplierColumns
     customMessages=customMessages
@@ -18,5 +18,30 @@
     showColumnsDropdown=false
     useNumericPagination=true
     filteringIgnoreCase=true
-   }}
+   }} -->
+
+
+   <table class="ui celled table">
+   <thead>
+     <tr>
+     <th>SlNo.</th>
+     <th>Company Code</th>
+     <th>Company Name</th>
+     <th>Email</th>
+     <th>Phone</th>
+     <th>View</th>
+   </tr></thead>
+   <tbody>
+     {{#each suppliers as |supplier index|}}
+     <tr>
+       <td>{{incrementone index}}</td>
+       <td>{{supplier.companycode}}</td>
+       <td>{{supplier.companyname}}</td>
+       <td>{{supplier.email}}</td>
+       <td>{{supplier.phone}}</td>
+       <td>{{link-to "View"  'dashboard.relations.suppliers.supplier.view'  supplier }}</td>
+     </tr>
+     {{/each}}
+   </tbody>
+ </table>
  </div>

@@ -7,7 +7,7 @@
 </div>
 <div class="ui bottom attached tab segment active" data-tab="first">
   <h2 class="ui dividing header">Employees</h2>
-  {{models-table
+  <!-- {{models-table
     data=employees
     columns=employeeColumns
     customMessages=customMessages
@@ -15,5 +15,32 @@
     showColumnsDropdown=false
     useNumericPagination=true
     filteringIgnoreCase=true
-   }}
+   }} -->
+
+
+   <table class="ui celled table">
+   <thead>
+     <tr>
+     <th>SlNo.</th>
+     <th>Payroll No.</th>
+     <th>Name</th>
+     <th>Department</th>
+     <th>Work Contact</th>
+     <th>Personal Contact</th>
+     <th>View</th>
+   </tr></thead>
+   <tbody>
+     {{#each employees as |employee index|}}
+     <tr>
+       <td>{{incrementone index}}</td>
+       <td>{{employee.payroll}}</td>
+       <td>{{employee.name}}</td>
+       <td>{{employee.department}}</td>
+       <td>{{employee.workcontact}}</td>
+       <td>{{employee.personalcontact}}</td>
+       <td>{{link-to "View"  'dashboard.relations.employees.employee.view'  employee }}</td>
+     </tr>
+     {{/each}}
+   </tbody>
+ </table>
  </div>
