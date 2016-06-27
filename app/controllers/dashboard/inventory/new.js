@@ -43,7 +43,7 @@ retailprice: Ember.computed('initialcostprice', 'buyprice', function() {
 
   if(initialcostprice && buyprice){
     var retailprice = (parseFloat(initialcostprice) + parseFloat(buyprice)) / 2 ;
-    return Math.round(retailprice).toFixed(2);
+    return Math.round(retailprice);
   }
   else{
     return '';
