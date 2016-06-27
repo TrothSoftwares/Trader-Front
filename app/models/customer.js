@@ -20,8 +20,14 @@ filteryear: DS.attr('number', {
 orders: DS.hasMany('order' ,{embedded: 'always', async:true}),
 
 
-orderByMonthJanuvary:Ember.computed(  'orders.@each.issuancedate', function() {
+orderByMonthJanuvary:Ember.computed(  'orders.@each.issuancedate','filteryear', function() {
   var orders = this.get('orders');
+
+  var filteryear = parseInt(this.get('filteryear'));
+
+  orders = orders.filter(function (order) {
+    return (order.get('issuancedate').getFullYear() === filteryear);
+  });
 
 
 
@@ -49,8 +55,15 @@ orderByMonthJanuvary:Ember.computed(  'orders.@each.issuancedate', function() {
 
 
 
-orderByMonthFebruvary:Ember.computed(  'orders.@each.issuancedate', function() {
+orderByMonthFebruvary:Ember.computed(  'orders.@each.issuancedate', 'filteryear', function() {
   var orders = this.get('orders');
+
+
+  var filteryear = parseInt(this.get('filteryear'));
+
+  orders = orders.filter(function (order) {
+    return (order.get('issuancedate').getFullYear() === filteryear);
+  });
 
   orders =  orders.filter(function(order) {
      if(order.get('issuancedate').getMonth() ===1){return order;}
@@ -68,8 +81,13 @@ orderByMonthFebruvary:Ember.computed(  'orders.@each.issuancedate', function() {
 
 
 
-orderByMonthMarch:Ember.computed(  'orders.@each.issuancedate', function() {
+orderByMonthMarch:Ember.computed(  'orders.@each.issuancedate' ,'filteryear' , function() {
   var orders = this.get('orders');
+  var filteryear = parseInt(this.get('filteryear'));
+
+  orders = orders.filter(function (order) {
+    return (order.get('issuancedate').getFullYear() === filteryear);
+  });
 
   orders =  orders.filter(function(order) {
      if(order.get('issuancedate').getMonth() ===2){return order;}
@@ -89,8 +107,14 @@ orderByMonthMarch:Ember.computed(  'orders.@each.issuancedate', function() {
 
 
 
-orderByMonthApril:Ember.computed(  'orders.@each.issuancedate', function() {
+orderByMonthApril:Ember.computed(  'orders.@each.issuancedate' ,'filteryear', function() {
   var orders = this.get('orders');
+
+  var filteryear = parseInt(this.get('filteryear'));
+
+  orders = orders.filter(function (order) {
+    return (order.get('issuancedate').getFullYear() === filteryear);
+  });
 
   orders =  orders.filter(function(order) {
      if(order.get('issuancedate').getMonth() ===3){return order;}
@@ -109,8 +133,14 @@ orderByMonthApril:Ember.computed(  'orders.@each.issuancedate', function() {
 
 
 
-orderByMonthMay:Ember.computed(  'orders.@each.issuancedate', function() {
+orderByMonthMay:Ember.computed(  'orders.@each.issuancedate' ,'filteryear', function() {
   var orders = this.get('orders');
+
+  var filteryear = parseInt(this.get('filteryear'));
+
+  orders = orders.filter(function (order) {
+    return (order.get('issuancedate').getFullYear() === filteryear);
+  });
 
   orders =  orders.filter(function(order) {
      if(order.get('issuancedate').getMonth() ===4){return order;}
@@ -130,10 +160,8 @@ orderByMonthMay:Ember.computed(  'orders.@each.issuancedate', function() {
 
 orderByMonthJune:Ember.computed(  'orders.@each.issuancedate' , 'filteryear', function() {
   var orders = this.get('orders');
+
   var filteryear = parseInt(this.get('filteryear'));
-
-
-
 
   orders = orders.filter(function (order) {
     return (order.get('issuancedate').getFullYear() === filteryear);
@@ -158,8 +186,14 @@ orderByMonthJune:Ember.computed(  'orders.@each.issuancedate' , 'filteryear', fu
 
 
 
-orderByMonthJuly:Ember.computed(  'orders.@each.issuancedate', function() {
+orderByMonthJuly:Ember.computed(  'orders.@each.issuancedate' ,'filteryear', function() {
   var orders = this.get('orders');
+
+  var filteryear = parseInt(this.get('filteryear'));
+
+  orders = orders.filter(function (order) {
+    return (order.get('issuancedate').getFullYear() === filteryear);
+  });
 
   orders =  orders.filter(function(order) {
      if(order.get('issuancedate').getMonth() ===6){return order;}
@@ -179,8 +213,14 @@ orderByMonthJuly:Ember.computed(  'orders.@each.issuancedate', function() {
 
 
 
-orderByMonthAugust:Ember.computed(  'orders.@each.issuancedate', function() {
+orderByMonthAugust:Ember.computed(  'orders.@each.issuancedate' ,'filteryear', function() {
   var orders = this.get('orders');
+
+  var filteryear = parseInt(this.get('filteryear'));
+
+  orders = orders.filter(function (order) {
+    return (order.get('issuancedate').getFullYear() === filteryear);
+  });
 
   orders =  orders.filter(function(order) {
      if(order.get('issuancedate').getMonth() ===7){return order;}
@@ -200,8 +240,14 @@ orderByMonthAugust:Ember.computed(  'orders.@each.issuancedate', function() {
 
 
 
-orderByMonthSeptember:Ember.computed(  'orders.@each.issuancedate', function() {
+orderByMonthSeptember:Ember.computed(  'orders.@each.issuancedate' ,'filteryear', function() {
   var orders = this.get('orders');
+
+  var filteryear = parseInt(this.get('filteryear'));
+
+  orders = orders.filter(function (order) {
+    return (order.get('issuancedate').getFullYear() === filteryear);
+  });
 
   orders =  orders.filter(function(order) {
      if(order.get('issuancedate').getMonth() ===8){return order;}
@@ -220,8 +266,14 @@ orderByMonthSeptember:Ember.computed(  'orders.@each.issuancedate', function() {
 
 
 
-orderByMonthOctober:Ember.computed(  'orders.@each.issuancedate', function() {
+orderByMonthOctober:Ember.computed(  'orders.@each.issuancedate' ,'filteryear', function() {
   var orders = this.get('orders');
+
+  var filteryear = parseInt(this.get('filteryear'));
+
+  orders = orders.filter(function (order) {
+    return (order.get('issuancedate').getFullYear() === filteryear);
+  });
 
   orders =  orders.filter(function(order) {
      if(order.get('issuancedate').getMonth() ===9){return order;}
@@ -241,9 +293,14 @@ orderByMonthOctober:Ember.computed(  'orders.@each.issuancedate', function() {
 
 
 
-orderByMonthNovember:Ember.computed(  'orders.@each.issuancedate', function() {
+orderByMonthNovember:Ember.computed(  'orders.@each.issuancedate' ,'filteryear', function() {
   var orders = this.get('orders');
 
+  var filteryear = parseInt(this.get('filteryear'));
+
+  orders = orders.filter(function (order) {
+    return (order.get('issuancedate').getFullYear() === filteryear);
+  });
   orders =  orders.filter(function(order) {
      if(order.get('issuancedate').getMonth() ===10){return order;}
   });
@@ -259,8 +316,13 @@ orderByMonthNovember:Ember.computed(  'orders.@each.issuancedate', function() {
 }),
 
 
- orderByMonthDecember:Ember.computed(  'orders.@each.issuancedate', function() {
+ orderByMonthDecember:Ember.computed(  'orders.@each.issuancedate' ,'filteryear', function() {
    var orders = this.get('orders');
+   var filteryear = parseInt(this.get('filteryear'));
+
+   orders = orders.filter(function (order) {
+     return (order.get('issuancedate').getFullYear() === filteryear);
+   });
 
    orders =  orders.filter(function(order) {
       if(order.get('issuancedate').getMonth() ===11){return order;}
