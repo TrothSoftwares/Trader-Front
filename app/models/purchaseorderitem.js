@@ -26,7 +26,9 @@ export default DS.Model.extend({
 
   computedtotal: Ember.computed('product' , 'quantity'  , 'product.buyprice', function() {
     var total =   parseFloat(this.get('product.buyprice')) * parseInt(this.get('quantity'));
-     return Math.round(total);
+    //  return Math.round();
+
+     return Math.round(total * 100) / 100;
   }),
 
 
