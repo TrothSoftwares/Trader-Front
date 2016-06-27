@@ -14,13 +14,25 @@ state: DS.attr('string'),
 country: DS.attr('string'),
 zipcode: DS.attr('string'),
 phone: DS.attr('string'),
+filteryear: DS.attr('number', {
+    defaultValue() { return new Date().getFullYear(); }
+  }),
 orders: DS.hasMany('order' ,{embedded: 'always', async:true}),
 
 
 orderByMonthJanuvary:Ember.computed(  'orders.@each.issuancedate', function() {
   var orders = this.get('orders');
 
+
+
+    orders = orders.filter(function (order) {
+      return (order.get('issuancedate').getFullYear() === '2016');
+    });
+
+
+
   orders =  orders.filter(function(order) {
+
      if(order.get('issuancedate').getMonth() ===0){return order;}
   });
 
@@ -116,8 +128,17 @@ orderByMonthMay:Ember.computed(  'orders.@each.issuancedate', function() {
 
 
 
-orderByMonthJune:Ember.computed(  'orders.@each.issuancedate', function() {
+orderByMonthJune:Ember.computed(  'orders.@each.issuancedate' , 'filteryear', function() {
   var orders = this.get('orders');
+  var filteryear = parseInt(this.get('filteryear'));
+
+
+
+
+  orders = orders.filter(function (order) {
+    return (order.get('issuancedate').getFullYear() === filteryear);
+  });
+
 
   orders =  orders.filter(function(order) {
      if(order.get('issuancedate').getMonth() ===5){return order;}
