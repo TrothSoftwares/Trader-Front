@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
 
 
 
-  natures :["Select","Electrical", "Plumbing" , "Masonry" , "Telephone"],
+  natures :["Select","Electrical", "Plumbing" , "Masonry" , "Telephone","Painting","Carpentry", "Welding","A/C"],
 
   orderitems: [],
 
@@ -117,6 +117,8 @@ actions:{
       controller.set('mrf','');
       controller.set('location','');
       controller.set('duedate','');
+      controller.set('requestedby','');
+      controller.set('approvedby','');
 
       templateOrderitems.forEach(function(orderitem){
         orderitem.set('order', order);

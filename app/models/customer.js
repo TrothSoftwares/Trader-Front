@@ -27,7 +27,7 @@ orderByMonthJanuvary:Ember.computed(  'orders.@each.issuancedate', function() {
   var ret =0;
   orders.forEach(function(order){
       order.get('orderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedtotal'));
+        return sum + parseFloat(split.get('computedtotal'));
     }, 0);
     ret += order.get('totalcost');
   });
@@ -47,7 +47,7 @@ orderByMonthFebruvary:Ember.computed(  'orders.@each.issuancedate', function() {
   var ret =0;
   orders.forEach(function(order){
       order.get('orderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedtotal'));
+        return sum + parseFloat(split.get('computedtotal'));
     }, 0);
     ret += order.get('totalcost');
   });
@@ -66,7 +66,7 @@ orderByMonthMarch:Ember.computed(  'orders.@each.issuancedate', function() {
   var ret =0;
   orders.forEach(function(order){
       order.get('orderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedtotal'));
+        return sum + parseFloat(split.get('computedtotal'));
     }, 0);
     ret += order.get('totalcost');
   });
@@ -87,7 +87,7 @@ orderByMonthApril:Ember.computed(  'orders.@each.issuancedate', function() {
   var ret =0;
   orders.forEach(function(order){
       order.get('orderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedtotal'));
+        return sum + parseFloat(split.get('computedtotal'));
     }, 0);
     ret += order.get('totalcost');
   });
@@ -107,7 +107,7 @@ orderByMonthMay:Ember.computed(  'orders.@each.issuancedate', function() {
   var ret =0;
   orders.forEach(function(order){
       order.get('orderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedtotal'));
+        return sum + parseFloat(split.get('computedtotal'));
     }, 0);
     ret += order.get('totalcost');
   });
@@ -126,7 +126,7 @@ orderByMonthJune:Ember.computed(  'orders.@each.issuancedate', function() {
   var ret =0;
   orders.forEach(function(order){
       order.get('orderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedtotal'));
+        return sum + parseFloat(split.get('computedtotal'));
     }, 0);
     ret += order.get('totalcost');
   });
@@ -147,7 +147,7 @@ orderByMonthJuly:Ember.computed(  'orders.@each.issuancedate', function() {
   var ret =0;
   orders.forEach(function(order){
       order.get('orderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedtotal'));
+        return sum + parseFloat(split.get('computedtotal'));
     }, 0);
     ret += order.get('totalcost');
   });
@@ -168,7 +168,7 @@ orderByMonthAugust:Ember.computed(  'orders.@each.issuancedate', function() {
   var ret =0;
   orders.forEach(function(order){
       order.get('orderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedtotal'));
+        return sum + parseFloat(split.get('computedtotal'));
     }, 0);
     ret += order.get('totalcost');
   });
@@ -189,7 +189,7 @@ orderByMonthSeptember:Ember.computed(  'orders.@each.issuancedate', function() {
   var ret =0;
   orders.forEach(function(order){
       order.get('orderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedtotal'));
+        return sum + parseFloat(split.get('computedtotal'));
     }, 0);
     ret += order.get('totalcost');
   });
@@ -209,7 +209,7 @@ orderByMonthOctober:Ember.computed(  'orders.@each.issuancedate', function() {
   var ret =0;
   orders.forEach(function(order){
       order.get('orderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedtotal'));
+        return sum + parseFloat(split.get('computedtotal'));
     }, 0);
     ret += order.get('totalcost');
   });
@@ -230,7 +230,7 @@ orderByMonthNovember:Ember.computed(  'orders.@each.issuancedate', function() {
   var ret =0;
   orders.forEach(function(order){
       order.get('orderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedtotal'));
+        return sum + parseFloat(split.get('computedtotal'));
     }, 0);
     ret += order.get('totalcost');
   });
@@ -248,7 +248,7 @@ orderByMonthNovember:Ember.computed(  'orders.@each.issuancedate', function() {
    var ret =0;
    orders.forEach(function(order){
        order.get('orderitems').reduce(function(sum, split) {
-         return sum + parseInt(split.get('computedtotal'));
+         return sum + parseFloat(split.get('computedtotal'));
      }, 0);
      ret += order.get('totalcost');
    });

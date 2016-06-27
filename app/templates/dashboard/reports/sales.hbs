@@ -1,52 +1,54 @@
 
 
 
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="first">Yearly Report</a>
+  <a class="item" data-tab="second">Custom Date Report</a>
 
-
-
-
-{{pikaday-input format="YYYY"}}
-
-
-<table class="ui celled structured center aligned table">
-  <thead>
-    <tr>
-      <th>Department</th>
-      {{#each monthNames as |monnames|}}
-      <th>{{monnames}}</th>
-      {{/each}}
-  </tr>
-</thead>
-  <tbody>
-
-    {{#each customers as |customer|}}
+</div>
+<div class="ui bottom attached tab segment active" data-tab="first">
+  <table class="ui celled structured center aligned table">
+    <thead>
       <tr>
-        <td>{{customer.companyname}}</td>
-        <td>{{customer.orderByMonthJanuvary}}</td>
-        <td>{{customer.orderByMonthFebruvary}}</td>
-        <td>{{customer.orderByMonthMarch}}</td>
-        <td>{{customer.orderByMonthApril}}</td>
-        <td>{{customer.orderByMonthMay}}</td>
-        <td>{{customer.orderByMonthJune}}</td>
-        <td>{{customer.orderByMonthJuly}}</td>
-        <td>{{customer.orderByMonthAugust}}</td>
-        <td>{{customer.orderByMonthSeptember}}</td>
-        <td>{{customer.orderByMonthOctober}}</td>
-        <td>{{customer.orderByMonthNovember}}</td>
-        <td>{{customer.orderByMonthDecember}}</td>
+        <th>Department</th>
+        {{#each monthNames as |monnames|}}
+        <th>{{monnames}}</th>
+        {{/each}}
+    </tr>
+  </thead>
+    <tbody>
+
+      {{#each customers as |customer|}}
+        <tr>
+          <td>{{customer.companyname}}</td>
+          <td>{{customer.orderByMonthJanuvary}}</td>
+          <td>{{customer.orderByMonthFebruvary}}</td>
+          <td>{{customer.orderByMonthMarch}}</td>
+          <td>{{customer.orderByMonthApril}}</td>
+          <td>{{customer.orderByMonthMay}}</td>
+          <td>{{customer.orderByMonthJune}}</td>
+          <td>{{customer.orderByMonthJuly}}</td>
+          <td>{{customer.orderByMonthAugust}}</td>
+          <td>{{customer.orderByMonthSeptember}}</td>
+          <td>{{customer.orderByMonthOctober}}</td>
+          <td>{{customer.orderByMonthNovember}}</td>
+          <td>{{customer.orderByMonthDecember}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 
 
-        <!-- {{#each group.items as |order|}}
-      <td>{{order.computedtotalcosts}}</td>
-    {{/each}} -->
 
 
-      </tr>
-    {{/each}}
+
+</div>
 
 
-  </tbody>
-</table>
+
+<div class="ui bottom attached tab segment" data-tab="second">
+
+
 
 
 
@@ -106,7 +108,7 @@
     {{#each filteredProducts  as |order index|}}
     {{#each order.orderitems as |orderitem|}}
     <tr>
-      <td>{{orderitem.product.itemcode}}</td>
+  <td>{{orderitem.product.itemcode}}</td>
   <td>{{orderitem.product.productname}}</td>
   <td>{{orderitem.quantity}}</td>
   <td>{{orderitem.product.retailprice}}</td>
@@ -125,8 +127,15 @@
       <td></td>
       <td><b>Total</b></td>
       <td>{{computedSalesTotal}}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
 </div>
-{{outlet}}
+
+</div>
+
+{{initialize-semanticuitabs}}

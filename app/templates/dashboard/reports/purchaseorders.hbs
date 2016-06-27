@@ -40,31 +40,47 @@
 </div>
 <table class="ui celled structured center aligned table">
   <thead>
-    <tr><th>No.</th>
+    <tr>
+      <th>Item Code</th>
+    <th>Item Name</th>
+    <th>Qty.</th>
+    <th>Unit Price</th>
+    <th>Invoice No.</th>
+    <th>Invoice Date</th>
     <th>Supplier</th>
-    <th> Due Date</th>
-    <th>Incoming Stocks </th>
-    <th>Total Cost of Incoming Stocks</th>
+    <th>Total Amt.</th>
   </tr></thead>
 
   <tbody>
     {{#each filteredProducts  as |purchaseorder index|}}
+
+    {{#each purchaseorder.purchaseorderitems as |purchaseorderitem|}}
     <tr>
-  <td> {{ incrementone index}}</td>
-  <td> {{purchaseorder.supplier.companyname}}</td>
-  <td>{{ moment-format purchaseorder.duedate inputFormat}}</td>
-  <td> {{purchaseorder.totalunits}}</td>
-  <td> {{purchaseorder.totalcost}}</td>
+  <td>{{purchaseorderitem.product.itemcode}}</td>
+  <td>{{purchaseorderitem.product.productname}}</td>
+  <td>{{purchaseorderitem.quantity}}</td>
+  <td>{{purchaseorderitem.product.retailprice}}</td>
+  <td>{{purchaseorder.invoiceno}}</td>
+  <td>{{moment-format purchaseorder.duedate inputFormat}}</td>
+  <td>{{purchaseorder.supplier.companyname}}</td>
+  <td>{{purchaseorderitem.computedtotal}}</td>
     </tr>
     {{/each}}
+
+    {{/each}}
+
     <tr>
       <td></td>
       <td></td>
       <td></td>
       <td></td>
-
+      <td></td>
+      <td></td>
+      <td><b>Total</b></td>
       <td>{{computedIncomingTotal}}</td>
     </tr>
+
+
   </tbody>
 </table>
 </div>

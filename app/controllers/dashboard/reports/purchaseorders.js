@@ -5,14 +5,16 @@ export default Ember.Controller.extend({
   startdate: '',
   enddate: '',
   supplier:'',
-  inputFormat:'MM/DD/YYYY',
+  inputFormat:'DD/MM/YYYY',
 
 
   computedIncomingTotal:Ember.computed(  'filteredProducts.@each.totalcost', function() {
     var purchaseorders = this.get('filteredProducts');
     var ret =0;
     purchaseorders.forEach(function(purchaseorder){
-  ret += purchaseorder.get('totalcost');
+      if(purchaseorder.get('postatus') ==='received'){
+      ret += purchaseorder.get('totalcost');
+  }
     });
     return ret;
   }),
@@ -23,6 +25,10 @@ export default Ember.Controller.extend({
     var start = this.get('startdate');
     var end = this.get('enddate');
     var supplier = this.get('supplier');
+
+    purchaseorders = purchaseorders.filter(function(item){
+      return item.get('postatus') === 'received';
+    });
 
 
     if(supplier){

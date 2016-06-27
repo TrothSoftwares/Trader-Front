@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
   startdate: '',
   enddate: '',
   customer:'',
-  inputFormat:'MM/DD/YYYY',
+  inputFormat:'DD/MM/YYYY',
   monthNames : ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"],
 
   customerMapBy: groupBy('orders', 'customer'),

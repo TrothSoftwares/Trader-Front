@@ -4,7 +4,7 @@ import groupBy from 'ember-group-by';
 export default Ember.Controller.extend({
 
 employee:'',
-inputFormat:'MM/DD/YYYY',
+inputFormat:'DD/MM/YYYY',
 
 
 filteredtools: groupBy('tools', 'employee.name'),

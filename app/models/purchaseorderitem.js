@@ -20,12 +20,12 @@ export default DS.Model.extend({
 
 
   computedNewItemCostTotal: Ember.computed('product' , 'quantity'  , 'product.newitemcost', function() {
-    var total =   parseInt(this.get('product.newitemcost')) * parseInt(this.get('quantity'));
+    var total =   parseFloat(this.get('product.newitemcost')) * parseInt(this.get('quantity'));
      return total;
   }),
 
   computedtotal: Ember.computed('product' , 'quantity'  , 'product.buyprice', function() {
-    var total =   parseInt(this.get('product.buyprice')) * parseInt(this.get('quantity'));
+    var total =   parseFloat(this.get('product.buyprice')) * parseInt(this.get('quantity'));
      return total;
   }),
 

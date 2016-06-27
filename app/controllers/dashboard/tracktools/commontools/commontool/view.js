@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  inputFormat:'MM/DD/YYYY',
+  inputFormat:'DD/MM/YYYY',
 
   statuses :["Select","Running", "Damaged" , "Lost"],
 

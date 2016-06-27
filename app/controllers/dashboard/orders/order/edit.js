@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-natures :["Select","Electrical", "Plumbing" , "Masonry" , "Telephone"],
+natures :["Select","Electrical", "Plumbing" , "Masonry" , "Telephone","Painting","Carpentry", "Welding","A/C"],
 
 ajax: Ember.inject.service(),
 

@@ -19,7 +19,7 @@ export default DS.Model.extend({
 
   computedtotalcosts: function() {
       return this.get('stockadjustmentitems').reduce(function(sum, split) {
-          return sum + parseInt(split.get('computedtotal'));
+          return sum + parseFloat(split.get('computedtotal'));
       }, 0);
   }.property('stockadjustmentitems.@each.computedtotal')
 

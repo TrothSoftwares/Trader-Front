@@ -8,8 +8,7 @@ export default Ember.Controller.extend({
     retailprice: function() {
       var initialcostprice = this.get('product.initialcostprice');
       var buyprice = this.get('product.buyprice');
-      var retailprice = (parseInt(initialcostprice) + parseInt(buyprice)) / 2 ;
-      // this.set('product.retailprice', 'retailprice');
+      var retailprice = (parseFloat(initialcostprice) + parseFloat(buyprice)) / 2 ;
       return retailprice;
     }.property('product.initialcostprice', 'product.buyprice'),
 

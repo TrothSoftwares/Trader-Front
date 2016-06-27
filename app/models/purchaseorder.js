@@ -20,20 +20,20 @@ export default DS.Model.extend({
 
 computedtotalunits: function() {
     return this.get('purchaseorderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('quantity'));
+        return sum + parseFloat(split.get('quantity'));
     }, 0);
 }.property('purchaseorderitems.@each.quantity'),
 
 
 computedNewItemCostTotalCosts: function() {
     return this.get('purchaseorderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedNewItemCostTotal'));
+        return sum + parseFloat(split.get('computedNewItemCostTotal'));
     }, 0);
 }.property('purchaseorderitems.@each.computedtotal'),
 
 computedtotalcosts: function() {
     return this.get('purchaseorderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedtotal'));
+        return sum + parseFloat(split.get('computedtotal'));
     }, 0);
 }.property('purchaseorderitems.@each.computedtotal')
 

@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   ajax: Ember.inject.service(),
-  inputFormat:'MM/DD/YYYY',
+  inputFormat:'DD/MM/YYYY',
   booleanTrue: true,
 
   purchaseorderStatusBoolean: function(){
@@ -99,16 +99,16 @@ export default Ember.Controller.extend({
           product.set('initialstocklevel' , initialstocklevel + purchaseorderitemquantity); // adding new stocks
 
 
-          var newitemcost = parseInt(product.get('newitemcost'));
+          var newitemcost = parseFloat(product.get('newitemcost'));
 
 
 
           var retailprice = product.get('retailprice');
-          var newretailprice = (parseInt(retailprice) + parseInt(newitemcost))/2;
+          var newretailprice = (parseFloat(retailprice) + parseFloat(newitemcost))/2;
 
 
             if(!isNaN(newitemcost)){
-          if(parseInt(retailprice) !== parseInt(newitemcost)){
+          if(parseFloat(retailprice) !== parseFloat(newitemcost)){
             product.set('retailprice',newretailprice);
             product.set('buyprice', newitemcost);
             product.set('initialcostprice', retailprice);
