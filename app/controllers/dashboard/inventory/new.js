@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-  itemcodes :  Ember.computed.mapBy('products', 'itemcode'),
+  // itemcodes :  Ember.computed.mapBy('products', 'itemcode'),
   validItemcodeMessage: '',
   validItemcodeError:'',
 
@@ -41,13 +41,13 @@ retailprice: Ember.computed('initialcostprice', 'buyprice', function() {
   var initialcostprice = this.get('initialcostprice');
   var buyprice = this.get('buyprice');
 
-if(initialcostprice && buyprice){
-  var retailprice = (parseFloat(initialcostprice) + parseFloat(buyprice)) / 2 ;
-  return retailprice;
-}
-else{
-  return '';
-}
+  if(initialcostprice && buyprice){
+    var retailprice = (parseFloat(initialcostprice) + parseFloat(buyprice)) / 2 ;
+    return retailprice;
+  }
+  else{
+    return '';
+  }
 }),
 
 
@@ -82,17 +82,53 @@ actions:{
 
 
 
+  // validItemcode: function(itemcode){
+  //   var itemcodes = this.get('itemcodes');
+  //   if(itemcodes.indexOf(itemcode)!== -1)
+  //   {
+  //     this.set('validItemcodeMessage' , 'Item Code Already Exists');
+  //     this.set('validItemcodeError' , 'error');
+  //   }
+  //   else{
+  //     this.set('validItemcodeMessage' , '');
+  //     this.set('validItemcodeError' , '');
+  //   }
+  // },
+
+
+
+
   validItemcode: function(itemcode){
-    var itemcodes = this.get('itemcodes');
-    if(itemcodes.indexOf(itemcode)!== -1)
-    {
-      this.set('validItemcodeMessage' , 'Item Code Already Exists');
-      this.set('validItemcodeError' , 'error');
-    }
-    else{
-      this.set('validItemcodeMessage' , '');
-      this.set('validItemcodeError' , '');
-    }
+    var controller = this;
+
+    controller.store.query('product',{page: 1, size: 8, itemcode:itemcode}).then(function(productswithitemcode) {
+      productswithitemcode.forEach(function(pwicode) {
+
+
+
+        if(pwicode.get('itemcode').toLowerCase() === itemcode.toLowerCase()){
+
+
+          controller.set('validItemcodeMessage' , 'Item Code Already Exists');
+          controller.set('validItemcodeError' , 'error');
+        }
+        else{
+
+          controller.set('validItemcodeMessage' , '');
+          controller.set('validItemcodeError' , '');
+        }
+
+      });
+
+
+    });
+
+
+
+
+
+
+
   },
 
   validChargecode: function(chargecode){
@@ -168,8 +204,8 @@ actions:{
       controller.set('typename','');
       controller.set('brandname','');
 
-       window.location.reload();
-       controller.transitionToRoute('dashboard.inventory.index');
+      window.location.reload();
+      controller.transitionToRoute('dashboard.inventory.index');
     }).catch(function(){
       controller.notifications.addNotification({
         message: 'Sorry, cant save at the moment !' ,
