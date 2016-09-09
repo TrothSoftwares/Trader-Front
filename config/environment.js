@@ -63,7 +63,7 @@ ENV['ember-simple-auth'] = {
   }
 
   if (environment === 'test') {
-    ENV.APP.host =  'http://inventdemo-front.herokuapp.com';
+    ENV.APP.host =  'http://inventdemo-back.herokuapp.com';
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
@@ -76,7 +76,7 @@ ENV['ember-simple-auth'] = {
   }
 
   if (environment === 'production') {
-    ENV.APP.host =  'http://inventdemo-front.herokuapp.com';
+    ENV.APP.host =  'http://inventdemo-back.herokuapp.com';
 
   }
 //   if (deployTarget === 'staging') {
