@@ -190,8 +190,12 @@
     Add To Stock
   </div>
   <div class="content">
-
-    {{ input type="text" placeholder="Invoice No." value=purchaseorder.invoiceno}}
+    <div class="ui  form">
+      <div class="field">
+        <label>Invoice No.</label>
+        {{ input type="text" placeholder="Invoice No." value=purchaseorder.invoiceno}}
+      </div>
+    </div>
     <table class="ui celled table">
       <thead  class="center aligned">
         <tr>
