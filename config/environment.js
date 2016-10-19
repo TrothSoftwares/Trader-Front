@@ -7,7 +7,7 @@ module.exports = function(environment) {
 
   var ENV = {
 
-    modulePrefix: 'zahid-staging',
+    modulePrefix: 'trothinventory-front',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
@@ -63,7 +63,7 @@ ENV['ember-simple-auth'] = {
   }
 
   if (environment === 'test') {
-    ENV.APP.host =  'http://inventdemo-back.herokuapp.com';
+    ENV.APP.host =  'https://trothinventory-back.herokuapp.com';
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
@@ -76,7 +76,7 @@ ENV['ember-simple-auth'] = {
   }
 
   if (environment === 'production') {
-    ENV.APP.host =  'http://inventdemo-back.herokuapp.com';
+    ENV.APP.host =  'http://trothinventory-back.herokuapp.com';
 
   }
 //   if (deployTarget === 'staging') {
