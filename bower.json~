@@ -8,13 +8,16 @@
     "semantic-ui": "^2.1.8",
     "bootstrap": "~3.3.5",
     "selectize": "miguelcobain/selectize.js#master",
-    "pikaday": "^1.4.0"
+    "pikaday": "^1.4.0",
+    "slick-carousel": "^1.5.9",
+    "font-awesome": "~4.5.0"
   },
-"resolutions": {
+  "resolutions": {
     "ember": "2.4.3",
     "qunit": "1.20.0",
     "loader.js": "3.4.0"
   },
-"ignore":["ember"]
-   
+  "ignore": [
+    "ember"
+  ]
 }
