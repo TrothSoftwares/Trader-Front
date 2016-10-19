@@ -1,21 +1,21 @@
 
   <div class="ui segment basic  ">
     <i class="search icon"></i>
-    <div class="ui item active transparent icon input">
+    <div class="ui item active  icon input">
 
                       {{#if (eq isSearchByName true)}}
-                    {{input type="text" class="ui " value=searchproduct  placeholder="Search product..." key-up="searchProduct" }}
+                    {{input type="text" class="ui   " value=searchproduct  placeholder="Search by Item Code..." key-up="searchProduct" }}
                     {{/if}}
 
                     {{#if (eq isSearchByCode true)}}
-                    {{input type="text" class="ui " value=searchproductcode  placeholder="Search product code..." key-up="searchProductCode" }}
+                    {{input type="text" class="ui " value=searchproductcode  placeholder="Search by Item Name..." key-up="searchProductCode" }}
                     {{/if}}
 
 
 
 &emsp;
                     {{#if (eq isSearchByName true)}}
-                    <div class="ui blue small submit button"  {{action "searchByCode"}}>Search By Code</div>
+                    <div class="ui blue small submit button" style="background:#28adcc;padding:1em 2em" {{action "searchByCode"}}>Search</div>
                     {{/if}}
 
                     {{#if (eq isSearchByCode true)}}
@@ -40,7 +40,7 @@
     <table class="ui celled table">
 
     {{#light-table table onScrolledToBottom=(action 'onScrolledToBottom') as |t|}}
-    <div style="margin-right:15px">
+    <div style="">
     <thead>
       {{t.head
         onColumnClick=(action 'onColumnClick')

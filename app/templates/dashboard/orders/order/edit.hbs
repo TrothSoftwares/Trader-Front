@@ -1,5 +1,5 @@
 
-<h2 class="ui  header">Issuance: #OR{{order.id}}</h2>
+<h2 class="ui  header">Order: #OR{{order.id}}</h2>
 
 
 <div class="ui two column grid">
@@ -43,7 +43,7 @@
             <div class="inline field" style="float:right">
               <label > Date :</label>
 
-              {{pikaday-input  placeholder="Issuance Date" value=order.issuancedate}}
+              {{pikaday-input  placeholder="Order Date" value=order.issuancedate}}
             </div>
 
           </div>
@@ -100,7 +100,7 @@
               {{orderitem.product.productname}}
               {{/if}}
               {{/power-select}}
-              
+
             </td>
             <td class="left aligned" >
               <div class="ui tiny transparent input">

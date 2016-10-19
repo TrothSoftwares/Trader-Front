@@ -1,9 +1,9 @@
 <div class="ui tabular menu no-print" style="margin:0">
-  {{link-to  "Purchase Orders" 'dashboard.stockcontrol.purchaseorders.index' class=" item" }}
-  {{link-to  "Stock Adjustments" 'dashboard.stockcontrol.stockadjustments.index' class="item"  }}
+  {{link-to  "Purchase Order" 'dashboard.stockcontrol.purchaseorders.index' class=" item" }}
+  {{link-to  "Stock Adjustment" 'dashboard.stockcontrol.stockadjustments.index' class="item"  }}
 </div>
 <div class="ui bottom attached tab segment active" data-tab="first">
-  <h2 class="ui dividing header">Purchase Orders</h2>
+  <h2 class="ui dividing header">Purchase Order</h2>
   {{models-table
     data=purchaseorders
     columns=purchaseorderColumns

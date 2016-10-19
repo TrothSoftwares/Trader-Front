@@ -256,12 +256,12 @@ body {
 }
 .hseg
 {
-	border: 2px solid #00A1B1 !important;
+	border: 2px solid #999 !important;
 }
 .hseg:hover
 
 {
-		border: 2px solid #FDBC11 !important;
+		border: 2px solid #aaa !important;
 
 }
 
@@ -390,7 +390,7 @@ body {
   min-height: 100%;
   min-width: 100%;
   font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  background-color: #F3F3F3;
+  background-color: #fff;
 }
 .navbar.navbar-default {
   background-color: white;
@@ -882,5 +882,35 @@ body {
 	}
 }
 
+.ui.menu .item
+{
+  padding: 1.5em 1.14285714em;
+  font-weight: bolder;
+}
+.ember-light-table .lt-row:not(.is-selected):hover
+{
 
+    background-color: #ddd !important;
+}
+.ui.blue.button
+{
+  background: #28adcc !important;
+}
+.newh
+{
+  text-transform: uppercase !important;
+  letter-spacing: 4px;
+  color: #597829 !important;
+  font-weight: 900;
+}
 /* end for loading.hbs animations */
+.ui.primary.button
+{
+  background: #28adcc !important;
+
+}
+
+.globalSearch
+{
+   padding-bottom: 50px;
+}

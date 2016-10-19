@@ -1,5 +1,5 @@
 <div class="ui black segment" >
- <div class="ui left floated header"> Department Details </div>
+ <div class="ui left floated header"> Customer Details </div>
      {{link-to 'Go Back' 'dashboard.relations.customers'  class="ui green inverted mini right floated button "}}
 
  {{link-to 'Edit' 'dashboard.relations.customers.customer.edit'  class="ui blue inverted mini right floated button "}}
@@ -9,11 +9,11 @@
     <div class="five wide dividing column">
 
       <div class="inline field" style="float:right;margin-bottom :25px">
-    <label >Department Name :</label>
+    <label >Customer Name :</label>
     <div class="ui transparent input"><input type="text" readonly="true" value= {{ customer.companyname }} ></div>
   </div>
   <div class="inline field" style="float:right;margin-bottom :25px">
-    <label>Department Code : </label>
+    <label>Customer Code : </label>
     <div class="ui transparent input"><input type="text" readonly="true" value= {{ customer.companycode }} ></div>
   </div>
   <div class="inline field" style="float:right;margin-bottom :25px">
