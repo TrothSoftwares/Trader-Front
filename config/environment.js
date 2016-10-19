@@ -76,7 +76,7 @@ ENV['ember-simple-auth'] = {
   }
 
   if (environment === 'production') {
-    ENV.APP.host =  'http://trothinventory-back.herokuapp.com';
+    ENV.APP.host =  'https://trothinventory-back.herokuapp.com';
 
   }
 //   if (deployTarget === 'staging') {
