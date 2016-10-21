@@ -912,5 +912,24 @@ body {
 
 .globalSearch
 {
-   padding-bottom: 50px;
+   padding-bottom: 30px;
+}
+.table-footer .col-sm-2
+{
+  width:70% !important;
+}
+.celled th
+{
+  color: #555 !important;
+  padding-top: 0.6em !important;
+  padding-bottom: 0.6em!important;
+}
+.celled td
+{
+  padding-top: 0.6em !important;
+  padding-bottom: 0.6em!important;  
+}
+.ui.table
+{
+  border-radius:0px !important;
 }
