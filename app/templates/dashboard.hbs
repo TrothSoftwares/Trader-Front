@@ -1,61 +1,49 @@
 
 
-<div class="ui left visible inverted vertical very thin sidebar labeled icon menu lato no-print" style="width:90px; background: rgb(45,48,51) ">
-  <div class="item" style="padding:17px 3px">
+<div class="ui left visible vertical very thin sidebar labeled icon menu lato no-print" style="width:120px;  ">
+  <div class="item" style="padding:10px 3px">
     {{#link-to 'dashboard'   }}
     <img src="images/logo.png" width="60px">
     {{/link-to}}
   </div>
-
-
-
-
-
-
-
-
-
-
   {{#link-to 'dashboard.inventory.index'  class="item"}}
-    <i class="block  layout icon" style="color:#00A1B1"></i>
+    <i class="block  layout icon" style="color:#33b8d7"></i>
     Inventory
   {{/link-to}}
 
   {{#link-to 'dashboard.relations.suppliers.index'  class="item"}}
-    <i class="users  layout icon" style="color:#338d11"></i>
-    Misc
+    <i class="users  layout icon" style="color:#33b8d7"></i>
+    Department
   {{/link-to}}
 
   {{#link-to 'dashboard.stockcontrol.purchaseorders.index'  class="item"}}
-    <i class="suitcase  layout icon" style="color:#e1ac26"></i>
-    Invoicing
+    <i class="suitcase  layout icon" style="color:#33b8d7"></i>
+    Invoice
   {{/link-to}}
 
 
   {{#link-to 'dashboard.orders.index'  class="item"}}
-    <i class="newspaper  layout icon" style="color:#ff0000"></i>
-    Issuance
+    <i class="newspaper  layout icon" style="color:#33b8d7"></i>
+    Order
   {{/link-to}}
 
-  {{#link-to 'dashboard.tracktools.employeetools.index'  class="item"}}
+  <!-- {{#link-to 'dashboard.tracktools.employeetools.index'  class="item"}}
     <i class="settings icon" style="color:#abc"></i>
     Tools
-  {{/link-to}}
+  {{/link-to}} -->
 
 
   {{#link-to 'dashboard.reports'  class="item"}}
-    <i class="bar chart brown layout icon"></i>
-    Reports
+    <i class="bar chart  layout icon" style="color:#33b8d7"></i>
+    Report
   {{/link-to}}
 
-
-
-  <a class="item" {{action "logout"}} style="margin-top:219px;border-top:1px solid rgba(150,150,150,0.2)">
+  <a class="item" {{action "logout"}} style="margin-top:200px;border-top:1px solid rgba(150,150,150,0.2)">
     <i class="sign out icon" ></i>
     Logout
   </a>
 
 </div>
-<div class="pusher" style="padding:10px 75px 10px 50px;" >
+<div class="pusher" style="padding:10px 75px 10px 75px;" >
 {{outlet}}
 </div>

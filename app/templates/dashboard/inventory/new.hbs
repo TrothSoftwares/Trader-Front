@@ -1,6 +1,6 @@
 
 
-<div class="ui small form segment">
+<div class="ui small form segment" style="min-height: 370px;">
 
 
 
@@ -9,7 +9,7 @@
     <div class="field {{validItemcodeError}}">
       <label>Item Code</label>
       {{input placeholder="Item Code"  type="text"   value=itemcode  key-up="validItemcode"}}
-  
+
       <label>{{validItemcodeMessage}}</label>
     </div>
 
@@ -83,8 +83,8 @@
 
 
         </div>
-        <div class="ui blue small submit button {{isCreateProductButtonDisabled}}"   {{action "createProduct"}}>Submit</div>
-                    {{link-to 'Cancel' 'dashboard.inventory.index'  class="ui  basic  small button "}}
+        <div class="ui right floated blue small submit button {{isCreateProductButtonDisabled}}"   {{action "createProduct"}}>Submit</div>
+                    {{link-to 'Cancel' 'dashboard.inventory.index'  class="ui right floated basic  small button "}}
 
       </div>
 
