@@ -927,9 +927,17 @@ body {
 .celled td
 {
   padding-top: 0.6em !important;
-  padding-bottom: 0.6em!important;  
+  padding-bottom: 0.6em!important;
 }
 .ui.table
 {
   border-radius:0px !important;
+}
+.ember-light-table .lt-row
+{
+  height: 35px;
+}
+.lt-body tr:last-child
+{
+  border-bottom:1px solid #ccc;
 }
