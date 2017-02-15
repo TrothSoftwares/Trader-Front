@@ -63,7 +63,13 @@ ENV['ember-simple-auth'] = {
   }
 
   if (environment === 'test') {
-    ENV.APP.host =  'https://curarinventory-back.herokuapp.com';
+    
+
+    ENV['ember-simple-auth'] = {
+      store: 'simple-auth-session-store:ephemeral'
+    };
+
+    ENV.APP.host =  'http://localhost:3000';
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
@@ -76,7 +82,7 @@ ENV['ember-simple-auth'] = {
   }
 
   if (environment === 'production') {
-    ENV.APP.host =  'https://trothinventory-back.herokuapp.com';
+    ENV.APP.host =  'https://curarinventory-back.herokuapp.com';
 
   }
 //   if (deployTarget === 'staging') {

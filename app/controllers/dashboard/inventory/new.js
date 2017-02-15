@@ -21,11 +21,9 @@ export default Ember.Controller.extend({
 
   // retailprice:'',
 
-  isCreateProductButtonDisabled: Ember.computed('itemcode' , 'productname' , 'supplier' ,'typename', 'brandname' , 'initialstocklevel' ,'initialcostprice', 'buyprice'  ,  function() {
+  isCreateProductButtonDisabled: Ember.computed('itemcode' , 'productname' ,  'brandname' , 'initialstocklevel' ,'initialcostprice', 'buyprice'  ,  function() {
     if( Ember.isEmpty(this.get('itemcode')) ||
     Ember.isEmpty(this.get('productname')) ||
-    Ember.isEmpty(this.get('supplier')) ||
-    Ember.isEmpty(this.get('typename')) ||
     Ember.isEmpty(this.get('initialstocklevel')) ||
     Ember.isEmpty(this.get('initialcostprice')) ||
     Ember.isEmpty(this.get('buyprice'))
@@ -204,7 +202,7 @@ actions:{
       controller.set('typename','');
       controller.set('brandname','');
 
-      window.location.reload();
+      // window.location.reload();
       controller.transitionToRoute('dashboard.inventory.index');
     }).catch(function(){
       controller.notifications.addNotification({

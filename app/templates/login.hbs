@@ -12,7 +12,7 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            {{input type="text" value=email placeholder="E-mail address"}}
+            {{input type="text" class="email" value=email placeholder="E-mail address"}}
 
 
           </div>
@@ -20,7 +20,7 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="lock icon"></i>
-            {{input type="password" value=password placeholder="Password"}}
+            {{input type="password"  class="password" value=password placeholder="Password"}}
           </div>
         </div>
         <div class="ui fluid large teal submit button" {{action "authenticate" disabled=isLoginButtonDisabled}}>Login</div>

@@ -1,12 +1,29 @@
+import Ember from 'ember';
 import { test } from 'qunit';
 import moduleForAcceptance from 'trothinventory-front/tests/helpers/module-for-acceptance';
+import { authenticateSession} from 'trothinventory-front/tests/helpers/ember-simple-auth';
+import startApp from 'trothinventory-front/tests/helpers/start-app';
 
-moduleForAcceptance('Acceptance | login');
+
+
+let application;
+
+
+moduleForAcceptance('Acceptance | login', {
+  beforeEach() {
+    application = startApp();
+  },
+  afterEach() {
+
+
+    Ember.run(application, 'destroy');
+  }
+});
 
 test('visiting /login', function(assert) {
-  visit('/login');
-
+    authenticateSession(application);
+  visit('/inventory');
   andThen(function() {
-    assert.equal(currentURL(), '/login');
+  assert.equal(find('.newh').text(), 'Inventory');
   });
 });
