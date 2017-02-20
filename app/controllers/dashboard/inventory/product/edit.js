@@ -4,13 +4,13 @@ export default Ember.Controller.extend({
 
 
 
-
-    retailprice: function() {
-      var initialcostprice = this.get('product.initialcostprice');
-      var buyprice = this.get('product.buyprice');
-      var retailprice = (parseFloat(initialcostprice) + parseFloat(buyprice)) / 2 ;
-      return Math.round(retailprice);
-    }.property('product.initialcostprice', 'product.buyprice'),
+    //
+    // retailprice: function() {
+    //   var initialcostprice = this.get('product.initialcostprice');
+    //   var buyprice = this.get('product.buyprice');
+    //   var retailprice = (parseFloat(initialcostprice) + parseFloat(buyprice)) / 2 ;
+    //   return Math.round(retailprice);
+    // }.property('product.initialcostprice', 'product.buyprice'),
 
 
 
@@ -47,7 +47,7 @@ export default Ember.Controller.extend({
       },
       saveProduct:function(){
         var controller = this;
-        this.set('product.retailprice' , this.get('retailprice'));
+        // this.set('product.retailprice' , this.get('retailprice'));
         var currentProduct = this.get('product');
 
 

@@ -4,11 +4,11 @@
     <div class="ui item active  icon input">
 
                       {{#if (eq isSearchByName true)}}
-                    {{input type="text" class="ui   " value=searchproduct  placeholder="Search by Item Code..." key-up="searchProduct" }}
+                    {{input type="text" class="ui   " value=searchproduct  placeholder="Search by Item Name..." key-up="searchProduct" }}
                     {{/if}}
 
                     {{#if (eq isSearchByCode true)}}
-                    {{input type="text" class="ui " value=searchproductcode  placeholder="Search by Item Name..." key-up="searchProductCode" }}
+                    {{input type="text" class="ui " value=searchproductcode  placeholder="Search by Item Code..." key-up="searchProductCode" }}
                     {{/if}}
 
 
@@ -23,60 +23,51 @@
                     {{/if}}
     </div>
 
-    <div class="ui top attached tabular menu">
+    <!-- <div class="ui top attached tabular menu">
 
-  <!-- <a class="item {{allActiveClass}}" {{action "changeActiveClass" 'active'}}  >All</a>
+  <a class="item {{allActiveClass}}" {{action "changeActiveClass" 'active'}}  >All</a>
   {{#each producttypes as |producttype|}}
   {{#if (not-eq producttype.id '1')}}
   <a class="item {{producttype.activeclass}}" {{action "changeActiveClass" producttype}}  >{{producttype.typename}}</a>
   {{/if}}
-  {{/each}} -->
+  {{/each}}
 
 
-</div>
+</div> -->
 
 
     {{!-- BEGIN-SNIPPET simple-table --}}
     <table class="ui celled table">
+      {{#light-table table height='65vh' as |t|}}
 
-    {{#light-table table onScrolledToBottom=(action 'onScrolledToBottom') as |t|}}
-    <div style="">
-    <thead>
-      {{t.head
-        onColumnClick=(action 'onColumnClick')
-        iconAscending='fa fa-sort-asc'
-        iconDescending='fa fa-sort-desc'
-        fixed=true
-      }}
-    </thead>
-    </div>
-      <div style="height:399px">
+        {{t.head
+          onColumnClick=(action 'onColumnClick')
+          iconAscending='fa fa-sort-asc'
+          iconDescending='fa fa-sort-desc'
+          fixed=true
+        }}
 
-      {{#t.body canSelect=false maxheight='300px' overflow='auto' as |body|}}
-        {{#if isLoading}}
-          {{#body.loader}}
-          <div class="spinner">
-<div class="rect1"></div>
-<div class="rect2"></div>
-<div class="rect3"></div>
-<div class="rect4"></div>
-<div class="rect5"></div>
-</div>
-          {{/body.loader}}
-        {{/if}}
-      {{/t.body}}
-      </div>
-      {{#t.foot}}
-      <tfoot>
-    <tr>
+        {{#t.body
+          canSelect=false
+          onScrolledToBottom=(action 'onScrolledToBottom')
+          as |body|
+        }}
+          {{#if isLoading}}
+          {{#if isLoading}}
+            {{#body.loader}}
+            <div class="spinner">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+  </div>
+            {{/body.loader}}
+          {{/if}}
+          {{/if}}
+        {{/t.body}}
 
-
-
-
-
-   </tr></tfoot>
-      {{/t.foot}}
-    {{/light-table}}
+      {{/light-table}}
   </table>
     {{!-- END-SNIPPET --}}
 

@@ -16,10 +16,10 @@
 
 
 
-  <div class="two fields">
+  <!-- <div class="two fields">
     <div class="field">
       <label>Supplier</label>
-      <!-- {{input placeholder="Supplier" type="text" value=product.supplier.companyname}} -->
+      {{input placeholder="Supplier" type="text" value=product.supplier.companyname}}
       {{ember-selectize
         content=suppliers
         optionValuePath="content.id"
@@ -29,7 +29,7 @@
     </div>
     <div class="field">
       <label>Product Type</label>
-      <!-- {{input placeholder="Product Type" type="text" value=product.producttype.typename}} -->
+      {{input placeholder="Product Type" type="text" value=product.producttype.typename}}
       {{ember-selectize
         content=producttypes
         optionValuePath="content.id"
@@ -38,18 +38,18 @@
         placeholder="Select an item" }}
 
     </div>
-  </div>
+  </div> -->
 
   <div class="two fields">
 
     <div class="field">
-      <label>Initial Stock Level</label>
+      <label> Stock Level</label>
       {{input placeholder="Last Name" type="text" value=product.initialstocklevel}}
     </div>
   </div>
 
 
-  <div class="two fields">
+  <!-- <div class="two fields">
     <div class="field">
       <label>Initial Cost Price</label>
       {{input placeholder="Initial Cost Price" type="text" value=product.initialcostprice}}
@@ -58,12 +58,12 @@
       <label>Buy Price</label>
       {{input placeholder="Buy Price" type="text" value=product.buyprice}}
     </div>
-  </div>
+  </div> -->
 
   <div class="two fields">
     <div class="field">
-      <label>Retail Price</label>
-      {{input placeholder="Retail Price"   readonly="readonly" type="text" value=retailprice}}
+      <label> Price</label>
+      {{input placeholder=" Price"  type="text" value=product.retailprice}}
     </div>
 
   </div>

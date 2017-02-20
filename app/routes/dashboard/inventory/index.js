@@ -12,6 +12,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,{
       controller.set('producttypes', controller.store.findAll('producttype',{reload: true}));
       controller.get('table').setRows(model);
        controller.set('mdata',model);
+       controller.set('page',1);
+       controller.set('canLoadMore',true);
 
     },
 

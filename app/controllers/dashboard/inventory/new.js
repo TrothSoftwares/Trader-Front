@@ -21,12 +21,12 @@ export default Ember.Controller.extend({
 
   // retailprice:'',
 
-  isCreateProductButtonDisabled: Ember.computed('itemcode' , 'productname' ,  'brandname' , 'initialstocklevel' ,'initialcostprice', 'buyprice'  ,  function() {
+  isCreateProductButtonDisabled: Ember.computed('itemcode' , 'productname' ,    'initialstocklevel' , 'retailprice'  ,  function() {
     if( Ember.isEmpty(this.get('itemcode')) ||
     Ember.isEmpty(this.get('productname')) ||
     Ember.isEmpty(this.get('initialstocklevel')) ||
-    Ember.isEmpty(this.get('initialcostprice')) ||
-    Ember.isEmpty(this.get('buyprice'))
+    // Ember.isEmpty(this.get('initialcostprice')) ||
+    Ember.isEmpty(this.get('retailprice'))
 
   ){return 'disabled';}
   else{return '';}
@@ -35,18 +35,18 @@ export default Ember.Controller.extend({
 
 
 
-retailprice: Ember.computed('initialcostprice', 'buyprice', function() {
-  var initialcostprice = this.get('initialcostprice');
-  var buyprice = this.get('buyprice');
-
-  if(initialcostprice && buyprice){
-    var retailprice = (parseFloat(initialcostprice) + parseFloat(buyprice)) / 2 ;
-    return Math.round(retailprice);
-  }
-  else{
-    return '';
-  }
-}),
+// retailprice: Ember.computed('initialcostprice', 'buyprice', function() {
+//   var initialcostprice = this.get('initialcostprice');
+//   var buyprice = this.get('buyprice');
+//
+//   if(initialcostprice && buyprice){
+//     var retailprice = (parseFloat(initialcostprice) + parseFloat(buyprice)) / 2 ;
+//     return Math.round(retailprice);
+//   }
+//   else{
+//     return '';
+//   }
+// }),
 
 
 // retailprice: function() {
@@ -185,10 +185,10 @@ actions:{
       initialstocklevel :this.get('initialstocklevel'),
       initialcostprice :this.get('initialcostprice'),
       retailprice :this.get('retailprice'),
-      buyprice :this.get('buyprice'),
-      supplier :this.get('supplier'),
-      producttype : this.get('typename'),
-      productbrand :this.get('brandname')
+      // buyprice :this.get('buyprice'),
+      // supplier :this.get('supplier'),
+      // producttype : this.get('typename'),
+      // productbrand :this.get('brandname')
     });
 
     product.save().then(function(){

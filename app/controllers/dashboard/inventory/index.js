@@ -13,6 +13,8 @@ export default Ember.Controller.extend({
   isSearchByCode :false,
 
 
+
+
   count: Ember.computed('mdata.meta.pagination.last.number', 'mdata.meta.pagination.self.number', function() {
     const total = this.get('mdata.meta.pagination.last.number') || this.get('mdata.meta.pagination.self.number');
     if (!total){
@@ -54,13 +56,31 @@ export default Ember.Controller.extend({
   direction: 'asc',
   isLoading: false,
   canLoadMore: true,
+  // isLoading: Ember.computed.oneWay('fetchRecords.isRunning'),
+
+
+
+  // init() {
+  //   console.log("init");
+  //   this._super(...arguments);
+  //   this.set('table', new Table(this.get('columns')));
+  // },
+
+
+
+
 
   init() {
-    this._super(...arguments);
-    this.set('table', new Table(this.get('columns')));
-  },
+     this._super(...arguments);
+
+     let table = new Table(this.get('columns'));
+
+
+     this.set('table', table);
+   },
 
   fetchRecords() {
+    console.log("fetchrecords");
     this.set('isLoading', true);
 
     var searchArray;
@@ -111,7 +131,9 @@ searchByCode(){
 
 
     onScrolledToBottom() {
+      console.log("ssss begining");
       if(this.get('canLoadMore')) {
+        console.log("ssss");
         this.incrementProperty('page');
         this.fetchRecords();
       }
