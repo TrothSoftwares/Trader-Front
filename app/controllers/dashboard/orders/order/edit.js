@@ -67,7 +67,7 @@ actions:{
     });
 
     order.set('totalunits' , order.get('computedtotalunits'));
-    order.set('totalcost' , order.get('computedtotalcosts'));
+    order.set('totalcost' , order.get('computedtotal'));
     order.save().then(function(){
       controller.notifications.addNotification({
         message: 'Saved' ,

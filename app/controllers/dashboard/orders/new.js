@@ -5,6 +5,9 @@ export default Ember.Controller.extend({
 
   ajax: Ember.inject.service(),
 
+roundoff:0,
+diecost:0,
+computedcashdiscount:0,
 
 
   natures :["Select","Electrical", "Plumbing" , "Masonry" , "Telephone","Painting","Carpentry", "Welding","A/C"],
@@ -47,18 +50,33 @@ computedOrderTotalUnits: Ember.computed('orderitems.@each.quantity', function() 
 
 
 
-computedOrderTotalCost: Ember.computed('orderitems.@each.computedtotal', function() {
-
+computedOrderTotalCostTaxable: Ember.computed('orderitems.@each.computedtotal', function() {
   var orderitems = this.get('orderitems');
   if(orderitems){
-
     var ret =0;
     orderitems.forEach(function(orderitem){
       ret += orderitem.get('computedtotal');
     });
     return ret;
   }
+  else{
+    return 0;
+  }
 }),
+
+computedtax: Ember.computed('computedOrderTotalCostTaxable', function() {
+  var taxableamount  = this.get('computedOrderTotalCostTaxable');
+  // console.log(taxableamount);
+  var computedtax = (5 /100 ) * parseFloat(taxableamount);
+  return computedtax;
+}),
+
+computedtotal: Ember.computed('computedOrderTotalCostTaxable','computedtax','computedcashdiscount' , 'roundoff','diecost', function() {
+  let computedtotal = parseFloat(this.get('computedOrderTotalCostTaxable')) + parseFloat(this.get('computedtax')) - parseFloat(this.get('computedcashdiscount')) + parseFloat(this.get('roundoff')) + parseFloat(this.get('diecost')) ;
+
+  return computedtotal;
+}),
+
 
 
 
@@ -103,7 +121,15 @@ actions:{
       issuancedate :this.get('issuancedate'),
       orderstatus :'created',
       totalunits :this.get('computedOrderTotalUnits'),
-      totalcost :this.get('computedOrderTotalCost'),
+      cashdiscount :this.get('computedcashdiscount'),
+      nettaxablevalue :this.get('computedOrderTotalCostTaxable'),
+      roundoff :this.get('roundoff'),
+      diecost:this.get('diecost'),
+      tax :this.get('computedtax'),
+      totalcost :this.get('computedtotal'),
+
+
+
     });
 
     var templateOrderitems = controller.get('orderitems');

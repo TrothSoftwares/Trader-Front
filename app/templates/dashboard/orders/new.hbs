@@ -68,7 +68,7 @@
           optionValuePath="content.id"
           optionLabelPath="content.companyname"
           selection=customer
-          placeholder="Select a Location"
+          placeholder="Select a Customer"
         }}
       </div>
     </div>
@@ -93,6 +93,7 @@
 
           <th>item Cost</th>
           <th>Total</th>
+          <th>Rate of Tax</th>
           <th></th>
         </tr>
       </thead>
@@ -137,6 +138,7 @@
           </div>
         </td>
         <td>{{orderitem.computedtotal}}</td>
+        <td>{{orderitem.order.rateoftax}}% </td>
         <td>
           <button class=" ui tiny right floated inverted button red"  {{action 'deleteOrderitem' orderitem}}><i class="trash icon"></i></button>
         </td>
@@ -210,13 +212,30 @@
     <div class="column" >
       <table class="ui very basic table">
         <tbody>
+
           <tr>
-            <td>Total Units</td>
-            <td class="right aligned">{{computedOrderTotalUnits}}</td>
+            <td>Net Taxable Amount</td>
+            <td>{{computedOrderTotalCostTaxable}}</td>
+          </tr>
+          <tr>
+            <td>Tax</td>
+            <td>{{computedtax}}</td>
+          </tr>
+          <tr>
+            <td>Cash Discount</td>
+            <td>{{input type="number" style="width:100px" placeholder="Cash Discount" value=computedcashdiscount}}</td>
+          </tr>
+          <tr>
+            <td>Round Off</td>
+            <td>{{input type="number" style="width:100px" placeholder="Round Off" value=roundoff}}</td>
+          </tr>
+          <tr>
+            <td>Die Cost</td>
+            <td>{{input type="number" style="width:100px" placeholder="Die Cost" value=diecost}}</td>
           </tr>
           <tr>
             <td>Total Cost</td>
-            <td class="right aligned">{{computedOrderTotalCost}}</td>
+            <td class="right aligned">{{computedtotal}}</td>
           </tr>
         </tbody>
       </table>

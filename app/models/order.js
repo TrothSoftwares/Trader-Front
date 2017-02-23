@@ -19,6 +19,18 @@ export default DS.Model.extend({
   approvedby: DS.belongsTo('employee' ,{async:true}),
   orderitems: DS.hasMany('orderitem' ,{embedded: 'always', async:true}),
   stockadjustments: DS.hasMany('stockadjustment' ,{embedded: 'always', async:true}),
+  hsncode: DS.attr('string'),
+  rateoftax: DS.attr('number',{default:5.0}),
+  exciseduty: DS.attr('number'),
+  cashdiscount: DS.attr('number'),
+  nettaxablevalue: DS.attr('number'),
+  tax: DS.attr('number'),
+  roundoff: DS.attr('number',{default:0}),
+  diecost: DS.attr('number',{default:0}),
+  misc: DS.attr('number',{default:0}),
+
+
+// computedOrderTotalCostTaxable
 
 
 
@@ -28,12 +40,23 @@ export default DS.Model.extend({
     }, 0);
 }.property('orderitems.@each.quantity'),
 
-computedtotalcosts: function() {
+computedtotalcoststaxable: function() {
     return this.get('orderitems').reduce(function(sum, split) {
         return sum + parseInt(split.get('computedtotal'));
     }, 0);
 }.property('orderitems.@each.computedtotal'),
 
+computedtax: function() {
+  var taxableamount  = this.get('computedtotalcoststaxable');
+  var computedtax = (5 /100 ) * parseFloat(taxableamount);
+  return computedtax;
+}.property('computedtotalcoststaxable'),
+
+computedtotal: function() {
+  let computedtotal = parseFloat(this.get('computedtotalcoststaxable')) + parseFloat(this.get('computedtax')) - parseFloat(this.get('cashdiscount')) + parseFloat(this.get('roundoff')) + parseFloat(this.get('diecost')) ;
+
+  return computedtotal;
+}.property('computedtotalcoststaxable' , 'computedtax','cashdiscount','roundoff','diecost'),
 
 
 

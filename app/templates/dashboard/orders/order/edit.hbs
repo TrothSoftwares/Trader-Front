@@ -178,14 +178,31 @@
         <div class="column" >
           <table class="ui very basic table">
             <tbody>
-              <tr>
-                <td>Total Units</td>
-                <td class="right aligned">{{order.computedtotalunits}}</td>
-              </tr>
-              <tr>
-                <td>Total Cost</td>
-                <td class="right aligned">{{order.computedtotalcosts}}</td>
-              </tr>
+
+                        <tr>
+                          <td>Net Taxable Amount</td>
+                          <td>{{order.computedtotalcoststaxable}}</td>
+                        </tr>
+                        <tr>
+                          <td>Tax</td>
+                          <td>{{order.computedtax}}</td>
+                        </tr>
+                        <tr>
+                          <td>Cash Discount</td>
+                          <td>{{input type="number" style="width:100px" placeholder="Cash Discount" value=order.cashdiscount}}</td>
+                        </tr>
+                        <tr>
+                          <td>Round Off</td>
+                          <td>{{input type="number" style="width:100px" placeholder="Round Off" value=order.roundoff}}</td>
+                        </tr>
+                        <tr>
+                          <td>Die Cost</td>
+                          <td>{{input type="number" style="width:100px" placeholder="Die Cost" value=order.diecost}}</td>
+                        </tr>
+                        <tr>
+                          <td>Total Cost</td>
+                          <td class="right aligned">{{order.computedtotal}}</td>
+                        </tr>
             </tbody>
           </table>
         </div>

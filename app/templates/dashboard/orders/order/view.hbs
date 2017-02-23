@@ -17,9 +17,10 @@
             <!-- <div class="inline field" >
               <label  style="width:75px">MRF </label>:
               {{order.mrf}}
+
             </div> -->
             <div class="inline field">
-              <label style="width:75px">Customer  </label>:
+              <label style="width:75px">Location  </label>:
               {{order.customer.companyname}}
             </div>
           </div>
@@ -89,32 +90,49 @@
         <div class="column" >
           <div class="ui  form">
             <div class="inline field" >
-              <label style="width:110px">Ordered By </label>:
+              <label style="width:110px">Requested By </label>:
               {{order.requestedby.name}}
             </div>
             <div class="inline field" >
-              <label style="width:110px">Delivered By </label>:
+              <label style="width:110px">Issued By </label>:
               {{order.employee.name}}
             </div>
           </div>
         </div>
-        <!-- <div class="column" >
+        <div class="column" >
           <div class="inline field" >
             <label style="width:110px">Approved By </label>:
             {{order.approvedby.name}}
           </div>
-        </div> -->
+        </div>
         <div class="column" >
           <table class="ui very basic table">
             <tbody>
-              <tr>
-                <td>Total Units</td>
-                <td class="right aligned">{{order.computedtotalunits}}</td>
-              </tr>
-              <tr>
-                <td>Total Cost</td>
-                <td class="right aligned">{{order.computedtotalcosts}}</td>
-              </tr>
+
+                        <tr>
+                          <td>Net Taxable Amount</td>
+                          <td>{{order.nettaxablevalue}}</td>
+                        </tr>
+                        <tr>
+                          <td>Tax</td>
+                          <td>{{order.tax}}</td>
+                        </tr>
+                        <tr>
+                          <td>Cash Discount</td>
+                          <td>{{order.cashdiscount}}</td>
+                        </tr>
+                        <tr>
+                          <td>Round Off</td>
+                          <td>{{order.roundoff}}</td>
+                        </tr>
+                        <tr>
+                          <td>Die Cost</td>
+                          <td>{{order.diecost}}</td>
+                        </tr>
+                        <tr>
+                          <td>Total Cost</td>
+                          <td class="right aligned">{{order.totalcost}}</td>
+                        </tr>
             </tbody>
           </table>
         </div>
@@ -156,7 +174,7 @@
 
         </div>
         <div class="inline field">
-          <label style="width:75px">Customer  </label>:
+          <label style="width:75px">Location  </label>:
           {{order.customer.companyname}}
         </div>
       </div>
