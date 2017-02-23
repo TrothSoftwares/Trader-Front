@@ -7,7 +7,7 @@
 
 <div class="clearfix" ></div>
 <div class="ui grid"style="margin-top:0 ">
-  <div class="seven wide column  ">
+  <!-- <div class="seven wide column  ">
     <div class="ui grid">
     <div class="four wide column  ">
 
@@ -26,14 +26,14 @@
 
 </div>
 </div>
-</div>
+</div> -->
 <div class="four wide column  ">
 
 
 </div>
 <div class="five wide column  ">
 
-  <button class="ui tiny right floated green button no-print " {{action "clearFilters"}}>Clear All Filters</button>
+  <!-- <button class="ui tiny right floated green button no-print " {{action "clearFilters"}}>Clear All Filters</button> -->
 
 </div>
 </div>
@@ -50,8 +50,7 @@
     <tr>
     <th>No.</th>
     <th>Item Code</th>
-    <th>Item Type</th>
-    <th>Product Name</th>
+     <th>Product Name</th>
     <th>Stock In Hand </th>
     <th>Retail Price</th>
     <th>Total (Retail)</th>
@@ -62,8 +61,7 @@
   <tr >
     <td> {{ incrementone index}}</td>
 <td> {{product.itemcode}}</td>
-<td> {{product.producttype.typename}}</td>
-<td> {{product.productname}}</td>
+ <td> {{product.productname}}</td>
 <td> {{product.initialstocklevel}}</td>
 <td> {{product.retailprice}}</td>
 <td> {{product.computedtotal_retail_intialstocklevel}}</td>

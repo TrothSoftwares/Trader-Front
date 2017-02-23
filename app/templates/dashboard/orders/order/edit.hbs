@@ -8,19 +8,19 @@
       <div class="ui three column grid">
         <div class="column" style=" padding-bottom:0px">
           <div class="ui small form">
-          <div class="inline field" style="float:right">
+          <!-- <div class="inline field" style="float:right">
             <label >MRF: :</label>
 
             {{input placeholder="MRF"  type="text" class="ui input"  value=order.mrf}}
-          </div>
+          </div> -->
           <div class="inline field" style="float:right">
-            <label > Location:</label>
+            <label > Customer:</label>
             {{ember-selectize
               content=customers
               optionValuePath="content.id"
               optionLabelPath="content.companyname"
               selection=order.customer
-              placeholder="Select a Location"
+              placeholder="Select a Customer"
             }}
           </div>
     </div>
@@ -31,7 +31,7 @@
           <div class="ui small form">
 
 
-            <div class="inline field" style="float:right">
+            <!-- <div class="inline field" style="float:right">
               <label >Nature :</label>
 
               <select onchange={{action "selectNature" value="target.value"}} class="form-control">
@@ -39,7 +39,7 @@
                                           <option value={{natureChoice}} selected={{eq order.natureofwork natureChoice}}>{{natureChoice}}</option>
                                           {{/each}}
                                         </select>
-            </div>
+            </div> -->
             <div class="inline field" style="float:right">
               <label > Date :</label>
 
@@ -160,7 +160,7 @@
   </div>
         </div>
         <div class="column" >
-          <div class="ui grid" >
+          <!-- <div class="ui grid" >
             <div class="six wide column ">
               <label style="margin-top:10px"> Approved By:</label>
             </div>
@@ -173,7 +173,7 @@
             placeholder="Select an Employee"
           }}
         </div>
-        </div>
+        </div> -->
         </div>
         <div class="column" >
           <table class="ui very basic table">

@@ -14,13 +14,12 @@
       <div class="ui three column grid">
         <div class="column" >
           <div class="ui small form">
-            <div class="inline field" >
+            <!-- <div class="inline field" >
               <label  style="width:75px">MRF </label>:
               {{order.mrf}}
-
-            </div>
+            </div> -->
             <div class="inline field">
-              <label style="width:75px">Location  </label>:
+              <label style="width:75px">Customer  </label>:
               {{order.customer.companyname}}
             </div>
           </div>
@@ -29,11 +28,11 @@
 
         <div class=" column">
           <div class="ui small form">
-            <div class="inline field" >
+            <!-- <div class="inline field" >
               <label  style="width:100px">Nature Of Work </label>:
               {{order.natureofwork}}
 
-            </div>
+            </div> -->
             <div class="inline field">
               <label style="width:100px">Date  </label>:
               {{moment-format order.issuancedate inputFormat}}
@@ -90,21 +89,21 @@
         <div class="column" >
           <div class="ui  form">
             <div class="inline field" >
-              <label style="width:110px">Requested By </label>:
+              <label style="width:110px">Ordered By </label>:
               {{order.requestedby.name}}
             </div>
             <div class="inline field" >
-              <label style="width:110px">Issued By </label>:
+              <label style="width:110px">Delivered By </label>:
               {{order.employee.name}}
             </div>
           </div>
         </div>
-        <div class="column" >
+        <!-- <div class="column" >
           <div class="inline field" >
             <label style="width:110px">Approved By </label>:
             {{order.approvedby.name}}
           </div>
-        </div>
+        </div> -->
         <div class="column" >
           <table class="ui very basic table">
             <tbody>
@@ -157,7 +156,7 @@
 
         </div>
         <div class="inline field">
-          <label style="width:75px">Location  </label>:
+          <label style="width:75px">Customer  </label>:
           {{order.customer.companyname}}
         </div>
       </div>

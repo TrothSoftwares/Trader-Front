@@ -9,9 +9,6 @@ export default Ember.Controller.extend({
           "propertyName": "id", "title": "Order No."
         },
         {
-          "propertyName": "mrf", "title": "MRF No."
-        },
-        {
           "propertyName": "customer.companyname", "title": "Customer"
         },
         {
