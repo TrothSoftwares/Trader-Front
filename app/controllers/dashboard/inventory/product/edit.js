@@ -39,7 +39,7 @@ addToStock:function(product){
 
   product.save().then(function(){
     controller.notifications.addNotification({
-      message: 'Stockupdated!' ,
+      message: 'Stock updated!' ,
       type: 'success',
       autoClear: true
     });
