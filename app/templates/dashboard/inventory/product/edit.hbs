@@ -46,6 +46,10 @@
       <label> Stock Level</label>
       {{input placeholder="Last Name" type="text" value=product.initialstocklevel}}
     </div>
+    <div class="field">
+      <div class="ui blue left floated small submit button" {{action 'openAddInventorymodal'}}>Add To Stock</div>
+
+    </div>
   </div>
 
 
@@ -70,5 +74,27 @@
   <div class="ui blue right floated small submit button" {{action "saveProduct" product}}>Save</div>
   <div class="ui red left floated small submit button" {{action "deleteProduct" product}}>Delete</div>
   {{link-to 'Cancel' 'dashboard.inventory.product.view'  class="ui  basic grey small right floated button "}}
+
+</div>
+
+
+
+<div class="ui addtoinventory small modal">
+
+  <div class="header">Add To Stock</div>
+  <div class="content">
+    <div class="ui small form segment">
+
+        <div class="field">
+          <label>Add To Stock</label>
+          {{input placeholder="Enter the quantity to add"  type="number" value=addtostock}}
+        </div>
+        <div class="field">
+          <button class="ui blue  floated small submit button" {{action "addToStock" product}} disabled="{{isAddToStockButtonDisabled}}">Add {{addtostock}} to Stock</button>
+        </div>
+      </div>
+
+
+</div>
 
 </div>
