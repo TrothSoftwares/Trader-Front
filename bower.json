@@ -16,8 +16,6 @@
     "ember": "2.11.0",
     "qunit": "2.1.0",
     "loader.js": "4.1.0"
-  },
-  "ignore": [
-    "ember"
-  ]
+  }
+
 }

@@ -2,6 +2,13 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+addtostock:0,
+
+isAddToStockButtonDisabled: Ember.computed('addtostock' ,  function() {
+  if( Ember.isEmpty(this.get('addtostock'))
+){return 'disabled';}
+else{return '';}
+}),
 
 
     //
@@ -17,6 +24,48 @@ export default Ember.Controller.extend({
 
     actions:{
 
+
+addToStock:function(product){
+  var controller = this;
+  let initialstocklevel  = product.get('initialstocklevel');
+
+  let addtostock = controller.get('addtostock');
+  if(addtostock){
+
+
+  let addedvalue = parseInt(initialstocklevel) + parseInt(addtostock);
+
+  product.set('initialstocklevel',addedvalue);
+
+  product.save().then(function(){
+    controller.notifications.addNotification({
+      message: 'Stockupdated!' ,
+      type: 'success',
+      autoClear: true
+    });
+
+    Ember.$('.ui.addtoinventory.small.modal')
+    .modal('hide')
+    ;
+  }).catch(function(){
+    controller.notifications.addNotification({
+      message: 'Sorry, cant save at the moment !' ,
+      type: 'error',
+      autoClear: true
+    });
+  });
+
+  }
+
+
+},
+
+
+openAddInventorymodal:function(){
+  Ember.$('.ui.addtoinventory.small.modal')
+  .modal('show')
+  ;
+},
 
       deleteProduct:function(product){
 
