@@ -63,11 +63,21 @@ actions:{
 
     orderitems.forEach(function(orderitem){
       orderitem.set('total',orderitem.get('computedtotal'));
+      orderitem.set('grossvalue',orderitem.get('computedgrosstotal'));
+      orderitem.set('nettaxablevalue',orderitem.get('computednettaxablevalue'));
+      orderitem.set('tax',orderitem.get('computedtax'));
+      orderitem.set('totalvalue',orderitem.get('computedtotalvalue'));
       orderitem.save();
     });
 
     order.set('totalunits' , order.get('computedtotalunits'));
     order.set('totalcost' , order.get('computedtotal'));
+    
+    order.set('chargableamount','computedAmountChargable');
+    order.set('roundoff','roundoff');
+    order.set('totalcost','computedOrderTotalAmount');
+
+
     order.save().then(function(){
       controller.notifications.addNotification({
         message: 'Saved' ,

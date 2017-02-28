@@ -67,18 +67,28 @@
       <table class="ui celled table">
         <thead  class="center aligned">
           <tr>
-            <th>Item Name</th>
-            <th style="width:100px">Quantiy</th>
-            <th>After</th>
-            <th>item Cost</th>
+            <th> Sl No.</th>
+            <th>Schl. with entryno</th>
+            <th>Commodity</th>
+            <th>Rate of Tax</th>
+            <th>Unit Price</th>
+            <th style="width:100px">Qty</th>
+            <th>Value</th>
+            <th>Excise Duty</th>
+            <th>Gross Value</th>
+            <th>Cash Discount</th>
+            <th>Net Taxable Value</th>
+            <th>Tax</th>
             <th>Total</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
 
-          {{#each order.orderitems  as |orderitem|}}
+          {{#each order.orderitems  as |orderitem index|}}
           <tr class="center aligned">
+            <td>{{incrementone index}}</td>
+            <td>{{orderitem.product.itemcode}}</td>
             <td>
               <!-- {{ember-selectize
                 content=products
@@ -102,20 +112,27 @@
               {{/power-select}}
 
             </td>
-            <td class="left aligned" >
-              <div class="ui tiny transparent input">
-                {{input type="number" style="width:100px" placeholder="Qty" value=orderitem.quantity}}
-              </div>
-            </td>
             <td>
-              <label>{{orderitem.aftervalue}}</label>
+              {{input type="number"    placeholder="Rate of Tax" value=orderitem.rateoftax}} %
             </td>
             <td >
               <div class="ui tiny transparent input">
-                {{input type="number" readonly="true" style="width:100px" placeholder="Qty" value=orderitem.product.retailprice}}
+                {{input type="number" readonly="true"   placeholder="Price" value=orderitem.product.retailprice}}
+              </div>
+            </td>
+
+            <td class="left aligned" >
+              <div class="ui tiny transparent input">
+                {{input type="number"  placeholder="Qty" value=orderitem.quantity}}
               </div>
             </td>
             <td>{{orderitem.computedtotal}}</td>
+            <td>{{input type="number"  placeholder="Excise Duty" value=orderitem.exciseduty}}</td>
+            <td>{{orderitem.computedgrosstotal}}</td>
+            <td>{{input type="number"  placeholder="Cash Discount" value=orderitem.cashdiscount}}</td>
+            <td>{{orderitem.computednettaxablevalue}}</td>
+            <td>{{orderitem.computedtax}}</td>
+            <td>{{orderitem.computedtotalvalue}}</td>
             <td>
 <button class=" ui tiny right floated inverted button red"  {{action 'deleteOrderItem' orderitem}}><i class="trash icon"></i></button>
             </td>
@@ -179,30 +196,23 @@
           <table class="ui very basic table">
             <tbody>
 
-                        <tr>
-                          <td>Net Taxable Amount</td>
-                          <td>{{order.computedtotalcoststaxable}}</td>
-                        </tr>
-                        <tr>
-                          <td>Tax</td>
-                          <td>{{order.computedtax}}</td>
-                        </tr>
-                        <tr>
-                          <td>Cash Discount</td>
-                          <td>{{input type="number" style="width:100px" placeholder="Cash Discount" value=order.cashdiscount}}</td>
-                        </tr>
-                        <tr>
-                          <td>Round Off</td>
-                          <td>{{input type="number" style="width:100px" placeholder="Round Off" value=order.roundoff}}</td>
-                        </tr>
-                        <tr>
-                          <td>Die Cost</td>
-                          <td>{{input type="number" style="width:100px" placeholder="Die Cost" value=order.diecost}}</td>
-                        </tr>
-                        <tr>
-                          <td>Total Cost</td>
-                          <td class="right aligned">{{order.computedtotal}}</td>
-                        </tr>
+              <tr>
+                <td>Total Amount</td>
+                <td>{{computedOrderTotalAmount}}</td>
+              </tr>
+              <tr>
+                <td>Round Off</td>
+                <td>{{input type="number" style="width:100px" placeholder="Round Off" value=roundoff}}</td>
+              </tr>
+              <tr>
+                <td>Amount Chargable</td>
+                <td class="right aligned">{{computedAmountChargable}}</td>
+              </tr>
+              <tr>
+                <td>Amount Chargable (In Words)</td>
+                <td class="right aligned">{{number-to-english number=computedAmountChargable}}</td>
+              </tr>
+
             </tbody>
           </table>
         </div>

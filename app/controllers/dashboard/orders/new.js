@@ -6,8 +6,6 @@ export default Ember.Controller.extend({
   ajax: Ember.inject.service(),
 
 roundoff:0,
-diecost:0,
-computedcashdiscount:0,
 
 
   natures :["Select","Electrical", "Plumbing" , "Masonry" , "Telephone","Painting","Carpentry", "Welding","A/C"],
@@ -50,12 +48,12 @@ computedOrderTotalUnits: Ember.computed('orderitems.@each.quantity', function() 
 
 
 
-computedOrderTotalCostTaxable: Ember.computed('orderitems.@each.computedtotal', function() {
+computedOrderTotalAmount: Ember.computed('orderitems.@each.computedtotalvalue', function() {
   var orderitems = this.get('orderitems');
   if(orderitems){
     var ret =0;
     orderitems.forEach(function(orderitem){
-      ret += orderitem.get('computedtotal');
+      ret += orderitem.get('computedtotalvalue');
     });
     return ret;
   }
@@ -64,23 +62,22 @@ computedOrderTotalCostTaxable: Ember.computed('orderitems.@each.computedtotal', 
   }
 }),
 
-computedtax: Ember.computed('computedOrderTotalCostTaxable', function() {
-  var taxableamount  = this.get('computedOrderTotalCostTaxable');
-  // console.log(taxableamount);
-  var computedtax = (5 /100 ) * parseFloat(taxableamount);
-  return computedtax;
-}),
 
-computedtotal: Ember.computed('computedOrderTotalCostTaxable','computedtax','computedcashdiscount' , 'roundoff','diecost', function() {
-  let computedtotal = parseFloat(this.get('computedOrderTotalCostTaxable')) + parseFloat(this.get('computedtax')) - parseFloat(this.get('computedcashdiscount')) + parseFloat(this.get('roundoff')) + parseFloat(this.get('diecost')) ;
+computedAmountChargable: Ember.computed( 'computedOrderTotalAmount','roundoff', function() {
 
-  return computedtotal;
+  let computedtotal = parseFloat(this.get('computedOrderTotalAmount')) + parseFloat(this.get('roundoff')) ;
+
+  return Math.round(computedtotal);
 }),
 
 
 
 
 actions:{
+
+
+
+
 
 
 
@@ -106,6 +103,10 @@ actions:{
   selectNature(nature) {
     this.set('natureofwork', nature);
   },
+
+
+
+
   createOrder:function(){
 
     var controller = this;
@@ -121,12 +122,9 @@ actions:{
       issuancedate :this.get('issuancedate'),
       orderstatus :'created',
       totalunits :this.get('computedOrderTotalUnits'),
-      cashdiscount :this.get('computedcashdiscount'),
-      nettaxablevalue :this.get('computedOrderTotalCostTaxable'),
+       chargableamount :this.get('computedAmountChargable'),
       roundoff :this.get('roundoff'),
-      diecost:this.get('diecost'),
-      tax :this.get('computedtax'),
-      totalcost :this.get('computedtotal'),
+      totalcost :this.get('computedOrderTotalAmount'),
 
 
 
@@ -144,10 +142,22 @@ actions:{
       controller.set('location','');
       controller.set('duedate','');
       controller.set('requestedby','');
-      controller.set('approvedby','');
+      controller.set('roundoff','');
+      controller.set('totalcost','');
+
+
 
       templateOrderitems.forEach(function(orderitem){
+
+
         orderitem.set('order', order);
+        orderitem.set('total',orderitem.get('computedtotal'));
+        orderitem.set('grossvalue',orderitem.get('computedgrosstotal'));
+        orderitem.set('nettaxablevalue',orderitem.get('computednettaxablevalue'));
+        orderitem.set('tax',orderitem.get('computedtax'));
+        orderitem.set('totalvalue',orderitem.get('computedtotalvalue'));
+
+
         orderitem.save() ;
       });
 
@@ -176,6 +186,9 @@ actions:{
     var controller = this;
     var orderitem = controller.store.createRecord('orderitem', {
       quantity :1,
+      rateoftax:0,
+      exciseduty:0,
+      cashdiscount:0,
       total :'',
       poitemstatus :'',
       order : controller.get('orders').get('firstObject'),
