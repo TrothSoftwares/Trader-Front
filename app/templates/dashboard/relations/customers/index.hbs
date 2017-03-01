@@ -25,8 +25,7 @@
    <thead>
      <tr>
      <th>Sl. No.</th>
-     <th>Company Code</th>
-     <th>Company Name</th>
+      <th>Company Name</th>
      <th>Email</th>
      <th>Phone</th>
      <th>View</th>
@@ -35,8 +34,7 @@
      {{#each customers as |customer index|}}
      <tr>
        <td>{{incrementone index}}</td>
-       <td>{{customer.companycode}}</td>
-       <td>{{customer.companyname}}</td>
+        <td>{{customer.companyname}}</td>
        <td>{{customer.email}}</td>
        <td>{{customer.phone}}</td>
        <td>{{link-to "View"  'dashboard.relations.customers.customer.view'  customer }}</td>

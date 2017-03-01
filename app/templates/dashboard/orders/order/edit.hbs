@@ -3,7 +3,7 @@
 
 
 <div class="ui two column grid">
-  <div class="twelve wide column" style="padding:0">
+  <div class="sixteen wide column" style="padding:0">
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:550px;overflow:auto ">
       <div class="ui three column grid">
         <div class="column" style=" padding-bottom:0px">
@@ -41,10 +41,17 @@
                                         </select>
             </div> -->
             <div class="inline field" style="float:right">
-              <label > Date :</label>
+              <label > Delivery Date :</label>
 
               {{pikaday-input  placeholder="Order Date" value=order.issuancedate}}
             </div>
+
+            <div class="inline field" style="float:right">
+              <label > Order Date :</label>
+
+              {{moment-format order.createdat inputFormat}}
+            </div>
+
 
           </div>
         </div>
@@ -202,7 +209,7 @@
               </tr>
               <tr>
                 <td>Round Off</td>
-                <td>{{input type="number" style="width:100px" placeholder="Round Off" value=roundoff}}</td>
+                <td>{{input type="number" style="width:100px" placeholder="Round Off" value=order.roundoff}}</td>
               </tr>
               <tr>
                 <td>Amount Chargable</td>
@@ -210,7 +217,7 @@
               </tr>
               <tr>
                 <td>Amount Chargable (In Words)</td>
-                <td class="right aligned">{{number-to-english number=computedAmountChargable}}</td>
+                <td class="right aligned" style="text-transform:capitalize">{{number-to-english number=computedAmountChargable}}</td>
               </tr>
 
             </tbody>

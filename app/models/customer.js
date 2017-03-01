@@ -14,6 +14,7 @@ state: DS.attr('string'),
 country: DS.attr('string'),
 zipcode: DS.attr('string'),
 phone: DS.attr('string'),
+tin: DS.attr('string'),
 filteryear: DS.attr('number', {
     defaultValue() { return new Date().getFullYear(); }
   }),

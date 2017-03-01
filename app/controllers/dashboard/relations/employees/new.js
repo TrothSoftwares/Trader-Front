@@ -31,7 +31,8 @@ export default Ember.Controller.extend({
         name :this.get('name'),
         department :this.get('department'),
         workcontact :this.get('workcontact'),
-        personalcontact :this.get('personalcontact')
+        personalcontact :this.get('personalcontact'),
+        dateofjoin :this.get('dateofjoin')
 
       });
 

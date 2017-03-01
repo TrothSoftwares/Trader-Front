@@ -7,9 +7,6 @@ export default Ember.Controller.extend({
       "propertyName": "id", "title": "Sl.No"
     },
     {
-      "propertyName": "companycode","title": "Company Code"
-    },
-    {
       "propertyName": "companyname","title": "Company Name"
     },
     {

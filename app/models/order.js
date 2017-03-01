@@ -4,6 +4,7 @@ import Ember from 'ember';
 
 
 export default DS.Model.extend({
+  createdat: DS.attr('date'),
   duedate: DS.attr('date'),
   issuancedate: DS.attr('date'),
   totalunits :DS.attr('number'),
