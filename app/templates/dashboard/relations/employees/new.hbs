@@ -10,8 +10,8 @@
           {{input placeholder="Sl. No"  type="number" value=slno }}
         </div>
         <div class="inline field  {{validCompanycodeError}}" >
-          <label>Payroll : </label>
-          {{input placeholder="Payroll"  type="text"  value=payroll }}
+          <label> Blood Group </label>
+          {{input placeholder="Blood Group"  type="text"  value=payroll }}
 
         </div>
         <div class="inline field {{validChargecodeError}}" style="float:right">
@@ -24,17 +24,21 @@
       <div class="five wide  right aligned  column">
 
         <div class="inline field" style="float:right">
-          <label> Department :</label>
-          {{input placeholder="Department"  type="text"  value=department}}
+          <label> Designation :</label>
+          {{input placeholder="Designation"  type="text"  value=department}}
         </div>
 
         <div class="inline field" style="float:right">
-          <label>Work Contact :</label>
-          {{input placeholder="Work Contact"  type="text" value=workcontact }}
+          <label>Address :</label>
+          {{input placeholder="Address"  type="text" value=workcontact }}
         </div>
         <div class="inline field" style="float:right">
-          <label>Personal Contact :</label>
+          <label>Phone :</label>
           {{input placeholder="Personal Contact"  type="text" value=personalcontact }}
+        </div>
+        <div class="inline field" style="float:right">
+          <label>Date of Join :</label>
+          {{pikaday-input  placeholder="Date of Join" value=dateofjoin}}
         </div>
         <br><br><br><br>
         <div class="clearfix"></div>

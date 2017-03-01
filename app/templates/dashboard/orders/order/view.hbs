@@ -2,7 +2,7 @@
 
 
 <div class="ui two column grid no-print">
-  <div class="twelve wide column" style="padding:0">
+  <div class="sixteen wide column" style="padding:0">
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(255,255,255,0.9);max-height:550px;overflow:auto ">
       <h2 class="ui left floated header">Order: #OR{{order.id}}</h2>
       <button class="ui mini right floated primary button " {{action "printOrder" }}>Print</button>
@@ -20,7 +20,7 @@
 
             </div> -->
             <div class="inline field">
-              <label style="width:75px">Location  </label>:
+              <label style="width:75px">Customer  </label>:
               {{order.customer.companyname}}
             </div>
           </div>
@@ -35,8 +35,13 @@
 
             </div> -->
             <div class="inline field">
-              <label style="width:75px">Date  </label>:
+              <label style="width:100px">Order Date  </label>:
               {{moment-format order.issuancedate inputFormat}}
+            </div>
+
+            <div class="inline field">
+              <label style="width:100px">Delivery Date  </label>:
+              {{moment-format order.createdat inputFormat}}
             </div>
           </div>
         </div>
@@ -57,27 +62,48 @@
       <table class="ui celled table">
         <thead  class="center aligned">
           <tr>
-            <th>Item Name</th>
-            <th style="width:100px">Quantiy</th>
-            <th>item Cost</th>
+            <th> Sl No.</th>
+            <th>Schl. with entryno</th>
+            <th>Commodity</th>
+            <th>Rate of Tax</th>
+            <th>Unit Price</th>
+            <th style="width:100px">Qty</th>
+            <th>Value</th>
+            <th>Excise Duty</th>
+            <th>Gross Value</th>
+            <th>Cash Discount</th>
+            <th>Net Taxable Value</th>
+            <th>Tax</th>
             <th>Total</th>
           </tr>
         </thead>
         <tbody>
 
-          {{#each order.orderitems  as |orderitem|}}
+          {{#each order.orderitems  as |orderitem index|}}
           <tr class="center aligned">
+            <td>{{incrementone index}}</td>
+            <td>{{orderitem.product.itemcode}}</td>
+            <td>{{orderitem.product.productname}}</td>
             <td>
-              {{orderitem.product.productname}}
+              {{orderitem.rateoftax}}
+            </td>
+            <td >
+                {{orderitem.product.retailprice}}
             </td>
             <td  >
                 {{orderitem.quantity}}
             </td>
+            <td>{{orderitem.total}}</td>
+            <td>{{orderitem.exciseduty}}</td>
+            <td>{{orderitem.grossvalue}}</td>
+            <td>{{orderitem.cashdiscount}}</td>
+            <td>{{orderitem.nettaxablevalue}}</td>
+            <td>{{orderitem.tax}}</td>
+            <td>{{orderitem.totalvalue}}</td>
 
-            <td >
-                {{orderitem.product.retailprice}}
-            </td>
-            <td>{{orderitem.computedtotal}}</td>
+
+
+
 
 
           </tr>
@@ -100,38 +126,24 @@
           </div>
         </div>
         <div class="column" >
-          <div class="inline field" >
-            <label style="width:110px">Approved By </label>:
-            {{order.approvedby.name}}
-          </div>
-        </div>
-        <div class="column" >
           <table class="ui very basic table">
             <tbody>
 
                         <tr>
-                          <td>Net Taxable Amount</td>
-                          <td>{{order.nettaxablevalue}}</td>
-                        </tr>
-                        <tr>
-                          <td>Tax</td>
-                          <td>{{order.tax}}</td>
-                        </tr>
-                        <tr>
-                          <td>Cash Discount</td>
-                          <td>{{order.cashdiscount}}</td>
+                          <td>Total Amount</td>
+                          <td>{{order.totalcost}}</td>
                         </tr>
                         <tr>
                           <td>Round Off</td>
                           <td>{{order.roundoff}}</td>
                         </tr>
                         <tr>
-                          <td>Die Cost</td>
-                          <td>{{order.diecost}}</td>
+                          <td>Amount Chargable</td>
+                          <td class="right aligned">{{order.chargableamount}}</td>
                         </tr>
                         <tr>
-                          <td>Total Cost</td>
-                          <td class="right aligned">{{order.totalcost}}</td>
+                          <td>Amount Chargable (In Words)</td>
+                          <td class="right aligned">{{number-to-english number=order.chargableamount}}</td>
                         </tr>
             </tbody>
           </table>

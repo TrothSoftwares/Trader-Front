@@ -80,8 +80,7 @@ export default Ember.Controller.extend({
    },
 
   fetchRecords() {
-    console.log("fetchrecords");
-    this.set('isLoading', true);
+     this.set('isLoading', true);
 
     var searchArray;
 
@@ -131,9 +130,7 @@ searchByCode(){
 
 
     onScrolledToBottom() {
-      console.log("ssss begining");
       if(this.get('canLoadMore')) {
-        console.log("ssss");
         this.incrementProperty('page');
         this.fetchRecords();
       }

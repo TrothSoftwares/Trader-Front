@@ -3,8 +3,50 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
 natures :["Select","Electrical", "Plumbing" , "Masonry" , "Telephone","Painting","Carpentry", "Welding","A/C"],
+inputFormat:'DD/MM/YYYY',
 
 ajax: Ember.inject.service(),
+
+
+computedOrderTotalUnits: Ember.computed('orderitems.@each.quantity', function() {
+
+  var orderitems = this.get('orderitems');
+  if(orderitems){
+    var ret = 0;
+    orderitems.forEach(function(orderitem){
+      ret += parseInt(orderitem.get('quantity'));
+    });
+    return ret;
+  }
+}),
+
+
+
+
+computedOrderTotalAmount: Ember.computed('order.orderitems.@each.computedtotalvalue', function() {
+  var orderitems = this.get('order.orderitems');
+  if(orderitems){
+    var ret =0;
+    orderitems.forEach(function(orderitem){
+      ret += orderitem.get('computedtotalvalue');
+    });
+    return ret;
+  }
+  else{
+    return 0;
+  }
+}),
+
+
+computedAmountChargable: Ember.computed( 'computedOrderTotalAmount','order.roundoff', function() {
+
+  let computedtotal = parseFloat(this.get('computedOrderTotalAmount')) + parseFloat(this.get('order.roundoff')) ;
+
+  return Math.round(computedtotal);
+}),
+
+
+
 
 actions:{
 
@@ -63,11 +105,18 @@ actions:{
 
     orderitems.forEach(function(orderitem){
       orderitem.set('total',orderitem.get('computedtotal'));
+      orderitem.set('grossvalue',orderitem.get('computedgrosstotal'));
+      orderitem.set('nettaxablevalue',orderitem.get('computednettaxablevalue'));
+      orderitem.set('tax',orderitem.get('computedtax'));
+      orderitem.set('totalvalue',orderitem.get('computedtotalvalue'));
       orderitem.save();
     });
 
     order.set('totalunits' , order.get('computedtotalunits'));
-    order.set('totalcost' , order.get('computedtotal'));
+    order.set('chargableamount',controller.get('computedAmountChargable'));
+    order.set('totalcost',controller.get('computedOrderTotalAmount'));
+
+
     order.save().then(function(){
       controller.notifications.addNotification({
         message: 'Saved' ,
@@ -87,9 +136,10 @@ actions:{
     var controller = this;
     var orderitem = controller.store.createRecord('orderitem', {
       quantity :1,
+      rateoftax:0,
+      exciseduty:0,
+      cashdiscount:0,
       total :'',
-      poitemstatus :'',
-      product :controller.get('products').get('firstObject'),
       order : controller.get('order'),
     });
 

@@ -4,10 +4,8 @@ export default Ember.Controller.extend({
 
 
 
-    isSaveCustomerButtonDisabled: Ember.computed('customer.companyname' , 'customer.companycode' , 'customer.chargecode' , 'customer.email' , 'customer.phone'  ,  function() {
+    isSaveCustomerButtonDisabled: Ember.computed('customer.companyname' , 'customer.email' , 'customer.phone'  ,  function() {
       if( Ember.isEmpty(this.get('customer.companyname')) ||
-      Ember.isEmpty(this.get('customer.chargecode')) ||
-      Ember.isEmpty(this.get('customer.companycode')) ||
       Ember.isEmpty(this.get('customer.email')) ||
       Ember.isEmpty(this.get('customer.phone'))
     ){return 'disabled';}

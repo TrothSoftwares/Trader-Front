@@ -4,10 +4,12 @@ import Ember from 'ember';
 
 
 export default DS.Model.extend({
+  createdat: DS.attr('date'),
   duedate: DS.attr('date'),
   issuancedate: DS.attr('date'),
   totalunits :DS.attr('number'),
   totalcost : DS.attr('number'),
+  chargableamount:DS.attr('number'),
   orderstatus : DS.attr('string'),
   mrf : DS.attr('string'),
   location : DS.attr('string'),
@@ -19,15 +21,7 @@ export default DS.Model.extend({
   approvedby: DS.belongsTo('employee' ,{async:true}),
   orderitems: DS.hasMany('orderitem' ,{embedded: 'always', async:true}),
   stockadjustments: DS.hasMany('stockadjustment' ,{embedded: 'always', async:true}),
-  hsncode: DS.attr('string'),
-  rateoftax: DS.attr('number',{default:5.0}),
-  exciseduty: DS.attr('number'),
-  cashdiscount: DS.attr('number'),
-  nettaxablevalue: DS.attr('number'),
-  tax: DS.attr('number'),
   roundoff: DS.attr('number',{default:0}),
-  diecost: DS.attr('number',{default:0}),
-  misc: DS.attr('number',{default:0}),
 
 
 // computedOrderTotalCostTaxable
@@ -42,7 +36,7 @@ export default DS.Model.extend({
 
 computedtotalcoststaxable: function() {
     return this.get('orderitems').reduce(function(sum, split) {
-        return sum + parseInt(split.get('computedtotal'));
+        return sum + parseInt(split.get('computedgrosstotal'));
     }, 0);
 }.property('orderitems.@each.computedtotal'),
 

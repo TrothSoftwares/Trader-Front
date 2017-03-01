@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
           "propertyName": "totalunits", "title": "Total Units"
         },
         {
-          "propertyName": "totalcost", "title": "Total Cost"
+          "propertyName": "chargableamount", "title": "Chargable Amount"
         },
 
         {

@@ -52,7 +52,6 @@ export default Ember.Controller.extend({
 
 
   init: function() {
-console.log('ssss');
    Ember.run.scheduleOnce('afterRender', this ,function() {
              Ember.$('.menu .item').tab();
     console.log('Closure');
