@@ -53,12 +53,12 @@
 
         <div class="five column wide" >
           <div class="ui small form">
-            <div class="inline field" style="float:right">
+            <!-- <div class="inline field" style="float:right">
 
               <label >Delivery Date :</label>
 
               {{pikaday-input  placeholder="Date" value=issuancedate useUTC=true}}
-            </div>
+            </div> -->
 
             <!--
             <div class="inline field" style="float:right">
@@ -251,7 +251,7 @@
           </tr>
           <tr>
             <td>Amount Chargable (In Words)</td>
-            <td class="right aligned">{{number-to-english number=computedAmountChargable}}</td>
+            <td class="right aligned n2e">{{number-to-english number=computedAmountChargable}}</td>
           </tr>
 
         </tbody>
