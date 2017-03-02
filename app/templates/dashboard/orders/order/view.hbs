@@ -112,7 +112,7 @@
       </table>
       <br>
 
-      <div class="ui three column grid">
+      <div class="ui two column grid">
         <div class="column" >
           <div class="ui  form">
             <div class="inline field" >
@@ -125,6 +125,8 @@
             </div>
           </div>
         </div>
+
+
         <div class="column" >
           <table class="ui very basic table">
             <tbody>
@@ -190,9 +192,8 @@
 
 </div>
   <div class="ui center aligned basic segment">
-    All Packs 2016 - 2017 <br>
-    Printing & Packaging Industries, Peringala.P.O, Kumarapuram, Ernakulam - 683565, Ph :0484 2684095,<br>
-    9526033373, Contact : 2681095, 2682162, Email :alifpackersperingala@gmail.com <br>
+    Curar Gratis Health Products Company, Madhinul Uloom Madrassa Building, Kattilasseri, Kadungapuram - 679321,<br> Ph : 04933254321,
+     Email :admin@curargratis.com <br>
     <h6>THE KERALA VALUE ADDED TAX RULES,2005</h6>
     FORM NO.8 <br>
     <i>[See Rule 58(10)]</i> <br><br>
@@ -203,69 +204,96 @@
   </div>
   <div style="float:left">
     Invoice No. {{order.id}}<br>
-    Purchase Order No.& Date : <br>
+    Purchase Order Date :     {{moment-format order.createdat inputFormat }} <br>
     <b>Name & Address of Purchasing Dealer :</b><br>
-     {{order.customer.companyname}}<br><br>
+     {{order.customer.companyname}}<br>{{order.customer.address1}} - {{order.customer.zipcode}}<br> Phone : {{order.customer.phone}}<br><br>TIN : {{order.customer.tin}}
 
 
   </div>
   <div  style="float:right">
     Date : {{moment-format order.issuancedate inputFormat}}
   </div>
-  <div class="clearfix">
-  </div>
-  TIN :32100700353
+  <div class="clearfix"></div>
 
-  <div style="font-weight:200;float:right; ">  Central Sales Tax RegNo : 32100700353C</div>
+
 
   <br>
-<div class="clearfix"></div>
 
-  <div class="ui divider"></div>
   <table class="ui celled table">
     <thead  class="center aligned">
       <tr>
-        <th>Item Name</th>
-        <th style="width:100px">Quantiy</th>
-        <th>item Cost</th>
+        <th> Sl No.</th>
+        <th>Schl. with entryno</th>
+        <th>Commodity</th>
+        <th>Rate of Tax</th>
+        <th>Unit Price</th>
+        <th style="width:100px">Qty</th>
+        <th>Value</th>
+        <th>Excise Duty</th>
+        <th>Gross Value</th>
+        <th>Cash Discount</th>
+        <th>Net Taxable Value</th>
+        <th>Tax</th>
         <th>Total</th>
       </tr>
     </thead>
     <tbody>
 
-      {{#each order.orderitems  as |orderitem|}}
+      {{#each order.orderitems  as |orderitem index|}}
       <tr class="center aligned">
+        <td>{{incrementone index}}</td>
+        <td>{{orderitem.product.itemcode}}</td>
+        <td>{{orderitem.product.productname}}</td>
         <td>
-          {{orderitem.product.productname}}
-        </td>
-        <td  >
-            {{orderitem.quantity}}
+          {{orderitem.rateoftax}}
         </td>
         <td >
             {{orderitem.product.retailprice}}
         </td>
-        <td>{{orderitem.computedtotal}}</td>
+        <td  >
+            {{orderitem.quantity}}
+        </td>
+        <td>{{orderitem.total}}</td>
+        <td>{{orderitem.exciseduty}}</td>
+        <td>{{orderitem.grossvalue}}</td>
+        <td>{{orderitem.cashdiscount}}</td>
+        <td>{{orderitem.nettaxablevalue}}</td>
+        <td>{{orderitem.tax}}</td>
+        <td>{{orderitem.totalvalue}}</td>
+
+
+
+
+
+
       </tr>
       {{/each}}
     </tbody>
   </table>
-  <br>
+    <br>
 
-  <div class="ui three column grid">
-    <div class="column" ></div>
+  <div class="ui two column grid">
     <div class="column" ></div>
     <div class="column" >
-
-      <table class="ui very basic table">
+      <table class="ui very basic small table">
         <tbody>
-          <tr>
-            <td>Total Units</td>
-            <td class="right aligned">{{order.computedtotalunits}}</td>
-          </tr>
-          <tr>
-            <td>Total Cost</td>
-            <td class="right aligned">{{order.computedtotalcosts}}</td>
-          </tr>
+
+                    <tr>
+                      <td>Total Amount</td>
+                      <td class="right aligned">{{order.totalcost}}</td>
+                    </tr>
+                    <tr>
+                      <td>Round Off</td>
+                      <td class="right aligned">{{order.roundoff}}</td>
+                    </tr>
+                    <tr>
+                      <td>Amount Chargable</td>
+                      <td class="right aligned">{{order.chargableamount}}</td>
+                    </tr>
+                    <tr>
+                      <td>Amount Chargable (In Words)</td>
+                      <td class="right aligned n2e">{{number-to-english number=order.chargableamount}}</td>
+                    </tr>
         </tbody>
       </table>
     </div>
