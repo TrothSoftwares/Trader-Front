@@ -1,5 +1,7 @@
 
-<div class="ui small form segment" style="min-height:425px">
+<div class="ui small form segment" >
+  <div style="margin-bottom:10px" class="ui blue right floated small submit button" {{action 'openAddInventorymodal'}}>Add To Stock</div>
+  <div class="ui clearing divider"></div>
   <div class="two fields">
     <div class="field {{validItemcodeError}}">
       <label>Item Code</label>
@@ -47,7 +49,12 @@
       {{input placeholder="Last Name" type="text" value=product.initialstocklevel}}
     </div>
     <div class="field">
-      <div class="ui blue left floated small submit button" {{action 'openAddInventorymodal'}}>Add To Stock</div>
+      <div class="field">
+        <label> Price</label>
+        {{input placeholder=" Price"  type="text" value=product.retailprice}}
+      </div>
+
+
 
     </div>
   </div>
@@ -64,26 +71,21 @@
     </div>
   </div> -->
 
-  <div class="two fields">
-    <div class="field">
-      <label> Price</label>
-      {{input placeholder=" Price"  type="text" value=product.retailprice}}
-    </div>
 
-  </div>
   <div class="ui blue right floated small submit button" {{action "saveProduct" product}}>Save</div>
   <div class="ui red left floated small submit button" {{action "deleteProduct" product}}>Delete</div>
   {{link-to 'Cancel' 'dashboard.inventory.product.view'  class="ui  basic grey small right floated button "}}
+  <div class="clearfix"></div>
 
 </div>
 
 
 
-<div class="ui addtoinventory small modal">
+<div class="ui addtoinventory small modal"style="height:250px;">
 
   <div class="header">Add To Stock</div>
   <div class="content">
-    <div class="ui small form segment">
+    <div class="ui small form basic segment">
 
         <div class="field">
           <label>Add To Stock</label>

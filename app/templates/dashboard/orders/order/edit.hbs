@@ -13,21 +13,24 @@
 
             {{input placeholder="MRF"  type="text" class="ui input"  value=order.mrf}}
           </div> -->
-          <div class="inline field" style="float:right">
-            <label > Customer:</label>
-            {{ember-selectize
-              content=customers
-              optionValuePath="content.id"
-              optionLabelPath="content.companyname"
-              selection=order.customer
-              placeholder="Select a Customer"
-            }}
+          <div class="inline field" >
+            <label style="float:left;margin-top: 10px;"> Customer : </label>
+            <div class="" style="width:75%;float:left">
+              {{ember-selectize
+                content=customers
+                optionValuePath="content.id"
+                optionLabelPath="content.companyname"
+                selection=order.customer
+                placeholder="Select a Customer"
+              }}
+            </div>
+
           </div>
     </div>
     </div>
 
 
-        <div class="  column " style="width:310px">
+        <div class="  column ">
           <div class="ui small form">
 
 
@@ -46,13 +49,16 @@
               {{pikaday-input  placeholder="Order Date" value=order.issuancedate}}
             </div>
 
-            <div class="inline field" style="float:right">
-              <label > Order Date :</label>
-
-              {{moment-format order.createdat inputFormat}}
-            </div>
 
 
+
+          </div>
+        </div>
+        <div class="column">
+          <div class="inline field" style="margin-top:10px">
+            <label > Order Date :</label>
+
+            {{moment-format order.createdat inputFormat}}
           </div>
         </div>
 
@@ -201,7 +207,7 @@
         </div> -->
         </div>
         <div class="column" >
-          <table class="ui very basic table">
+          <table class="ui very basic table small form">
             <tbody>
 
               <tr>
