@@ -892,10 +892,7 @@ body {
 
     background-color: #ddd !important;
 }
-.ui.blue.button
-{
-  background: #28adcc !important;
-}
+
 .newh
 {
   text-transform: uppercase !important;
@@ -904,11 +901,11 @@ body {
   font-weight: 900;
 }
 /* end for loading.hbs animations */
-.ui.primary.button
-{
-  background: #28adcc !important;
-
-}
+// .ui.primary.button
+// {
+//   background: #28adcc !important;
+//
+// }
 
 .globalSearch
 {
@@ -940,4 +937,29 @@ body {
 .lt-body tr:last-child
 {
   border-bottom:1px solid #ccc;
+}
+.rotfield
+{
+  width: 80%!important;
+}
+.rotspan
+{
+  font-size: 16px;
+  line-height: 34px;
+}
+.ordertable.ui.celled.table tr td
+{
+  line-height: 35px!important;
+}
+.ember-power-select-trigger
+{
+  height: 32px;
+}
+.ember-power-select-selected-item, .ember-power-select-placeholder {
+    font-size: 14px;
+    line-height: 30px;
+  }
+.n2e
+{
+  text-transform: capitalize;
 }

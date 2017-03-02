@@ -131,11 +131,11 @@
 
                         <tr>
                           <td>Total Amount</td>
-                          <td>{{order.totalcost}}</td>
+                          <td class="right aligned">{{order.totalcost}}</td>
                         </tr>
                         <tr>
                           <td>Round Off</td>
-                          <td>{{order.roundoff}}</td>
+                          <td class="right aligned">{{order.roundoff}}</td>
                         </tr>
                         <tr>
                           <td>Amount Chargable</td>
@@ -143,7 +143,7 @@
                         </tr>
                         <tr>
                           <td>Amount Chargable (In Words)</td>
-                          <td class="right aligned">{{number-to-english number=order.chargableamount}}</td>
+                          <td class="right aligned n2e">{{number-to-english number=order.chargableamount}}</td>
                         </tr>
             </tbody>
           </table>
@@ -173,7 +173,7 @@
 </div>
 <div class="only-print print-box2">
   <div class="" style="float:left">
-    Tax Payers Identification No: 32151336265
+    Tax Payers Identification No: 32100700353
     <br>
     CENTRAL EXCISE REGN No :
     <br>
@@ -182,7 +182,10 @@
 
 
 
-  <div style="font-weight:200;float:right; ">  Central Sales Tax RegNo : 32151336265C</div>
+  <div style="font-weight:200;float:right; text-align:right">
+      Central Sales Tax RegNo : 32100700353C<br>
+      IEC.No : 101690284
+  </div>
 <div class="clearfix">
 
 </div>
@@ -213,7 +216,7 @@
   </div>
   TIN :32100700353
 
-  <div style="font-weight:200;float:right; ">  Central Sales Tax RegNo : 32151336265C</div>
+  <div style="font-weight:200;float:right; ">  Central Sales Tax RegNo : 32100700353C</div>
 
   <br>
 <div class="clearfix"></div>
@@ -269,6 +272,7 @@
   </div>
   <div class="">
     Amount Chargeable (in words) <br>
+      <b><span style="float:left" >Indian Rupees&nbsp;</span> <span class="n2e"> {{number-to-english number=order.chargableamount}}</span></b>
     <b></b><br>
     Terms of Delivery and payment if any:
     <div class="ui center aligned basic segment ">
