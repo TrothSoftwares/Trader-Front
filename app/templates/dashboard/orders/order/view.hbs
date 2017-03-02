@@ -131,11 +131,11 @@
 
                         <tr>
                           <td>Total Amount</td>
-                          <td>{{order.totalcost}}</td>
+                          <td class="right aligned">{{order.totalcost}}</td>
                         </tr>
                         <tr>
                           <td>Round Off</td>
-                          <td>{{order.roundoff}}</td>
+                          <td class="right aligned">{{order.roundoff}}</td>
                         </tr>
                         <tr>
                           <td>Amount Chargable</td>
@@ -143,7 +143,7 @@
                         </tr>
                         <tr>
                           <td>Amount Chargable (In Words)</td>
-                          <td class="right aligned">{{number-to-english number=order.chargableamount}}</td>
+                          <td class="right aligned n2e">{{number-to-english number=order.chargableamount}}</td>
                         </tr>
             </tbody>
           </table>
@@ -173,7 +173,7 @@
 </div>
 <div class="only-print print-box2">
   <div class="" style="float:left">
-    Tax Payers Identification No: 32151336265
+    Tax Payers Identification No: 32100700353
     <br>
     CENTRAL EXCISE REGN No :
     <br>
@@ -182,7 +182,10 @@
 
 
 
-  <div style="font-weight:200;float:right; ">  Central Sales Tax RegNo : 32151336265C</div>
+  <div style="font-weight:200;float:right; text-align:right">
+      Central Sales Tax RegNo : 32100700353C<br>
+      IEC.No : 101690284
+  </div>
 <div class="clearfix">
 
 </div>
@@ -193,50 +196,31 @@
     <h6>THE KERALA VALUE ADDED TAX RULES,2005</h6>
     FORM NO.8 <br>
     <i>[See Rule 58(10)]</i> <br><br>
-    <b>TAX INVOICE</b><br>
+    TAX INVOICE<br>
     CASH / CREDIT <br>
     (To be prepared in Quadruplicate)
 
   </div>
   <div style="float:left">
-    Invoice No. {{order.id}}
+    Invoice No. {{order.id}}<br>
+    Purchase Order No.& Date : <br>
+    <b>Name & Address of Purchasing Dealer :</b><br>
+     {{order.customer.companyname}}<br><br>
+
+
   </div>
   <div  style="float:right">
     Date : {{moment-format order.issuancedate inputFormat}}
   </div>
+  <div class="clearfix">
+  </div>
+  TIN :32100700353
+
+  <div style="font-weight:200;float:right; ">  Central Sales Tax RegNo : 32100700353C</div>
+
   <br>
 <div class="clearfix"></div>
-<br><br>
-  <div class="ui three column grid">
-    <div class="column" >
-      <div class="ui small form">
-        <div class="inline field" >
-          <label  style="width:75px">MRF </label>:
-          {{order.mrf}}
 
-        </div>
-        <div class="inline field">
-          <label style="width:75px">Location  </label>:
-          {{order.customer.companyname}}
-        </div>
-      </div>
-    </div>
-
-
-    <div class=" column">
-      <div class="ui small form">
-        <div class="inline field" >
-          <label  style="width:100px">Nature Of Work </label>:
-          {{order.natureofwork}}
-
-        </div>
-        <div class="inline field">
-          <label style="width:100px">Date  </label>:
-          {{moment-format order.issuancedate inputFormat}}
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="ui divider"></div>
   <table class="ui celled table">
     <thead  class="center aligned">
@@ -286,31 +270,24 @@
       </table>
     </div>
   </div>
-  <div class="ui three column grid">
-    <div class="column" >
-<div class="ui small form">
-        <div class="inline field" >
-          <label  style="width:100px">Requested By </label>:
-          {{order.requestedby.name}}
-        </div>
-      </div>
-
+  <div class="">
+    Amount Chargeable (in words) <br>
+      <b><span style="float:left" >Indian Rupees&nbsp;</span> <span class="n2e"> {{number-to-english number=order.chargableamount}}</span></b>
+    <b></b><br>
+    Terms of Delivery and payment if any:
+    <div class="ui center aligned basic segment ">
+      <b>DECLARATION</b><br>
+      <i>(To be furnished by the seller)</i>
     </div>
-    <div class="column" >
-          <div class="ui small form">
-        <div class="inline field" >
-          <label  style="width:100px">Issued By </label>:
-          {{order.employee.name}}
-        </div>
-      </div></div>
-    <div class="column" >
-             <div class="ui small form">
-        <div class="inline field" >
-          <label  style="width:100px">Approved By </label>:
-          {{order.approvedby.name}}
-        </div>
-      </div>
-            </div>
-            </div>
+    Certified that allthe particulars shown in the above Tax Invoice are true and correct and that my/our Registration under KVAT Act 2003 is valid as the date of this bill.
+    <div class="ui right aligned basic segment ">
+      Authorised Signority <br>
+      [with Status & Seal]
+    </div>
+    *Original - for the buyer for the purpose of claiming Input Tax Credit.   Duplicate - for the Transport Copy. <br>
+     Triplicate - for filing at Checkpost/Extra Copy &  Quadraplicate - to be retained with the seller. <br>
+    **Dealers who are not manufacturers will have an option to omit coloumns 9 and 10.
+  </div>
+
 
 </div>

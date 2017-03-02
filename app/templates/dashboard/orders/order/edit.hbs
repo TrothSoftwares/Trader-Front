@@ -71,7 +71,8 @@
 
         </div>
       </div>
-      <table class="ui celled table">
+
+      <table class="ordertable ui celled table small form">
         <thead  class="center aligned">
           <tr>
             <th> Sl No.</th>
@@ -79,7 +80,7 @@
             <th>Commodity</th>
             <th>Rate of Tax</th>
             <th>Unit Price</th>
-            <th style="width:100px">Qty</th>
+            <th >Qty</th>
             <th>Value</th>
             <th>Excise Duty</th>
             <th>Gross Value</th>
@@ -96,7 +97,7 @@
           <tr class="center aligned">
             <td>{{incrementone index}}</td>
             <td>{{orderitem.product.itemcode}}</td>
-            <td>
+            <td style="width:20%">
               <!-- {{ember-selectize
                 content=products
                 optionValuePath="content.id"
@@ -120,7 +121,7 @@
 
             </td>
             <td>
-              {{input type="number"    placeholder="Rate of Tax" value=orderitem.rateoftax}} %
+              {{input type="number"  class="rotfield"  placeholder="Rate of Tax" value=orderitem.rateoftax}} <span class="rotspan">%</span>
             </td>
             <td >
               <div class="ui tiny transparent input">
