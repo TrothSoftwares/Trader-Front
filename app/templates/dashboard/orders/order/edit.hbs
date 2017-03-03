@@ -43,11 +43,12 @@
                                           {{/each}}
                                         </select>
             </div> -->
-            <div class="inline field" style="float:right">
+            <!-- <div class="inline field" style="float:right">
               <label > Delivery Date :</label>
 
-              {{pikaday-input  placeholder="Order Date" value=order.issuancedate}}
-            </div>
+              {{pikaday-input  placeholder="Delivery Date" value=order.issuancedate useUTC=true}}
+            </div> -->
+
 
 
 
@@ -58,7 +59,7 @@
           <div class="inline field" style="margin-top:10px">
             <label > Order Date :</label>
 
-            {{moment-format order.createdat inputFormat}}
+            {{moment-format order.duedate inputFormat}}
           </div>
         </div>
 

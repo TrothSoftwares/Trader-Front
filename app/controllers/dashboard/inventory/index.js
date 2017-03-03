@@ -38,7 +38,7 @@ export default Ember.Controller.extend({
       valuePath:"initialstocklevel",
     },
     {
-      label: 'Retail Price',
+      label: 'Price',
       valuePath:"retailprice",
     },
     {

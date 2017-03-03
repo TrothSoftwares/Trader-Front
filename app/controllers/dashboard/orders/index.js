@@ -19,9 +19,12 @@ export default Ember.Controller.extend({
         },
 
         {
+          // "title":"Order Status" , "template":"custom/orderindicator"
           "propertyName": "orderstatus", "title": "Order Status"
         },
-
+        {
+          "title":"Status" , "template":"custom/orderindicator"
+        },
         {
           "title":"View" , "template":"custom/vieworder"
         },

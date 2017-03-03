@@ -10,12 +10,12 @@
     "selectize": "miguelcobain/selectize.js#master",
     "pikaday": "^1.4.0",
     "slick-carousel": "^1.5.9",
-    "font-awesome": "~4.5.0"
+    "font-awesome": "~4.5.0",
+    "offline": "^0.7.18"
   },
   "resolutions": {
     "ember": "2.11.0",
     "qunit": "2.1.0",
     "loader.js": "4.1.0"
   }
-
 }

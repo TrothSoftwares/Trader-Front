@@ -110,6 +110,7 @@ actions:{
   createOrder:function(){
 
     var controller = this;
+    var d = new Date();
 
     var order = this.store.createRecord('order', {
       employee :this.get('employee'),  // instead of issuedby
@@ -125,6 +126,7 @@ actions:{
        chargableamount :this.get('computedAmountChargable'),
       roundoff :this.get('roundoff'),
       totalcost :this.get('computedOrderTotalAmount'),
+      duedate:d,
 
 
 

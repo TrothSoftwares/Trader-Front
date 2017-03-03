@@ -8,7 +8,9 @@ actions:{
 
   deliverOrder: function(order){
     var controller = this;
+    var d = new Date();
     order.set('orderstatus','delivered');
+    order.set('issuancedate',d);
     var orderitems= order.get('orderitems');
     orderitems.forEach(function(orderitem){
       var orderitemquantity = orderitem.get('quantity');
