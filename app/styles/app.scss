@@ -390,7 +390,6 @@ body {
   min-height: 100%;
   min-width: 100%;
   font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  background:url(gradient.jpg);
   background-size: cover;
 }
 .navbar.navbar-default {
@@ -963,4 +962,12 @@ body {
 .n2e
 {
   text-transform: capitalize;
+}
+.bgimg
+{
+  background: url(gradient.jpg)!important;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  margin: -15px;
 }
