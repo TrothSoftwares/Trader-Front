@@ -198,18 +198,10 @@
     <thead  class="center aligned">
       <tr>
         <th> Sl No.</th>
-        <th>Schl. with entryno</th>
-        <th>Commodity</th>
-        <th>Rate of Tax</th>
+        <th>Product</th>
         <th>Unit Price</th>
-        <th style="width:100px">Qty</th>
-        <th>Value</th>
-        <th>Excise Duty</th>
+        <th>Qty</th>
         <th>Gross Value</th>
-        <th>Cash Discount</th>
-        <th>Net Taxable Value</th>
-        <th>Tax</th>
-        <th>Total</th>
       </tr>
     </thead>
     <tbody>
@@ -217,11 +209,7 @@
       {{#each order.orderitems  as |orderitem index|}}
       <tr class="center aligned">
         <td>{{incrementone index}}</td>
-        <td>{{orderitem.product.itemcode}}</td>
         <td>{{orderitem.product.productname}}</td>
-        <td>
-          {{orderitem.rateoftax}}
-        </td>
         <td >
             {{orderitem.product.retailprice}}
         </td>
@@ -229,50 +217,42 @@
             {{orderitem.quantity}}
         </td>
         <td>{{orderitem.total}}</td>
-        <td>{{orderitem.exciseduty}}</td>
-        <td>{{orderitem.grossvalue}}</td>
-        <td>{{orderitem.cashdiscount}}</td>
-        <td>{{orderitem.nettaxablevalue}}</td>
-        <td>{{orderitem.tax}}</td>
-        <td>{{orderitem.totalvalue}}</td>
-
-
-
-
-
-
       </tr>
       {{/each}}
     </tbody>
   </table>
     <br>
 
-  <div class="ui two column grid">
-    <div class="column" ></div>
-    <div class="column" >
-      <table class="ui very basic small table">
-        <tbody>
+    <div class="ui two column grid">
 
-                    <tr>
-                      <td>Total Amount</td>
-                      <td class="right aligned">{{order.totalcost}}</td>
-                    </tr>
-                    <tr>
-                      <td>Round Off</td>
-                      <td class="right aligned">{{order.roundoff}}</td>
-                    </tr>
-                    <tr>
-                      <td>Amount Chargable</td>
-                      <td class="right aligned">{{order.chargableamount}}</td>
-                    </tr>
-                    <tr>
-                      <td>Amount Chargable (In Words)</td>
-                      <td class="right aligned n2e">{{number-to-english number=order.chargableamount}}</td>
-                    </tr>
-        </tbody>
-      </table>
+      <div class="column" >
+        <table class="ui very basic table">
+          <tbody>
+                      <tr>
+                        <td>Total Amount</td>
+                        <td class="right aligned">{{order.totalcost}}</td>
+                      </tr>
+                      <tr>
+                        <td>Discount</td>
+                        <td class="right aligned">{{order.roundoff}}</td>
+                      </tr>
+                      <tr>
+                        <td>Amount Chargable</td>
+                        <td class="right aligned">{{order.chargableamount}}</td>
+                      </tr>
+                      <tr>
+                        <td>Amount Chargable (In Words)</td>
+                        <td class="right aligned n2e">{{number-to-english number=order.chargableamount}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Previous Balance</td>
+                        <td class="right aligned">{{order.customer.due}}</td>
+                      </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
   <div class="">
     Amount Chargeable (in words) <br>
       <b><span style="float:left" >Indian Rupees&nbsp;</span> <span class="n2e"> {{number-to-english number=order.chargableamount}}</span></b>
