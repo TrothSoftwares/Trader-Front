@@ -3,9 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
 
-  isCreateCustomerButtonDisabled: Ember.computed('companyname' ,  'email' , 'phone'  ,  function() {
+  isCreateCustomerButtonDisabled: Ember.computed('companyname'  , 'phone'  ,  function() {
     if( Ember.isEmpty(this.get('companyname')) ||
-    Ember.isEmpty(this.get('email')) ||
     Ember.isEmpty(this.get('phone'))
   ){return 'disabled';}
   else{return '';}
@@ -64,9 +63,11 @@ validCompanycodeError:'',
         address1 :this.get('address1'),
         tin : this.get('tin'),
         phone :this.get('phone'),
+        due: 0
       });
 
       customer.save().then(function(){
+
         controller.set('companyname','');
         controller.set('companycode','');
         controller.set('chargecode','');

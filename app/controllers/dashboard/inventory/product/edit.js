@@ -85,7 +85,7 @@ openAddInventorymodal:function(){
         }).catch(function () {
           product.rollbackAttributes();
           controller.notifications.addNotification({
-            message: 'Product cannot be deleted. It may be used in Purchase Order or New Orders' ,
+            message: 'Product cannot be deleted. It may be used in  Orders .So cannot be deleted without deleting orders' ,
             type: 'error',
             autoClear: true
           });

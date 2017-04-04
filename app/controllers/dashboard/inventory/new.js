@@ -21,10 +21,8 @@ export default Ember.Controller.extend({
 
   // retailprice:'',
 
-  isCreateProductButtonDisabled: Ember.computed('itemcode' , 'productname' ,    'initialstocklevel' , 'retailprice'  ,  function() {
-    if( Ember.isEmpty(this.get('itemcode')) ||
-    Ember.isEmpty(this.get('productname')) ||
-    Ember.isEmpty(this.get('initialstocklevel')) ||
+  isCreateProductButtonDisabled: Ember.computed(  'productname' ,     'retailprice'  ,  function() {
+    if(Ember.isEmpty(this.get('productname')) ||
     // Ember.isEmpty(this.get('initialcostprice')) ||
     Ember.isEmpty(this.get('retailprice'))
 
@@ -118,15 +116,7 @@ actions:{
 
       });
 
-
     });
-
-
-
-
-
-
-
   },
 
   validChargecode: function(chargecode){

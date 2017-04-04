@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 
 export default DS.Model.extend({
-  duedate: DS.attr('date'),
+  orderid:DS.attr('number'),
   duedate: DS.attr('date'),
   issuancedate: DS.attr('date'),
   totalunits :DS.attr('number'),
@@ -25,6 +25,9 @@ export default DS.Model.extend({
 
 
 // computedOrderTotalCostTaxable
+
+
+
 
 
 

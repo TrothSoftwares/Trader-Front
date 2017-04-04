@@ -22,11 +22,11 @@ export default Ember.Controller.extend({
 
 
 
-  computedSalesTotal:Ember.computed(  'filteredProducts.@each.totalcost', function() {
+  computedSalesTotal:Ember.computed(  'filteredProducts.@each.chargableamount', function() {
     var orders = this.get('filteredProducts');
     var ret =0;
     orders.forEach(function(order){
-  ret += order.get('totalcost');
+  ret += order.get('chargableamount');
     });
     return ret;
   }),
@@ -65,6 +65,39 @@ export default Ember.Controller.extend({
 
   actions:{
 
+
+    deleteFiltered:function(){
+
+
+      var controller= this;
+
+      var confirm = window.confirm("Are you sure you want to delete?");
+      if (confirm) {
+        var orders = this.get('filteredProducts');
+        orders.forEach(function(order){
+          order.destroyRecord().then(function () {
+        }).catch(function () {
+        controller.notifications.addNotification({
+          message: 'Order cannot be deleted.' ,
+          type: 'error',
+          autoClear: true
+        });
+      });
+    });
+    controller.notifications.addNotification({
+      message: 'Orders Deleted!' ,
+      type: 'success',
+      autoClear: true
+    });
+controller.set('startdate','');
+controller.set('enddate','');
+
+    controller.transitionToRoute('dashboard.reports');
+
+    }
+
+
+    },
 
     selectYear:function(year){
       var customers = this.get('customers');

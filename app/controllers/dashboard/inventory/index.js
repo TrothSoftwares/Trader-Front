@@ -26,17 +26,10 @@ export default Ember.Controller.extend({
 
   columns: [
     {
-      label: 'Item Code',
-      valuePath:"itemcode",
-    },
-    {
       label: 'Product Name',
       valuePath:"productname",
     },
-    {
-      label: 'Initial Stock Level',
-      valuePath:"initialstocklevel",
-    },
+
     {
       label: 'Price',
       valuePath:"retailprice",

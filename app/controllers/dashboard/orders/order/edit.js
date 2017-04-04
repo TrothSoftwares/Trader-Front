@@ -40,7 +40,7 @@ computedOrderTotalAmount: Ember.computed('order.orderitems.@each.computedtotalva
 
 computedAmountChargable: Ember.computed( 'computedOrderTotalAmount','order.roundoff', function() {
 
-  let computedtotal = parseFloat(this.get('computedOrderTotalAmount')) + parseFloat(this.get('order.roundoff')) ;
+  let computedtotal = parseFloat(this.get('computedOrderTotalAmount')) - parseFloat(this.get('order.roundoff')) ;
 
   return Math.round(computedtotal);
 }),

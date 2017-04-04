@@ -1,92 +1,37 @@
-
-<div class="ui small form segment" >
-  <div style="margin-bottom:10px" class="ui blue right floated small submit button" {{action 'openAddInventorymodal'}}>Add To Stock</div>
-  <div class="ui clearing divider"></div>
-  <div class="two fields">
-    <div class="field {{validItemcodeError}}">
+<div class="ui small form segment">
+  <!-- <div style="margin-bottom:10px" class="ui blue right floated small submit button" {{action 'openAddInventorymodal'}}>Add To Stock</div> -->
+  <div class="ui clearing divider"></div><div class="two fields">
+    <!-- <div class="field {{validItemcodeError}}">
       <label>Item Code</label>
       {{input placeholder="Item Code" type="text" value=product.itemcode }}
-
-    </div>
+    </div> -->
     <div class="field">
       <label>Product Name</label>
       {{input placeholder="Product Name" type="text" value=product.productname}}
     </div>
   </div>
+<div class="two fields">
 
-
-
-
-
-  <!-- <div class="two fields">
-    <div class="field">
-      <label>Supplier</label>
-      {{input placeholder="Supplier" type="text" value=product.supplier.companyname}}
-      {{ember-selectize
-        content=suppliers
-        optionValuePath="content.id"
-        optionLabelPath="content.companyname"
-        selection=product.supplier
-        placeholder="Select an item" }}
-    </div>
-    <div class="field">
-      <label>Product Type</label>
-      {{input placeholder="Product Type" type="text" value=product.producttype.typename}}
-      {{ember-selectize
-        content=producttypes
-        optionValuePath="content.id"
-        optionLabelPath="content.typename"
-        selection=product.producttype
-        placeholder="Select an item" }}
-
-    </div>
-  </div> -->
-
-  <div class="two fields">
-
-    <div class="field">
+    <!-- <div class="field">
       <label> Stock Level</label>
       {{input placeholder="Last Name" type="text" value=product.initialstocklevel}}
-    </div>
+    </div> -->
     <div class="field">
       <div class="field">
         <label> Price</label>
         {{input placeholder=" Price"  type="text" value=product.retailprice}}
       </div>
-
-
-
     </div>
   </div>
-
-
-  <!-- <div class="two fields">
-    <div class="field">
-      <label>Initial Cost Price</label>
-      {{input placeholder="Initial Cost Price" type="text" value=product.initialcostprice}}
-    </div>
-    <div class="field">
-      <label>Buy Price</label>
-      {{input placeholder="Buy Price" type="text" value=product.buyprice}}
-    </div>
-  </div> -->
-
-
   <div class="ui blue right floated small submit button" {{action "saveProduct" product}}>Save</div>
   <div class="ui red left floated small submit button" {{action "deleteProduct" product}}>Delete</div>
   {{link-to 'Cancel' 'dashboard.inventory.product.view'  class="ui  basic grey small right floated button "}}
   <div class="clearfix"></div>
-
 </div>
-
-
-
 <div class="ui addtoinventory small modal"style="height:250px;">
-
   <div class="header">Add To Stock</div>
   <div class="content">
     <div class="ui small form basic segment">
-
         <div class="field">
           <label>Add To Stock</label>
           {{input placeholder="Enter the quantity to add"  type="number" value=addtostock}}
@@ -95,8 +40,5 @@
           <button class="ui blue  floated small submit button" {{action "addToStock" product}} disabled="{{isAddToStockButtonDisabled}}">Add {{addtostock}} to Stock</button>
         </div>
       </div>
-
-
 </div>
-
 </div>

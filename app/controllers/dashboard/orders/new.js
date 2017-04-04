@@ -5,7 +5,9 @@ export default Ember.Controller.extend({
 
   ajax: Ember.inject.service(),
 
+createOrderPerformed: false,
 roundoff:0,
+rateofdiscount:0,
 
 
   natures :["Select","Electrical", "Plumbing" , "Masonry" , "Telephone","Painting","Carpentry", "Welding","A/C"],
@@ -25,11 +27,22 @@ roundoff:0,
 
 
 
-isCreateOrderButtonDisabled: Ember.computed('customer' ,  function() {
-  if( Ember.isEmpty(this.get('customer'))
+isCreateOrderButtonDisabled: Ember.computed('customer' ,'createOrderPerformed',  function() {
+  if( Ember.isEmpty(this.get('customer'))||
+  (this.get('createOrderPerformed') === true)
 ){return 'disabled';}
 else{return '';}
 }),
+
+
+
+computedroundoff: Ember.computed('rateofdiscount' , 'computedOrderTotalAmount', function() {
+  let computedOrderTotalAmount  = this.get('computedOrderTotalAmount');
+  let rateofdiscount = this.get('rateofdiscount');
+  let computedroundoff = (rateofdiscount /100 ) * parseFloat(computedOrderTotalAmount);
+  return computedroundoff.toFixed(2);
+}),
+
 
 
 
@@ -63,9 +76,9 @@ computedOrderTotalAmount: Ember.computed('orderitems.@each.computedtotalvalue', 
 }),
 
 
-computedAmountChargable: Ember.computed( 'computedOrderTotalAmount','roundoff', function() {
+computedAmountChargable: Ember.computed( 'computedOrderTotalAmount','computedroundoff', function() {
 
-  let computedtotal = parseFloat(this.get('computedOrderTotalAmount')) + parseFloat(this.get('roundoff')) ;
+  let computedtotal = parseFloat(this.get('computedOrderTotalAmount')) - parseFloat(this.get('computedroundoff')) ;
 
   return Math.round(computedtotal);
 }),
@@ -109,7 +122,9 @@ actions:{
 
   createOrder:function(){
 
+
     var controller = this;
+    controller.set('createOrderPerformed',true);
     var d = new Date();
 
     var order = this.store.createRecord('order', {
@@ -124,17 +139,33 @@ actions:{
       orderstatus :'created',
       totalunits :this.get('computedOrderTotalUnits'),
        chargableamount :this.get('computedAmountChargable'),
-      roundoff :this.get('roundoff'),
+      roundoff :this.get('computedroundoff'),
       totalcost :this.get('computedOrderTotalAmount'),
       duedate:d,
-
-
-
     });
+
+
+    // console.log("order is saved");
+    var customer = controller.get('customer');
+    // console.log("customer:" + customer.get('id'));
+    var due = customer.get('due');
+    // console.log("due:" + due);
+    var chargableamount = controller.get('computedAmountChargable');
+
+    // console.log("computedtotalorderamount:" + controller.get('computedAmountChargable')  );
+
+    due = parseFloat(due) + parseFloat(chargableamount);
+// console.log("newdue:" + due);
+    customer.set('due',due);
+
+    customer.save();
 
     var templateOrderitems = controller.get('orderitems');
 
     order.save().then(function(order){
+
+
+
       controller.set('customer','');
       controller.set('issuancedate','');
       controller.set('supplier','');
@@ -149,30 +180,33 @@ actions:{
 
 
 
+
       templateOrderitems.forEach(function(orderitem){
-
-
         orderitem.set('order', order);
         orderitem.set('total',orderitem.get('computedtotal'));
         orderitem.set('grossvalue',orderitem.get('computedgrosstotal'));
         orderitem.set('nettaxablevalue',orderitem.get('computednettaxablevalue'));
         orderitem.set('tax',orderitem.get('computedtax'));
         orderitem.set('totalvalue',orderitem.get('computedtotalvalue'));
-
-
         orderitem.save() ;
       });
 
 
       controller.set('orderitems' , []);
+      controller.set('createOrderPerformed',false);
       controller.transitionToRoute('dashboard.orders.order.view' , order);
-     }).catch(function(){
-      controller.notifications.addNotification({
-        message: 'Sorry, cant save at the moment !' ,
-        type: 'error',
-        autoClear: true
-      });
-    });
+    }).catch(function(){
+     controller.notifications.addNotification({
+       message: 'Sorry, cant save at the moment !' ,
+       type: 'error',
+       autoClear: true
+     });
+   });
+
+
+
+
+
   },
 
 

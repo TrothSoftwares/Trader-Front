@@ -16,20 +16,23 @@ export default Ember.Route.extend({
            return item.get('id') !== '1';
         });
       }),
-      
+
       producttypes: this.store.findAll('producttype' ,{reload :true}),
     });
 
   },
 
   setupController: function(controller,model) {
-
-
-
-
     controller.set('orders',model.orders);
     controller.set('customers',model.customers);
     // controller.set('producttypes',model.producttypes);
   },
+
+
+	  actions: {
+	    reloadModel: function() {
+	      this.refresh();
+	    }
+	  }
 
 });

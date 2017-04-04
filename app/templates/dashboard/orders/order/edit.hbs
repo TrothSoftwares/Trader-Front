@@ -83,18 +83,10 @@
         <thead  class="center aligned">
           <tr>
             <th> Sl No.</th>
-            <th>Schl. with entryno</th>
-            <th>Commodity</th>
-            <th>Rate of Tax</th>
+            <th>Product</th>
             <th>Unit Price</th>
             <th >Qty</th>
-            <th>Value</th>
-            <th>Excise Duty</th>
             <th>Gross Value</th>
-            <th>Cash Discount</th>
-            <th>Net Taxable Value</th>
-            <th>Tax</th>
-            <th>Total</th>
             <th></th>
           </tr>
         </thead>
@@ -103,7 +95,7 @@
           {{#each order.orderitems  as |orderitem index|}}
           <tr class="center aligned">
             <td>{{incrementone index}}</td>
-            <td>{{orderitem.product.itemcode}}</td>
+
             <td style="width:20%">
               <!-- {{ember-selectize
                 content=products
@@ -127,9 +119,7 @@
               {{/power-select}}
 
             </td>
-            <td>
-              {{input type="number"  class="rotfield"  placeholder="Rate of Tax" value=orderitem.rateoftax}} <span class="rotspan">%</span>
-            </td>
+            
             <td >
               <div class="ui tiny transparent input">
                 {{input type="number" readonly="true"   placeholder="Price" value=orderitem.product.retailprice}}
@@ -142,12 +132,6 @@
               </div>
             </td>
             <td>{{orderitem.computedtotal}}</td>
-            <td>{{input type="number"  placeholder="Excise Duty" value=orderitem.exciseduty}}</td>
-            <td>{{orderitem.computedgrosstotal}}</td>
-            <td>{{input type="number"  placeholder="Cash Discount" value=orderitem.cashdiscount}}</td>
-            <td>{{orderitem.computednettaxablevalue}}</td>
-            <td>{{orderitem.computedtax}}</td>
-            <td>{{orderitem.computedtotalvalue}}</td>
             <td>
 <button class=" ui tiny right floated inverted button red"  {{action 'deleteOrderItem' orderitem}}><i class="trash icon"></i></button>
             </td>
@@ -162,34 +146,7 @@
     </div>
       <div class="ui three column grid">
         <div class="column" >
-          <div class="ui grid">
-            <div class="seven wide column ">
-              <label style="margin-top:10px"> Requested By</label>
-            </div>
-            <div class="nine wide column ">
-          {{ember-selectize
-            content=employees
-            optionValuePath="content.id"
-            optionLabelPath="content.name"
-            selection=order.requestedby
-            placeholder="Select an Employee"
-          }}
-        </div>
-      </div>
-      <div class="ui grid">
-        <div class="seven wide column ">
-          <label style="margin-top:10px"> Issued By:</label>
-        </div>
-        <div class="nine wide column ">
-      {{ember-selectize
-        content=employees
-        optionValuePath="content.id"
-        optionLabelPath="content.name"
-        selection=order.employee
-        placeholder="Select an Employee"
-      }}
-    </div>
-  </div>
+
         </div>
         <div class="column" >
           <!-- <div class="ui grid" >
@@ -210,13 +167,12 @@
         <div class="column" >
           <table class="ui very basic table small form">
             <tbody>
-
               <tr>
                 <td>Total Amount</td>
                 <td>{{computedOrderTotalAmount}}</td>
               </tr>
               <tr>
-                <td>Round Off</td>
+                <td>Discount</td>
                 <td>{{input type="number" style="width:100px" placeholder="Round Off" value=order.roundoff}}</td>
               </tr>
               <tr>

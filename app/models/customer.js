@@ -15,6 +15,8 @@ country: DS.attr('string'),
 zipcode: DS.attr('string'),
 phone: DS.attr('string'),
 tin: DS.attr('string'),
+due: DS.attr('number'),
+payments: DS.hasMany('payment' ,{embedded: 'always', async:true}),
 filteryear: DS.attr('number', {
     defaultValue() { return new Date().getFullYear(); }
   }),

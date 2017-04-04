@@ -1,71 +1,11 @@
 
-
-
 <div class="ui top attached tabular menu no-print">
-  <a class="item active no-print" data-tab="first">Yearly Report</a>
-  <a class="item" data-tab="second">Custom Date Report</a>
-
+  <a class="item active no-print" data-tab="first">Sales Report</a>
+  <a class="item" data-tab="second">Customer Report</a>
 </div>
+
+
 <div class="ui bottom attached tab segment active no-print" data-tab="first">
-  <button class="ui tiny primary right floated button no-print" style="margin-bottom:40px" {{action "printReport"}}>Print</button>
-<div style="width:300px; float:left">
-  <select onchange={{action "selectYear" value="target.value"}} class="form-control">
-    {{#each years as |yearChoice|}}
-    <option value={{yearChoice}} >{{yearChoice}}</option>
-    {{/each}}
-  </select>
-</div>
-
-
-
-<!-- <h3> Year: {{customers.firstObject.filteryear}}</h3> -->
-  <table class="ui celled structured center aligned table">
-    <thead>
-      <tr>
-        <th>Department</th>
-        {{#each monthNames as |monnames|}}
-        <th>{{monnames}}</th>
-        {{/each}}
-      </tr>
-    </thead>
-    <tbody>
-
-      {{#each customers as |customer|}}
-      <tr>
-        <td>{{customer.companyname}}</td>
-        <td>{{customer.orderByMonthJanuvary}}</td>
-        <td>{{customer.orderByMonthFebruvary}}</td>
-        <td>{{customer.orderByMonthMarch}}</td>
-        <td>{{customer.orderByMonthApril}}</td>
-        <td>{{customer.orderByMonthMay}}</td>
-        <td>{{customer.orderByMonthJune}}</td>
-        <td>{{customer.orderByMonthJuly}}</td>
-        <td>{{customer.orderByMonthAugust}}</td>
-        <td>{{customer.orderByMonthSeptember}}</td>
-        <td>{{customer.orderByMonthOctober}}</td>
-        <td>{{customer.orderByMonthNovember}}</td>
-        <td>{{customer.orderByMonthDecember}}</td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-
-
-
-
-
-</div>
-
-
-
-<div class="ui bottom attached tab segment no-print" data-tab="second">
-
-
-
-
-
-
-
 
   <div class="print-box" >
     <h2 class="ui left floated header no-print"> Sales Report</h2>
@@ -100,87 +40,63 @@
         </div>
         <div class=" field" >
           <button class="ui tiny right floated  green button no-print " style="margin-top:25px" {{action "clearFilters"}}>Clear All Filters</button>
+          <button class="ui tiny right floated  red button no-print " style="margin-top:25px" {{action "deleteFiltered"}}>Delete Order</button>
         </div>
       </div>
     </div>
     <table class="ui celled structured center aligned table">
       <thead>
         <tr>
-          <th>Item No.</th>
-          <th>Item Name</th>
-          <th>Unit Qty.</th>
-          <th>Unit Price</th>
-          <th>Tot.Amt </th>
-          <th>MRF</th>
-          <th>Date</th>
-          <th>Department</th>
+          <th>Order No.</th>
+          <th>Customer</th>
+          <th>Order Date.</th>
+          <th>Amount</th>
         </tr>
       </thead>
       <tbody>
         {{#each filteredProducts  as |order index|}}
-        {{#each order.orderitems as |orderitem|}}
         <tr>
-          <td>{{orderitem.product.itemcode}}</td>
-          <td>{{orderitem.product.productname}}</td>
-          <td>{{orderitem.quantity}}</td>
-          <td>{{orderitem.product.retailprice}}</td>
-          <td>{{orderitem.computedtotal}}</td>
-          <td>{{order.mrf}}</td>
-          <td>{{moment-format order.issuancedate inputFormat}}</td>
+          <td>{{order.id}}</td>
           <td>{{order.customer.companyname}}</td>
-
-
-
+          <td>{{moment-format order.duedate inputFormat}}</td>
+          <td>{{order.chargableamount}}</td>
         </tr>
         {{/each}}
-        {{/each}}
         <tr>
-          <td></td>
           <td></td>
           <td></td>
           <td><b>Total</b></td>
           <td>{{computedSalesTotal}}</td>
-          <td></td>
-          <td></td>
-          <td></td>
         </tr>
       </tbody>
     </table>
   </div>
-
 </div>
 
-<div class="print-box only-print"  >
-  <img src="images/logo2.png" class="only-print" >
-  <div class="ui center aligned dividing header only-print">Sales Report : {{customers.firstObject.filteryear}}</div>
+
+
+<div class="ui bottom attached tab segment no-print" data-tab="second">
+  <h2 class="ui left floated header no-print"> Customer Report on {{moment-format (now) 'DD-MM-YYYY' interval=5000}}</h2>
+
   <table class="ui celled structured center aligned table">
     <thead>
       <tr>
-        <th>Department</th>
-        {{#each monthNames as |monnames|}}
-        <th>{{monnames}}</th>
-        {{/each}}
+        <th>Customer ID.</th>
+        <th>Customer name</th>
+        <th>Phone</th>
+        <th>Total Due</th>
       </tr>
     </thead>
     <tbody>
-
-      {{#each customers as |customer|}}
+      {{#each customers  as |customer index|}}
       <tr>
+        <td>{{customer.id}}</td>
         <td>{{customer.companyname}}</td>
-        <td>{{customer.orderByMonthJanuvary}}</td>
-        <td>{{customer.orderByMonthFebruvary}}</td>
-        <td>{{customer.orderByMonthMarch}}</td>
-        <td>{{customer.orderByMonthApril}}</td>
-        <td>{{customer.orderByMonthMay}}</td>
-        <td>{{customer.orderByMonthJune}}</td>
-        <td>{{customer.orderByMonthJuly}}</td>
-        <td>{{customer.orderByMonthAugust}}</td>
-        <td>{{customer.orderByMonthSeptember}}</td>
-        <td>{{customer.orderByMonthOctober}}</td>
-        <td>{{customer.orderByMonthNovember}}</td>
-        <td>{{customer.orderByMonthDecember}}</td>
+        <td>{{customer.phone}}</td>
+        <td>{{customer.due}}</td>
       </tr>
       {{/each}}
+
     </tbody>
   </table>
 </div>
@@ -212,7 +128,7 @@
         <td>{{orderitem.product.retailprice}}</td>
         <td>{{orderitem.computedtotal}}</td>
         <td>{{order.mrf}}</td>
-        <td>{{moment-format order.issuancedate inputFormat}}</td>
+        <td>{{moment-format order.duedate 'MM-DD-YYY'}}</td>
         <td>{{order.customer.companyname}}</td>
 
 
