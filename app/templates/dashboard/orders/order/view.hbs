@@ -125,20 +125,7 @@
       </div>
     </div>
     <div class="ui basic segment" style="border : 1px solid rgba(34, 36, 38, 0.15);background:rgba(9,9,26,0.4)">
-      <!-- .  <button class=" ui tiny right floated  green button" {{createPurchaseOrder}}>Create</button> -->
-      <!-- <div class="ui three column grid">
-        <div class="column" ></div>
-        <div class="column" ></div>
-        <div class="column"  style="padding-top:0;padding-bottom:0" >
-          <br>
-          {{#if (eq order.orderstatus 'created')}}
-          <button class=" ui small fluid red button" {{action "deliverOrder" order}} >Deliver Order</button>
-          {{else}}
-          <button class=" ui small fluid green button" >Order Delivered</button>
-          {{/if}}
-          <br>
-        </div>
-      </div> -->
+
     </div>
   </div>
   <div class="four wide column">
@@ -146,46 +133,42 @@
   </div>
 </div>
 <div class="only-print print-box2">
-  <div class="" style="float:left">
-    Tax Payers Identification No: 32100700353
-    <br>
-    CENTRAL EXCISE REGN No :
-    <br>
-    SSI/MSI/LSI Regn No :
+  <div class="" style="float:left;padding-bottom:20px;">
+  <img src="images/logo-full.png" alt="" />
+
   </div>
 
 
-
   <div style="font-weight:200;float:right; text-align:right">
-      Central Sales Tax RegNo : 32100700353C<br>
-      IEC.No : 101690284
+
   </div>
 <div class="clearfix">
 
 </div>
-  <div class="ui center aligned basic segment">
-    Curar Gratis Health Products Company, Madhinul Uloom Madrassa Building, Kattilasseri, Kadungapuram - 679321,<br> Ph : 04933254321,
-     Email :admin@curargratis.com <br>
-    <h6>THE KERALA VALUE ADDED TAX RULES,2005</h6>
-    FORM NO.8 <br>
-    <i>[See Rule 58(10)]</i> <br><br>
-    TAX INVOICE<br>
-    CASH / CREDIT <br>
-    (To be prepared in Quadruplicate)
 
-  </div>
+
+
+
   <div style="float:left">
-    Invoice No. {{order.id}}<br>
-    Purchase Order Date :     {{moment-format order.duedate inputFormat }} <br>
+
     {{#if (eq order.orderstatus 'delivered')}}
     <div class="inline field">
       Delivery Date:{{moment-format order.issuancedate inputFormat}}
     </div>
     {{/if}}
-    <b>Name & Address of Purchasing Dealer :</b><br>
-     {{order.customer.companyname}}<br>{{order.customer.address1}} - {{order.customer.zipcode}}<br> Phone : {{order.customer.phone}}<br><br>TIN : {{order.customer.tin}}
+    <b>Name & Address of <br> Purchasing Dealer :</b><br>
+     {{order.customer.companyname}}<br>{{order.customer.address1}} - {{order.customer.zipcode}}<br> Phone : {{order.customer.phone}}<br>
+     {{#if order.customer.tin}}
 
+     <br>TIN : {{order.customer.tin}}
+     {{/if}}
+     Invoice No. {{order.id}}<br>
+     Purchase Order Date :<br> {{moment-format order.duedate inputFormat }} <br>
 
+  </div>
+  <div style="float:right; text-align:right;padding-top:40px;">
+    Indian traders, 67/7043,<br> Near Juma masjid, Jew Street,<br> Broadway, Ernakulam<br> Ph : 0484 2354068,<br>
+     Email : indtraders@gmail.com <br>
   </div>
 
   <div class="clearfix"></div>
@@ -223,7 +206,7 @@
   </table>
     <br>
 
-    <div class="ui two column grid">
+    <div class="ui column grid">
 
       <div class="column" >
         <table class="ui very basic table">
@@ -240,10 +223,10 @@
                         <td>Amount Chargable</td>
                         <td class="right aligned">{{order.chargableamount}}</td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <td>Amount Chargable (In Words)</td>
                         <td class="right aligned n2e">{{number-to-english number=order.chargableamount}}</td>
-                      </tr>
+                      </tr> -->
 
                       <tr>
                         <td>Previous Balance</td>
@@ -253,23 +236,24 @@
         </table>
       </div>
     </div>
-  <div class="">
+  <div class="" style="padding-top:10px;">
     Amount Chargeable (in words) <br>
       <b><span style="float:left" >Indian Rupees&nbsp;</span> <span class="n2e"> {{number-to-english number=order.chargableamount}}</span></b>
     <b></b><br>
-    Terms of Delivery and payment if any:
-    <div class="ui center aligned basic segment ">
+    <!-- Terms of Delivery and payment if any: -->
+    <!-- <div class="ui center aligned basic segment ">
       <b>DECLARATION</b><br>
       <i>(To be furnished by the seller)</i>
     </div>
-    Certified that allthe particulars shown in the above Tax Invoice are true and correct and that my/our Registration under KVAT Act 2003 is valid as the date of this bill.
+    Certified that allthe particulars shown in the above Tax Invoice are true and correct and that my/our Registration under
+     KVAT Act 2003 is valid as the date of this bill.
     <div class="ui right aligned basic segment ">
       Authorised Signority <br>
       [with Status & Seal]
-    </div>
-    *Original - for the buyer for the purpose of claiming Input Tax Credit.   Duplicate - for the Transport Copy. <br>
+    </div> -->
+    <!-- *Original - for the buyer for the purpose of claiming Input Tax Credit.   Duplicate - for the Transport Copy. <br>
      Triplicate - for filing at Checkpost/Extra Copy &  Quadraplicate - to be retained with the seller. <br>
-    **Dealers who are not manufacturers will have an option to omit coloumns 9 and 10.
+    **Dealers who are not manufacturers will have an option to omit coloumns 9 and 10. -->
   </div>
 
 
