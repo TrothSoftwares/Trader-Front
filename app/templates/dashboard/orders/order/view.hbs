@@ -99,12 +99,18 @@
           <table class="ui very basic table">
             <tbody>
                         <tr>
+                          <td>Total Quantity</td>
+                          <td class="right aligned">{{order.computedtotalunits}}</td>
+                        </tr>
+                        <tr>
                           <td>Total Amount</td>
                           <td class="right aligned">{{order.totalcost}}</td>
                         </tr>
                         <tr>
+                          {{#if (not-eq order.roundoff 0)}}
                           <td>Discount</td>
                           <td class="right aligned">{{order.roundoff}}</td>
+                          {{/if}}
                         </tr>
                         <tr>
                           <td>Amount Chargable</td>
@@ -116,8 +122,11 @@
                         </tr>
 
                         <tr>
+
+                          {{#if (not-eq order.customer.due 0)}}
                           <td>Previous Balance</td>
                           <td class="right aligned">{{order.customer.due}}</td>
+                          {{/if}}
                         </tr>
             </tbody>
           </table>
@@ -211,13 +220,20 @@
       <div class="column" >
         <table class="ui very basic table">
           <tbody>
+
+            <tr>
+              <td>Total Quantity</td>
+              <td class="right aligned">{{order.computedtotalunits}}</td>
+            </tr>
                       <tr>
                         <td>Total Amount</td>
                         <td class="right aligned">{{order.totalcost}}</td>
                       </tr>
                       <tr>
+                        {{#if (not-eq order.roundoff 0)}}
                         <td>Discount</td>
                         <td class="right aligned">{{order.roundoff}}</td>
+                        {{/if}}
                       </tr>
                       <tr>
                         <td>Amount Chargable</td>
@@ -229,8 +245,10 @@
                       </tr> -->
 
                       <tr>
+                        {{#if (not-eq order.customer.due 0)}}
                         <td>Previous Balance</td>
                         <td class="right aligned">{{order.customer.due}}</td>
+                        {{/if}}
                       </tr>
           </tbody>
         </table>

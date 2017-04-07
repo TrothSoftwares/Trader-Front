@@ -27,10 +27,6 @@ export default DS.Model.extend({
 // computedOrderTotalCostTaxable
 
 
-
-
-
-
  computedtotalunits: function() {
     return this.get('orderitems').reduce(function(sum, split) {
         return sum + parseInt(split.get('quantity'));

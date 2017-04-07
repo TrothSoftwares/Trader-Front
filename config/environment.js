@@ -52,8 +52,8 @@ ENV['ember-simple-auth'] = {
   };
 
   if (environment === 'development') {
-    // ENV.APP.host =  'http://localhost:3000';
-    ENV.APP.host =  'https://trader-back.herokuapp.com';
+    ENV.APP.host =  'http://localhost:3000';
+    // ENV.APP.host =  'https://trader-back.herokuapp.com';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -85,7 +85,8 @@ ENV['ember-simple-auth'] = {
   }
 
   if (environment === 'production') {
-    ENV.APP.host =  'https://trader-back.herokuapp.com';
+    // ENV.APP.host =  'https://trader-back.herokuapp.com';
+    ENV.APP.host =  'https://indiantrader-back.herokuapp.com';
 
   }
 //   if (deployTarget === 'staging') {

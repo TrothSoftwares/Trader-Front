@@ -2,8 +2,17 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+
+
+
+
+
+
 inputFormat:'DD/MM/YYYY',
+
+
 actions:{
+
 
   deleteOrder:function(order){
     var controller= this;
@@ -50,6 +59,8 @@ actions:{
     order.save(); //TODO : catch function pending
   },
   printOrder:function(){
+
+
     window.print();
   }
 }
