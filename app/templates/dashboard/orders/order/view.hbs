@@ -143,48 +143,55 @@
   </div>
 </div>
 <div class="only-print print-box2">
-  <div class="" style="float:left;padding-bottom:20px;">
+  <div class="" style="padding:0px 0px 20px 120px;">
   <img src="images/logo-full.png" alt="" />
 
   </div>
 
 
-  <div style="font-weight:200;float:right; text-align:right">
-
+  <div style="font-weight:200;float:text-align:center;padding-left:35px">
+    67/7043,Near Juma masjid, Jew Street, Broadway, Ernakulam <br>
+    <p style="padding-left:140px;">
+      Ph : 0484 2354068<br>
+    </p>
   </div>
-<div class="clearfix">
 
+
+  <div class="clearfix">
+
+</div>
+<div class="" style="padding-top:20px">
+  <p>
+    Invoice No. {{order.id}}  <span style="padding-left:220px">Date: {{moment-format order.duedate inputFormat }}</span>
+  </p>
+
+
+
+</div>
+<div class="clearfix">
 </div>
 
 
 
-
-  <div style="float:left">
+  <div style="float:left;padding-top:10px">
 
     {{#if (eq order.orderstatus 'delivered')}}
     <div class="inline field">
       Delivery Date:{{moment-format order.issuancedate inputFormat}}
     </div>
     {{/if}}
-    <b>Name & Address of <br> Purchasing Dealer :</b><br>
-     {{order.customer.companyname}}<br>{{order.customer.address1}} - {{order.customer.zipcode}}<br> Phone : {{order.customer.phone}}<br>
+    Name & Address of Customer :
+     {{order.customer.companyname}} {{order.customer.address1}} - {{order.customer.zipcode}}  Phone : {{order.customer.phone}}
      {{#if order.customer.tin}}
 
      <br>TIN : {{order.customer.tin}}
      {{/if}}
-     Invoice No. {{order.id}}<br>
-     Purchase Order Date :<br> {{moment-format order.duedate inputFormat }} <br>
+
 
   </div>
-  <div style="float:right; text-align:right;padding-top:40px;">
-    Indian traders, 67/7043,<br> Near Juma masjid, Jew Street,<br> Broadway, Ernakulam<br> Ph : 0484 2354068,<br>
-     Email : indtraders@gmail.com <br>
-  </div>
+
 
   <div class="clearfix"></div>
-
-
-
   <br>
 
   <table class="ui celled table">
@@ -214,31 +221,36 @@
       {{/each}}
     </tbody>
   </table>
-    <br>
 
-    <div class="ui column grid">
+<div class="" style="padding-bottom:10px">
+  <p style="padding-left:200px">
+  <tr>
+      <td>Total Qty : </td>
+      <td class="right aligned">{{order.computedtotalunits}}</td>
+    </tr>
+  </p>
+</div>
+    <div class="" style="float:right" >
 
-      <div class="column" >
-        <table class="ui very basic table">
-          <tbody>
+
 
 
                       <tr>
-                        <td>Total Amount</td>
+                        <td>Total Amount: </td>
                         <td class="right aligned">{{order.totalcost}}</td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <td>Total Quantity</td>
                         <td class="right aligned">{{order.computedtotalunits}}</td>
-                      </tr>
+                      </tr> -->
                       <tr>
                         {{#if (not-eq order.roundoff 0)}}
-                        <td>Discount</td>
+                        <td>Discount: </td>
                         <td class="right aligned">{{order.roundoff}}</td>
                         {{/if}}
                       </tr>
                       <tr>
-                        <td>Amount Chargable</td>
+                        <td>Amt Chargable: </td>
                         <td class="right aligned">{{order.chargableamount}}</td>
                       </tr>
                       <!-- <tr>
@@ -248,16 +260,14 @@
 
                       <tr>
                         {{#if (not-eq order.customer.due 0)}}
-                        <td>Previous Balance</td>
+                        <td>Balance: </td>
                         <td class="right aligned">{{order.customer.due}}</td>
                         {{/if}}
                       </tr>
-          </tbody>
-        </table>
-      </div>
+
     </div>
-  <div class="" style="padding-top:10px;">
-    Amount Chargeable (in words) <br>
+  <div class="" style="padding-top:100px;">
+    Amount Payable (in words) <br>
       <b><span style="float:left" >Indian Rupees&nbsp;</span> <span class="n2e"> {{number-to-english number=order.chargableamount}}</span></b>
     <b></b><br>
     <!-- Terms of Delivery and payment if any: -->
