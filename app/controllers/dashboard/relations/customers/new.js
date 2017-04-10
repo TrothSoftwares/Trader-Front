@@ -2,10 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+  createCustomerPerformed: false,
 
-  isCreateCustomerButtonDisabled: Ember.computed('companyname'  , 'phone'  ,  function() {
+  isCreateCustomerButtonDisabled: Ember.computed('companyname'  , 'phone' ,'createCustomerPerformed' ,  function() {
     if( Ember.isEmpty(this.get('companyname')) ||
-    Ember.isEmpty(this.get('phone'))
+    Ember.isEmpty(this.get('phone'))||
+    (this.get('createCustomerPerformed') === true)
   ){return 'disabled';}
   else{return '';}
 }),
@@ -56,6 +58,8 @@ validCompanycodeError:'',
     createCustomer: function(){
 
       var controller = this;
+      controller.set('createCustomerPerformed',true);
+
 
       var customer = this.store.createRecord('customer', {
         companyname :this.get('companyname'),
@@ -79,6 +83,7 @@ validCompanycodeError:'',
         controller.set('country','');
         controller.set('zipcode','');
         controller.set('phone','');
+        controller.set('createCustomerPerformed',false);
         controller.transitionToRoute('dashboard.relations.customers.customer.view' , customer);
       }).catch(function(){
         controller.notifications.addNotification({
