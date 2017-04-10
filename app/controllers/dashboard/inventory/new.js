@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+createProductPerformed: false,
 
   // itemcodes :  Ember.computed.mapBy('products', 'itemcode'),
   validItemcodeMessage: '',
@@ -21,10 +22,11 @@ export default Ember.Controller.extend({
 
   // retailprice:'',
 
-  isCreateProductButtonDisabled: Ember.computed(  'productname' ,     'retailprice'  ,  function() {
+  isCreateProductButtonDisabled: Ember.computed(  'productname' , 'createProductPerformed' ,     'retailprice'  ,  function() {
     if(Ember.isEmpty(this.get('productname')) ||
     // Ember.isEmpty(this.get('initialcostprice')) ||
-    Ember.isEmpty(this.get('retailprice'))
+    Ember.isEmpty(this.get('retailprice'))||
+    (this.get('createProductPerformed') === true)
 
   ){return 'disabled';}
   else{return '';}
@@ -169,6 +171,9 @@ actions:{
 
     var controller = this;
 
+    controller.set('createProductPerformed',true);
+
+
     var product = this.store.createRecord('product', {
       itemcode :this.get('itemcode'),
       productname :this.get('productname'),
@@ -193,6 +198,7 @@ actions:{
       controller.set('brandname','');
 
       // window.location.reload();
+      controller.set('createProductPerformed',false);
       controller.transitionToRoute('dashboard.inventory.index');
     }).catch(function(){
       controller.notifications.addNotification({

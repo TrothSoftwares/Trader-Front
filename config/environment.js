@@ -56,6 +56,7 @@ ENV['ember-simple-auth'] = {
 
     // ENV.APP.host =  'http://localhost:3000';
     // ENV.APP.host =  'https://trader-back.herokuapp.com';
+
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
